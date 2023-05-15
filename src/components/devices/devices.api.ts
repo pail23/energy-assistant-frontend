@@ -1,16 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 import Device from "./device";
 import { io, Socket } from "socket.io-client";
-import { reactive, ref } from "vue";
-/*
-export class Device {
-    name: string = "";
-    state: number = 0.0;
-    constructor(name: string = "", state: number = 0.0) {
-        this.name = name;
-        this.state = state;
-    }
-}*/
+import { reactive } from "vue";
 
 export default class DevicesAPIService {
     private axiosInstance: AxiosInstance;
@@ -20,19 +11,24 @@ export default class DevicesAPIService {
         home_consumption: 0.0,
         solar_production: 0.0,
         self_sufficiency: 0.0,
-        devices: []
+        solar_energy : 0.0,
+        consumed_energy : 0.0,
+        self_sufficiency_today : 0.0,        
+        devices: [] as Device[]
 
     });
 
 
     constructor() {
+        const devMode = process.env.NODE_ENV === 'development';
+
         this.axiosInstance = axios.create({
-            baseURL: "http://localhost:5000/api",
+            baseURL: devMode ? "http://localhost:5000/api" : "/api",
             headers: {
                 "Content-type": "application/json"
             }
         })
-        this.socket = io(':5000');        
+        this.socket = devMode ? io(":5000"): io();
         this.socket.on('connect', () => {
             console.log("WS connected...");
         });

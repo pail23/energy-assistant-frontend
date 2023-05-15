@@ -17,8 +17,8 @@
                             <p>Solar Leistung: {{ home.solar_production }} W</p>
                             <p>Verbrauch: {{ home.home_consumption }} W</p>
                             <p>Autarkie: {{ home.self_sufficiency }} %</p>
-                            <p>Solar Energie: {{ home.solar_energy }}</p>
-                            <p>Verbrauchte Energie: {{ home.consumed_energy }}</p>
+                            <p>Solar Energie: {{ home.solar_energy.toFixed(2) }} kWh</p>
+                            <p>Verbrauchte Energie: {{ home.consumed_energy.toFixed(2) }} kWh</p>
                             <p>Autarkie heute: {{ home.self_sufficiency_today }} %</p>
                         </v-col>
                     </v-row>
