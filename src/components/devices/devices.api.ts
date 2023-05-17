@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 import Device from "./device";
 import { io, Socket } from "socket.io-client";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 export default class DevicesAPIService {
     private axiosInstance: AxiosInstance;
@@ -17,6 +17,9 @@ export default class DevicesAPIService {
         devices: [] as Device[]
 
     });
+    public state = reactive({
+        connected: false
+    });
 
 
     constructor() {
@@ -31,6 +34,12 @@ export default class DevicesAPIService {
         this.socket = devMode ? io(":5000"): io();
         this.socket.on('connect', () => {
             console.log("WS connected...");
+            this.state.connected = true;
+        });
+
+        this.socket.on('disconnect', () => {    
+            console.log("WS diconnected...");
+            this.state.connected = false;
         });
 
         // Event handler for server sent data.

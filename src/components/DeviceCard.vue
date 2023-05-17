@@ -13,6 +13,9 @@
                 </v-col>
                 <v-col cols="10">
                     <p>Verbrauch: {{ state }} W</p>
+                    <p>Solar Energie: {{ solar_energy.toFixed(2) }} kWh</p>
+                    <p>Verbrauchte Energie: {{ consumed_energy.toFixed(2) }} kWh</p>
+                    <p>Autarkie heute: {{ self_sufficiency_today }} %</p>
                 </v-col>
             </v-row>
         </v-card-text>
@@ -22,8 +25,11 @@
 <script lang="ts" setup>
 
 const props = defineProps({
-  name: { type: String, required: true },
-  icon: { type: String, required: true },
-  state: { type: Number, required: true },
+    name: { type: String, required: true },
+    icon: { type: String, required: true },
+    state: { type: Number, required: true },
+    solar_energy: { type: Number, required: true },
+    consumed_energy: { type: Number, required: true },
+    self_sufficiency_today: { type: Number, required: true },
 })
 </script>
