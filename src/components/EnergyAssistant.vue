@@ -27,24 +27,7 @@
 
 
             <li v-for="(device, index) in home.devices" :key="index">
-                <v-card width="400" style="margin: 20px">
-                    <v-card-item>
-                        <v-card-title>{{ device.name }}
-                        </v-card-title>
-
-                    </v-card-item>
-
-                    <v-card-text>
-                        <v-row class="d-flex align-center fill-width">
-                            <v-col cols="2">
-                                <v-icon :icon="device.icon" />
-                            </v-col>
-                            <v-col cols="10">
-                                <p>Verbrauch: {{ device.state }} W</p>
-                            </v-col>
-                        </v-row>
-                    </v-card-text>
-                </v-card>
+                <DeviceCard :name=device.name :icon=device.icon :state=device.state></DeviceCard>
             </li>
 
 
@@ -55,7 +38,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { devicesAPI } from './devices/devices.api'
-
+import DeviceCard from "./DeviceCard.vue";
 
 export default defineComponent({
     created() {
@@ -65,7 +48,10 @@ export default defineComponent({
         home() {
             return devicesAPI.home;
         }
-  }    
+    },
+    components: {
+        DeviceCard
+    }
 });
 
 </script>
