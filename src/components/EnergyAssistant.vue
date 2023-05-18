@@ -2,25 +2,39 @@
     <v-container class="fill-height">
         <v-responsive class="d-flex align-center  fill-height text-center">
             <div v-if="connected">
-                <v-card width="400" style="margin: 20px">
+                <v-card width="400" class="rounded-lg ma-4">
                     <v-card-item>
-                        <v-card-title>{{ home.name }}
-                        </v-card-title>
-
-                    </v-card-item>
-
-                    <v-card-text>
                         <v-row class="d-flex align-center fill-width">
                             <v-col cols="2">
                                 <v-icon icon="mdi:mdi-home" />
                             </v-col>
                             <v-col cols="10">
-                                <p>Solar Leistung: {{ home.solar_production }} W</p>
-                                <p>Verbrauch: {{ home.home_consumption }} W</p>
-                                <p>Autarkie: {{ home.self_sufficiency }} %</p>
-                                <p>Autarkie heute: {{ home.self_sufficiency_today }} %</p>
-                                <p style="color:gray">Solar Energie: {{ home.solar_energy.toFixed(2) }} kWh</p>
-                                <p style="color:gray">Verbrauchte Energie: {{ home.consumed_energy.toFixed(2) }} kWh</p>
+                                <v-card-title class="text-left">{{ home.name }}
+                                </v-card-title>
+                            </v-col>
+                        </v-row>
+
+                    </v-card-item>
+
+
+                    <v-card-text>
+                        <v-row class="d-flex align-center fill-width">
+                            <v-col cols="2">
+                                
+                            </v-col>
+                            <v-col cols="10">
+                                <p class="text-left">Solar Leistung:<span style="float:right;">{{
+                                    home.solar_production }} W</span></p>
+                                <p class="text-left">Verbrauch: <span style="float:right;">{{ home.home_consumption }}
+                                        W</span></p>
+                                <p class="text-left">Autarkie: <span style="float:right;">{{ home.self_sufficiency }}
+                                        %</span></p>
+                                <p class="text-left">Autarkie heute: <span style="float:right;">{{
+                                    home.self_sufficiency_today }} %</span></p>
+                                <p class="text-left text-grey">Solar Energie: <span style="float:right;">{{
+                                    home.solar_energy.toFixed(2) }} kWh</span></p>
+                                <p class="text-left text-grey">Verbrauchte Energie: <span style="float:right;">{{
+                                    home.consumed_energy.toFixed(2) }} kWh</span></p>
 
                             </v-col>
                         </v-row>
@@ -52,7 +66,7 @@ export default defineComponent({
         return {
             userLoggedIn: false
         };
-    },    
+    },
     computed: {
         home() {
             return devicesAPI.home;
