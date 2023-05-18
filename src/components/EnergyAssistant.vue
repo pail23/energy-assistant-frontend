@@ -1,6 +1,6 @@
 <template>
     <v-container class="fill-height">
-        <v-responsive class="d-flex align-center  fill-height text-center">
+        <v-responsive class="d-flex align-center  fill-height">
             <div v-if="connected">
                 <v-card width="400" class="rounded-lg ma-4">
                     <v-card-item>
@@ -59,14 +59,7 @@ import { devicesAPI } from './devices/devices.api'
 import DeviceCard from "./DeviceCard.vue";
 
 export default defineComponent({
-    created() {
-        devicesAPI.fetchData()
-    },
-    data() {
-        return {
-            userLoggedIn: false
-        };
-    },
+
     computed: {
         home() {
             return devicesAPI.home;

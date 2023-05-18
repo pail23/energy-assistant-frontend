@@ -32,6 +32,7 @@ export default class DevicesAPIService {
             }
         })
         this.socket = devMode ? io(":5000"): io();
+
         this.socket.on('connect', () => {
             console.log("WS connected...");
             this.state.connected = true;
@@ -42,29 +43,38 @@ export default class DevicesAPIService {
             this.state.connected = false;
         });
 
+        this.socket.on('connection', (msg, cb) => {
+            console.log('Received connection home: ' + msg.data);
+            if (cb)
+                cb();
+            this.update_home(msg.data)
+        });
+
         // Event handler for server sent data.
         // The callback function is invoked whenever the server emits data
         // to the client. The data is then displayed in the "Received"
         // section of the page.
         this.socket.on('refresh', (msg, cb) => {
             console.log('Received refresh home: ' + msg.data);
-            const home = JSON.parse(msg.data);
             if (cb)
                 cb();
-            this.home.name = home.name;
-            this.home.home_consumption = home.home_consumption;
-            this.home.solar_production = home.solar_production;
-            this.home.self_sufficiency = home.self_sufficiency;
-            this.home.solar_energy = home.solar_energy;
-            this.home.consumed_energy = home.consumed_energy;
-            this.home.self_sufficiency_today = home.self_sufficiency_today;
-            this.home.devices = home.devices;
-
+            this.update_home(msg.data)
         });        
     }
 
+    update_home(data:string){
+        const home = JSON.parse(data);
+        this.home.name = home.name;
+        this.home.home_consumption = home.home_consumption;
+        this.home.solar_production = home.solar_production;
+        this.home.self_sufficiency = home.self_sufficiency;
+        this.home.solar_energy = home.solar_energy;
+        this.home.consumed_energy = home.consumed_energy;
+        this.home.self_sufficiency_today = home.self_sufficiency_today;
+        this.home.devices = home.devices;        
+    }
 
-    fetchData(){
+  /*  fetchData(){
         this.axiosInstance.get("/home").then((res) => {
             const home = res.data;
             this.home.name = home.name;
@@ -79,7 +89,7 @@ export default class DevicesAPIService {
         .catch((error) => {
             console.error(error);
         });
-    }
+    }*/
 }
 
 export const devicesAPI = new DevicesAPIService();
