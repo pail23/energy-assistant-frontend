@@ -13,9 +13,9 @@
                 </v-col>
                 <v-col cols="10">
                     <p>Verbrauch: {{ state }} W</p>
-                    <p>Solar Energie: {{ solar_energy.toFixed(2) }} kWh</p>
-                    <p>Verbrauchte Energie: {{ consumed_energy.toFixed(2) }} kWh</p>
                     <p>Autarkie heute: {{ self_sufficiency_today }} %</p>
+                    <p style="color:gray">Solar Energie: {{ solar_energy.toFixed(2) }} kWh</p>
+                    <p style="color:gray">Verbrauchte Energie: {{ consumed_energy.toFixed(2) }} kWh</p>
                 </v-col>
             </v-row>
         </v-card-text>
