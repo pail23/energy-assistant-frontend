@@ -43,7 +43,10 @@
 
 
                 <li v-for="(device, index) in home.devices" :key="index">
-                    <DeviceCard :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
+                    <HeatPumpCard v-if="device.type=='StiebelEltronDevice'" :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
+                        :consumed_energy=device.consumed_energy :self_sufficiency_today=device.self_sufficiency_today :actual_temperature=device.actual_temperature>
+                    </HeatPumpCard>                    
+                    <DeviceCard v-else :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
                         :consumed_energy=device.consumed_energy :self_sufficiency_today=device.self_sufficiency_today>
                     </DeviceCard>
                 </li>
@@ -57,6 +60,7 @@
 import { defineComponent } from "vue";
 import { devicesAPI } from './devices/devices.api'
 import DeviceCard from "./DeviceCard.vue";
+import HeatPumpCard from './HeatPumpCard.vue'
 
 export default defineComponent({
 
@@ -69,7 +73,7 @@ export default defineComponent({
         }
     },
     components: {
-        DeviceCard
+        DeviceCard, HeatPumpCard
     }
 });
 
