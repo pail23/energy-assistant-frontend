@@ -1,5 +1,5 @@
 <template>
-    <v-card width="400" class="rounded-lg ma-4">
+    <v-card width="350" class="rounded-lg ma-4">
         <v-card-item>
             <v-row class="d-flex align-center fill-width">
                 <v-col cols="2">
@@ -24,7 +24,7 @@
                     </p>
                     <p class="text-left">Temperatur: <span style="float:right;">{{ actual_temperature }} °C</span>
                     </p>                    
-                    <p class="text-left text-grey">Solar Energie: <span style="float:right;">{{
+                    <p class="text-left text-grey">Verbrauchte Solar Energie: <span style="float:right;">{{
                         solar_energy.toFixed(2) }} kWh</span></p>
                     <p class="text-left text-grey">Verbrauchte Energie: <span style="float:right;">{{
                         consumed_energy.toFixed(2) }} kWh</span></p>
