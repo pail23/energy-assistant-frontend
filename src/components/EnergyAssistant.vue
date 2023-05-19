@@ -42,14 +42,17 @@
                 </v-card>
 
 
-                <li v-for="(device, index) in home.devices" :key="index">
-                    <HeatPumpCard v-if="device.type=='StiebelEltronDevice'" :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
-                        :consumed_energy=device.consumed_energy :self_sufficiency_today=device.self_sufficiency_today :actual_temperature=device.actual_temperature>
-                    </HeatPumpCard>                    
-                    <DeviceCard v-else :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
+                <div v-for="(device, index) in home.devices" :key="index">
+                    <DeviceCard :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
                         :consumed_energy=device.consumed_energy :self_sufficiency_today=device.self_sufficiency_today>
                     </DeviceCard>
-                </li>
+                </div>
+                <div v-for="(device, index) in home.heat_pumps" :key="index">
+                    <HeatPumpCard  :name=device.name :icon=device.icon :state=device.state :solar_energy=device.solar_energy
+                        :consumed_energy=device.consumed_energy :self_sufficiency_today=device.self_sufficiency_today :actual_temperature=device.actual_temperature>
+                    </HeatPumpCard>    
+                </div>
+                 
             </div>
             <div v-else>Not connected to the backend.</div>
         </v-responsive>

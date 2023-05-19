@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
-import Device from "./device";
+import {Device, HeatpumpDevice} from "./device";
 import { io, Socket } from "socket.io-client";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 
 export default class DevicesAPIService {
     private axiosInstance: AxiosInstance;
@@ -14,8 +14,8 @@ export default class DevicesAPIService {
         solar_energy : 0.0,
         consumed_energy : 0.0,
         self_sufficiency_today : 0.0,        
-        devices: [] as Device[]
-
+        devices: [] as Device[],
+        heat_pumps: [] as HeatpumpDevice[]
     });
     public state = reactive({
         connected: false
@@ -72,6 +72,7 @@ export default class DevicesAPIService {
         this.home.consumed_energy = home.consumed_energy;
         this.home.self_sufficiency_today = home.self_sufficiency_today;
         this.home.devices = home.devices;        
+        this.home.heat_pumps = home.heat_pumps;
     }
 
   /*  fetchData(){

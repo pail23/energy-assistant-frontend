@@ -37,6 +37,23 @@
 
 <script lang="ts" setup>
 
+import { computed, ref } from 'vue'
+
+interface Props {
+  name: string
+  icon: string
+  state: number
+  solar_energy: number
+  consumed_energy: number
+  self_sufficiency_today: number
+  actual_temperature: number
+}
+
+
+const props = defineProps<Props>()
+/*
+const actual_temperature = computed(() => props.extra_attributes ) //extra_attributes["actual_temperature"])
+
 const props = defineProps({
     name: { type: String, required: true },
     icon: { type: String, required: true },
@@ -44,6 +61,6 @@ const props = defineProps({
     solar_energy: { type: Number, required: true },
     consumed_energy: { type: Number, required: true },
     self_sufficiency_today: { type: Number, required: true },
-    actual_temperature: { type: Number, required: true },
-})
+    extra_attributes: null,
+})*/
 </script>
