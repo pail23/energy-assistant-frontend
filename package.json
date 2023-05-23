@@ -15,7 +15,7 @@
     "roboto-fontface": "*",
     "socket.io-client": "^4.6.1",
     "vue": "^3.3.2",
-    "vue-router": "^4.2.0",
+    "vue-router": "^4.2.1",
     "vuetify": "^3.2.5",
     "webfontloader": "^1.0.0"
   },
