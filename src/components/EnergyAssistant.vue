@@ -23,17 +23,23 @@
                         </v-col>
                         <v-col cols="10">
                             <p class="text-left">Solar Leistung:<span style="float:right;">{{
-                                home.solar_production }} W</span></p>
-                            <p class="text-left">Verbrauch: <span style="float:right;">{{ home.home_consumption }}
+                                home.power.solar_production }} W</span></p>
+                            <p class="text-left">Verbrauch: <span style="float:right;">{{ home.power.home_consumption }}
                                     W</span></p>
-                            <p class="text-left">Autarkie: <span style="float:right;">{{ home.self_sufficiency }}
+                            <p class="text-left">Autarkie: <span style="float:right;">{{ home.power.self_sufficiency }}
                                     %</span></p>
+
+
                             <p class="text-left">Autarkie heute: <span style="float:right;">{{
-                                home.self_sufficiency_today }} %</span></p>
+                                home.today.self_sufficiency }} %</span></p>
+                            <p class="text-left text-grey">Verbr. Solar Energie heute: <span style="float:right;">{{
+                                home.today.consumed_solar_energy.toFixed(2) }} kWh</span></p>
+                            <p class="text-left text-grey">Verbr. Energie heute: <span style="float:right;">{{
+                                home.today.consumed_energy.toFixed(2) }} kWh</span></p>
                             <p class="text-left text-grey">Verbr. Solar Energie: <span style="float:right;">{{
-                                home.consumed_solar_energy.toFixed(2) }} kWh</span></p>
+                                home.overall.consumed_solar_energy.toFixed(2) }} kWh</span></p>
                             <p class="text-left text-grey">Verbr. Energie: <span style="float:right;">{{
-                                home.consumed_energy.toFixed(2) }} kWh</span></p>
+                                home.overall.consumed_energy.toFixed(2) }} kWh</span></p>
 
                         </v-col>
                     </v-row>
@@ -41,19 +47,18 @@
             </v-card>
 
             <div v-for="(device, index) in home.devices" :key="index">
-                    <DeviceCard :name=device.name :icon=device.icon :state=device.state
-                        :consumed_solar_energy=device.consumed_solar_energy :consumed_energy=device.consumed_energy
-                        :self_sufficiency_today=device.self_sufficiency_today>
-                    </DeviceCard>
+                <DeviceCard :name=device.name :icon=device.icon :state=device.power
+                    :consumed_solar_energy=device.overall.consumed_solar_energy :consumed_energy=device.overall.consumed_energy
+                    :self_sufficiency_today=device.today.self_sufficiency>
+                </DeviceCard>
             </div>
             <div v-for="(device, index) in home.heat_pumps" :key="index">
-                    <HeatPumpCard :name=device.name :icon=device.icon :state=device.state
-                        :consumed_solar_energy=device.consumed_solar_energy :consumed_energy=device.consumed_energy
-                        :self_sufficiency_today=device.self_sufficiency_today
-                        :actual_temperature=device.actual_temperature>
-                    </HeatPumpCard>
+                <HeatPumpCard :name=device.name :icon=device.icon :state=device.power
+                    :consumed_solar_energy=device.overall.consumed_solar_energy :consumed_energy=device.overall.consumed_energy
+                    :self_sufficiency_today=device.today.self_sufficiency :actual_temperature=device.actual_temperature>
+                </HeatPumpCard>
             </div>
-                 
+
         </div>
         <div v-else>Not connected to the backend.</div>
     </v-container>

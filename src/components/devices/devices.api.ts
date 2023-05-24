@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
-import {Device, HeatpumpDevice} from "./device";
+import {Device, HeatpumpDevice, Energy, HomePower} from "./device";
 import { io, Socket } from "socket.io-client";
 import { reactive } from "vue";
 
@@ -9,13 +9,25 @@ export default class DevicesAPIService {
     public home = reactive({
         name: "",
         home_consumption: 0.0,
-        solar_production: 0.0,
-        self_sufficiency: 0.0,
-        consumed_solar_energy : 0.0,
-        consumed_energy : 0.0,
-        self_sufficiency_today : 0.0,        
+        power: {
+            solar_production: 0.0,
+            grid_supply: 0.0,
+            solar_self_consumption: 0.0,
+            home_consumption: 0.0,
+            self_sufficiency: 0.0,
+        } as HomePower,
+        overall: {
+            consumed_solar_energy: 0.0,
+            consumed_energy: 0.0, 
+            self_sufficiency: 0.0
+        } as Energy,
+        today: {
+            consumed_solar_energy: 0.0,
+            consumed_energy: 0.0, 
+            self_sufficiency: 0.0
+        } as Energy,
         devices: [] as Device[],
-        heat_pumps: [] as HeatpumpDevice[]
+        heat_pumps: [] as HeatpumpDevice[],
     });
     public state = reactive({
         connected: false
@@ -65,12 +77,9 @@ export default class DevicesAPIService {
     update_home(data:string){
         const home = JSON.parse(data);
         this.home.name = home.name;
-        this.home.home_consumption = home.home_consumption;
-        this.home.solar_production = home.solar_production;
-        this.home.self_sufficiency = home.self_sufficiency;
-        this.home.consumed_solar_energy = home.consumed_solar_energy;
-        this.home.consumed_energy = home.consumed_energy;
-        this.home.self_sufficiency_today = home.self_sufficiency_today;
+        this.home.power = home.power;
+        this.home.overall = home.overall;
+        this.home.today = home.today;
         this.home.devices = home.devices;        
         this.home.heat_pumps = home.heat_pumps;
     }
