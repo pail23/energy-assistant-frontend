@@ -3,7 +3,7 @@ export interface Device {
     icon: string;
     type: string;
     state: number;
-    solar_energy : number;
+    consumed_solar_energy : number;
     consumed_energy : number;
     self_sufficiency_today : number;   
     extra_attributes: string;

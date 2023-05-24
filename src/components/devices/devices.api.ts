@@ -11,7 +11,7 @@ export default class DevicesAPIService {
         home_consumption: 0.0,
         solar_production: 0.0,
         self_sufficiency: 0.0,
-        solar_energy : 0.0,
+        consumed_solar_energy : 0.0,
         consumed_energy : 0.0,
         self_sufficiency_today : 0.0,        
         devices: [] as Device[],
@@ -68,29 +68,13 @@ export default class DevicesAPIService {
         this.home.home_consumption = home.home_consumption;
         this.home.solar_production = home.solar_production;
         this.home.self_sufficiency = home.self_sufficiency;
-        this.home.solar_energy = home.solar_energy;
+        this.home.consumed_solar_energy = home.consumed_solar_energy;
         this.home.consumed_energy = home.consumed_energy;
         this.home.self_sufficiency_today = home.self_sufficiency_today;
         this.home.devices = home.devices;        
         this.home.heat_pumps = home.heat_pumps;
     }
 
-  /*  fetchData(){
-        this.axiosInstance.get("/home").then((res) => {
-            const home = res.data;
-            this.home.name = home.name;
-            this.home.home_consumption = home.home_consumption;
-            this.home.solar_production = home.solar_production;
-            this.home.self_sufficiency = home.self_sufficiency;
-            this.home.solar_energy = home.solar_energy;
-            this.home.consumed_energy = home.consumed_energy;
-            this.home.self_sufficiency_today = home.self_sufficiency_today;
-            this.home.devices = home.devices;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }*/
 }
 
 export const devicesAPI = new DevicesAPIService();

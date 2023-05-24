@@ -23,7 +23,7 @@
                     <p class="text-left">Autarkie heute: <span style="float:right;">{{ self_sufficiency_today }} %</span>
                     </p>
                     <p class="text-left text-grey">Verbrauchte Solar Energie: <span style="float:right;">{{
-                        solar_energy.toFixed(2) }} kWh</span></p>
+                        consumed_solar_energy.toFixed(2) }} kWh</span></p>
                     <p class="text-left text-grey">Verbrauchte Energie: <span style="float:right;">{{
                         consumed_energy.toFixed(2) }} kWh</span></p>
 
@@ -39,7 +39,7 @@ const props = defineProps({
     name: { type: String, required: true },
     icon: { type: String, required: true },
     state: { type: Number, required: true },
-    solar_energy: { type: Number, required: true },
+    consumed_solar_energy: { type: Number, required: true },
     consumed_energy: { type: Number, required: true },
     self_sufficiency_today: { type: Number, required: true },
 })

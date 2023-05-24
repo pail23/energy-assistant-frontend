@@ -25,7 +25,7 @@
                     <p class="text-left">Temperatur: <span style="float:right;">{{ actual_temperature }} °C</span>
                     </p>                    
                     <p class="text-left text-grey">Verbrauchte Solar Energie: <span style="float:right;">{{
-                        solar_energy.toFixed(2) }} kWh</span></p>
+                        consumed_solar_energy.toFixed(2) }} kWh</span></p>
                     <p class="text-left text-grey">Verbrauchte Energie: <span style="float:right;">{{
                         consumed_energy.toFixed(2) }} kWh</span></p>
 
@@ -43,7 +43,7 @@ interface Props {
   name: string
   icon: string
   state: number
-  solar_energy: number
+  consumed_solar_energy: number
   consumed_energy: number
   self_sufficiency_today: number
   actual_temperature: number
@@ -58,7 +58,7 @@ const props = defineProps({
     name: { type: String, required: true },
     icon: { type: String, required: true },
     state: { type: Number, required: true },
-    solar_energy: { type: Number, required: true },
+    consumed_solar_energy: { type: Number, required: true },
     consumed_energy: { type: Number, required: true },
     self_sufficiency_today: { type: Number, required: true },
     extra_attributes: null,

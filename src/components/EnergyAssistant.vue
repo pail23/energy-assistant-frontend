@@ -1,7 +1,7 @@
 <template>
     <v-container class="fill-height">
         <div v-if="connected">
-            <v-card width="400" class="rounded-lg ma-4">
+            <v-card width="350" class="rounded-lg ma-4">
                 <v-card-item>
                     <v-row class="d-flex align-center fill-width">
                         <v-col cols="2">
@@ -30,9 +30,9 @@
                                     %</span></p>
                             <p class="text-left">Autarkie heute: <span style="float:right;">{{
                                 home.self_sufficiency_today }} %</span></p>
-                            <p class="text-left text-grey">Verbrauchte Solar Energie: <span style="float:right;">{{
-                                home.solar_energy.toFixed(2) }} kWh</span></p>
-                            <p class="text-left text-grey">Verbrauchte Energie: <span style="float:right;">{{
+                            <p class="text-left text-grey">Verbr. Solar Energie: <span style="float:right;">{{
+                                home.consumed_solar_energy.toFixed(2) }} kWh</span></p>
+                            <p class="text-left text-grey">Verbr. Energie: <span style="float:right;">{{
                                 home.consumed_energy.toFixed(2) }} kWh</span></p>
 
                         </v-col>
@@ -42,13 +42,13 @@
 
             <div v-for="(device, index) in home.devices" :key="index">
                     <DeviceCard :name=device.name :icon=device.icon :state=device.state
-                        :solar_energy=device.solar_energy :consumed_energy=device.consumed_energy
+                        :consumed_solar_energy=device.consumed_solar_energy :consumed_energy=device.consumed_energy
                         :self_sufficiency_today=device.self_sufficiency_today>
                     </DeviceCard>
             </div>
             <div v-for="(device, index) in home.heat_pumps" :key="index">
                     <HeatPumpCard :name=device.name :icon=device.icon :state=device.state
-                        :solar_energy=device.solar_energy :consumed_energy=device.consumed_energy
+                        :consumed_solar_energy=device.consumed_solar_energy :consumed_energy=device.consumed_energy
                         :self_sufficiency_today=device.self_sufficiency_today
                         :actual_temperature=device.actual_temperature>
                     </HeatPumpCard>
