@@ -24,22 +24,25 @@
                             <v-icon v-else @click="expanded = !expanded" icon="mdi:mdi-arrow-down-drop-circle-outline" />
                         </v-col>
                         <v-col class="align-center" cols="10">
-                            <h3>Leistung</h3>
-                            <p class="text-left">Solarproduktion<span style="float:right;">{{
-                                home.power.solar_production }} W</span></p>
-                            <p class="text-left">Verbrauch: <span style="float:right;">{{ home.power.home_consumption }}
-                                    W</span></p>
-                            <p class="text-left">Autarkie: <span style="float:right;">{{ home.power.self_sufficiency }}
-                                    %</span></p>
-
+                            <div class="mb-4">
+                                <h3>Leistung</h3>
+                                <p class="text-left">Solarproduktion<span style="float:right;">{{
+                                    home.power.solar_production }} W</span></p>
+                            </div>
+                            <h3>Aktueller Verbrauch</h3>
+                            <div class="mt-2 mb-4">
+                                <SelfSufficiencyBar :self_sufficiency=home.power.self_sufficiency
+                                    :consumed_energy=home.power.home_consumption
+                                    :consumed_solar_energy=solar_consumption_power unit="W"></SelfSufficiencyBar>
+                            </div>
                             <div v-show="expanded">
                                 <h3 class="pt-2">Verbrauch heute:</h3>
-                                <p class="text-left">Autarkie: <span style="float:right;">{{
-                                    home.today.self_sufficiency }} %</span></p>
-                                <p class="text-left">Solarenergie: <span style="float:right;">{{
-                                    home.today.consumed_solar_energy.toFixed(2) }} kWh</span></p>
-                                <p class="text-left">Gesamtverbrauch: <span style="float:right;">{{
-                                    home.today.consumed_energy.toFixed(2) }} kWh</span></p>
+
+                                <div class="mt-2 mb-4">
+                                    <SelfSufficiencyBar :self_sufficiency=home.today.self_sufficiency
+                                        :consumed_energy=home.today.consumed_energy
+                                        :consumed_solar_energy=home.today.consumed_solar_energy></SelfSufficiencyBar>
+                                </div>
 
                                 <h3 class="pt-2">Gesamtverbrauch:</h3>
                                 <p class="text-left">Solarenergie: <span style="float:right;">{{
@@ -71,29 +74,26 @@
     </v-container>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { ref, computed } from "vue";
 import { devicesAPI } from './devices/devices.api'
 import DeviceCard from "./DeviceCard.vue";
 import HeatPumpCard from './HeatPumpCard.vue'
+import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 
-export default defineComponent({
-    data() {
-        return {
-            expanded: true
-        }
-    },
-    computed: {
-        home() {
-            return devicesAPI.home;
-        },
-        connected() {
-            return devicesAPI.state.connected;
-        }
-    },
-    components: {
-        DeviceCard, HeatPumpCard
-    }
+const expanded = ref(false)
+const home = computed(() => {
+    return devicesAPI.home
 });
+
+const connected = computed(() => {
+    return devicesAPI.state.connected;
+})
+
+const solar_consumption_power = computed(() => {
+    return devicesAPI.home.power.self_sufficiency * devicesAPI.home.power.home_consumption / 100
+})
+
+
 
 </script>
