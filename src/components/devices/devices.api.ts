@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import axios, { AxiosInstance} from "axios"
 import {Device, HeatpumpDevice, Energy, HomePower} from "./device";
 import { io, Socket } from "socket.io-client";
 import { reactive } from "vue";

@@ -56,16 +56,13 @@
             </v-card>
 
             <div v-for="(device, index) in home.devices" :key="index">
-                <DeviceCard :name=device.name :icon=device.icon :state=device.power
-                    :consumed_solar_energy=device.overall.consumed_solar_energy
-                    :consumed_energy=device.overall.consumed_energy :self_sufficiency_today=device.today.self_sufficiency>
+                <DeviceCard :name=device.name :icon=device.icon :power=device.power :overall=device.overall
+                    :today=device.today>
                 </DeviceCard>
             </div>
             <div v-for="(device, index) in home.heat_pumps" :key="index">
-                <HeatPumpCard :name=device.name :icon=device.icon :state=device.power
-                    :consumed_solar_energy=device.overall.consumed_solar_energy
-                    :consumed_energy=device.overall.consumed_energy :self_sufficiency_today=device.today.self_sufficiency
-                    :actual_temperature=device.actual_temperature>
+                <HeatPumpCard :name=device.name :icon=device.icon :power=device.power :overall=device.overall
+                    :today=device.today :actual_temperature=device.actual_temperature>
                 </HeatPumpCard>
             </div>
 
