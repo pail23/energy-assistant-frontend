@@ -1,10 +1,10 @@
-import axios, { AxiosInstance} from "axios"
+//import axios, { AxiosInstance} from "axios"
 import {Device, HeatpumpDevice, Energy, HomePower} from "./device";
 import { io, Socket } from "socket.io-client";
 import { reactive } from "vue";
 
 export default class DevicesAPIService {
-    private axiosInstance: AxiosInstance;
+   // private axiosInstance: AxiosInstance;
     private socket: Socket;
     public home = reactive({
         name: "",
@@ -37,12 +37,12 @@ export default class DevicesAPIService {
     constructor() {
         const devMode = process.env.NODE_ENV === 'development';
 
-        this.axiosInstance = axios.create({
+      /*  this.axiosInstance = axios.create({
             baseURL: devMode ? "http://localhost:5000/api" : "/api",
             headers: {
                 "Content-type": "application/json"
             }
-        })
+        })*/
         this.socket = devMode ? io(":5000"): io();
 
         this.socket.on('connect', () => {

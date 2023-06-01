@@ -1,46 +1,39 @@
 <template>
-    <v-card width="350" class="rounded-lg ma-4">
-        <v-card-item>
-            <v-row class="d-flex align-center fill-width">
-                <v-col cols="2">
-                    <v-icon :icon="icon" />
-                </v-col>
-                <v-col cols="10">
-                    <v-card-title class="text-left">{{ name }}
-                    </v-card-title>
-                </v-col>
-            </v-row>
-        </v-card-item>
+    <div class="rounded-lg m-4 p-4 ring-1 ring-gray-900/5 drop-shadow-md w-96 bg-white">
+        <div>
+            <div class="grid grid-cols-6 w-full">
+                <div cols="2">
+                    <span class="mdi text-lg" :class="icon"></span>
+                </div>
+                <div class="col-span-5">
+                    <div class="text-left font-bold text-lg">{{ name }}
+                    </div>
+                </div>
 
-        <v-card-text>
-            <v-row class="d-flex fill-width">
-                <v-col class="d-flex align-end" cols="2">
-                    <v-icon v-if="expanded" @click="expanded = !expanded" icon="mdi:mdi-arrow-up-drop-circle-outline" />
-                    <v-icon v-else @click="expanded = !expanded" icon="mdi:mdi-arrow-down-drop-circle-outline" />
-                </v-col>
-                <v-col class="align-center" cols="10">
-
-                    <p class="text-left">Aktuelle Leistung: <span style="float:right;">{{ power }} W</span></p>
-                    <p class="text-left">Temperatur: <span style="float:right;">{{ actual_temperature }} °C</span>
-                    </p>
-                    <h3 class="pt-2">Verbrauch heute:</h3>
+                <div class="flex items-end">
+                    <span v-if="expanded" @click="expanded = !expanded" className="mdi mdi-arrow-up-drop-circle-outline" />
+                    <span v-else @click="expanded = !expanded" className="mdi mdi-arrow-down-drop-circle-outline" />
+                </div>
+                <div class="items-center col-span-5">
+                    <div class="text-left">Verbrauch: <span class="float-right">{{ power }} W</span></div>
+                    <div class="text-left">Temperatur: <span class="float-right">{{ actual_temperature }} °C</span> </div>
+                    <div class="italic">Verbrauch heute:</div>
                     <SelfSufficiencyBar :self_sufficiency=today.self_sufficiency :consumed_energy=today.consumed_energy
                         :consumed_solar_energy=today.consumed_solar_energy></SelfSufficiencyBar>
-
                     <div v-show="expanded">
-                        <h3 class="pt-2">Gesamtverbrauch:</h3>
-                        <p class="text-left">Solarenergie: <span style="float:right;">{{
-                            overall.consumed_solar_energy.toFixed(2) }} kWh</span></p>
-                        <p class="text-left">Gesamtverbrauch: <span style="float:right;">{{
-                            overall.consumed_energy.toFixed(2) }} kWh</span></p>
+                        <div class="italic">Gesamtverbrauch:</div>
+                        <div class="text-left">Solarenergie: <span class="float-right">{{
+                            overall.consumed_solar_energy.toFixed(2) }} kWh</span></div>
+                        <div class="text-left">Gesamtverbrauch: <span class="float-right">{{
+                            overall.consumed_energy.toFixed(2) }} kWh</span></div>
                         <SelfSufficiencyBar :self_sufficiency=overall.self_sufficiency
                             :consumed_energy=overall.consumed_energy :consumed_solar_energy=overall.consumed_solar_energy>
                         </SelfSufficiencyBar>
                     </div>
-                </v-col>
-            </v-row>
-        </v-card-text>
-    </v-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -60,6 +53,6 @@ interface Props {
 }
 
 
-const props = defineProps<Props>()
+defineProps<Props>()
 const expanded = ref(false)
 </script>

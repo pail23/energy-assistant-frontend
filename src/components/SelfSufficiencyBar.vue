@@ -1,16 +1,15 @@
 <template>
-    <div class="bg-red rounded text-center">
-        <div class="rounded bg-yellow-darken-2 text-center text-white" :style=progressBarStyle><span v-if="self_sufficiency > 20"> {{
+    <div class="bg-red-900 w-full text-sm rounded text-center text-white">
+        <div class="rounded bg-yellow-500 " :style=progressBarStyle><span v-if="self_sufficiency > 50"> {{
             self_sufficiency }}%</span></div>
-        <span v-if="self_sufficiency < 20"> {{
+        <span v-if="self_sufficiency < 50"> {{
             self_sufficiency }}%</span>
     </div>
-    <div >
-        <v-icon color="yellow-darken-2" icon="mdi:mdi-solar-power" />
-        <span class="text-yellow-darken-2">{{
-            consumed_solar_energy.toFixed(1) }} {{ unit }}</span><span class="text-red" style="float:right;">{{
-        consumed_grid_energy.toFixed(1) }} {{ unit }}<v-icon color="red" icon="mdi:mdi-transmission-tower" /></span>
-        
+    <div class="text-sm">
+        <span class="mdi mdi-solar-power text-yellow-500" ></span>
+        <span class="text-yellow-500">{{
+            consumed_solar_energy.toFixed(1) }} {{ unit }}</span><span class="text-red-900 float-right">{{
+        consumed_grid_energy.toFixed(1) }} {{ unit }}<span class="mdi mdi-transmission-tower text-red-900" ></span></span>
     </div>
 </template>
 

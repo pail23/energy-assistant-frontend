@@ -1,7 +1,7 @@
 <template>
-  <router-view class="bg-grey-lighten-4" />
+  <EnergyAssistant />
 </template>
 
 <script lang="ts" setup>
-  //
+  import EnergyAssistant from './components/EnergyAssistant.vue'
 </script>

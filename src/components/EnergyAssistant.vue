@@ -1,59 +1,51 @@
 <template>
-    <v-container class="fill-height">
+    <div class="h-full bg-slate-100 p-4 ">
         <div v-if="connected">
-            <v-card width="350" class="rounded-lg ma-4">
-                <v-card-item>
-                    <v-row class="d-flex align-center fill-width">
-                        <v-col cols="2">
-                            <v-icon icon="mdi:mdi-home" />
-                        </v-col>
-                        <v-col cols="10">
-                            <v-card-title class="text-left">{{ home.name }}
-                            </v-card-title>
-                        </v-col>
-                    </v-row>
+            <div class="rounded-lg m-4 p-4 ring-1 ring-gray-900/5 drop-shadow-md w-96 bg-white">
+                <div class="grid grid-cols-6 w-full">
+                    <div>
+                        <span class="mdi mdi-home text-lg" ></span>
+                    </div>
+                    <div class="col-span-5">
+                        <span class="text-left font-bold text-lg">{{ home.name }}
+                        </span>
+                    </div>
 
-                </v-card-item>
+                    <div class="flex items-end">
+                        <span v-if="expanded" @click="expanded = !expanded"
+                            className="mdi mdi-arrow-up-drop-circle-outline" />
+                        <span v-else @click="expanded = !expanded" className="mdi mdi-arrow-down-drop-circle-outline" />
+                    </div>
+                    <div class="items-center col-span-5">
+                        <div class="mb-4">
+                            <div class="italic">Leistung</div>
+                            <p class="text-left">Solarproduktion<span class="float-right">{{
+                                home.power.solar_production }} W</span></p>
+                        </div>
+                        <div class="italic">Aktueller Verbrauch</div>
+                        <div class="mt-2 mb-4">
+                            <SelfSufficiencyBar :self_sufficiency=home.power.self_sufficiency
+                                :consumed_energy=home.power.home_consumption :consumed_solar_energy=solar_consumption_power
+                                unit="W"></SelfSufficiencyBar>
+                        </div>
+                        <div v-show="expanded">
+                            <div class="italic">Verbrauch heute:</div>
 
-
-                <v-card-text>
-                    <v-row class="d-flex  fill-width">
-                        <v-col class="d-flex align-end" cols="2">
-                            <v-icon v-if="expanded" @click="expanded = !expanded"
-                                icon="mdi:mdi-arrow-up-drop-circle-outline" />
-                            <v-icon v-else @click="expanded = !expanded" icon="mdi:mdi-arrow-down-drop-circle-outline" />
-                        </v-col>
-                        <v-col class="align-center" cols="10">
-                            <div class="mb-4">
-                                <h3>Leistung</h3>
-                                <p class="text-left">Solarproduktion<span style="float:right;">{{
-                                    home.power.solar_production }} W</span></p>
-                            </div>
-                            <h3>Aktueller Verbrauch</h3>
                             <div class="mt-2 mb-4">
-                                <SelfSufficiencyBar :self_sufficiency=home.power.self_sufficiency
-                                    :consumed_energy=home.power.home_consumption
-                                    :consumed_solar_energy=solar_consumption_power unit="W"></SelfSufficiencyBar>
+                                <SelfSufficiencyBar :self_sufficiency=home.today.self_sufficiency
+                                    :consumed_energy=home.today.consumed_energy
+                                    :consumed_solar_energy=home.today.consumed_solar_energy></SelfSufficiencyBar>
                             </div>
-                            <div v-show="expanded">
-                                <h3 class="pt-2">Verbrauch heute:</h3>
 
-                                <div class="mt-2 mb-4">
-                                    <SelfSufficiencyBar :self_sufficiency=home.today.self_sufficiency
-                                        :consumed_energy=home.today.consumed_energy
-                                        :consumed_solar_energy=home.today.consumed_solar_energy></SelfSufficiencyBar>
-                                </div>
-
-                                <h3 class="pt-2">Gesamtverbrauch:</h3>
-                                <p class="text-left">Solarenergie: <span style="float:right;">{{
-                                    home.overall.consumed_solar_energy.toFixed(2) }} kWh</span></p>
-                                <p class="text-left">Gesamtverbrauch: <span style="float:right;">{{
-                                    home.overall.consumed_energy.toFixed(2) }} kWh</span></p>
-                            </div>
-                        </v-col>
-                    </v-row>
-                </v-card-text>
-            </v-card>
+                            <div class="italic">Gesamtverbrauch:</div>
+                            <p class="text-left">Solarenergie: <span class="float-right">{{
+                                home.overall.consumed_solar_energy.toFixed(2) }} kWh</span></p>
+                            <p class="text-left">Gesamtverbrauch: <span class="float-right">{{
+                                home.overall.consumed_energy.toFixed(2) }} kWh</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div v-for="(device, index) in home.devices" :key="index">
                 <DeviceCard :name=device.name :icon=device.icon :power=device.power :overall=device.overall
@@ -68,7 +60,7 @@
 
         </div>
         <div v-else>Not connected to the backend.</div>
-    </v-container>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -77,6 +69,7 @@ import { devicesAPI } from './devices/devices.api'
 import DeviceCard from "./DeviceCard.vue";
 import HeatPumpCard from './HeatPumpCard.vue'
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
+
 
 const expanded = ref(false)
 const home = computed(() => {
