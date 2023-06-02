@@ -2,8 +2,8 @@
     <div class="rounded-lg m-4 p-4 ring-1 ring-gray-900/5 drop-shadow-md w-96 bg-white">
         <div>
             <div class="grid grid-cols-6 w-full">
-                <div cols="2">
-                    <span class="mdi text-lg" :class="icon"></span>
+                <div>
+                    <span class="mdi text-3xl" :class="icon"></span>
                 </div>
                 <div class="col-span-5">
                     <div class="text-left font-bold text-lg">{{ name }}

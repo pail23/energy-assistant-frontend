@@ -1,10 +1,12 @@
 <template>
     <div class="h-full bg-slate-100 p-4 ">
         <div v-if="connected">
+            <PowerFlowCard :home_consumption_power=home.power.home_consumption :solar_power=home.power.solar_production></PowerFlowCard>
+
             <div class="rounded-lg m-4 p-4 ring-1 ring-gray-900/5 drop-shadow-md w-96 bg-white">
                 <div class="grid grid-cols-6 w-full">
                     <div>
-                        <span class="mdi mdi-home text-lg" ></span>
+                        <span class="mdi mdi-home text-3xl" ></span>
                     </div>
                     <div class="col-span-5">
                         <span class="text-left font-bold text-lg">{{ home.name }}
@@ -69,7 +71,7 @@ import { devicesAPI } from './devices/devices.api'
 import DeviceCard from "./DeviceCard.vue";
 import HeatPumpCard from './HeatPumpCard.vue'
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
-
+import PowerFlowCard from "./PowerFlowCard.vue";
 
 const expanded = ref(false)
 const home = computed(() => {

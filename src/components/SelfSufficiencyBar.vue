@@ -1,6 +1,6 @@
 <template>
     <div class="bg-red-900 w-full text-sm rounded text-center text-white">
-        <div class="rounded bg-yellow-500 " :style=progressBarStyle><span v-if="self_sufficiency > 50"> {{
+        <div class="rounded bg-yellow-500" :style=progressBarStyle><span v-if="self_sufficiency > 50"> {{
             self_sufficiency }}%</span></div>
         <span v-if="self_sufficiency < 50"> {{
             self_sufficiency }}%</span>
