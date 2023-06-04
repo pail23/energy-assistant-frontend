@@ -1,5 +1,5 @@
 <template>
-    <div class="rounded-lg m-4 p-4 ring-1 ring-gray-900/5 drop-shadow-md w-96 bg-white">
+    <div class="card w-80 lg:w-96 bg-base-100 shadow-xl m-4 p-4">
         <div>
             <div class="grid grid-cols-6 w-full">
                 <div>
