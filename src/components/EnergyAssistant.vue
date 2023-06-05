@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full v-full bg-slate-100 p-4 flex justify-center ">
+    <div class="h-full v-full bg-base-200 p-4 flex justify-center ">
         <div v-if="connected">
             <PowerFlowCard :home_consumption_power=home.power.home_consumption :solar_power=home.power.solar_production>
             </PowerFlowCard>
