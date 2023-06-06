@@ -46,7 +46,10 @@ export default class DevicesAPIService {
         // this.socket = devMode ? io(":5000"): io();
         const sio_url = devMode ? "ws://localhost:5000" : "";
 
-        this.socket = io(sio_url, { path: "/ws/socket.io/", transports: ['websocket', 'polling'] });
+        const sio_path = window.location.pathname + "ws/socket.io/"
+        console.log("sio path: " + sio_path)
+
+        this.socket = io(sio_url, { path: sio_path, transports: ['websocket', 'polling'] });
 
 
         this.socket.on('connect', () => {
