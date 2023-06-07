@@ -17,11 +17,12 @@ export interface Device {
     icon: string;
     type: string;
     power: number;
-    overall: Energy
-    today: Energy
+    overall: Energy;
+    today: Energy;
     extra_attributes: string;
   }
   
   export interface HeatpumpDevice extends Device {
     actual_temperature : number;   
+    state: string;
   }
