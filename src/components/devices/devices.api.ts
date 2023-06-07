@@ -47,7 +47,9 @@ export default class DevicesAPIService {
         const sio_url = devMode ? "ws://localhost:5000" : "";
 
         const sio_path = window.location.pathname + "ws/socket.io/"
-        console.log("sio path: " + sio_path)
+        console.log("window.location: "+window.location.href);
+        console.log("Window parent location: "+window.parent.location);
+        console.log("sio path: " + sio_path);
 
         this.socket = io(sio_url, { path: sio_path, transports: ['websocket', 'polling'] });
 

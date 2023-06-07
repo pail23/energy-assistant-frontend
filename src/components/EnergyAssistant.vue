@@ -58,7 +58,7 @@
                 </div>
                 <div v-for="(device, index) in home.heat_pumps" :key="index">
                     <HeatPumpCard :name=device.name :icon=device.icon :power=device.power :overall=device.overall
-                        :today=device.today :actual_temperature=device.actual_temperature>
+                        :today=device.today :actual_temperature=device.actual_temperature :state=device.state>
                     </HeatPumpCard>
                 </div>
             </div>

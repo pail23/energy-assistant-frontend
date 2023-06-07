@@ -17,6 +17,7 @@
                 <div class="items-center col-span-5">
                     <div class="text-left">Verbrauch: <span class="float-right">{{ power }} W</span></div>
                     <div class="text-left">Temperatur: <span class="float-right">{{ actual_temperature }} °C</span> </div>
+                    <div class="text-left">Status: <span class="float-right">{{ state }}</span> </div>
                     <div class="italic">Verbrauch heute:</div>
                     <SelfSufficiencyBar :self_sufficiency=today.self_sufficiency :consumed_energy=today.consumed_energy
                         :consumed_solar_energy=today.consumed_solar_energy></SelfSufficiencyBar>
@@ -43,13 +44,14 @@ import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import { Energy } from './devices/device'
 
 interface Props {
-    name: string
-    icon: string
-    power: number
+    name: string;
+    icon: string;
+    power: number;
 
-    overall: Energy,
-    today: Energy,
-    actual_temperature: number
+    overall: Energy;
+    today: Energy;
+    actual_temperature: number;
+    state: string;
 }
 
 
