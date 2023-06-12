@@ -1,5 +1,5 @@
 <template>
-    <div class="card w-80 lg:w-96 bg-base-100 shadow-xl m-4 p-4">
+    <div class="card w-80 md:w-96 bg-base-100 shadow-xl m-4 p-4">
         <div>
             <div class="grid grid-cols-6 w-full">
                 <div>

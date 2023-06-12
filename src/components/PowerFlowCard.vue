@@ -1,5 +1,5 @@
 <template>
-    <div class="card w-80 lg:w-96 bg-base-100 shadow-xl m-4 ">
+    <div class="card w-80 md:w-96 bg-base-100 shadow-xl m-4 ">
         <div class="w-80 h-72 relative mx-auto">
             <svg class="w-full h-full" viewBox="0 0 200 180">
                 <path id="solar-to-home" d="M 100 40 L 160 140" class="stroke-yellow-500" />

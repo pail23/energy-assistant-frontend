@@ -1,15 +1,21 @@
 <template>
-    <div class="bg-red-900 w-full text-sm rounded text-center text-white">
-        <div class="rounded bg-yellow-500" :style=progressBarStyle><span v-if="self_sufficiency > 50"> {{
-            self_sufficiency }}%</span></div>
-        <span v-if="self_sufficiency < 50"> {{
-            self_sufficiency }}%</span>
-    </div>
-    <div class="text-sm">
-        <span class="mdi mdi-solar-power text-yellow-500" ></span>
-        <span class="text-yellow-500">{{
-            consumed_solar_energy.toFixed(1) }} {{ unit }}</span><span class="text-red-900 float-right">{{
-        consumed_grid_energy.toFixed(1) }} {{ unit }}<span class="mdi mdi-transmission-tower text-red-900" ></span></span>
+    <div class="w-full">
+        <progress class="progress progress-primary bg-secondary w-full" :value=self_sufficiency max="100"></progress>
+        <div class="grid grid-cols-3 text-sm w-full">
+            <div>
+                <span class="mdi mdi-solar-power text-primary"></span>
+                <span class="text-primary">{{
+                    consumed_solar_energy.toFixed(1) }} {{ unit }}</span>
+            </div>
+            <div class="place-self-center">
+                <span>{{
+                    self_sufficiency }}%</span>
+            </div>
+            <div>
+                <span class="float-right text-secondary">{{
+                    consumed_grid_energy.toFixed(1) }} {{ unit }}<span class="mdi mdi-transmission-tower"></span></span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -23,9 +29,7 @@ const props = defineProps({
     consumed_energy: { type: Number, required: true },
     unit: { type: String, default: "kWh" }
 })
-const progressBarStyle = computed(() => {
-    return 'width: ' + props.self_sufficiency + '%'
-});
+
 const consumed_grid_energy = computed(() => {
     return props.consumed_energy - props.consumed_solar_energy
 });
