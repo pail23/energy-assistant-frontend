@@ -268,10 +268,10 @@
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.12.tgz"
   integrity sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==
 
-"@types/node@^20.2.5":
-  version "20.2.5"
-  resolved "https://registry.npmjs.org/@types/node/-/node-20.2.5.tgz"
-  integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
+"@types/node@^20.3.0":
+  version "20.3.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.3.0.tgz#719498898d5defab83c3560f45d8498f58d11938"
+  integrity sha512-cumHmIAf6On83X7yP+LrsEyUOf/YlociZelmpRYaGFydoaPdxdt80MAbu6vWerQT2COCp2nPvHdsbD7tHn/YlQ==
 
 "@types/semver@^7.3.12":
   version "7.5.0"
@@ -747,10 +747,10 @@ csstype@^3.1.1:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
-daisyui@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.0.3.tgz#9272b050c82399912efbf63b311b0ae41c7bb9ee"
-  integrity sha512-RSbXsEBj2LonvjOKEI0I64F5xFJrFrthPgxRNeAZKmACQ3NoIoP45lO6UXLW3bm8PVOUGpKf1Br2SWwc1NqnHQ==
+daisyui@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-3.1.0.tgz#e32651e06cfb00bc4b9fada3399b91ca8f6f779b"
+  integrity sha512-G4dz/bRZVvlhQ/FtezXSg0rXOXzDJ0PcnMqeLSwCYNWXxf46fNJ8LWeV5qwsYOdJbXiXoZLnwyy+BsNoWZ+Bjg==
   dependencies:
     colord "^2.9"
     css-selector-tokenizer "^0.8"
@@ -1745,10 +1745,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwind-merge@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.13.0.tgz#1978396b6bbd808878763303b26647adfb3c78c4"
-  integrity sha512-mUTmDbcU+IhOvJ0c42eLQ/nRkvolTqfpVaVQRSxfJAv9TabS6Y2zW/1wKpKLdKzyL3Gh8j6NTLl6MWNmvOM6kA==
+tailwind-merge@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.13.1.tgz#da6b27c3fa0c2068895cb5e15e9ca92d4cb61e05"
+  integrity sha512-tRtRN22TDokGi2TuYSvuHQuuW6BJ/zlUEG+iYpAQ9i66msc/0eU/+HPccbPnNNH0mCPp0Ob8thaC8Uy9CxHitQ==
 
 tailwindcss@^3, tailwindcss@^3.3.2:
   version "3.3.2"
