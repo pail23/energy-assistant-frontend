@@ -1,11 +1,13 @@
 <template>
     <div class="h-full v-full bg-base-200 p-4 flex justify-center min-h-screen">
+
         <div v-if="connected">
             <div class="grid grid-cols-1 lg:grid-cols-2">
+
                 <PowerFlowCard :home_consumption_power=home.power.home_consumption :solar_power=home.power.solar_production>
                 </PowerFlowCard>
 
-                <div class="card w-80 md:w-96 bg-base-100 shadow-xl m-4 p-4">
+                <div class="card w-80 sm:w-96 bg-base-100 shadow-xl m-4 p-4">
                     <div class="card-body  w-full">
                         <div class="grid grid-cols-6">
                             <div>
