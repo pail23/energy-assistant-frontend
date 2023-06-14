@@ -6,12 +6,12 @@
 
     <div class="flex-1">
       <div class="join mx-auto">
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Live" checked />
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Heute" />
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Woche" />
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Monat" />
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Jahr" />
-        <input class="btn join-item w-20" type="radio" name="options" aria-label="Gesamt" />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Live" checked />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Heute" />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Woche" />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Monat" />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Jahr" />
+        <input class="btn join-item w-16" type="radio" name="options" aria-label="Gesamt" />
       </div>
     </div>
 
@@ -25,19 +25,15 @@
 
 
   </div>
-  <EnergyAssistant />
+<!--  <EnergyAssistant />-->
+  <router-view />
 </template>
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import EnergyAssistant from './components/EnergyAssistant.vue'
 import { themeChange } from 'theme-change'
 
 onMounted(() => {
   themeChange(true)
-  const loc = window.location;
-  const serverAddress = loc.origin + loc.pathname;
-  console.error("Server Address is: " + serverAddress)
-
 });
 </script>

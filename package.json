@@ -16,7 +16,8 @@
     "socket.io-client": "^4.6.2",
     "tailwind-merge": "^1.13.1",
     "theme-change": "^2.5.0",
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue-router": "~4.2.2"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
