@@ -1,5 +1,4 @@
 <template>
- 
     <default-view />
 </template>
   

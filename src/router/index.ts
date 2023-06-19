@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('../layouts/default/Default.vue'),
+    component: () => import('@/layouts/default/Default.vue'),
     children: [
       {
         path: '',
@@ -15,6 +15,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
       },
     ],
+  },
+  {
+    name: 'overall',
+    path: '/overall',
+    component: () => import('@/views/Overall.vue'),
   },
 ]
 

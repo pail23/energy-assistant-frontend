@@ -5,14 +5,16 @@
     </div>
 
     <div class="flex-1">
-      <div class="join mx-auto">
+      <!-- <div class="join mx-auto">
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Live" checked />
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Heute" />
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Woche" />
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Monat" />
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Jahr" />
         <input class="btn join-item w-16" type="radio" name="options" aria-label="Gesamt" />
-      </div>
+      </div>-->
+
+
     </div>
 
     <div class="flex-none">
@@ -25,8 +27,15 @@
 
 
   </div>
-<!--  <EnergyAssistant />-->
+  <!--  <EnergyAssistant />-->
   <router-view />
+  <div class="btm-nav">
+    <router-link to="/">Live</router-link>
+    <router-link to="/today">Heute</router-link>
+    <router-link to="/week">Woche</router-link>
+    <router-link to="/month">Monat</router-link>
+    <router-link to="/overall">Overall</router-link>
+  </div>
 </template>
 
 <script lang="ts" setup>
