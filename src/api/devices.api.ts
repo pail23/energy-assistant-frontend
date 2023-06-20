@@ -1,10 +1,10 @@
 //import axios, { AxiosInstance} from "axios"
-import {Device, HeatpumpDevice, Energy, HomePower} from "./device";
+import { Device, HeatpumpDevice, Energy, HomePower } from "./device";
 import { io, Socket } from "socket.io-client";
 import { reactive } from "vue";
 
 export default class DevicesAPIService {
-   // private axiosInstance: AxiosInstance;
+    // private axiosInstance: AxiosInstance;
     private socket: Socket;
     public home = reactive({
         name: "",
@@ -18,12 +18,12 @@ export default class DevicesAPIService {
         } as HomePower,
         overall: {
             consumed_solar_energy: 0.0,
-            consumed_energy: 0.0, 
+            consumed_energy: 0.0,
             self_sufficiency: 0.0
         } as Energy,
         today: {
             consumed_solar_energy: 0.0,
-            consumed_energy: 0.0, 
+            consumed_energy: 0.0,
             self_sufficiency: 0.0
         } as Energy,
         devices: [] as Device[],
@@ -39,9 +39,9 @@ export default class DevicesAPIService {
 
         const sio_url = devMode ? "ws://localhost:5000" : "";
 
-        const sio_path = window.location.pathname + "ws/socket.io/"
-        console.log("window.location: "+window.location.href);
-        console.log("Window parent location: "+window.parent.location);
+        const sio_path = "/ws/socket.io/"
+        console.log("window.location: " + window.location.href);
+        console.log("Window parent location: " + window.parent.location);
         console.log("sio path: " + sio_path);
 
         this.socket = io(sio_url, { path: sio_path, transports: ['websocket', 'polling'] });
@@ -52,7 +52,7 @@ export default class DevicesAPIService {
             this.state.connected = true;
         });
 
-        this.socket.on('disconnect', () => {    
+        this.socket.on('disconnect', () => {
             console.log("WS diconnected...");
             this.state.connected = false;
         });
@@ -73,16 +73,16 @@ export default class DevicesAPIService {
             if (cb)
                 cb();
             this.update_home(msg.data)
-        });        
+        });
     }
 
-    update_home(data:string){
+    update_home(data: string) {
         const home = JSON.parse(data);
         this.home.name = home.name;
         this.home.power = home.power;
         this.home.overall = home.overall;
         this.home.today = home.today;
-        this.home.devices = home.devices;        
+        this.home.devices = home.devices;
         this.home.heat_pumps = home.heat_pumps;
     }
 

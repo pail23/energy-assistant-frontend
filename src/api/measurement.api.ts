@@ -33,7 +33,7 @@ export class DeviceMeasurementDifference {
     this.name = name;
     this.solar_consumed_energy = solar_consumed_energy;
     this.consumed_energy = consumed_energy;
-    this.self_sufficiency = consumed_energy != 0.0 ? solar_consumed_energy / consumed_energy : 0.0;
+    this.self_sufficiency = consumed_energy != 0.0 ? 100 * solar_consumed_energy / consumed_energy : 0.0;
   }
 }
 
@@ -77,6 +77,10 @@ function calculateDifference(from: IHomeMeasurementResponse, to: IHomeMeasuremen
   for (let i = 0; i < from.device_measurements.length; i++) {
     const difference = new DeviceMeasurementDifference(from.device_measurements[i].name, to.device_measurements[i].solar_consumed_energy - from.device_measurements[i].solar_consumed_energy, to.device_measurements[i].consumed_energy - from.device_measurements[i].consumed_energy);
     result.device_measurements.push(difference)
+    console.log("Device " + difference.name )
+    console.log("-> consumed solar: " + difference.solar_consumed_energy)
+    console.log("-> consumed:" + difference.consumed_energy)
+    console.log("-> self:" + difference.self_sufficiency)
   }
   return result;
 }
