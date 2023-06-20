@@ -37,13 +37,6 @@ export default class DevicesAPIService {
     constructor() {
         const devMode = process.env.NODE_ENV === 'development';
 
-      /*  this.axiosInstance = axios.create({
-            baseURL: devMode ? "http://localhost:5000/api" : "/api",
-            headers: {
-                "Content-type": "application/json"
-            }
-        })*/
-        // this.socket = devMode ? io(":5000"): io();
         const sio_url = devMode ? "ws://localhost:5000" : "";
 
         const sio_path = window.location.pathname + "ws/socket.io/"

@@ -26,7 +26,7 @@
                     class="absolute top-10 left-1/2 transform -translate-x-1/2 h-16 w-16 grid rounded-full ring-2 ring-yellow-500 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
-                        <span class="text-xs">{{ solar_power }} W</span>
+                        <span class="text-xs">{{ solar_power.toFixed(1) }} {{unit}}</span>
                     </div>
                 </div>
                 <div
@@ -34,14 +34,14 @@
                     <div>
                         <div class="mdi mdi-transmission-tower text-2xl"></div>
                         <span class="text-xs">{{
-                            grid_consumption_power }} W</span>
+                            grid_consumption_power.toFixed(1) }} {{ unit }}</span>
                     </div>
                 </div>
                 <div
                     class="absolute bottom-10 right-10 h-16 w-16 grid rounded-full ring-2 ring-blue-800 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-home text-2xl "></div>
-                        <span class="text-xs">{{ home_consumption_power }} W</span>
+                        <span class="text-xs">{{ home_consumption_power.toFixed(1) }} {{ unit }}</span>
                     </div>
                 </div>
 
@@ -55,8 +55,9 @@
 import { computed } from "vue";
 
 interface Props {
-    solar_power: number
-    home_consumption_power: number
+    solar_power: number;
+    home_consumption_power: number;
+    unit: string;
 }
 
 const props = defineProps<Props>()

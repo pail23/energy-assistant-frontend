@@ -31,10 +31,8 @@
   <router-view />
   <div class="btm-nav">
     <router-link to="/">Live</router-link>
-    <router-link to="/today">Heute</router-link>
-    <router-link to="/week">Woche</router-link>
-    <router-link to="/month">Monat</router-link>
-    <router-link to="/overall">Overall</router-link>
+    <router-link to="/history">Vergangenheit</router-link>
+    <router-link to="/rawdata">Daten</router-link>
   </div>
 </template>
 

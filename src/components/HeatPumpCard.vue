@@ -41,7 +41,7 @@
 
 import { ref } from 'vue'
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
-import { Energy } from './devices/device'
+import { Energy } from '../api/device'
 
 interface Props {
     name: string;

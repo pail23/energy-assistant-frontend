@@ -9,7 +9,7 @@
             </div>
             <div class="place-self-center">
                 <span>{{
-                    self_sufficiency }}%</span>
+                    self_sufficiency.toFixed(0) }}%</span>
             </div>
             <div>
                 <span class="float-right text-secondary">{{

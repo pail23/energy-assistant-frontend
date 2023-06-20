@@ -17,9 +17,14 @@ const routes = [
     ],
   },
   {
-    name: 'overall',
-    path: '/overall',
-    component: () => import('@/views/Overall.vue'),
+    name: 'history',
+    path: '/history',
+    component: () => import('@/views/History.vue'),
+  },  
+  {
+    name: 'rawdata',
+    path: '/rawdata',
+    component: () => import('@/views/RawData.vue'),
   },
 ]
 

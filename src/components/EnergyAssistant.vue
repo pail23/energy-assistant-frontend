@@ -4,7 +4,7 @@
         <div v-if="connected">
             <div class="grid grid-cols-1 lg:grid-cols-2">
 
-                <PowerFlowCard :home_consumption_power=home.power.home_consumption :solar_power=home.power.solar_production>
+                <PowerFlowCard :home_consumption_power=home.power.home_consumption :solar_power=home.power.solar_production unit="W">
                 </PowerFlowCard>
 
                 <div class="card w-80 sm:w-96 bg-base-100 shadow-xl m-4 p-4">
@@ -77,7 +77,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { devicesAPI } from './devices/devices.api'
+import { devicesAPI } from '../api/devices.api'
 import DeviceCard from "./DeviceCard.vue";
 import HeatPumpCard from './HeatPumpCard.vue'
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
