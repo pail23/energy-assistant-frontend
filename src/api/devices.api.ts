@@ -42,9 +42,9 @@ export default class DevicesAPIService {
         if (this.socket) throw "already initialized";
         if (baseUrl.endsWith("/")) baseUrl = baseUrl.slice(0, -1);
         this.baseUrl = baseUrl;
-        const pathname = new URL(baseUrl).pathname;
-
-        const sio_path = pathname + "ws/socket.io/"
+        let pathname = new URL(baseUrl).pathname;
+        if (pathname.endsWith("/")) pathname = pathname.slice(0, -1);
+        const sio_path = pathname + "/ws/socket.io/"
         // const wsUrl = baseUrl.replace("http", "ws");
         console.log(`Connecting to Energy Assistant WS API path ${sio_path}`);
 
