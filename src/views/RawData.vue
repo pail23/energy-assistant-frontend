@@ -26,6 +26,6 @@ import {ref} from 'vue'
 let show_meter_values_value = true
 const show_meter_values = ref(show_meter_values_value)
 //data = await getAllHomeMeasurementsFn();
-const { data, isLoading } = useQuery('home_measurements', () => getAllHomeMeasurementsFn());
+const { data, isLoading } = useQuery('home_measurements',  () => getAllHomeMeasurementsFn());
 console.log(data.home_measurements)
 </script>
