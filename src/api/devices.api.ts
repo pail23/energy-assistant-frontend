@@ -6,7 +6,7 @@ import { reactive } from "vue";
 export default class DevicesAPIService {
     // private axiosInstance: AxiosInstance;
     private socket?: Socket;
-    public baseUrl?: string;    
+    public baseUrl?: string;
     public home = reactive({
         name: "",
         home_consumption: 0.0,
@@ -42,18 +42,21 @@ export default class DevicesAPIService {
         if (this.socket) throw "already initialized";
         if (baseUrl.endsWith("/")) baseUrl = baseUrl.slice(0, -1);
         this.baseUrl = baseUrl;
-        const wsUrl = baseUrl.replace("http", "ws");
-        console.log(`Connecting to Energy Assistant WS API ${wsUrl}`);
+        const pathname = new URL(baseUrl).pathname;
 
-        //const devMode = process.env.NODE_ENV === 'development';
-       // const sio_url = devMode ? "ws://localhost:5000" : "";
+        const sio_path = pathname + "ws/socket.io/"
+        // const wsUrl = baseUrl.replace("http", "ws");
+        console.log(`Connecting to Energy Assistant WS API path ${sio_path}`);
+
+        const devMode = process.env.NODE_ENV === 'development';
+        const sio_url = devMode ? "ws://localhost:5000" : "";
 
         //console.log("window.location: " + window.location.href);
         //console.log("Window parent location: " + window.parent.location);
         //console.log("sio path: " + sio_path);
 
-        const sio_path = "/ws/socket.io/"
-        this.socket = io(wsUrl, { path: sio_path, transports: ['websocket', 'polling'] });
+        //const sio_path = "/ws/socket.io/"
+        this.socket = io(sio_url, { path: sio_path, transports: ['websocket', 'polling'] });
 
 
         this.socket.on('connect', () => {
