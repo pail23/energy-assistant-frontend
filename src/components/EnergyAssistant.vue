@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full v-full bg-base-200 p-4 flex justify-center min-h-screen">
+    <div class="h-full v-full p-4 flex justify-center min-h-screen">
 
         <div v-if="connected">
             <div class="grid grid-cols-1 lg:grid-cols-2">
