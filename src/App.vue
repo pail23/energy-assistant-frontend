@@ -5,11 +5,11 @@
         <a class="btn btn-ghost normal-case text-xl">Energy Assistant</a>
       </div>
 
-    <div class="flex-1">
+      <div class="flex-1">
 
 
 
-    </div>
+      </div>
 
       <div class="flex-none">
         <select data-choose-theme class="select select-ghost w-full max-w-xs">
@@ -21,8 +21,10 @@
 
 
     </div>
-  </header>
-  <router-view />
+  </header>¨
+  <div class="pb-20 bg-base-200  ">
+    <router-view />
+  </div>
   <footer>
     <div class="btm-nav">
       <router-link to="/">Live</router-link>
@@ -35,8 +37,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import { themeChange } from 'theme-change'
-import {devicesAPI} from '@/api/devices.api'
-import {api} from '@/api/measurement.api'
+import { devicesAPI } from '@/api/devices.api'
+import { api } from '@/api/measurement.api'
 
 onMounted(() => {
   themeChange(true)
