@@ -36,7 +36,7 @@
             </div>
             <div v-else>
                 <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2">
-                    <PowerFlowCard :home_consumption_power=data.consumed_energy :solar_power=data.solar_produced_energy
+                    <PowerFlowCard :home_consumption_power=data.consumed_energy :solar_power=data.solar_produced_energy :grid_imported_energy=data.grid_imported_energy :grid_exported_energy=data.grid_exported_energy
                         unit="kWh">
                     </PowerFlowCard>
                     <div v-for="(device, index) in data.device_measurements" :key="index">

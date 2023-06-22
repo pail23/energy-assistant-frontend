@@ -16,7 +16,7 @@
 
                 <tr class="odd:bg-base-100 even:bg-base-200 border-b text-center" v-for="(measurement, index) in home_measurements" :key="measurement.id">
                     <td class="px-6 py-4 ">
-                        {{ measurement.measurement_date }}
+                        {{ (new Date(measurement.measurement_date)).toLocaleDateString("de-DE") }}
                     </td>
                     <td class="px-6 py-4">
                         <p v-if="index > 0"> {{ (measurement.solar_consumed_energy - home_measurements[index -

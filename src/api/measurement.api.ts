@@ -106,7 +106,7 @@ function calculateDifference(from: IHomeMeasurementResponse, to: IHomeMeasuremen
   result.solar_consumed_energy = to.solar_consumed_energy - from.solar_consumed_energy
   result.solar_produced_energy = to.solar_produced_energy - from.solar_produced_energy
   result.grid_exported_energy = to.grid_exported_energy - from.grid_exported_energy
-  result.grid_imported_energy = to.grid_exported_energy - from.grid_exported_energy
+  result.grid_imported_energy = to.grid_imported_energy - from.grid_imported_energy
 
   for (let i = 0; i < from.device_measurements.length; i++) {
     const difference = new DeviceMeasurementDifference(from.device_measurements[i].name, to.device_measurements[i].solar_consumed_energy - from.device_measurements[i].solar_consumed_energy, to.device_measurements[i].consumed_energy - from.device_measurements[i].consumed_energy);

@@ -23,22 +23,27 @@
             </svg>
             <div class="absolute top-0 bottom-0 left-0 right-0">
                 <div
-                    class="absolute top-10 left-1/2 transform -translate-x-1/2 h-16 w-16 grid rounded-full ring-2 ring-yellow-500 place-items-center text-center bg-base-100">
+                    class="absolute top-5 left-1/2 transform -translate-x-1/2 h-20 w-20 grid rounded-full ring-2 ring-yellow-500 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
-                        <span class="text-xs">{{ solar_power.toFixed(1) }} {{unit}}</span>
+                        <span class="text-xs">{{ solar_power.toFixed(1) }} {{ unit }}</span>
                     </div>
                 </div>
                 <div
-                    class="absolute bottom-10 left-10 h-16 w-16 grid rounded-full ring-2 ring-sky-800 place-items-center text-center bg-base-100">
+                    class="absolute bottom-5 left-5 h-20 w-20 grid rounded-full ring-2 ring-sky-800 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-transmission-tower text-2xl"></div>
-                        <span class="text-xs">{{
+
+                        <div v-if="grid_imported_energy" class="text-xs">
+                            <div><span class="mdi mdi-arrow-right"></span> {{ grid_imported_energy.toFixed(1) }} {{ unit }}</div>
+                            <div v-if="grid_exported_energy"><span class="mdi mdi-arrow-left"></span> {{ grid_exported_energy.toFixed(1) }} {{ unit }}</div>
+                        </div>
+                        <span v-else class="text-xs">{{
                             grid_consumption_power.toFixed(1) }} {{ unit }}</span>
                     </div>
                 </div>
                 <div
-                    class="absolute bottom-10 right-10 h-16 w-16 grid rounded-full ring-2 ring-blue-800 place-items-center text-center bg-base-100">
+                    class="absolute bottom-5 right-5 h-20 w-20 grid rounded-full ring-2 ring-blue-800 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-home text-2xl "></div>
                         <span class="text-xs">{{ home_consumption_power.toFixed(1) }} {{ unit }}</span>
@@ -57,6 +62,8 @@ import { computed } from "vue";
 interface Props {
     solar_power: number;
     home_consumption_power: number;
+    grid_imported_energy?: number;
+    grid_exported_energy?: number;
     unit: string;
 }
 
