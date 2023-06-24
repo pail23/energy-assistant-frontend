@@ -1,5 +1,5 @@
 //import axios, { AxiosInstance} from "axios"
-import { Device, HeatpumpDevice, Energy, HomePower } from "./device";
+import { IDevice, IHeatpumpDevice, IEnergy, IHomePower } from "./device";
 import { io, Socket } from "socket.io-client";
 import { reactive } from "vue";
 
@@ -16,19 +16,19 @@ export default class DevicesAPIService {
             solar_self_consumption: 0.0,
             home_consumption: 0.0,
             self_sufficiency: 0.0,
-        } as HomePower,
+        } as IHomePower,
         overall: {
             consumed_solar_energy: 0.0,
             consumed_energy: 0.0,
             self_sufficiency: 0.0
-        } as Energy,
+        } as IEnergy,
         today: {
             consumed_solar_energy: 0.0,
             consumed_energy: 0.0,
             self_sufficiency: 0.0
-        } as Energy,
-        devices: [] as Device[],
-        heat_pumps: [] as HeatpumpDevice[],
+        } as IEnergy,
+        devices: [] as IDevice[],
+        heat_pumps: [] as IHeatpumpDevice[],
     });
     public state = reactive({
         connected: false

@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full v-full bg-base-200 p-4 flex justify-center min-h-screen">
+    <div class="h-full v-full p-4 flex justify-center min-h-screen">
 
         <div v-if="isLoading" class="w-full h-full">
             <span class="loading loading-spinner loading-lg m-auto "></span>
@@ -23,7 +23,7 @@ import MeasurementTable from '@/components/MeasurementTable.vue'
 import { useQuery } from 'vue-query';
 import {ref} from 'vue'
 
-let show_meter_values_value = true
+let show_meter_values_value = false
 const show_meter_values = ref(show_meter_values_value)
 //data = await getAllHomeMeasurementsFn();
 const { data, isLoading } = useQuery('home_measurements',  () => getAllHomeMeasurementsFn());

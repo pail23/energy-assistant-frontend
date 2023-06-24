@@ -35,11 +35,15 @@
                         <div class="mdi mdi-transmission-tower text-2xl"></div>
 
                         <div v-if="grid_imported_energy" class="text-xs">
-                            <div><span class="mdi mdi-arrow-right"></span> {{ grid_imported_energy.toFixed(1) }} {{ unit }}</div>
-                            <div v-if="grid_exported_energy"><span class="mdi mdi-arrow-left"></span> {{ grid_exported_energy.toFixed(1) }} {{ unit }}</div>
+                            <div><span class="mdi mdi-arrow-right"></span> {{ grid_imported_energy.toFixed(1) }} {{ unit }}
+                            </div>
+                            <div v-if="grid_exported_energy"><span class="mdi mdi-arrow-left"></span> {{
+                                grid_exported_energy.toFixed(1) }} {{ unit }}</div>
                         </div>
-                        <span v-else class="text-xs">{{
-                            grid_consumption_power.toFixed(1) }} {{ unit }}</span>
+                        <div v-else class="text-xs">
+                            <span v-if="grid_consumption_power > 0"><span class="mdi mdi-arrow-right"></span>  {{ grid_consumption_power.toFixed(1) }} {{ unit }}</span>
+                            <span v-else><span class="mdi mdi-arrow-left"></span> {{ (-grid_consumption_power).toFixed(1) }} {{ unit }}</span>
+                        </div>
                     </div>
                 </div>
                 <div

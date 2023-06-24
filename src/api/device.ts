@@ -1,10 +1,10 @@
-export interface Energy {
+export interface IEnergy {
   consumed_solar_energy : number;
   consumed_energy : number;
   self_sufficiency : number;     
 }
 
-export interface HomePower {
+export interface IHomePower {
   solar_production: number;
   grid_supply: number;
   solar_self_consumption: number;
@@ -12,17 +12,17 @@ export interface HomePower {
   self_sufficiency: number;
 }
 
-export interface Device {
+export interface IDevice {
     name: string;
     icon: string;
     type: string;
     power: number;
-    overall: Energy;
-    today: Energy;
+    overall: IEnergy;
+    today: IEnergy;
     extra_attributes: string;
   }
   
-  export interface HeatpumpDevice extends Device {
+  export interface IHeatpumpDevice extends IDevice {
     actual_temperature : number;   
     state: string;
   }

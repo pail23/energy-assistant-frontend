@@ -1,5 +1,5 @@
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-base-100">
+    <div class="card bg-base-100">
         <table
             class="m-4 bg-base-100 border-collapse border border-slate-300 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-base-200">
