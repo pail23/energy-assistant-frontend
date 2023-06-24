@@ -9,10 +9,10 @@
                 </span>
                 <div class="items-center col-span-6">
                     <div class="mb-4">
-                        <p class="text-left">Solarproduktion<span class="float-right">{{
+                        <p class="text-left">{{t('home_card.solar_production')}}<span class="float-right">{{
                             power.solar_production }} W</span></p>
                     </div>
-                    <div class="italic">Verbrauch</div>
+                    <div class="italic">{{ t('home_card.consumption') }}</div>
                     <div class="mt-2 mb-4">
                         <SelfSufficiencyBar :self_sufficiency=power.self_sufficiency
                             :consumed_energy=power.home_consumption :consumed_solar_energy=solar_consumption_power
@@ -29,6 +29,9 @@
 import { computed } from "vue";
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import { IHomePower } from '@/api/device'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
 
 
 interface Props {

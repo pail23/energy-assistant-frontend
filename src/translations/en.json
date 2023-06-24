@@ -1,0 +1,10 @@
+{
+  "app": {
+    "energy_assistant": "Energy Assistant"
+  },
+  "home_card": {
+    "solar_production": "solar production",
+    "consumption": "Verbrauch"
+  }
+
+}

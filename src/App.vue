@@ -2,7 +2,7 @@
   <header>
     <div class="navbar bg-base-100 ">
       <div>
-        <a class="btn btn-ghost normal-case text-xl">Energy Assistant</a>
+        <a class="btn btn-ghost normal-case text-xl">{{t('app.energy_assistant')}}</a>
       </div>
 
       <div class="flex-1">
@@ -21,7 +21,7 @@
 
 
     </div>
-  </header>¨
+  </header>
   <div class="pb-20 bg-base-200  ">
     <router-view />
   </div>
@@ -39,6 +39,9 @@ import { onMounted } from 'vue';
 import { themeChange } from 'theme-change'
 import { devicesAPI } from '@/api/devices.api'
 import { api } from '@/api/measurement.api'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
 
 onMounted(() => {
   themeChange(true)
