@@ -31,21 +31,6 @@ export interface IDeviceMeasurementDifference {
 
 
 
-export class DeviceMeasurementDifference {
-  name: string;
-  solar_consumed_energy: number;
-  consumed_energy: number;
-  self_sufficiency: number;
-
-  constructor(name: string, solar_consumed_energy: number, consumed_energy: number) {
-    this.name = name;
-    this.solar_consumed_energy = solar_consumed_energy;
-    this.consumed_energy = consumed_energy;
-    this.self_sufficiency = consumed_energy != 0.0 ? 100 * solar_consumed_energy / consumed_energy : 0.0;
-  }
-}
-
-
 export interface IHomeMeasurementDifference {
   name: string;
   solar_consumed_energy: number;
@@ -58,21 +43,6 @@ export interface IHomeMeasurementDifference {
 
 }
 
-
-export class HomeMeasurementDifference implements IHomeMeasurementDifference {
-  name: string;
-  solar_consumed_energy: number = 0;
-  consumed_energy: number = 0;
-  solar_produced_energy: number = 0;
-  grid_imported_energy: number = 0;
-  grid_exported_energy: number = 0;
-
-  device_measurements: DeviceMeasurementDifference[] = [];
-
-  constructor(name: string) {
-    this.name = name;
-  }
-}
 
 
 export class EnergyAssistantApi {
