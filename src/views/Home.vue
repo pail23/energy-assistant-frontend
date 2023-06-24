@@ -1,6 +1,7 @@
 <template>
+  
     <EnergyAssistant />
-  </template>
+</template>
   
   <script lang="ts" setup>
     import EnergyAssistant from '@/components/EnergyAssistant.vue'

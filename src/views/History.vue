@@ -3,7 +3,7 @@
 
         <div class="grid grid-cols-1">
 
-            <div class="grid w-[40rem] grid-cols-4 space-x-2 rounded-xl bg-gray-200 p-2">
+            <div class="grid w-[40rem] h-14 grid-cols-4 space-x-2 rounded-xl bg-gray-200 p-2 mx-auto">
                 <div>
                     <input type="radio" name="option" id="1" class="peer hidden" value="today" v-model="timeframe"
                         checked />
@@ -28,11 +28,11 @@
                     <label for="4"
                         class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">Jahr</label>
                 </div>
-            </div>
+            </div> 
 
 
-            <div v-if="isLoading" class="w-full h-full">
-                <span class="loading loading-spinner loading-lg m-auto "></span>
+            <div v-if="isLoading" class="grid grid-cols-1 justify-items-center w-full">
+                <span class="loading loading-dots loading-lg  py-2"></span>
             </div>
             <div v-else>
                 <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2">
