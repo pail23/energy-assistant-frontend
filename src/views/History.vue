@@ -50,14 +50,14 @@
   
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue'
-import { api, HomeMeasurementDifference } from '@/api/measurement.api';
+import { api, IHomeMeasurementDifference } from '@/api/measurement.api';
 import PowerFlowCard from "@/components/PowerFlowCard.vue";
 import DeviceEnergyCard from "@/components/DeviceEnergyCard.vue";
 
 
 
 const timeframe = ref("today")
-const data = ref<HomeMeasurementDifference>()
+const data = ref<IHomeMeasurementDifference>()
 
 watch(timeframe, () => {
 
@@ -79,7 +79,7 @@ watch(timeframe, () => {
 
 const loadData = async function (from_date: Date) {
     isLoading.value = true
-    data.value = await api.getHomeMeasurementsByDate(from_date, new Date())
+    data.value = (await api.getHomeMeasurementDifference(from_date, new Date())).data
     isLoading.value = false
 }
 

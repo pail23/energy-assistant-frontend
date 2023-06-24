@@ -23,6 +23,14 @@ export interface IHomeMeasurementResponse {
   device_measurements: IDeviceMeasurementResponse[];
 }
 
+export interface IDeviceMeasurementDifference {
+  name: string;
+  solar_consumed_energy: number;
+  consumed_energy: number;
+}
+
+
+
 export class DeviceMeasurementDifference {
   name: string;
   solar_consumed_energy: number;
@@ -38,7 +46,20 @@ export class DeviceMeasurementDifference {
 }
 
 
-export class HomeMeasurementDifference {
+export interface IHomeMeasurementDifference {
+  name: string;
+  solar_consumed_energy: number;
+  consumed_energy: number;
+  solar_produced_energy: number;
+  grid_imported_energy: number;
+  grid_exported_energy: number;
+
+  device_measurements: IDeviceMeasurementDifference[] ;
+
+}
+
+
+export class HomeMeasurementDifference implements IHomeMeasurementDifference {
   name: string;
   solar_consumed_energy: number = 0;
   consumed_energy: number = 0;
@@ -80,11 +101,11 @@ export class EnergyAssistantApi {
     return response.data;
   }
 
-  public async getHomeMeasurementsByDate(from_measurement_date: Date, to_measurement_date: Date) {
+  public async getHomeMeasurementDifference(from_measurement_date: Date, to_measurement_date: Date) {
     if (!this.axiosInstance) throw "not initialized";
-    const response_date = await this.axiosInstance.get<IHomeMeasurementResponse>(`homemeasurements/by_date/` + to_measurement_date.toISOString().split('T')[0]);
-    const response_last = await this.axiosInstance.get<IHomeMeasurementResponse>(`homemeasurements/before_date/` + from_measurement_date.toISOString().split('T')[0]);
-    return calculateDifference(response_last.data, response_date.data)
+    const from_date = from_measurement_date.toISOString().split('T')[0];
+    const to_date = to_measurement_date.toISOString().split('T')[0];
+    return await this.axiosInstance.get<IHomeMeasurementDifference>(`history/difference/` + from_date+ '?to_date=' + to_date);
   }
 
 }
@@ -96,22 +117,5 @@ export const getAllHomeMeasurementsFn = async () => {
 };
 
 export const getHomeMeasurementsByDateFn = async (from_measurement_date: Date, to_measurement_date: Date) => {
-  return await api.getHomeMeasurementsByDate(from_measurement_date, to_measurement_date)
+  return await api.getHomeMeasurementDifference(from_measurement_date, to_measurement_date)
 }
-
-
-function calculateDifference(from: IHomeMeasurementResponse, to: IHomeMeasurementResponse): HomeMeasurementDifference {
-  const result = new HomeMeasurementDifference(from.name);
-  result.consumed_energy = to.consumed_energy - from.consumed_energy
-  result.solar_consumed_energy = to.solar_consumed_energy - from.solar_consumed_energy
-  result.solar_produced_energy = to.solar_produced_energy - from.solar_produced_energy
-  result.grid_exported_energy = to.grid_exported_energy - from.grid_exported_energy
-  result.grid_imported_energy = to.grid_imported_energy - from.grid_imported_energy
-
-  for (let i = 0; i < from.device_measurements.length; i++) {
-    const difference = new DeviceMeasurementDifference(from.device_measurements[i].name, to.device_measurements[i].solar_consumed_energy - from.device_measurements[i].solar_consumed_energy, to.device_measurements[i].consumed_energy - from.device_measurements[i].consumed_energy);
-    result.device_measurements.push(difference)
-  }
-  return result;
-}
-

@@ -12,7 +12,7 @@
 
                 <div class="items-center col-span-6">
                     <div class="italic">Verbrauch heute:</div>
-                    <SelfSufficiencyBar :self_sufficiency=measurement.self_sufficiency :consumed_energy=measurement.consumed_energy
+                    <SelfSufficiencyBar :self_sufficiency=self_sufficiency :consumed_energy=measurement.consumed_energy
                         :consumed_solar_energy=measurement.solar_consumed_energy></SelfSufficiencyBar>
                 </div>
             </div>
@@ -21,13 +21,18 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from "vue";
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
-import {DeviceMeasurementDifference} from '@/api/measurement.api.ts'
+import {IDeviceMeasurementDifference} from '@/api/measurement.api.ts'
 
 interface Props {
     icon: string
-    measurement: DeviceMeasurementDifference
+    measurement: IDeviceMeasurementDifference
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+const self_sufficiency = computed(() => {
+    return props.measurement.consumed_energy != 0 ? props.measurement.solar_consumed_energy / props.measurement.consumed_energy : 0.0
+});
 </script>
