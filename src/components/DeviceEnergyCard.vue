@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="items-center col-span-6">
-                    <div class="italic">Verbrauch heute:</div>
+                    <div class="italic">{{ t('consumption') }} </div>
                     <SelfSufficiencyBar :self_sufficiency=self_sufficiency :consumed_energy=measurement.consumed_energy
                         :consumed_solar_energy=measurement.solar_consumed_energy></SelfSufficiencyBar>
                 </div>
@@ -24,6 +24,9 @@
 import { computed } from "vue";
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import {IDeviceMeasurementDifference} from '@/api/measurement.api.ts'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
 
 interface Props {
     icon: string

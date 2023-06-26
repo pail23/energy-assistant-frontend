@@ -10,7 +10,7 @@
                 <label class="label cursor-pointer">
 
                     <input id="show-meter-values-checkbox" type="checkbox" v-model="show_meter_values" class="checkbox" />
-                    <label for="show-meter-values-checkbox" class="label-text ml-2">Zählerwerte anzeigen</label>
+                    <label for="show-meter-values-checkbox" class="label-text ml-2">{{ t('raw_data.show_meter_values') }}</label>
                 </label>
             </div>
         </div>
@@ -22,6 +22,9 @@ import { getAllHomeMeasurementsFn } from '@/api/measurement.api';
 import MeasurementTable from '@/components/MeasurementTable.vue'
 import { useQuery } from 'vue-query';
 import {ref} from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
 
 let show_meter_values_value = false
 const show_meter_values = ref(show_meter_values_value)

@@ -4,19 +4,19 @@
             class="m-4 bg-base-100 border-collapse border border-slate-300 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="bg-base-200">
                 <tr>
-                    <th class="px-6 py-3 w-24">Datum</th>
-                    <th class="px-6 py-3 w-36">Verbrauchte Solar Energie</th>
-                    <th class="px-6 py-3 w-36">Verbrauchte Energie</th>
-                    <th class="px-6 py-3 w-36">Produzierte Solar Energie</th>
-                    <th class="px-6 py-3 w-36">Bezognene Energie</th>
-                    <th class="px-6 py-3 w-36">Gelieferte Energie</th>
+                    <th class="px-6 py-3 w-24">{{t('raw_data.date')}}</th>
+                    <th class="px-6 py-3 w-36">{{t('raw_data.consumed_solar_energy')}}</th>
+                    <th class="px-6 py-3 w-36">{{t('raw_data.consumed_energy')}}</th>
+                    <th class="px-6 py-3 w-36">{{t('raw_data.produced_solar_energy')}}</th>
+                    <th class="px-6 py-3 w-36">{{t('raw_data.imported_energy')}}</th>
+                    <th class="px-6 py-3 w-36">{{t('raw_data.exported_energy')}}</th>
                 </tr>
             </thead>
             <tbody>
 
                 <tr class="odd:bg-base-100 even:bg-base-200 border-b text-center" v-for="(measurement, index) in home_measurements" :key="measurement.id">
                     <td class="px-6 py-4 ">
-                        {{ (new Date(measurement.measurement_date)).toLocaleDateString("de-DE") }}
+                        {{ d(new Date(measurement.measurement_date)) }}
                     </td>
                     <td class="px-6 py-4">
                         <p v-if="index > 0"> {{ (measurement.solar_consumed_energy - home_measurements[index -
@@ -51,6 +51,9 @@
 </template>
 <script lang="ts" setup>
 import { IHomeMeasurementResponse } from '@/api/measurement.api';
+import { useI18n } from 'vue-i18n'
+
+const {t, d} = useI18n();
 
 interface Props {
     home_measurements: IHomeMeasurementResponse[];

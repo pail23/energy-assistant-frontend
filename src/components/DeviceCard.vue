@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="items-center col-span-6">
-                    <div class="text-left">Verbrauch: <span class="float-right">{{ power }} W</span></div>
+                    <div class="text-left">{{ t('consumption') }} <span class="float-right">{{ power }} W</span></div>
                     <SelfSufficiencyBar :self_sufficiency=today.self_sufficiency :consumed_energy=today.consumed_energy
                         :consumed_solar_energy=today.consumed_solar_energy></SelfSufficiencyBar>
                 </div>
@@ -22,6 +22,11 @@
 <script lang="ts" setup>
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import { IEnergy } from '../api/device'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
+
+
 
 interface Props {
     name: string

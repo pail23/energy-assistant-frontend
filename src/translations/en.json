@@ -3,8 +3,18 @@
     "energy_assistant": "Energy Assistant"
   },
   "home_card": {
-    "solar_production": "solar production",
-    "consumption": "Verbrauch"
+    "solar_production": "solar production"
+  },
+  "consumption": "Consumption",
+  "temperature": "Temperature",
+  "state": "State",
+  "raw_data":{
+    "show_meter_values": "Show meter values",
+    "date": "Date",
+    "consumed_solar_energy": "Consumed solar energy",
+    "consumed_energy": "Consumed energy",
+    "produced_solar_energy": "Produced energy",
+    "imported_energy": "Imported energy",
+    "exported_energy": "Exported energy"    
   }
-
 }

@@ -12,7 +12,7 @@
                         <p class="text-left">{{t('home_card.solar_production')}}<span class="float-right">{{
                             power.solar_production }} W</span></p>
                     </div>
-                    <div class="italic">{{ t('home_card.consumption') }}</div>
+                    <div class="italic">{{ t('consumption') }}</div>
                     <div class="mt-2 mb-4">
                         <SelfSufficiencyBar :self_sufficiency=power.self_sufficiency
                             :consumed_energy=power.home_consumption :consumed_solar_energy=solar_consumption_power

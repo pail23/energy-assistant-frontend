@@ -11,9 +11,9 @@
                 </div>
 
                 <div class="items-center col-span-6">
-                    <div class="text-left">Verbrauch: <span class="float-right">{{ power }} W</span></div>
-                    <div class="text-left">Temperatur: <span class="float-right">{{ actual_temperature }} °C</span> </div>
-                    <div class="text-left">Status: <span class="float-right">{{ state }}</span> </div>
+                    <div class="text-left">{{ t('consumption') }} <span class="float-right">{{ power }} W</span></div>
+                    <div class="text-left">{{ t('temperature') }} <span class="float-right">{{ actual_temperature }} °C</span> </div>
+                    <div class="text-left">{{ t('state') }} <span class="float-right">{{ state }}</span> </div>
                     <SelfSufficiencyBar :self_sufficiency=today.self_sufficiency :consumed_energy=today.consumed_energy
                         :consumed_solar_energy=today.consumed_solar_energy></SelfSufficiencyBar>
                 </div>
@@ -26,6 +26,9 @@
 
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import { IEnergy } from '../api/device'
+import { useI18n } from 'vue-i18n'
+
+const {t} = useI18n();
 
 interface Props {
     name: string;
