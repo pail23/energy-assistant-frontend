@@ -10,7 +10,7 @@
                 <div class="items-center col-span-6">
                     <div class="mb-4">
                         <p class="text-left">{{t('home_card.solar_production')}}<span class="float-right">{{
-                            power.solar_production }} W</span></p>
+                            formatNumberWithUnit(power.solar_production, "W") }}</span></p>
                     </div>
                     <div class="italic">{{ t('consumption') }}</div>
                     <div class="mt-2 mb-4">
@@ -30,6 +30,9 @@ import { computed } from "vue";
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import { IHomePower } from '@/api/device'
 import { useI18n } from 'vue-i18n'
+import { formatNumberWithUnit } from '@/utils';
+
+
 
 const {t} = useI18n();
 

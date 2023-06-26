@@ -1,16 +1,13 @@
 <template>
-    <div class="card w-80 sm:w-96 bg-base-100 shadow-xl m-4 p-4">
+    <div class="p-4 m-4 shadow-xl card w-80 sm:w-96 bg-base-100">
         <div>
-            <div class="grid grid-cols-6 w-full">
+            <div class="grid w-full">
                 <div>
-                    <span class="mdi text-3xl" :class="icon"></span>
-                </div>
-                <div class="col-span-5">
-                    <div class="text-left font-bold text-lg">{{ measurement.name }}
-                    </div>
+                    <span class="text-3xl mdi pr-2" :class="icon"></span>
+                    <span class="text-lg font-bold text-left">{{ measurement.name }}</span>
                 </div>
 
-                <div class="items-center col-span-6">
+                <div class="items-center">
                     <div class="italic">{{ t('consumption') }} </div>
                     <SelfSufficiencyBar :self_sufficiency=self_sufficiency :consumed_energy=measurement.consumed_energy
                         :consumed_solar_energy=measurement.solar_consumed_energy></SelfSufficiencyBar>
@@ -24,6 +21,7 @@
 import { computed } from "vue";
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue'
 import {IDeviceMeasurementDifference} from '@/api/measurement.api.ts'
+
 import { useI18n } from 'vue-i18n'
 
 const {t} = useI18n();

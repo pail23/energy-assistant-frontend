@@ -26,7 +26,7 @@
                     class="absolute top-5 left-1/2 transform -translate-x-1/2 h-20 w-20 grid rounded-full ring-2 ring-yellow-500 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
-                        <span class="text-xs">{{ solar_power.toFixed(1) }} {{ unit }}</span>
+                        <span class="text-xs">{{ formatNumberWithUnit(solar_power, unit) }}</span>
                     </div>
                 </div>
                 <div
@@ -35,14 +35,13 @@
                         <div class="mdi mdi-transmission-tower text-2xl"></div>
 
                         <div v-if="grid_imported_energy" class="text-xs">
-                            <div><span class="mdi mdi-arrow-right"></span> {{ grid_imported_energy.toFixed(1) }} {{ unit }}
+                            <div><span class="mdi mdi-arrow-right"></span> {{ formatNumberWithUnit(grid_imported_energy, unit) }} 
                             </div>
-                            <div v-if="grid_exported_energy"><span class="mdi mdi-arrow-left"></span> {{
-                                grid_exported_energy.toFixed(1) }} {{ unit }}</div>
+                            <div v-if="grid_exported_energy"><span class="mdi mdi-arrow-left"></span> {{ formatNumberWithUnit(grid_exported_energy, unit)}}</div>
                         </div>
                         <div v-else class="text-xs">
-                            <span v-if="grid_consumption_power > 0"><span class="mdi mdi-arrow-right"></span>  {{ grid_consumption_power.toFixed(1) }} {{ unit }}</span>
-                            <span v-else><span class="mdi mdi-arrow-left"></span> {{ (-grid_consumption_power).toFixed(1) }} {{ unit }}</span>
+                            <span v-if="grid_consumption_power > 0"><span class="mdi mdi-arrow-right"></span>  {{ formatNumberWithUnit(grid_consumption_power, unit)  }}</span>
+                            <span v-else><span class="mdi mdi-arrow-left"></span> {{ formatNumberWithUnit(-grid_consumption_power, unit) }}</span>
                         </div>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                     class="absolute bottom-5 right-5 h-20 w-20 grid rounded-full ring-2 ring-blue-800 place-items-center text-center bg-base-100">
                     <div>
                         <div class="mdi mdi-home text-2xl "></div>
-                        <span class="text-xs">{{ home_consumption_power.toFixed(1) }} {{ unit }}</span>
+                        <span class="text-xs">{{formatNumberWithUnit(home_consumption_power, unit) }}</span>
                     </div>
                 </div>
 
@@ -62,6 +61,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
+import {formatNumberWithUnit} from "@/utils"
 
 interface Props {
     solar_power: number;

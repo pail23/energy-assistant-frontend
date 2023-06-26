@@ -5,7 +5,7 @@
             <div>
                 <span class="mdi mdi-solar-power text-primary"></span>
                 <span class="text-primary">{{
-                    consumed_solar_energy.toFixed(1) }} {{ unit }}</span>
+                    consumed_solar_energy.toFixed(0) }} {{ unit }}</span>
             </div>
             <div class="place-self-center">
                 <span>{{
@@ -13,7 +13,7 @@
             </div>
             <div>
                 <span class="float-right text-secondary">{{
-                    consumed_grid_energy.toFixed(1) }} {{ unit }}<span class="mdi mdi-transmission-tower"></span></span>
+                    consumed_grid_energy.toFixed(0) }} {{ unit }}<span class="mdi mdi-transmission-tower"></span></span>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 export interface IEnergy {
-  consumed_solar_energy : number;
-  consumed_energy : number;
-  self_sufficiency : number;     
+  consumed_solar_energy: number;
+  consumed_energy: number;
+  self_sufficiency: number;
 }
 
 export interface IHomePower {
@@ -13,16 +13,17 @@ export interface IHomePower {
 }
 
 export interface IDevice {
-    name: string;
-    icon: string;
-    type: string;
-    power: number;
-    overall: IEnergy;
-    today: IEnergy;
-    extra_attributes: string;
-  }
-  
-  export interface IHeatpumpDevice extends IDevice {
-    actual_temperature : number;   
-    state: string;
-  }
+  name: string;
+  icon: string;
+  type: string;
+  power: number;
+  overall: IEnergy;
+  today: IEnergy;
+  extra_attributes: string;
+}
+
+export interface IHeatpumpDevice extends IDevice {
+  actual_temperature: number;
+  state: string;
+}
+
