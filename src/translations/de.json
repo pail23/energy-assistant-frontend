@@ -1,6 +1,9 @@
 {
     "app": {
-        "energy_assistant": "Energieassistent"
+        "energy_assistant": "Energieassistent",
+        "live": "Live",
+        "statistics": "Statistik",
+        "raw_data": "Daten"
     },
     "home_card": {
         "solar_production": "Solar Produktion"
