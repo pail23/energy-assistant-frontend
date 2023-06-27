@@ -23,6 +23,7 @@
         "vscode": {
             "extensions": [
                 "vue.volar",
+				"Vue.vscode-typescript-vue-plugin",
                 "Lokalise.i18n-ally",
 				"heybourn.headwind"
             ]

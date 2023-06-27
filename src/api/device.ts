@@ -26,4 +26,3 @@ export interface IHeatpumpDevice extends IDevice {
   actual_temperature: number;
   state: string;
 }
-
