@@ -1,12 +1,13 @@
 <template>
   <div class="card m-4 w-80 bg-base-100 p-4 shadow-xl sm:w-96">
     <div class="card-body w-full">
-      <div class="grid grid-cols-6">
+      <div class="grid w-full">
         <div>
-          <span class="mdi mdi-home text-3xl"></span>
+          <span class="mdi mdi-home pr-2 text-3xl"></span>
+
+          <span class="text-left text-lg font-bold">{{ name }} </span>
         </div>
-        <span class="col-span-5 text-left text-lg font-bold">{{ name }} </span>
-        <div class="col-span-6 items-center">
+        <div class="items-center">
           <div class="mb-4">
             <p class="text-left">
               {{ t('home_card.solar_production')
@@ -18,9 +19,9 @@
           <div class="italic">{{ t('consumption') }}</div>
           <div class="mb-4 mt-2">
             <SelfSufficiencyBar
-              :self_sufficiency="power.self_sufficiency"
-              :consumed_energy="power.home_consumption"
-              :consumed_solar_energy="solar_consumption_power"
+              :self-sufficiency="power.self_sufficiency"
+              :consumed-energy="power.home_consumption"
+              :consumed-solar-energy="solar_consumption_power"
               unit="W"
             ></SelfSufficiencyBar>
           </div>

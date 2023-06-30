@@ -13,8 +13,7 @@ export interface IHomePower {
 }
 
 export interface IDevice {
-  name: string;
-  icon: string;
+  device_id: string;
   type: string;
   power: number;
   overall: IEnergy;

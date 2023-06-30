@@ -79,15 +79,18 @@
       <div v-else>
         <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2">
           <PowerFlowCard
-            :home_consumption_power="data.consumed_energy"
-            :solar_power="data.solar_produced_energy"
-            :grid_imported_energy="data.grid_imported_energy"
-            :grid_exported_energy="data.grid_exported_energy"
+            :home-consumption-power="data.consumed_energy"
+            :solar-power="data.solar_produced_energy"
+            :grid-imported-energy="data.grid_imported_energy"
+            :grid-exported-energy="data.grid_exported_energy"
             unit="kWh"
           >
           </PowerFlowCard>
           <div v-for="(device, index) in data.device_measurements" :key="index">
-            <DeviceEnergyCard :measurement="device" icon="mdi-home" />
+            <DeviceEnergyCard
+              :measurement="device"
+              :device="api.getDeviceInfo(device.device_id)"
+            />
           </div>
         </div>
       </div>
@@ -97,7 +100,7 @@
 
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue';
-import { api, IHomeMeasurementDifference } from '@/api/measurement.api';
+import { api, IHomeMeasurementDifference } from '@/api/energyAssistant.api';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 

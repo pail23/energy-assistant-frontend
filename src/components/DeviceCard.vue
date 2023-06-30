@@ -3,8 +3,8 @@
     <div>
       <div class="grid w-full grid-cols-1">
         <div>
-          <span class="mdi pr-2 text-3xl" :class="icon"></span>
-          <span class="text-left text-lg font-bold">{{ name }}</span>
+          <span class="mdi pr-2 text-3xl" :class="device.icon"></span>
+          <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
         <div class="items-center">
           <div class="text-left">
@@ -14,9 +14,9 @@
             }}</span>
           </div>
           <SelfSufficiencyBar
-            :self_sufficiency="today.self_sufficiency"
-            :consumed_energy="today.consumed_energy"
-            :consumed_solar_energy="today.consumed_solar_energy"
+            :self-sufficiency="today.self_sufficiency"
+            :consumed-energy="today.consumed_energy"
+            :consumed-solar-energy="today.consumed_solar_energy"
           ></SelfSufficiencyBar>
         </div>
       </div>
@@ -26,15 +26,15 @@
 
 <script lang="ts" setup>
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
-import { IEnergy } from '../api/device';
+import { IEnergy } from '@/api/device';
+import { IDeviceInfo } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
 
 const { t } = useI18n();
 
 interface Props {
-  name: string;
-  icon: string;
+  device: IDeviceInfo;
   power: number;
   today: IEnergy;
 }

@@ -36,7 +36,7 @@
           <div>
             <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
             <span class="text-xs">{{
-              formatNumberWithUnit(solar_power, unit)
+              formatNumberWithUnit(solarPower, unit)
             }}</span>
           </div>
         </div>
@@ -46,14 +46,14 @@
           <div>
             <div class="mdi mdi-transmission-tower text-2xl"></div>
 
-            <div v-if="grid_imported_energy" class="text-xs">
+            <div v-if="gridImportedEnergy" class="text-xs">
               <div>
                 <span class="mdi mdi-arrow-right"></span>
-                {{ formatNumberWithUnit(grid_imported_energy, unit) }}
+                {{ formatNumberWithUnit(gridImportedEnergy, unit) }}
               </div>
-              <div v-if="grid_exported_energy">
+              <div v-if="gridExportedEnergy">
                 <span class="mdi mdi-arrow-left"></span>
-                {{ formatNumberWithUnit(grid_exported_energy, unit) }}
+                {{ formatNumberWithUnit(gridExportedEnergy, unit) }}
               </div>
             </div>
             <div v-else class="text-xs">
@@ -74,7 +74,7 @@
           <div>
             <div class="mdi mdi-home text-2xl"></div>
             <span class="text-xs">{{
-              formatNumberWithUnit(home_consumption_power, unit)
+              formatNumberWithUnit(homeConsumptionPower, unit)
             }}</span>
           </div>
         </div>
@@ -88,16 +88,16 @@ import { computed } from 'vue';
 import { formatNumberWithUnit } from '@/utils';
 
 interface Props {
-  solar_power: number;
-  home_consumption_power: number;
-  grid_imported_energy?: number;
-  grid_exported_energy?: number;
+  solarPower: number;
+  homeConsumptionPower: number;
+  gridImportedEnergy?: number;
+  gridExportedEnergy?: number;
   unit: string;
 }
 
 const props = defineProps<Props>();
 
 const grid_consumption_power = computed(() => {
-  return props.home_consumption_power - props.solar_power;
+  return props.homeConsumptionPower - props.solarPower;
 });
 </script>

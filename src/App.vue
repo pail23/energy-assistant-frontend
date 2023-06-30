@@ -34,12 +34,12 @@
 import { onMounted } from 'vue';
 import { themeChange } from 'theme-change';
 import { devicesAPI } from '@/api/devices.api';
-import { api } from '@/api/measurement.api';
+import { api } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-onMounted(() => {
+onMounted(async () => {
   themeChange(true);
   let serverAddress = '';
   if (process.env.NODE_ENV === 'development') {
@@ -47,7 +47,7 @@ onMounted(() => {
     if (!serverAddress) {
       serverAddress =
         prompt(
-          'Enter location of the Music Assistant server',
+          'Enter location of the Energy Assistant server',
           window.location.origin.replace('3000', '8095'),
         ) || '';
       localStorage.setItem('mass_debug_address', serverAddress);
@@ -59,6 +59,6 @@ onMounted(() => {
 
   console.error('Server address: ' + serverAddress);
   devicesAPI.initialize(serverAddress);
-  api.initialize(serverAddress);
+  await api.initialize(serverAddress);
 });
 </script>

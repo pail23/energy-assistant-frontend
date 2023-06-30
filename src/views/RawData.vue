@@ -5,8 +5,8 @@
     </div>
     <div v-else>
       <MeasurementTable
-        :home_measurements="data.home_measurements"
-        :show_meter_values="show_meter_values"
+        :home-measurements="data.home_measurements"
+        :show-meter-values="show_meter_values"
       />
       <div class="my-4 flex">
         <label class="label cursor-pointer">
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getAllHomeMeasurementsFn } from '@/api/measurement.api';
+import { getAllHomeMeasurementsFn } from '@/api/energyAssistant.api';
 import MeasurementTable from '@/components/MeasurementTable.vue';
 import { useQuery } from 'vue-query';
 import { ref } from 'vue';

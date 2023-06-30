@@ -1,11 +1,13 @@
 import { AxiosInstance } from 'axios';
 import axios from 'axios';
+import { Result } from 'postcss';
 
 export interface IDeviceMeasurementResponse {
   id: number;
   name: string;
   solar_consumed_energy: number;
   consumed_energy: number;
+  device_id: string;
 }
 
 export interface IHomeMeasurementResponse {
@@ -21,8 +23,19 @@ export interface IHomeMeasurementResponse {
   device_measurements: IDeviceMeasurementResponse[];
 }
 
+export interface IDeviceInfo {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+export interface IDeviceResponse {
+  devices: IDeviceInfo[];
+}
+
 export interface IDeviceMeasurementDifference {
   name: string;
+  device_id: string;
   solar_consumed_energy: number;
   consumed_energy: number;
 }
@@ -41,8 +54,9 @@ export interface IHomeMeasurementDifference {
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
+  public deviceInfos?: IDeviceInfo[];
 
-  public initialize(baseUrl: string) {
+  public async initialize(baseUrl: string) {
     if (this.axiosInstance) throw 'already initialized';
     if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
     this.baseUrl = baseUrl + '/api';
@@ -53,6 +67,7 @@ export class EnergyAssistantApi {
     });
     this.axiosInstance.defaults.headers.common['Content-Type'] =
       'application/json';
+    this.deviceInfos = await this.getAllDevices();
   }
 
   public async getAllHomeMeasurements() {
@@ -61,6 +76,22 @@ export class EnergyAssistantApi {
       'homemeasurements',
     );
     return response.data;
+  }
+
+  public async getAllDevices(): Promise<IDeviceInfo[]> {
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.get<IDeviceResponse>('devices');
+    return response.data.devices;
+  }
+
+  public getDeviceInfo(id: string): IDeviceInfo {
+    if (this.deviceInfos != null) {
+      const result = this.deviceInfos.find((info) => info.id == id);
+      if (result != null) {
+        return result;
+      }
+    }
+    return { id: '', name: '', icon: '' };
   }
 
   public async getHomeMeasurementDifference(
