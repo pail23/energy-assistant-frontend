@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import axios from 'axios';
-import { Result } from 'postcss';
 
 export interface IDeviceMeasurementResponse {
   id: number;
