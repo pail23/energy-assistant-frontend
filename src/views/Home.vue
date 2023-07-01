@@ -1,5 +1,5 @@
 <template>
-  <div class="v-full flex h-full min-h-screen justify-center p-4">
+  <div class="flex h-full min-h-screen w-full justify-center p-4">
     <div v-if="!connected" class="grid w-full grid-cols-1 justify-items-center">
       <span class="loading loading-dots loading-lg py-2"></span>
     </div>

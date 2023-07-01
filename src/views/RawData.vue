@@ -1,7 +1,10 @@
 <template>
   <div class="v-full flex h-full min-h-screen justify-center p-4">
-    <div v-if="isLoading" class="h-full w-full">
-      <span class="loading loading-spinner loading-lg m-auto"></span>
+    <div
+      v-if="isLoading"
+      class="grid h-full w-full grid-cols-1 justify-items-center"
+    >
+      <span class="loading loading-dots loading-lg py-2"></span>
     </div>
     <div v-else>
       <MeasurementTable

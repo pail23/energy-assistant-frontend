@@ -77,7 +77,10 @@
         <span class="loading loading-dots loading-lg py-2"></span>
       </div>
       <div v-else>
-        <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2">
+        <div
+          v-if="data"
+          class="grid grid-cols-1 justify-items-center lg:grid-cols-2"
+        >
           <PowerFlowCard
             :home-consumption-power="data.consumed_energy"
             :solar-power="data.solar_produced_energy"
