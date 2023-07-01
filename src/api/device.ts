@@ -16,7 +16,6 @@ export interface IDevice {
   device_id: string;
   type: string;
   power: number;
-  overall: IEnergy;
   today: IEnergy;
   extra_attributes: string;
 }
