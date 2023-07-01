@@ -10,7 +10,7 @@
         <div class="items-center">
           <div class="italic">{{ t('consumption') }}</div>
           <SelfSufficiencyBar
-            :self-sufficiency="self_sufficiency"
+            :self-sufficiency="selfSufficiency"
             :consumed-energy="measurement.consumed_energy"
             :consumed-solar-energy="measurement.solar_consumed_energy"
           ></SelfSufficiencyBar>
@@ -39,9 +39,9 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const self_sufficiency = computed(() => {
+const selfSufficiency = computed(() => {
   return props.measurement.consumed_energy != 0
-    ? props.measurement.solar_consumed_energy /
+    ? (100 * props.measurement.solar_consumed_energy) /
         props.measurement.consumed_energy
     : 0.0;
 });
