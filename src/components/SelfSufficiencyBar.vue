@@ -8,16 +8,16 @@
     <div class="grid w-full grid-cols-3 text-sm">
       <div>
         <span class="mdi mdi-solar-power text-primary"></span>
-        <span class="text-primary"
-          >{{ consumedSolarEnergy.toFixed(0) }} {{ unit }}</span
-        >
+        <span class="text-primary">{{
+          formatNumberWithUnit(consumedSolarEnergy, unit)
+        }}</span>
       </div>
       <div class="place-self-center">
         <span>{{ selfSufficiency.toFixed(0) }}%</span>
       </div>
       <div>
         <span class="float-right text-secondary"
-          >{{ consumed_grid_energy.toFixed(0) }} {{ unit
+          >{{ formatNumberWithUnit(consumed_grid_energy, unit)
           }}<span class="mdi mdi-transmission-tower"></span
         ></span>
       </div>
@@ -27,6 +27,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import { formatNumberWithUnit } from '@/utils';
 
 const props = defineProps({
   selfSufficiency: { type: Number, required: true },

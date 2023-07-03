@@ -6,6 +6,9 @@ export const formatNumberWithUnit = function (
     return '0 ' + unit;
   }
   if (Math.abs(value) < 10) {
+    if (Math.abs(value) < 1 && unit == 'kWh') {
+      return (value * 1000).toFixed(0) + ' Wh';
+    }
     return value.toFixed(1) + ' ' + unit;
   } else {
     return value.toFixed(0) + ' ' + unit;
