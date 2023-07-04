@@ -1,15 +1,19 @@
 import { AxiosInstance } from 'axios';
 import axios from 'axios';
 
-export interface IDeviceMeasurementResponse {
+export interface IDeviceMeasurement {
   id: number;
-  name: string;
   solar_consumed_energy: number;
   consumed_energy: number;
   device_id: string;
+  measurement_date: Date;
 }
 
-export interface IHomeMeasurementResponse {
+export interface IDeviceMeasurementResponse {
+  device_measurements: IDeviceMeasurement[];
+}
+
+export interface IHomeMeasurement {
   id: number;
   name: string;
   solar_consumed_energy: number;
@@ -19,7 +23,11 @@ export interface IHomeMeasurementResponse {
   grid_exported_energy: number;
   measurement_date: Date;
 
-  device_measurements: IDeviceMeasurementResponse[];
+  device_measurements: IDeviceMeasurement[];
+}
+
+export interface IHomeMeasurementResponse {
+  home_measurements: IHomeMeasurement[];
 }
 
 export interface IDeviceInfo {
@@ -74,7 +82,15 @@ export class EnergyAssistantApi {
     const response = await this.axiosInstance.get<IHomeMeasurementResponse>(
       'homemeasurements',
     );
-    return response.data;
+    return response.data.home_measurements;
+  }
+
+  public async getDeviceMeasurements(id: string) {
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.get<IDeviceMeasurementResponse>(
+      'devices/' + id + '/measurements',
+    );
+    return response.data.device_measurements;
   }
 
   public async getAllDevices(): Promise<IDeviceInfo[]> {

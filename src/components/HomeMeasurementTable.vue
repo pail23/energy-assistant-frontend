@@ -110,14 +110,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { IHomeMeasurementResponse } from '@/api/energyAssistant.api';
+import { IHomeMeasurement } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
 
 const { t, d } = useI18n();
 
 interface Props {
-  homeMeasurements: IHomeMeasurementResponse[];
+  homeMeasurements: IHomeMeasurement[];
   showMeterValues: boolean;
 }
 
