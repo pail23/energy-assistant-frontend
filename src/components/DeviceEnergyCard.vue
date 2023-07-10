@@ -7,8 +7,13 @@
           <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
 
-        <div class="items-center">
-          <div class="italic">{{ t('consumption') }}</div>
+        <div class="mt-2 items-center rounded-md bg-base-200 p-2">
+          <div class="text-left">
+            {{ t('consumption') }}
+            <span class="float-right">{{
+              formatNumberWithUnit(measurement.consumed_energy, 'kWh')
+            }}</span>
+          </div>
           <SelfSufficiencyBar
             :self-sufficiency="selfSufficiency"
             :consumed-energy="measurement.consumed_energy"
@@ -27,7 +32,7 @@ import {
   IDeviceInfo,
   IDeviceMeasurementDifference,
 } from '@/api/energyAssistant.api';
-
+import { formatNumberWithUnit } from '@/utils';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
