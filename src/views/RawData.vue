@@ -11,7 +11,16 @@
         :home-measurements="data"
         :show-meter-values="show_meter_values"
       />
-      <p class="p-2">Tumbler</p>
+      <select
+        v-model="selectedDevice"
+        class="select m-2 w-full max-w-xs"
+        @change="onChangeDeviceSelection($event)"
+      >
+        <option v-for="device in devices" :key="device.id" :value="device.id">
+          {{ device.name }}
+        </option>
+      </select>
+
       <DeviceMeasurementTable
         v-if="device_measurements"
         :device-measurements="device_measurements"
@@ -39,6 +48,7 @@ import {
   getAllHomeMeasurementsFn,
   api,
   IDeviceMeasurement,
+  IDeviceInfo,
 } from '@/api/energyAssistant.api';
 import HomeMeasurementTable from '@/components/HomeMeasurementTable.vue';
 import DeviceMeasurementTable from '@/components/DeviceMeasurementTable.vue';
@@ -49,22 +59,35 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const device_measurements = ref<IDeviceMeasurement[]>();
+const devices = ref<IDeviceInfo[]>();
 const isLoading = ref(false);
+const selectedDevice = ref('');
 
 let show_meter_values_value = false;
 const show_meter_values = ref(show_meter_values_value);
-//data = await getAllHomeMeasurementsFn();
+
 const { data } = useQuery('home_measurements', () =>
   getAllHomeMeasurementsFn(),
 );
 const loadData = async function (id: string) {
   isLoading.value = true;
-  device_measurements.value = await api.getDeviceMeasurements(id);
+  device_measurements.value =
+    id != '' ? await api.getDeviceMeasurements(id) : [];
   isLoading.value = false;
 };
 
-onMounted(() => {
-  loadData('246e6ffa-f3d1-4294-bd19-8aea1a86e53e');
+const onChangeDeviceSelection = function (event) {
+  console.log(event.target.value);
+  loadData(event.target.value);
+};
+
+onMounted(async () => {
+  devices.value = await api.getAllDevices();
+  if (devices.value.length > 0) {
+    selectedDevice.value = devices.value[0].id;
+    console.log('Load in on mounted: ' + devices.value[0].id);
+    loadData(devices.value[0].id);
+  }
 });
-console.log(data.home_measurements);
+//console.log(data.home_measurements);
 </script>

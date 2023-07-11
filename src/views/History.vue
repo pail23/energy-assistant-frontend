@@ -2,7 +2,7 @@
   <div class="v-full flex h-full min-h-screen justify-center p-4">
     <div class="grid grid-cols-1">
       <div
-        class="mx-auto grid h-14 w-[40rem] grid-cols-4 space-x-2 rounded-xl bg-gray-200 p-2"
+        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl bg-gray-200 p-2"
       >
         <div>
           <input
