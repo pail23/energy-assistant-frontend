@@ -110,7 +110,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { IHomeMeasurement } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
@@ -123,7 +122,4 @@ interface Props {
 }
 
 defineProps<Props>();
-
-
-
 </script>
