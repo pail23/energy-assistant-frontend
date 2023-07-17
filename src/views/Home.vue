@@ -11,6 +11,9 @@
           unit="W"
         >
         </PowerFlowCard>
+        <DevicePowerDistributionCard
+          :devices="home.devices"
+        ></DevicePowerDistributionCard>
         <HomeCard :name="home.name" :power="home.power"></HomeCard>
 
         <div v-for="(device, index) in home.devices" :key="index">
@@ -44,6 +47,7 @@ import DeviceCard from '@/components/DeviceCard.vue';
 import HeatPumpCard from '@/components/HeatPumpCard.vue';
 import HomeCard from '@/components/HomeCard.vue';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
+import DevicePowerDistributionCard from '@/components/DevicePowerDistributionCard.vue';
 
 const home = computed(() => {
   return devicesAPI.home;

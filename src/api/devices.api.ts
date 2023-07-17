@@ -17,11 +17,6 @@ export default class DevicesAPIService {
       home_consumption: 0.0,
       self_sufficiency: 0.0,
     } as IHomePower,
-    overall: {
-      consumed_solar_energy: 0.0,
-      consumed_energy: 0.0,
-      self_sufficiency: 0.0,
-    } as IEnergy,
     today: {
       consumed_solar_energy: 0.0,
       consumed_energy: 0.0,
