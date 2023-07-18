@@ -13,6 +13,7 @@
         </PowerFlowCard>
         <DevicePowerDistributionCard
           :devices="home.devices"
+          :power="home.power.solar_production"
         ></DevicePowerDistributionCard>
         <HomeCard :name="home.name" :power="home.power"></HomeCard>
 

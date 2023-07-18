@@ -18,6 +18,38 @@ import {
 } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 
+const doughnutLabel = {
+  id: 'doughnutlabel',
+  beforeDraw: (chart, _args, options) => {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+
+    var width = chart.chartArea.width;
+    var height = chart.chartArea.height;
+
+    // var fontSize = (height / 114).toFixed(2);
+    // ctx.font = fontSize + 'em sans-serif';
+    ctx.font = '1.25em sans-serif';
+    ctx.color = options.color;
+
+    ctx.textBaseline = 'middle';
+
+    var text = options.text;
+    var textX =
+      chart.chartArea.left +
+      Math.round((width - ctx.measureText(text).width) / 2);
+    var textY = chart.chartArea.top + height / 2;
+    ctx.fillText(text, textX, textY);
+
+    ctx.restore();
+  },
+  defaults: {
+    text: '4000 W',
+    color: 0,
+  },
+};
+
 const data = computed(() => {
   return {
     labels: props.devices.map(
@@ -32,22 +64,28 @@ const data = computed(() => {
   };
 });
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    tooltip: {
-      callbacks: {
-        label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
+const options = computed(() => {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
+        },
+      },
+      doughnutlabel: {
+        text: formatNumberWithUnit(props.power, 'W'),
       },
     },
-  },
-};
+  };
+});
 
-ChartJS.register(ArcElement, Tooltip, Legend, Colors);
+ChartJS.register(ArcElement, Tooltip, Legend, Colors, doughnutLabel);
 
 interface Props {
   devices: IDevice[];
+  power: number;
 }
 
 const props = defineProps<Props>();

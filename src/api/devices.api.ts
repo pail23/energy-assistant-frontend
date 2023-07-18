@@ -83,7 +83,6 @@ export default class DevicesAPIService {
     const home = JSON.parse(data);
     this.home.name = home.name;
     this.home.power = home.power;
-    this.home.overall = home.overall;
     this.home.today = home.today;
     this.home.devices = home.devices;
     this.home.heat_pumps = home.heat_pumps;
