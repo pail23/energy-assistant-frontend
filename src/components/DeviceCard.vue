@@ -6,7 +6,7 @@
           <span class="mdi pr-2 text-3xl" :class="device.icon"></span>
           <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
-        <div class="items-center">
+        <div class="mt-2 items-center rounded-md bg-base-200 p-2">
           <div class="text-left">
             {{ t('consumption') }}
             <span class="float-right">{{
