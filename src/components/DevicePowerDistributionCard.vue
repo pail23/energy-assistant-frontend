@@ -32,20 +32,33 @@ const doughnutLabel = {
     // ctx.font = fontSize + 'em sans-serif';
     ctx.font = '1.25em sans-serif';
     ctx.color = options.color;
+    const linespacing = 1.5;
 
-    ctx.textBaseline = 'middle';
-
-    var text = options.text;
-    var textX =
-      chart.chartArea.left +
-      Math.round((width - ctx.measureText(text).width) / 2);
-    var textY = chart.chartArea.top + height / 2;
-    ctx.fillText(text, textX, textY);
+    ctx.textBaseline = 'top';
+    let textHeight = 0;
+    for (let i = 0; i < options.text.length; i++) {
+      const text = options.text[i];
+      const metrics: TextMetrics = ctx.measureText(text);
+      textHeight +=
+        (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) *
+        linespacing;
+    }
+    let currentY = chart.chartArea.top + (height - textHeight) / 2;
+    for (let i = 0; i < options.text.length; i++) {
+      const text = options.text[i];
+      const metrics: TextMetrics = ctx.measureText(text);
+      const textX =
+        chart.chartArea.left + Math.round((width - metrics.width) / 2);
+      ctx.fillText(text, textX, currentY);
+      currentY +=
+        (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) *
+        linespacing;
+    }
 
     ctx.restore();
   },
   defaults: {
-    text: '4000 W',
+    text: [],
     color: 0,
   },
 };
@@ -57,7 +70,6 @@ const data = computed(() => {
     ),
     datasets: [
       {
-        //backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
         data: props.devices.map((device) => device.power),
       },
     ],
@@ -75,7 +87,10 @@ const options = computed(() => {
         },
       },
       doughnutlabel: {
-        text: formatNumberWithUnit(props.power, 'W'),
+        text: [
+          formatNumberWithUnit(props.power, 'W'),
+          props.selfSufficiency.toFixed(0) + '%',
+        ],
       },
     },
   };
@@ -86,6 +101,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, Colors, doughnutLabel);
 interface Props {
   devices: IDevice[];
   power: number;
+  selfSufficiency: number;
 }
 
 const props = defineProps<Props>();
