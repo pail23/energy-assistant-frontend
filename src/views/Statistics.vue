@@ -89,6 +89,10 @@
             unit="kWh"
           >
           </PowerFlowCard>
+          <WeeklyStatistics
+            v-if="timeframe == 'week'"
+            :power="10"
+          ></WeeklyStatistics>
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
               :measurement="device"
@@ -106,6 +110,7 @@ import { ref, watch, onMounted } from 'vue';
 import { api, IHomeMeasurementDifference } from '@/api/energyAssistant.api';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
+import WeeklyStatistics from '@/components/WeeklyStatistics.vue';
 
 const timeframe = ref('today');
 const data = ref<IHomeMeasurementDifference>();

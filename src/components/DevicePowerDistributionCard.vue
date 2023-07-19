@@ -17,6 +17,7 @@ import {
   Colors,
 } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const doughnutLabel = {
   id: 'doughnutlabel',
@@ -30,9 +31,9 @@ const doughnutLabel = {
 
     // var fontSize = (height / 114).toFixed(2);
     // ctx.font = fontSize + 'em sans-serif';
-    ctx.font = '1.25em sans-serif';
+    ctx.font = '1.2em sans-serif';
     ctx.color = options.color;
-    const linespacing = 1.5;
+    const linespacing = 2;
 
     ctx.textBaseline = 'top';
     let textHeight = 0;
@@ -59,7 +60,7 @@ const doughnutLabel = {
   },
   defaults: {
     text: [],
-    color: 0,
+    color: 'black',
   },
 };
 
@@ -92,11 +93,38 @@ const options = computed(() => {
           props.selfSufficiency.toFixed(0) + '%',
         ],
       },
+      datalabels: {
+        backgroundColor: function (context) {
+          return context.dataset.backgroundColor;
+        },
+        borderColor: 'white',
+        borderRadius: 25,
+        borderWidth: 2,
+        color: 'white',
+        display: function (context) {
+          var dataset = context.dataset;
+          const sum = dataset.data.reduce((partialSum, a) => partialSum + a, 0);
+          var value = dataset.data[context.dataIndex];
+          return value > sum / 10;
+        },
+        font: {
+          weight: 'bold',
+        },
+        padding: 6,
+        formatter: Math.round,
+      },
     },
   };
 });
 
-ChartJS.register(ArcElement, Tooltip, Legend, Colors, doughnutLabel);
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  Colors,
+  doughnutLabel,
+  ChartDataLabels,
+);
 
 interface Props {
   devices: IDevice[];
