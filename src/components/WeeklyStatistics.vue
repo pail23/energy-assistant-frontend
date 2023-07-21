@@ -23,12 +23,12 @@ const data = computed(() => {
     datasets: [
       {
         label: 'Solar Production',
-        backgroundColor: '#f87979',
+        backgroundColor: '#fbbf24',
         data: [20, 10, 25, 35, 15, 34, 40],
       },
       {
         label: 'Consumption',
-        backgroundColor: '#007979',
+        backgroundColor: '#2563eb',
         data: [42, 30, 15, 15, 20, 17, 34],
       },
     ],
@@ -38,6 +38,11 @@ const data = computed(() => {
 const options = {
   responsive: true,
   maintainAspectRatio: false,
+  plugins: {
+    datalabels: {
+      display: false,
+    },
+  },
 };
 
 ChartJS.register(
