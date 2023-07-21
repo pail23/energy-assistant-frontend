@@ -89,14 +89,15 @@
             unit="kWh"
           >
           </PowerFlowCard>
-          <WeeklyStatistics
-            v-if="timeframe == 'week'"
-            :power="10"
-          ></WeeklyStatistics>
+          <WeeklyStatisticsCard
+            v-if="timeframe == 'week' && statistics != null"
+            :data="statistics"
+          ></WeeklyStatisticsCard>
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
               :measurement="device"
               :device="api.getDeviceInfo(device.device_id)"
+              :statistics="statistics"
             />
           </div>
         </div>
@@ -107,13 +108,18 @@
 
 <script lang="ts" setup>
 import { ref, watch, onMounted } from 'vue';
-import { api, IHomeMeasurementDifference } from '@/api/energyAssistant.api';
+import {
+  api,
+  IHomeMeasurementDifference,
+  IHomeMeasurementDate,
+} from '@/api/energyAssistant.api';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
-import WeeklyStatistics from '@/components/WeeklyStatistics.vue';
+import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
 
 const timeframe = ref('today');
 const data = ref<IHomeMeasurementDifference>();
+const statistics = ref<IHomeMeasurementDate[]>();
 
 watch(timeframe, () => {
   const from_date = new Date();
@@ -137,6 +143,7 @@ const loadData = async function (from_date: Date) {
   data.value = (
     await api.getHomeMeasurementDifference(from_date, new Date())
   ).data;
+  statistics.value = await api.getDailyMeasurements(from_date, new Date());
   isLoading.value = false;
 };
 

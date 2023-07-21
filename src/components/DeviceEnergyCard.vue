@@ -21,25 +21,41 @@
           ></SelfSufficiencyBar>
         </div>
       </div>
+      <div class="mt-2 items-center rounded-md bg-base-200 p-2">
+        <Bar :data="chartData" :options="options" />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from 'chart.js';
+import { Bar } from 'vue-chartjs';
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
+
 import {
   IDeviceInfo,
   IDeviceMeasurementDifference,
+  IHomeMeasurementDate,
 } from '@/api/energyAssistant.api';
 import { formatNumberWithUnit } from '@/utils';
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
+const { t, d } = useI18n();
 
 interface Props {
   measurement: IDeviceMeasurementDifference;
   device: IDeviceInfo;
+  statistics?: IHomeMeasurementDate[];
 }
 
 const props = defineProps<Props>();
@@ -50,4 +66,54 @@ const selfSufficiency = computed(() => {
         props.measurement.consumed_energy
     : 0.0;
 });
+
+const chartData = computed(() => {
+  if (props.statistics) {
+    return {
+      labels: props.statistics.map((measurement) =>
+        d(new Date(measurement.measurement_date), {
+          month: 'numeric',
+          day: 'numeric',
+        }),
+      ),
+      datasets: [
+        {
+          label: 'Consumption',
+          backgroundColor: '#2563eb',
+          data: props.statistics.map((measurement) => {
+            const device_measurement = measurement.device_measurements.find(
+              (device) => device.device_id == props.device.id,
+            );
+            return device_measurement
+              ? device_measurement.consumed_energy
+              : 0.0;
+          }),
+        },
+      ],
+    };
+  } else {
+    return {
+      labels: [],
+      datasets: [],
+    };
+  }
+});
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    datalabels: {
+      display: false,
+    },
+  },
+};
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+);
 </script>

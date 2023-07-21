@@ -1,7 +1,5 @@
 <template>
-  <div class="card m-4 h-80 w-80 bg-base-100 p-4 shadow-xl sm:w-96">
-    <Bar :data="data" :options="options" />
-  </div>
+  <Bar :data="chartData" :options="options" />
 </template>
 
 <script lang="ts" setup>
@@ -16,20 +14,31 @@ import {
   LinearScale,
 } from 'chart.js';
 import { Bar } from 'vue-chartjs';
+import { IHomeMeasurementDate } from '@/api/energyAssistant.api';
+import { useI18n } from 'vue-i18n';
 
-const data = computed(() => {
+const { d } = useI18n();
+
+const chartData = computed(() => {
   return {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: props.data.map((measurement) =>
+      d(new Date(measurement.measurement_date), {
+        month: 'numeric',
+        day: 'numeric',
+      }),
+    ),
     datasets: [
       {
         label: 'Solar Production',
         backgroundColor: '#fbbf24',
-        data: [20, 10, 25, 35, 15, 34, 40],
+        data: props.data.map(
+          (measurement) => measurement.solar_produced_energy,
+        ),
       },
       {
         label: 'Consumption',
         backgroundColor: '#2563eb',
-        data: [42, 30, 15, 15, 20, 17, 34],
+        data: props.data.map((measurement) => measurement.consumed_energy),
       },
     ],
   };
@@ -55,8 +64,8 @@ ChartJS.register(
 );
 
 interface Props {
-  power: number;
+  data: IHomeMeasurementDate[];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 </script>

@@ -58,6 +58,34 @@ export interface IHomeMeasurementDifference {
   device_measurements: IDeviceMeasurementDifference[];
 }
 
+export interface IDeviceMeasurementDifference {
+  name: string;
+  device_id: string;
+  solar_consumed_energy: number;
+  consumed_energy: number;
+}
+
+export interface IDeviceMeasurementDate {
+  device_id: string;
+  solar_consumed_energy: number;
+  consumed_energy: number;
+}
+
+export interface IHomeMeasurementDate {
+  solar_consumed_energy: number;
+  consumed_energy: number;
+  solar_produced_energy: number;
+  grid_imported_energy: number;
+  grid_exported_energy: number;
+  measurement_date: Date;
+
+  device_measurements: IDeviceMeasurementDate[];
+}
+
+export interface IHomeMeasurementDaily {
+  measurements: IHomeMeasurementDate[];
+}
+
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
@@ -91,6 +119,17 @@ export class EnergyAssistantApi {
       'devices/' + id + '/measurements',
     );
     return response.data.device_measurements;
+  }
+
+  public async getDailyMeasurements(from_date: Date, to_date: Date) {
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.get<IHomeMeasurementDaily>(
+      'history/daily?from_date=' +
+        from_date.toISOString().split('T')[0] +
+        '&to_date=' +
+        to_date.toISOString().split('T')[0],
+    );
+    return response.data.measurements;
   }
 
   public async getAllDevices(): Promise<IDeviceInfo[]> {
