@@ -19,6 +19,14 @@ import {
 import { Doughnut } from 'vue-chartjs';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+const fontBold:
+  | 'number'
+  | 'bold'
+  | 'normal'
+  | 'bolder'
+  | 'lighter'
+  | 'undefined' = 'bold';
+
 const doughnutLabel = {
   id: 'doughnutlabel',
   beforeDraw: (chart, _args, options) => {
@@ -108,7 +116,7 @@ const options = computed(() => {
           return value > sum / 10;
         },
         font: {
-          weight: 'bold',
+          weight: fontBold,
         },
         padding: 6,
         formatter: Math.round,
