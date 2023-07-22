@@ -21,7 +21,10 @@
           ></SelfSufficiencyBar>
         </div>
       </div>
-      <div class="mt-2 items-center rounded-md bg-base-200 p-2">
+      <div
+        v-if="timeframe == 'week' || timeframe == 'month'"
+        class="mt-2 items-center rounded-md bg-base-200 p-2"
+      >
         <Bar :data="chartData" :options="options" />
       </div>
     </div>
@@ -44,7 +47,7 @@ import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
 
 import {
   IDeviceInfo,
-  IDeviceMeasurementDifference,
+  IDeviceMeasurementPeriod,
   IHomeMeasurementDate,
 } from '@/api/energyAssistant.api';
 import { formatNumberWithUnit } from '@/utils';
@@ -53,9 +56,10 @@ import { useI18n } from 'vue-i18n';
 const { t, d } = useI18n();
 
 interface Props {
-  measurement: IDeviceMeasurementDifference;
+  measurement: IDeviceMeasurementPeriod;
   device: IDeviceInfo;
   statistics?: IHomeMeasurementDate[];
+  timeframe: string;
 }
 
 const props = defineProps<Props>();

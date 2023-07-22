@@ -40,46 +40,26 @@ export interface IDeviceResponse {
   devices: IDeviceInfo[];
 }
 
-export interface IDeviceMeasurementDifference {
-  name: string;
+export interface IDeviceMeasurementPeriod {
+  //name: string;
   device_id: string;
   solar_consumed_energy: number;
   consumed_energy: number;
 }
 
-export interface IHomeMeasurementDifference {
-  name: string;
+export interface IHomeMeasurementPeriod {
+  // name: string;
   solar_consumed_energy: number;
   consumed_energy: number;
   solar_produced_energy: number;
   grid_imported_energy: number;
   grid_exported_energy: number;
 
-  device_measurements: IDeviceMeasurementDifference[];
+  device_measurements: IDeviceMeasurementPeriod[];
 }
 
-export interface IDeviceMeasurementDifference {
-  name: string;
-  device_id: string;
-  solar_consumed_energy: number;
-  consumed_energy: number;
-}
-
-export interface IDeviceMeasurementDate {
-  device_id: string;
-  solar_consumed_energy: number;
-  consumed_energy: number;
-}
-
-export interface IHomeMeasurementDate {
-  solar_consumed_energy: number;
-  consumed_energy: number;
-  solar_produced_energy: number;
-  grid_imported_energy: number;
-  grid_exported_energy: number;
+export interface IHomeMeasurementDate extends IHomeMeasurementPeriod {
   measurement_date: Date;
-
-  device_measurements: IDeviceMeasurementDate[];
 }
 
 export interface IHomeMeasurementDaily {
@@ -155,7 +135,7 @@ export class EnergyAssistantApi {
     if (!this.axiosInstance) throw 'not initialized';
     const from_date = from_measurement_date.toISOString().split('T')[0];
     const to_date = to_measurement_date.toISOString().split('T')[0];
-    return await this.axiosInstance.get<IHomeMeasurementDifference>(
+    return await this.axiosInstance.get<IHomeMeasurementPeriod>(
       'history/difference/' + from_date + '?to_date=' + to_date,
     );
   }

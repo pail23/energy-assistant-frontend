@@ -98,6 +98,7 @@
               :measurement="device"
               :device="api.getDeviceInfo(device.device_id)"
               :statistics="statistics"
+              :timeframe="timeframe"
             />
           </div>
         </div>
@@ -110,7 +111,7 @@
 import { ref, watch, onMounted } from 'vue';
 import {
   api,
-  IHomeMeasurementDifference,
+  IHomeMeasurementPeriod,
   IHomeMeasurementDate,
 } from '@/api/energyAssistant.api';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
@@ -118,7 +119,7 @@ import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
 
 const timeframe = ref('today');
-const data = ref<IHomeMeasurementDifference>();
+const data = ref<IHomeMeasurementPeriod>();
 const statistics = ref<IHomeMeasurementDate[]>();
 
 watch(timeframe, () => {
