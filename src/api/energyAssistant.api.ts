@@ -136,7 +136,7 @@ export class EnergyAssistantApi {
     const from_date = from_measurement_date.toISOString().split('T')[0];
     const to_date = to_measurement_date.toISOString().split('T')[0];
     return await this.axiosInstance.get<IHomeMeasurementPeriod>(
-      'history/difference/' + from_date + '?to_date=' + to_date,
+      'history/difference?from_date=' + from_date + '&to_date=' + to_date,
     );
   }
 }
