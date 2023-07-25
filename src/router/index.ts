@@ -7,8 +7,8 @@ const routes = [
     component: () => import('@/layouts/default/Default.vue'),
   },*/
   {
-    path: '',
-    redirect: '/home',
+    path: '/',
+    component: () => import('@/views/Home.vue'),
     name: 'homeredirect',
   },
   {
@@ -25,6 +25,11 @@ const routes = [
     name: 'rawdata',
     path: '/rawdata',
     component: () => import('@/views/RawData.vue'),
+  },
+  {
+    name: 'sessionlog',
+    path: '/sessionlog',
+    component: () => import('@/views/SessionLog.vue'),
   },
 ];
 

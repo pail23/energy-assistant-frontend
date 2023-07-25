@@ -66,6 +66,19 @@ export interface IHomeMeasurementDaily {
   measurements: IHomeMeasurementDate[];
 }
 
+export interface ISessionLogEntry {
+  start: Date;
+  end: Date;
+  text: string;
+  device_id: string;
+  solar_consumed_energy: number;
+  consumed_energy: number;
+}
+
+export interface ISessionLog {
+  entries: ISessionLogEntry[];
+}
+
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
@@ -110,6 +123,14 @@ export class EnergyAssistantApi {
         to_date.toISOString().split('T')[0],
     );
     return response.data.measurements;
+  }
+
+  public async getDeviceSessionLog(id: string) {
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.get<ISessionLog>(
+      'sessionlog?device_id=' + id,
+    );
+    return response.data.entries;
   }
 
   public async getAllDevices(): Promise<IDeviceInfo[]> {

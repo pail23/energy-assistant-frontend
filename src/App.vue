@@ -25,6 +25,7 @@
     <div class="btm-nav">
       <router-link to="/">{{ t('app.live') }}</router-link>
       <router-link to="/history">{{ t('app.statistics') }}</router-link>
+      <router-link to="/sessionlog">{{ t('app.sessionlog') }}</router-link>
       <router-link to="/rawdata">{{ t('app.raw_data') }}</router-link>
     </div>
   </footer>

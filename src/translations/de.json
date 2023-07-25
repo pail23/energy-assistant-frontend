@@ -1,23 +1,29 @@
 {
-    "app": {
-        "energy_assistant": "Energieassistent",
-        "live": "Live",
-        "statistics": "Statistik",
-        "raw_data": "Daten"
-    },
-    "home_card": {
-        "solar_production": "Solar Produktion"
-    },
-    "consumption": "Verbrauch",
-    "temperature": "Temperatur",
-    "state": "Status",
-    "raw_data":{
-        "show_meter_values": "Zählerwerte anzeigen",
-        "date": "Datum",
-        "consumed_solar_energy": "Verbrauchte Solar Energie",
-        "consumed_energy": "Verbrauchte Energie",
-        "produced_solar_energy": "Produzierte Solar Energie",
-        "imported_energy": "Bezognene Energie",
-        "exported_energy": "Gelieferte Energie"
-      }
+  "app": {
+    "energy_assistant": "Energieassistent",
+    "live": "Live",
+    "statistics": "Statistik",
+    "raw_data": "Daten",
+    "sessionlog": "Session Log"
+  },
+  "home_card": {
+    "solar_production": "Solar Produktion"
+  },
+  "consumption": "Verbrauch",
+  "temperature": "Temperatur",
+  "state": "Status",
+  "consumed_solar_energy": "Verbrauchte Solar Energie",
+  "consumed_energy": "Verbrauchte Energie",  
+  "raw_data": {
+    "show_meter_values": "Zählerwerte anzeigen",
+    "date": "Datum",
+    "produced_solar_energy": "Produzierte Solar Energie",
+    "imported_energy": "Bezognene Energie",
+    "exported_energy": "Gelieferte Energie"
+  },
+  "sessionlog": {
+    "start": "Start",
+    "end": "Ende",
+    "text": "Text"
+  }
 }
