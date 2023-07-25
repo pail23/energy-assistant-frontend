@@ -7,13 +7,7 @@
           <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
 
-        <div class="col-span-6 items-center">
-          <div class="text-left">
-            {{ t('consumption') }}
-            <span class="float-right">{{
-              formatNumberWithUnit(power, 'W')
-            }}</span>
-          </div>
+        <div class="col-span-6 mt-2 items-center rounded-md bg-base-200 p-2">
           <div class="text-left">
             {{ t('temperature') }}
             <span class="float-right"
@@ -22,6 +16,14 @@
           </div>
           <div class="text-left">
             {{ t('state') }} <span class="float-right">{{ state }}</span>
+          </div>
+        </div>
+        <div class="col-span-6 mt-2 items-center rounded-md bg-base-200 p-2">
+          <div class="text-left">
+            {{ t('consumption') }}
+            <span class="float-right">{{
+              formatNumberWithUnit(power, 'W')
+            }}</span>
           </div>
           <SelfSufficiencyBar
             :self-sufficiency="today.self_sufficiency"
