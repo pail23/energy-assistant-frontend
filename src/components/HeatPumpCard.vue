@@ -1,13 +1,13 @@
 <template>
   <div class="card m-4 w-80 bg-base-100 p-4 shadow-xl sm:w-96">
     <div>
-      <div class="grid w-full">
+      <div class="grid w-full grid-cols-1">
         <div>
           <span class="mdi pr-2 text-3xl" :class="device.icon"></span>
           <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
 
-        <div class="col-span-6 mt-2 items-center rounded-md bg-base-200 p-2">
+        <div class="mt-2 items-center rounded-md bg-base-200 p-2">
           <div class="text-left">
             {{ t('temperature') }}
             <span class="float-right"
@@ -18,7 +18,7 @@
             {{ t('state') }} <span class="float-right">{{ state }}</span>
           </div>
         </div>
-        <div class="col-span-6 mt-2 items-center rounded-md bg-base-200 p-2">
+        <div class="mt-2 items-center rounded-md bg-base-200 p-2">
           <div class="text-left">
             {{ t('consumption') }}
             <span class="float-right">{{
@@ -31,6 +31,7 @@
             :consumed-solar-energy="today.consumed_solar_energy"
           ></SelfSufficiencyBar>
         </div>
+        <PowerModeSelection :device="device"></PowerModeSelection>
       </div>
     </div>
   </div>
@@ -38,6 +39,7 @@
 
 <script lang="ts" setup>
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
+import PowerModeSelection from './PowerModeSelection.vue';
 import { IEnergy } from '../api/device';
 import { IDeviceInfo } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';

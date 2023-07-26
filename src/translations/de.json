@@ -25,5 +25,12 @@
     "start": "Start",
     "end": "Ende",
     "text": "Text"
+  },
+  "power_mode": {
+    "device_controlled": "Gerät",
+    "pv": "PV",
+    "off": "Aus",
+    "fast": "Schnell",
+    "min_pv": "Min+PV"
   }
 }

@@ -34,6 +34,8 @@ export interface IDeviceInfo {
   id: string;
   name: string;
   icon: string;
+  supported_power_modes: string[];
+  power_mode: string;
 }
 
 export interface IDeviceResponse {
@@ -146,7 +148,13 @@ export class EnergyAssistantApi {
         return result;
       }
     }
-    return { id: '', name: '', icon: '' };
+    return {
+      id: '',
+      name: '',
+      icon: '',
+      supported_power_modes: [],
+      power_mode: '',
+    };
   }
 
   public async getHomeMeasurementDifference(
