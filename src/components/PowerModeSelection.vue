@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { IDeviceInfo } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 
@@ -34,10 +34,15 @@ interface Props {
   device: IDeviceInfo;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const onChange = function (event) {
   console.log(event.target.value);
   console.log('power mode: ' + power_mode.value);
 };
+
+onMounted(() => {
+  power_mode.value = props.device.power_mode;
+  console.log('power mode: ' + power_mode.value);
+})
 </script>
