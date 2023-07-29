@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, watch, computed } from 'vue';
-import { IDeviceInfo, api } from '@/api/energyAssistant.api';
+import { ref, onMounted, watch } from 'vue';
+import {api } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -44,7 +44,7 @@ const power_mode_proxy = computed(() => {
 
 watch(
   () => props.powerMode,
-  (oldValue, newValue) => {
+  (_oldValue, _newValue) => {
     console.log('watch power mode: ' + powerModeModel.value);
     powerModeModel.value = props.powerMode;
   },

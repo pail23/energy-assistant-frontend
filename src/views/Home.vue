@@ -16,7 +16,6 @@
           :power="home.power.home_consumption"
           :self-sufficiency="home.power.self_sufficiency"
         ></DevicePowerDistributionCard>
-        <!-- <HomeCard :name="home.name" :power="home.power"></HomeCard> -->
 
         <div v-for="(device, index) in home.devices" :key="index">
           <DeviceCard
@@ -47,7 +46,6 @@ import { devicesAPI } from '@/api/devices.api';
 import { api } from '@/api/energyAssistant.api';
 import DeviceCard from '@/components/DeviceCard.vue';
 import HeatPumpCard from '@/components/HeatPumpCard.vue';
-import HomeCard from '@/components/HomeCard.vue';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DevicePowerDistributionCard from '@/components/DevicePowerDistributionCard.vue';
 
