@@ -20,7 +20,11 @@
           ></SelfSufficiencyBar>
         </div>
       </div>
-      <PowerModeSelection :device="device"></PowerModeSelection>
+      <PowerModeSelection
+        :device-id="device.id"
+        :supported-power-modes="device.supported_power_modes"
+        :power-mode="device.power_mode"
+      ></PowerModeSelection>
     </div>
   </div>
 </template>

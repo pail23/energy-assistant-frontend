@@ -31,7 +31,11 @@
             :consumed-solar-energy="today.consumed_solar_energy"
           ></SelfSufficiencyBar>
         </div>
-        <PowerModeSelection :device="device"></PowerModeSelection>
+        <PowerModeSelection
+          :device-id="device.id"
+          :supported-power-modes="device.supported_power_modes"
+          :power-mode="device.power_mode"
+        ></PowerModeSelection>
       </div>
     </div>
   </div>

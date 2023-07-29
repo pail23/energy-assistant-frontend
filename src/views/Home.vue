@@ -16,7 +16,7 @@
           :power="home.power.home_consumption"
           :self-sufficiency="home.power.self_sufficiency"
         ></DevicePowerDistributionCard>
-        <HomeCard :name="home.name" :power="home.power"></HomeCard>
+        <!-- <HomeCard :name="home.name" :power="home.power"></HomeCard> -->
 
         <div v-for="(device, index) in home.devices" :key="index">
           <DeviceCard

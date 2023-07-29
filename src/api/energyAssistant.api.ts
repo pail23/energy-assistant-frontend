@@ -157,6 +157,19 @@ export class EnergyAssistantApi {
     };
   }
 
+  public async setPowerMode(id: string, power_mode: string) {
+    const deviceInfo = this.getDeviceInfo(id);
+    if (deviceInfo != null) {
+      deviceInfo.power_mode = power_mode;
+    }
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.put<IDeviceInfo>(
+      'devices/' + id + '/power_mode',
+      { power_mode: power_mode },
+    );
+    return response;
+  }
+
   public async getHomeMeasurementDifference(
     from_measurement_date: Date,
     to_measurement_date: Date,
