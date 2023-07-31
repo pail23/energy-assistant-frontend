@@ -13,7 +13,7 @@
     "@intlify/unplugin-vue-i18n": "^0.12.2",
     "@mdi/font": "^7.2.96",
     "axios": "^1.4.0",
-    "chart.js": "^4.3.0",
+    "chart.js": "^4.3.2",
     "chartjs-plugin-datalabels": "^2.2.0",
     "roboto-fontface": "*",
     "socket.io-client": "^4.7.1",
