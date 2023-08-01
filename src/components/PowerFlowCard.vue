@@ -107,7 +107,7 @@ function calculateSpeed(value: number):string{
   }
 }
 
-const isVisible = (value) => {
+const isVisible = (value: number) => {
   if (props.unit == 'W'){
     return value > 0
   } else {
