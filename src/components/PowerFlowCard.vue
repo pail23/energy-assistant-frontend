@@ -84,7 +84,6 @@ interface Props {
   gridImportedEnergy?: number;
   gridExportedEnergy?: number;
   unit: string;
-  norm_speed: number;
 }
 
 const norm_speed = 5000;
