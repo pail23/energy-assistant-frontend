@@ -4,7 +4,7 @@
       <div>
         <a class="btn-ghost btn text-xl normal-case">{{
           t('app.energy_assistant')
-        }}</a>
+        }} {{ devicesAPI.home.name }}</a>
       </div>
 
       <div class="flex-1"></div>
