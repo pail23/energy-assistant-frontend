@@ -21,6 +21,10 @@
     "imported_energy": "Imported energy",
     "exported_energy": "Exported energy"
   },
+  "device_attribute":{
+    "actual_temperature": "Temperature",
+    "state": "State"
+  },
   "sessionlog": {
     "end": "End",
     "start": "Start",

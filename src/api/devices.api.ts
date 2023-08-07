@@ -22,8 +22,7 @@ export default class DevicesAPIService {
       consumed_energy: 0.0,
       self_sufficiency: 0.0,
     } as IEnergy,
-    devices: [] as IDevice[],
-    heat_pumps: [] as IHeatpumpDevice[],
+    devices: [] as IDevice[]
   });
   public state = reactive({
     connected: false,
@@ -85,7 +84,6 @@ export default class DevicesAPIService {
     this.home.power = home.power;
     this.home.today = home.today;
     this.home.devices = home.devices;
-    this.home.heat_pumps = home.heat_pumps;
   }
 }
 

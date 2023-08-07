@@ -21,6 +21,10 @@
     "imported_energy": "Bezognene Energie",
     "exported_energy": "Gelieferte Energie"
   },
+  "device_attribute":{
+    "actual_temperature": "Temperatur",
+    "state": "Status"
+  },
   "sessionlog": {
     "start": "Start",
     "end": "Ende",

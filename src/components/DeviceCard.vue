@@ -6,6 +6,12 @@
           <span class="mdi pr-2 text-3xl" :class="device.icon"></span>
           <span class="text-left text-lg font-bold">{{ device.name }}</span>
         </div>
+        <div v-if="attributes&&Object.entries(attributes).length>0" class="mt-2 items-center rounded-md bg-base-200 p-2">
+
+          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
+            {{ t('device_attribute.' + attribute[0]) }} <span class="float-right">{{ attribute[1] }}</span>
+          </div>
+        </div>        
         <div class="mt-2 items-center rounded-md bg-base-200 p-2">
           <div class="text-left">
             {{ t('consumption') }}
@@ -43,6 +49,7 @@ interface Props {
   device: IDeviceInfo;
   power: number;
   today: IEnergy;
+  attributes?: Object;
 }
 
 defineProps<Props>();

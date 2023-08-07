@@ -3,27 +3,46 @@
     <div class="relative mx-auto h-72 w-80">
       <svg class="h-full w-full" viewBox="0 0 200 180">
 
+        <path
+          stroke-width="1" stroke-dasharray="2,2"
+          id="solar-to-home"
+          d="M 115 65 L 145 115"
+          class="stroke-yellow-500"
+          marker-end="url(#SvgjsMarker1005)"
+        />
+        <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-yellow-500">
+          <animateMotion :dur="solar_to_home_speed" repeatCount="indefinite" calcMode="linear">
+            <mpath xlink:href="#solar-to-home" />
+          </animateMotion>
+        </circle>
+        <path
+          stroke-width="1" stroke-dasharray="2,2"
+          id="solar-to-grid"
+          d="M 85 65 L 55 115"
+          class="stroke-purple-500"
+          marker-end="url(#SvgjsMarker1006)"
+        />
+        <circle v-if="isVisible(solar_to_grid_power)" r="2" class="fill-purple-800">
+          <animateMotion :dur="solar_to_grid_speed" repeatCount="indefinite" calcMode="linear">
+            <mpath xlink:href="#solar-to-grid" />
+          </animateMotion>
+        </circle>
+        <path
+          stroke-width="1" stroke-dasharray="2,2"
+          id="grid-to-home"
+          d="M 70 140 L 130 140"
+          class="stroke-sky-500"
+          marker-end="url(#SvgjsMarker1007)"
+        />
+        <circle v-if="isVisible(grid_to_home_power)" r="2" class="fill-sky-800">
+          <animateMotion :dur="grid_to_home_speed" repeatCount="indefinite" calcMode="linear">
+            <mpath xlink:href="#grid-to-home" />
+          </animateMotion>
+        </circle>        
 
-        <g stroke-width="1" stroke-dasharray="2,2"  fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <line class="stroke-yellow-500" id="solar-to-home" x1="115" y1="65" x2="145" y2="115" marker-end="url(#SvgjsMarker1005)"></line>
-          <line class="stroke-purple-500" id="solar-to-grid" x1="85" y1="65" x2="55" y2="115" marker-end="url(#SvgjsMarker1006)"></line>
-          <line class="stroke-sky-500" id="grid-to-home" x1="70" y1="140" x2="130" y2="140" marker-end="url(#SvgjsMarker1007)"></line>
-        </g>
-        <defs>
-          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-            id="SvgjsMarker1005">
-            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-yellow-500"></polygon>
-          </marker>
-          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-            id="SvgjsMarker1006">
-            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-purple-500"></polygon>
-          </marker>
-          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-            id="SvgjsMarker1007">
-            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-sky-500"></polygon>
-          </marker>                    
-        </defs>
-
+     <!--   <line stroke-width="1" stroke-dasharray="2,2" class="stroke-yellow-500" id="solar-to-home" x1="115" y1="65" x2="145" y2="115" marker-end="url(#SvgjsMarker1005)"></line>
+        <line stroke-width="1" stroke-dasharray="2,2" class="stroke-purple-500" id="solar-to-grid" x1="85" y1="65" x2="55" y2="115" marker-end="url(#SvgjsMarker1006)"></line>
+        <line stroke-width="1" stroke-dasharray="2,2" class="stroke-sky-500" id="grid-to-home" x1="70" y1="140" x2="130" y2="140" marker-end="url(#SvgjsMarker1007)"></line>
 
         <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-yellow-500">
           <animateMotion :dur="solar_to_home_speed" repeatCount="indefinite" calcMode="linear">
@@ -39,7 +58,23 @@
           <animateMotion :dur="grid_to_home_speed" repeatCount="indefinite" calcMode="linear">
             <mpath xlink:href="#grid-to-home" />
           </animateMotion>
-        </circle>
+        </circle>-->
+
+
+        <defs>
+          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
+            id="SvgjsMarker1005">
+            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-yellow-500"></polygon>
+          </marker>
+          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
+            id="SvgjsMarker1006">
+            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-purple-500"></polygon>
+          </marker>
+          <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
+            id="SvgjsMarker1007">
+            <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-sky-500"></polygon>
+          </marker>                    
+        </defs>
       </svg>
       <div class="absolute bottom-0 left-0 right-0 top-0">
         <div
