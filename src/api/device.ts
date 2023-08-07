@@ -17,10 +17,9 @@ export interface IDevice {
   type: string;
   power: number;
   today: IEnergy;
-  extra_attributes: string;
+  attributes: Object;
 }
 
 export interface IHeatpumpDevice extends IDevice {
   actual_temperature: number;
-  state: string;
 }

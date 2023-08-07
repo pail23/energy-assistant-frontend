@@ -22,18 +22,9 @@
             :device="api.getDeviceInfo(device.device_id)"
             :power="device.power"
             :today="device.today"
+            :attributes="device.attributes"
           >
           </DeviceCard>
-        </div>
-        <div v-for="(device, index) in home.heat_pumps" :key="index">
-          <HeatPumpCard
-            :device="api.getDeviceInfo(device.device_id)"
-            :power="device.power"
-            :today="device.today"
-            :actual-temperature="device.actual_temperature"
-            :state="device.state"
-          >
-          </HeatPumpCard>
         </div>
       </div>
     </div>
@@ -45,7 +36,6 @@ import { computed } from 'vue';
 import { devicesAPI } from '@/api/devices.api';
 import { api } from '@/api/energyAssistant.api';
 import DeviceCard from '@/components/DeviceCard.vue';
-import HeatPumpCard from '@/components/HeatPumpCard.vue';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DevicePowerDistributionCard from '@/components/DevicePowerDistributionCard.vue';
 
