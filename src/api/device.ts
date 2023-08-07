@@ -20,6 +20,3 @@ export interface IDevice {
   attributes: Object;
 }
 
-export interface IHeatpumpDevice extends IDevice {
-  actual_temperature: number;
-}

@@ -1,5 +1,5 @@
 //import axios, { AxiosInstance} from "axios"
-import { IDevice, IHeatpumpDevice, IEnergy, IHomePower } from './device';
+import { IDevice, IEnergy, IHomePower } from './device';
 import { io, Socket } from 'socket.io-client';
 import { reactive } from 'vue';
 
