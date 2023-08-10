@@ -1,47 +1,32 @@
 <template>
-  <header>
-    <div class="navbar bg-base-100">
-      <div>
-        <a class="btn-ghost btn text-xl normal-case">{{
-          t('app.energy_assistant')
-        }} {{ devicesAPI.home.name }}</a>
-      </div>
-
-      <div class="flex-1"></div>
-
-      <div class="flex-none">
-        <select data-choose-theme class="select-ghost select w-full max-w-xs">
-          <option value="">Light</option>
-          <option value="dark">Dark</option>
-          <option value="bumblebee">bumblebee</option>
-        </select>
-      </div>
-    </div>
-  </header>
-  <div class="bg-base-200 pb-20">
-    <router-view />
-  </div>
-  <footer>
-    <div class="btm-nav">
-      <router-link to="/">{{ t('app.live') }}</router-link>
-      <router-link to="/history">{{ t('app.statistics') }}</router-link>
-      <router-link to="/sessionlog">{{ t('app.sessionlog') }}</router-link>
-      <router-link to="/rawdata">{{ t('app.raw_data') }}</router-link>
-    </div>
-  </footer>
+  <router-view />
 </template>
+
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import { themeChange } from 'theme-change';
 import { devicesAPI } from '@/api/devices.api';
 import { api } from '@/api/energyAssistant.api';
-import { useI18n } from 'vue-i18n';
+import { useTheme } from 'vuetify';
+import { store } from './plugins/store';
 
-const { t } = useI18n();
+const theme = useTheme();
+
 
 onMounted(async () => {
-  themeChange(true);
+  // @ts-ignore
+  store.isInStandaloneMode = window.navigator.standalone || false;
+  // enable dark mode based on OS/browser config
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+    const newColorScheme = event.matches ? 'dark' : 'light';
+    theme.global.name.value = newColorScheme;
+  });
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // dark mode is enabled
+    theme.global.name.value = 'dark';
+  }
+
   let serverAddress = '';
   if (process.env.NODE_ENV === 'development') {
     serverAddress = localStorage.getItem('mass_debug_address') || '';

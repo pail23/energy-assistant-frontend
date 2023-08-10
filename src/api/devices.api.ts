@@ -72,7 +72,7 @@ export default class DevicesAPIService {
     // to the client. The data is then displayed in the "Received"
     // section of the page.
     this.socket.on('refresh', (msg, cb) => {
-      console.log('Received refresh home: ' + msg.data);
+      // console.log('Received refresh home: ' + msg.data);
       if (cb) cb();
       this.update_home(msg.data);
     });
