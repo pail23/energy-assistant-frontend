@@ -71,17 +71,27 @@ export interface MenuItem {
 export const mainMenuItems: MenuItem[] = [
   // disable Home until we have something useful to fill that screen
   {
-    label: 'home',
+    label: 'app.home',
     icon: 'mdi-home-outline',
     path: '/home',
   },
   {
-    label: 'search',
-    icon: 'mdi-magnify',
-    path: '/search',
-  },
+    label: 'app.statistics',
+    icon: 'mdi-chart-line',
+    path: '/history',
+  },  
   {
-    label: 'settings.settings',
+    label: 'app.sessionlog',
+    icon: 'mdi-format-list-numbered',
+    path: '/sessionlog',
+  },  
+  {
+    label: 'app.rawdata',
+    icon: 'mdi-database',
+    path: '/rawdata',
+  },   
+  {
+    label: 'app.settings',
     icon: 'mdi-cog-outline',
     path: '/settings',
   }

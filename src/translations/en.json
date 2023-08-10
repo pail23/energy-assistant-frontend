@@ -1,10 +1,12 @@
 {
   "app": {
     "energy_assistant": "Energy Assistant",
+    "home": "Home",    
     "live": "Live",
     "statistics": "Statistics",
-    "raw_data": "Data",
-    "sessionlog": "Session Log"
+    "rawdata": "Data",
+    "sessionlog": "Session Log",
+    "settings": "Settings"
   },
   "home_card": {
     "solar_production": "solar production"
@@ -13,7 +15,7 @@
   "temperature": "Temperature",
   "state": "State",
   "consumed_solar_energy": "Consumed solar energy",
-  "consumed_energy": "Consumed energy",  
+  "consumed_energy": "Consumed energy",
   "raw_data": {
     "show_meter_values": "Show meter values",
     "date": "Date",
@@ -21,7 +23,7 @@
     "imported_energy": "Imported energy",
     "exported_energy": "Exported energy"
   },
-  "device_attribute":{
+  "device_attribute": {
     "actual_temperature": "Temperature",
     "state": "State"
   },
@@ -36,5 +38,8 @@
     "off": "Off",
     "fast": "Fast",
     "min_pv": "Min+PV"
+  },
+  "tooltip": {
+    "show_menu": "Show\/hide menu"
   }
 }

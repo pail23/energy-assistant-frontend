@@ -15,9 +15,27 @@ const routes = [
             {
                 path: '/home',
                 name: 'home',
-                component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+                component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
                 props: true,
             },
+            {
+                name: 'history',
+                path: '/history',
+                component: () => import('@/views/Statistics.vue'),
+                props: true,                
+              },
+              {
+                name: 'rawdata',
+                path: '/rawdata',
+                component: () => import('@/views/RawData.vue'),
+                props: true,                
+              },
+              {
+                name: 'sessionlog',
+                path: '/sessionlog',
+                component: () => import('@/views/SessionLog.vue'),
+                props: true,                
+              },            
             {
                 path: '/search',
                 name: 'search',

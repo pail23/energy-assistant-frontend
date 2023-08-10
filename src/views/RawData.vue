@@ -7,7 +7,7 @@
       <span class="loading loading-dots loading-lg py-2"></span>
     </div>
     <div v-else>
-      <HomeMeasurementTable
+      <HomeMeasurementTable v-if="data"
         :home-measurements="data"
         :show-meter-values="show_meter_values"
       />
@@ -45,20 +45,20 @@
 
 <script lang="ts" setup>
 import {
-  getAllHomeMeasurementsFn,
   api,
   IDeviceMeasurement,
   IDeviceInfo,
+IHomeMeasurement,
 } from '@/api/energyAssistant.api';
 import HomeMeasurementTable from '@/components/HomeMeasurementTable.vue';
 import DeviceMeasurementTable from '@/components/DeviceMeasurementTable.vue';
-import { useQuery } from 'vue-query';
 import { ref, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
 const device_measurements = ref<IDeviceMeasurement[]>();
+const data = ref<IHomeMeasurement[]>()
 const devices = ref<IDeviceInfo[]>();
 const isLoading = ref(false);
 const selectedDevice = ref('');
@@ -66,11 +66,9 @@ const selectedDevice = ref('');
 let show_meter_values_value = false;
 const show_meter_values = ref(show_meter_values_value);
 
-const { data } = useQuery('home_measurements', () =>
-  getAllHomeMeasurementsFn(),
-);
 const loadData = async function (id: string) {
   isLoading.value = true;
+  data.value = await api.getAllHomeMeasurements();
   device_measurements.value =
     id != '' ? await api.getDeviceMeasurements(id) : [];
   isLoading.value = false;
@@ -89,5 +87,5 @@ onMounted(async () => {
     loadData(devices.value[0].id);
   }
 });
-//console.log(data.home_measurements);
+
 </script>

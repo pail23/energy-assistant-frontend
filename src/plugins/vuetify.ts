@@ -8,7 +8,7 @@
 import '@mdi/font/css/materialdesignicons.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import 'vuetify/styles';
-//import colors from 'vuetify/lib/util/colors';
+import colors from 'vuetify/lib/util/colors';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { md } from 'vuetify/iconsets/md';
 
@@ -41,15 +41,15 @@ export default createVuetify(
         light: {
           dark: false,
           colors: {
-            primary: '#2196F3',
-            accent: ' #1976D2',
+            primary: colors.blue.base,
+            accent: colors.blue.darken2,
           },
         },
         dark: {
           dark: true,
           colors: {
-            primary: '#2196F3',
-            accent: ' #1976D2',
+            primary: colors.blue.darken4,
+            accent: colors.blue.lighten2,
           },
         },
       },
