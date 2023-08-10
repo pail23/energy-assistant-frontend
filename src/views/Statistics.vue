@@ -1,5 +1,5 @@
 <template>
-  <div class="v-full flex h-full min-h-screen justify-center p-4">
+  <div class="v-full flex min-h-screen justify-center p-4 bg-base-200">
     <div class="grid grid-cols-1">
       <div
         class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl bg-base-300 p-2"

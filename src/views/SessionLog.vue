@@ -1,5 +1,5 @@
 <template>
-  <div class="v-full flex h-full min-h-screen justify-center p-4">
+  <div class="v-full flex min-h-screen justify-center p-4 bg-base-200">
     <div
       v-if="isLoading"
       class="grid h-full w-full grid-cols-1 justify-items-center"

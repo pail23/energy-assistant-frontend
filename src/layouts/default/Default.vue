@@ -10,7 +10,7 @@
 </template>
   
 <script lang="ts" setup>
-import MainView from './View.vue';
+import MainView from './MainView.vue';
 import Footer from './Footer.vue';
 import { devicesAPI } from '@/api/devices.api';
 import { store } from '@/plugins/store';
