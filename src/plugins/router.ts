@@ -22,24 +22,18 @@ const routes = [
                 name: 'history',
                 path: '/history',
                 component: () => import('@/views/Statistics.vue'),
-                props: true,                
-              },
-              {
+                props: true,
+            },
+            {
                 name: 'rawdata',
                 path: '/rawdata',
                 component: () => import('@/views/RawData.vue'),
-                props: true,                
-              },
-              {
+                props: true,
+            },
+            {
                 name: 'sessionlog',
                 path: '/sessionlog',
                 component: () => import('@/views/SessionLog.vue'),
-                props: true,                
-              },            
-            {
-                path: '/search',
-                name: 'search',
-                component: () => import(/* webpackChunkName: "search" */ '@/views/Search.vue'),
                 props: true,
             },
             {
@@ -47,7 +41,7 @@ const routes = [
                 name: 'settings',
                 component: () => import(/* webpackChunkName: "settings" */ '@/views/Settings.vue'),
                 props: true,
-            }           
+            }
         ]
     }
 ]
