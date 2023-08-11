@@ -1,43 +1,23 @@
 <template>
   <div class="v-full flex min-h-screen justify-center p-4 bg-base-200">
-    <div
-      v-if="isLoading"
-      class="grid h-full w-full grid-cols-1 justify-items-center"
-    >
+    <div v-if="isLoading" class="grid h-full w-full grid-cols-1 justify-items-center">
       <span class="loading loading-dots loading-lg py-2"></span>
     </div>
     <div v-else>
-      <HomeMeasurementTable v-if="data"
-        :home-measurements="data"
-        :show-meter-values="show_meter_values"
-      />
-      <select
-        v-model="selectedDevice"
-        class="select m-2 w-full max-w-xs"
-        @change="onChangeDeviceSelection($event)"
-      >
+      <HomeMeasurementTable v-if="data" :home-measurements="data" :show-meter-values="show_meter_values" />
+      <!--<select v-model="selectedDevice" class="select m-2 w-full max-w-xs" @change="onChangeDeviceSelection($event)">
         <option v-for="device in devices" :key="device.id" :value="device.id">
           {{ device.name }}
         </option>
-      </select>
+      </select> -->
 
-      <DeviceMeasurementTable
-        v-if="device_measurements"
-        :device-measurements="device_measurements"
-        :show-meter-values="show_meter_values"
-      />
+      <v-select class="my-4" :items="devices ? devices : []" v-model="selectedDevice" item-title="name" item-value="id"
+        single-line />
+
+      <DeviceMeasurementTable v-if="device_measurements" :device-measurements="device_measurements"
+        :show-meter-values="show_meter_values" />
       <div class="my-4 flex">
-        <label class="label cursor-pointer">
-          <input
-            id="show-meter-values-checkbox"
-            v-model="show_meter_values"
-            type="checkbox"
-            class="checkbox"
-          />
-          <label for="show-meter-values-checkbox" class="label-text ml-2">{{
-            t('raw_data.show_meter_values')
-          }}</label>
-        </label>
+        <v-checkbox v-model="show_meter_values" :label="t('raw_data.show_meter_values')"></v-checkbox>
       </div>
     </div>
   </div>
@@ -48,11 +28,11 @@ import {
   api,
   IDeviceMeasurement,
   IDeviceInfo,
-IHomeMeasurement,
+  IHomeMeasurement,
 } from '@/api/energyAssistant.api';
 import HomeMeasurementTable from '@/components/HomeMeasurementTable.vue';
 import DeviceMeasurementTable from '@/components/DeviceMeasurementTable.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -74,10 +54,13 @@ const loadData = async function (id: string) {
   isLoading.value = false;
 };
 
-const onChangeDeviceSelection = function (event) {
-  console.log(event.target.value);
-  loadData(event.target.value);
-};
+watch(
+  selectedDevice,
+  () => {
+    console.log("Change selection: " + selectedDevice.value);
+    loadData(selectedDevice.value);
+  },
+);
 
 onMounted(async () => {
   devices.value = await api.getAllDevices();
