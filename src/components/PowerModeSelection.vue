@@ -3,12 +3,6 @@
     class="mt-2 w-full items-center rounded-md bg-base-200 p-2">
     <v-select class="my-4" :items="supportedPowerModes.map((mode) => translate(mode))" v-model="powerModeModel"
       item-title="title" item-value="mode" single-line />
-<!--
-    <select v-model="powerModeModel" class="select w-full" @change="onChange($event)">
-      <option v-for="mode in supportedPowerModes" :key="mode" :value="mode">
-        {{ t('power_mode.' + mode) }}
-      </option>
-    </select>-->
   </div>
 </template>
 
@@ -40,12 +34,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-/*
-const onChange = function (event) {
-  console.log(event.target.value);
-  console.log('on change power mode: ' + powerModeModel.value);
-  //api.setPowerMode(props.deviceId, powerModeModel.value.mode);
-};*/
 
 watch(
   powerModeModel,
