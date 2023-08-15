@@ -1,10 +1,7 @@
 <template>
   <div class="w-full">
-    <progress
-      class="progress-primary progress w-full bg-secondary"
-      :value="selfSufficiency"
-      max="100"
-    ></progress>
+    <v-progress-linear color="amber" bg-color="red-darken-4" height="15" rounded :model-value="selfSufficiency">
+    </v-progress-linear>
     <div class="grid w-full grid-cols-3 text-sm">
       <div>
         <span class="mdi mdi-solar-power text-primary"></span>

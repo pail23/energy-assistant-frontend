@@ -1,7 +1,7 @@
 <template>
-  <div class="card bg-base-100">
-    <table
-      class="m-4 border-collapse border border-slate-300 bg-base-100 text-left text-sm text-gray-500 dark:text-gray-400"
+  <v-card class="bg-base-100">
+    <v-table
+      class="m-4 border"
     >
       <thead class="bg-base-200">
         <tr>
@@ -106,8 +106,8 @@
           </td>
         </tr>
       </tbody>
-    </table>
-  </div>
+    </v-table>
+  </v-card>
 </template>
 <script lang="ts" setup>
 import { IHomeMeasurement } from '@/api/energyAssistant.api';

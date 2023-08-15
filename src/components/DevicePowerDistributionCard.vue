@@ -1,7 +1,9 @@
 <template>
-  <div class="card m-4 h-80 w-80 bg-base-100 p-4 shadow-xl sm:w-96">
-    <Doughnut :data="data" :options="options" />
-  </div>
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg">
+    <v-card-text>
+      <Doughnut :data="data" :options="options" />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts" setup>

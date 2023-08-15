@@ -1,7 +1,9 @@
 <template>
-  <div class="card m-4 h-80 w-80 bg-base-100 p-4 shadow-xl sm:w-96">
-    <WeeklyStatistics :data="data" />
-  </div>
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg">
+    <v-card-text class="h-100 w-auto">
+      <WeeklyStatistics :data="data" />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts" setup>
