@@ -1,8 +1,16 @@
 <template>
-  <div v-if="supportedPowerModes && supportedPowerModes.length > 1 && powerMode"
-    class="mt-2 w-full items-center rounded-md bg-base-200 p-2">
-    <v-select class="my-4" :items="supportedPowerModes.map((mode) => translate(mode))" v-model="powerModeModel"
-      item-title="title" item-value="mode" single-line />
+  <div
+    v-if="supportedPowerModes && supportedPowerModes.length > 1 && powerMode"
+    class="mt-2 w-full items-center rounded-md bg-subgroup p-2"
+  >
+    <v-select
+      v-model="powerModeModel"
+      class="my-4"
+      :items="supportedPowerModes.map((mode) => translate(mode))"
+      item-title="title"
+      item-value="mode"
+      single-line
+    />
   </div>
 </template>
 
@@ -21,8 +29,8 @@ interface ITranslatedMode {
 function translate(value: string): ITranslatedMode {
   return {
     title: t('power_mode.' + value),
-    mode: value
-  }
+    mode: value,
+  };
 }
 
 let powerModeModel = ref('device_controlled');
@@ -35,16 +43,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-watch(
-  powerModeModel,
-  () => {
-    console.log("powerModeModel selection: " + powerModeModel.value);
-    console.log('watch on change power mode: ' + powerModeModel.value);
-    if (powerModeModel.value != ''){
-      api.setPowerMode(props.deviceId, powerModeModel.value);
-    }
-  },
-);
+watch(powerModeModel, () => {
+  console.log('powerModeModel selection: ' + powerModeModel.value);
+  console.log('watch on change power mode: ' + powerModeModel.value);
+  if (powerModeModel.value != '') {
+    api.setPowerMode(props.deviceId, powerModeModel.value);
+  }
+});
 
 watch(
   () => props.powerMode,

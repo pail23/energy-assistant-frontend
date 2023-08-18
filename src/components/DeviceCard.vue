@@ -6,25 +6,38 @@
     </v-card-title>
     <v-card-text>
       <div class="grid w-full grid-cols-1">
-        <div v-if="attributes && Object.entries(attributes).length > 0" class="mt-2 items-center rounded-md bg-base-200 p-2">
-
-          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
-            {{ t('device_attribute.' + attribute[0]) }} <span class="float-right">{{ attribute[1] }}</span>
+        <div
+          v-if="attributes && Object.entries(attributes).length > 0"
+          class="mt-2 items-center rounded-md bg-subgroup p-2"
+        >
+          <div
+            v-for="(attribute, index) in Object.entries(attributes)"
+            :key="index"
+            class="text-left"
+          >
+            {{ t('device_attribute.' + attribute[0]) }}
+            <span class="float-right">{{ attribute[1] }}</span>
           </div>
         </div>
-        <div class="mt-2 items-center rounded-md bg-base-200 p-2">
+        <div class="mt-2 items-center rounded-md bg-subgroup p-2">
           <div class="text-left">
             {{ t('consumption') }}
             <span class="float-right">{{
               formatNumberWithUnit(power, 'W')
             }}</span>
           </div>
-          <SelfSufficiencyBar :self-sufficiency="today.self_sufficiency" :consumed-energy="today.consumed_energy"
-            :consumed-solar-energy="today.consumed_solar_energy"></SelfSufficiencyBar>
+          <SelfSufficiencyBar
+            :self-sufficiency="today.self_sufficiency"
+            :consumed-energy="today.consumed_energy"
+            :consumed-solar-energy="today.consumed_solar_energy"
+          ></SelfSufficiencyBar>
         </div>
       </div>
-      <PowerModeSelection :device-id="device.id" :supported-power-modes="device.supported_power_modes"
-        :power-mode="device.power_mode"></PowerModeSelection>
+      <PowerModeSelection
+        :device-id="device.id"
+        :supported-power-modes="device.supported_power_modes"
+        :power-mode="device.power_mode"
+      ></PowerModeSelection>
     </v-card-text>
   </v-card>
 </template>
@@ -43,7 +56,7 @@ interface Props {
   device: IDeviceInfo;
   power: number;
   today: IEnergy;
-  attributes?: Object;
+  attributes?: object;
 }
 
 defineProps<Props>();

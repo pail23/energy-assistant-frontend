@@ -1,10 +1,13 @@
 <template>
-  <div class="flex min-h-screen w-full justify-center bg-base-200">
-    <div v-if="!connected" class="grid w-full grid-cols-1 justify-items-center p-4 ">
+  <div class="flex min-h-screen w-full justify-center">
+    <div
+      v-if="!connected"
+      class="grid w-full grid-cols-1 justify-items-center p-4"
+    >
       <span class="loading loading-dots loading-lg py-2"></span>
     </div>
     <div v-else>
-      <div class="grid grid-cols-1 lg:grid-cols-2 p-4 ">
+      <div class="grid grid-cols-1 lg:grid-cols-2 p-4 bg-background">
         <PowerFlowCard
           :home-consumption-power="home.power.home_consumption"
           :solar-power="home.power.solar_production"

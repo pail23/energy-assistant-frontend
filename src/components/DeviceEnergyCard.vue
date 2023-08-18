@@ -5,22 +5,27 @@
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <div class="mt-2 items-center rounded-md bg-base-200 p-2">
+      <div class="mt-2 items-center rounded-md bg-subgroup p-2">
         <div class="text-left">
           {{ t('consumption') }}
           <span class="float-right">{{
             formatNumberWithUnit(measurement.consumed_energy, 'kWh')
           }}</span>
         </div>
-        <SelfSufficiencyBar :self-sufficiency="selfSufficiency" :consumed-energy="measurement.consumed_energy"
-          :consumed-solar-energy="measurement.solar_consumed_energy"></SelfSufficiencyBar>
+        <SelfSufficiencyBar
+          :self-sufficiency="selfSufficiency"
+          :consumed-energy="measurement.consumed_energy"
+          :consumed-solar-energy="measurement.solar_consumed_energy"
+        ></SelfSufficiencyBar>
       </div>
-      <div v-if="timeframe == 'week' || timeframe == 'month'" class="mt-2 items-center rounded-md bg-base-200 p-2">
+      <div
+        v-if="timeframe == 'week' || timeframe == 'month'"
+        class="mt-2 items-center rounded-md bg-subgroup p-2"
+      >
         <Bar :data="chartData" :options="options" />
       </div>
     </v-card-text>
   </v-card>
-
 </template>
 
 <script lang="ts" setup>
@@ -59,7 +64,7 @@ const props = defineProps<Props>();
 const selfSufficiency = computed(() => {
   return props.measurement.consumed_energy != 0
     ? (100 * props.measurement.solar_consumed_energy) /
-    props.measurement.consumed_energy
+        props.measurement.consumed_energy
     : 0.0;
 });
 

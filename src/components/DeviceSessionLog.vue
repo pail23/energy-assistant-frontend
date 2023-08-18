@@ -1,10 +1,8 @@
 <template>
   <v-card class="m-4 w-full p-4 rounded-lg">
     <v-card-text>
-    <v-table
-      class="m-4 border"
-    >      
-        <thead class="bg-base-200">
+      <v-table class="m-4 border rounded-lg">
+        <thead class="bg-primary">
           <tr>
             <th class="min-w-36 px-6 py-3">{{ t('sessionlog.start') }}</th>
             <th class="min-w-36 px-6 py-3">{{ t('sessionlog.end') }}</th>
@@ -16,8 +14,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(entry, index) in sessionLog" :key="index"
-            class="border-b text-center odd:bg-base-100 even:bg-base-200">
+          <tr
+            v-for="(entry, index) in sessionLog"
+            :key="index"
+            class="border-b text-center odd:bg-surface even:bg-subgroup"
+          >
             <td class="px-6 py-4">
               {{ d(new Date(entry.start), longFormat) }}
             </td>
@@ -60,3 +61,9 @@ interface Props {
 
 defineProps<Props>();
 </script>
+
+<style scoped>
+tbody tr:nth-of-type(even) {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+</style>

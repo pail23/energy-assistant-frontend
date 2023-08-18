@@ -1,5 +1,5 @@
 <template>
-  <div class="v-full flex min-h-screen justify-center p-4 bg-base-200">
+  <div class="v-full flex min-h-screen justify-center p-4 bg-background">
     <div
       v-if="isLoading"
       class="grid h-full w-full grid-cols-1 justify-items-center"
@@ -9,7 +9,7 @@
     <div v-else>
       <select
         v-model="selectedDevice"
-        class="select m-2 w-full max-w-xs"
+        class="select m-2 w-full max-w-xs bg-surface"
         @change="onChangeDeviceSelection($event)"
       >
         <option v-for="device in devices" :key="device.id" :value="device.id">

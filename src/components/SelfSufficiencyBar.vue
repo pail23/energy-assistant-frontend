@@ -1,19 +1,23 @@
 <template>
   <div class="w-full">
-    <v-progress-linear color="amber" bg-color="red-darken-4" height="15" rounded :model-value="selfSufficiency">
+    <v-progress-linear
+      color="sun"
+      bg-color="grid"
+      height="15"
+      rounded
+      :model-value="selfSufficiency"
+    >
     </v-progress-linear>
     <div class="grid w-full grid-cols-3 text-sm">
-      <div>
-        <span class="mdi mdi-solar-power text-primary"></span>
-        <span class="text-primary">{{
-          formatNumberWithUnit(consumedSolarEnergy, unit)
-        }}</span>
+      <div class="text-sun">
+        <span class="mdi mdi-solar-power"></span>
+        <span>{{ formatNumberWithUnit(consumedSolarEnergy, unit) }}</span>
       </div>
       <div class="place-self-center">
         <span>{{ selfSufficiency.toFixed(0) }}%</span>
       </div>
       <div>
-        <span class="float-right text-secondary"
+        <span class="float-right text-grid"
           >{{ formatNumberWithUnit(consumed_grid_energy, unit)
           }}<span class="mdi mdi-transmission-tower"></span
         ></span>

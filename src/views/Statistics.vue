@@ -1,8 +1,8 @@
 <template>
-  <div class="v-full flex min-h-screen justify-center p-4 bg-base-200">
+  <div class="v-full flex min-h-screen justify-center p-4 bg-background">
     <div class="grid grid-cols-1">
       <div
-        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl bg-base-300 p-2"
+        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl bg-subgroup p-2"
       >
         <div>
           <input
@@ -16,7 +16,7 @@
           />
           <label
             for="1"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary-focus peer-checked:font-bold peer-checked:text-primary-content"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
             >Heute</label
           >
         </div>
@@ -32,7 +32,7 @@
           />
           <label
             for="2"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary-focus peer-checked:font-bold peer-checked:text-primary-content"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
             >Woche</label
           >
         </div>
@@ -48,7 +48,7 @@
           />
           <label
             for="3"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary-focus peer-checked:font-bold peer-checked:text-primary-content"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
             >Monat</label
           >
         </div>
@@ -64,7 +64,7 @@
           />
           <label
             for="4"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary-focus peer-checked:font-bold peer-checked:text-primary-content"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
             >Jahr</label
           >
         </div>

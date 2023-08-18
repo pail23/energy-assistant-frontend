@@ -3,68 +3,119 @@
     <v-card-text>
       <div class="relative mx-auto h-72 w-80">
         <svg class="h-full w-full" viewBox="0 0 200 180">
-
-          <path stroke-width="1" stroke-dasharray="2,2" id="solar-to-home" d="M 115 65 L 145 115"
-            class="stroke-yellow-500" marker-end="url(#SvgjsMarker1005)" />
-          <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-yellow-500">
-            <animateMotion :dur="solar_to_home_speed" repeatCount="indefinite" calcMode="linear">
+          <path
+            id="solar-to-home"
+            stroke-width="1"
+            stroke-dasharray="2,2"
+            d="M 115 65 L 145 115"
+            class="stroke-yellow-500"
+            marker-end="url(#SvgjsMarker1005)"
+          />
+          <circle
+            v-if="isVisible(solar_to_home_power)"
+            r="2"
+            class="fill-yellow-500"
+          >
+            <animateMotion
+              :dur="solar_to_home_speed"
+              repeatCount="indefinite"
+              calcMode="linear"
+            >
               <mpath xlink:href="#solar-to-home" />
             </animateMotion>
           </circle>
-          <path stroke-width="1" stroke-dasharray="2,2" id="solar-to-grid" d="M 85 65 L 55 115" class="stroke-purple-500"
-            marker-end="url(#SvgjsMarker1006)" />
-          <circle v-if="isVisible(solar_to_grid_power)" r="2" class="fill-purple-800">
-            <animateMotion :dur="solar_to_grid_speed" repeatCount="indefinite" calcMode="linear">
+          <path
+            id="solar-to-grid"
+            stroke-width="1"
+            stroke-dasharray="2,2"
+            d="M 85 65 L 55 115"
+            class="stroke-purple-500"
+            marker-end="url(#SvgjsMarker1006)"
+          />
+          <circle
+            v-if="isVisible(solar_to_grid_power)"
+            r="2"
+            class="fill-purple-800"
+          >
+            <animateMotion
+              :dur="solar_to_grid_speed"
+              repeatCount="indefinite"
+              calcMode="linear"
+            >
               <mpath xlink:href="#solar-to-grid" />
             </animateMotion>
           </circle>
-          <path stroke-width="1" stroke-dasharray="2,2" id="grid-to-home" d="M 70 140 L 130 140" class="stroke-sky-500"
-            marker-end="url(#SvgjsMarker1007)" />
-          <circle v-if="isVisible(grid_to_home_power)" r="2" class="fill-sky-800">
-            <animateMotion :dur="grid_to_home_speed" repeatCount="indefinite" calcMode="linear">
+          <path
+            id="grid-to-home"
+            stroke-width="1"
+            stroke-dasharray="2,2"
+            d="M 70 140 L 130 140"
+            class="stroke-sky-500"
+            marker-end="url(#SvgjsMarker1007)"
+          />
+          <circle
+            v-if="isVisible(grid_to_home_power)"
+            r="2"
+            class="fill-sky-800"
+          >
+            <animateMotion
+              :dur="grid_to_home_speed"
+              repeatCount="indefinite"
+              calcMode="linear"
+            >
               <mpath xlink:href="#grid-to-home" />
             </animateMotion>
           </circle>
 
-          <!--   <line stroke-width="1" stroke-dasharray="2,2" class="stroke-yellow-500" id="solar-to-home" x1="115" y1="65" x2="145" y2="115" marker-end="url(#SvgjsMarker1005)"></line>
-        <line stroke-width="1" stroke-dasharray="2,2" class="stroke-purple-500" id="solar-to-grid" x1="85" y1="65" x2="55" y2="115" marker-end="url(#SvgjsMarker1006)"></line>
-        <line stroke-width="1" stroke-dasharray="2,2" class="stroke-sky-500" id="grid-to-home" x1="70" y1="140" x2="130" y2="140" marker-end="url(#SvgjsMarker1007)"></line>
-
-        <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-yellow-500">
-          <animateMotion :dur="solar_to_home_speed" repeatCount="indefinite" calcMode="linear">
-            <mpath xlink:href="#solar-to-home" />
-          </animateMotion>
-        </circle>
-        <circle v-if="isVisible(solar_to_grid_power)" r="2" class="fill-purple-800">
-          <animateMotion :dur="solar_to_grid_speed" repeatCount="indefinite" calcMode="linear">
-            <mpath xlink:href="#solar-to-grid" />
-          </animateMotion>
-        </circle>
-        <circle v-if="isVisible(grid_to_home_power)" r="2" class="fill-sky-800">
-          <animateMotion :dur="grid_to_home_speed" repeatCount="indefinite" calcMode="linear">
-            <mpath xlink:href="#grid-to-home" />
-          </animateMotion>
-        </circle>-->
-
-
           <defs>
-            <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-              id="SvgjsMarker1005">
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-yellow-500"></polygon>
+            <marker
+              id="SvgjsMarker1005"
+              markerWidth="5"
+              markerHeight="5"
+              refX="2.5"
+              refY="2.5"
+              viewBox="0 0 5 5"
+              orient="auto"
+            >
+              <polygon
+                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
+                class="fill-yellow-500"
+              ></polygon>
             </marker>
-            <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-              id="SvgjsMarker1006">
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-purple-500"></polygon>
+            <marker
+              id="SvgjsMarker1006"
+              markerWidth="5"
+              markerHeight="5"
+              refX="2.5"
+              refY="2.5"
+              viewBox="0 0 5 5"
+              orient="auto"
+            >
+              <polygon
+                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
+                class="stroke-purple-500"
+              ></polygon>
             </marker>
-            <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
-              id="SvgjsMarker1007">
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="stroke-sky-500"></polygon>
+            <marker
+              id="SvgjsMarker1007"
+              markerWidth="5"
+              markerHeight="5"
+              refX="2.5"
+              refY="2.5"
+              viewBox="0 0 5 5"
+              orient="auto"
+            >
+              <polygon
+                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
+                class="stroke-sky-500"
+              ></polygon>
             </marker>
           </defs>
         </svg>
         <div class="absolute bottom-0 left-0 right-0 top-0">
           <div
-            class="absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full bg-base-100 text-center ring-2 ring-yellow-500">
+            class="absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full bg-surface text-center ring-2 ring-yellow-500"
+          >
             <div>
               <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
               <span class="text-xs">{{
@@ -73,7 +124,8 @@
             </div>
           </div>
           <div
-            class="absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full bg-base-100 text-center ring-2 ring-sky-800">
+            class="absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full bg-surface text-center ring-2 ring-sky-800"
+          >
             <div>
               <div class="mdi mdi-transmission-tower text-2xl"></div>
 
@@ -88,15 +140,22 @@
                 </div>
               </div>
               <div v-else class="text-xs">
-                <span v-if="grid_consumption_power > 0"><span class="mdi mdi-arrow-right"></span>
-                  {{ formatNumberWithUnit(grid_consumption_power, unit) }}</span>
-                <span v-else><span class="mdi mdi-arrow-left"></span>
-                  {{ formatNumberWithUnit(-grid_consumption_power, unit) }}</span>
+                <span v-if="grid_consumption_power > 0"
+                  ><span class="mdi mdi-arrow-right"></span>
+                  {{ formatNumberWithUnit(grid_consumption_power, unit) }}</span
+                >
+                <span v-else
+                  ><span class="mdi mdi-arrow-left"></span>
+                  {{
+                    formatNumberWithUnit(-grid_consumption_power, unit)
+                  }}</span
+                >
               </div>
             </div>
           </div>
           <div
-            class="absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full bg-base-100 text-center ring-2 ring-blue-800">
+            class="absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full bg-surface text-center ring-2 ring-blue-800"
+          >
             <div>
               <div class="mdi mdi-home text-2xl"></div>
               <span class="text-xs">{{
@@ -131,27 +190,29 @@ const grid_consumption_power = computed(() => {
 });
 
 const solar_to_home_power = computed(() => {
-  return props.solarPower > props.homeConsumptionPower ? props.homeConsumptionPower : props.solarPower;
+  return props.solarPower > props.homeConsumptionPower
+    ? props.homeConsumptionPower
+    : props.solarPower;
 });
 
 function calculateSpeed(value: number): string {
   if (props.unit == 'W') {
-    return norm_speed / value + 's'
+    return norm_speed / value + 's';
   } else {
-    return '1.5s'
+    return '1.5s';
   }
 }
 
 const isVisible = (value: number) => {
   if (props.unit == 'W') {
-    return value > 0
+    return value > 0;
   } else {
     return true;
   }
-}
+};
 
 const solar_to_home_speed = computed(() => {
-  return calculateSpeed(solar_to_home_power.value)
+  return calculateSpeed(solar_to_home_power.value);
 });
 
 const solar_to_grid_power = computed(() => {
@@ -160,7 +221,7 @@ const solar_to_grid_power = computed(() => {
 });
 
 const solar_to_grid_speed = computed(() => {
-  return calculateSpeed(solar_to_grid_power.value)
+  return calculateSpeed(solar_to_grid_power.value);
 });
 
 const grid_to_home_power = computed(() => {
@@ -168,9 +229,7 @@ const grid_to_home_power = computed(() => {
   return grid_power > 0 ? grid_power : 0;
 });
 
-
 const grid_to_home_speed = computed(() => {
-  return calculateSpeed(grid_to_home_power.value)
+  return calculateSpeed(grid_to_home_power.value);
 });
-
 </script>

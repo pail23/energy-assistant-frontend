@@ -14,6 +14,7 @@ import { md } from 'vuetify/iconsets/md';
 
 // Composables
 import { createVuetify } from 'vuetify';
+import { color } from 'chart.js/helpers';
 export default createVuetify(
   // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
   {
@@ -41,15 +42,25 @@ export default createVuetify(
         light: {
           dark: false,
           colors: {
+            backgroud: colors.orange.lighten4,
+            surface: '#FFFFFF',
             primary: colors.blue.base,
             accent: colors.blue.darken2,
+            subgroup: colors.grey.lighten3,
+            sun: colors.amber.darken2,
+            grid: colors.blue.darken4,
           },
         },
         dark: {
           dark: true,
           colors: {
+            backgroud: colors.orange.darken4,
+            surface: colors.grey.darken4,
             primary: colors.blue.darken4,
             accent: colors.blue.lighten2,
+            subgroup: colors.grey.darken3,
+            sun: colors.amber.darken1,
+            grid: colors.blue.lighten1,
           },
         },
       },
