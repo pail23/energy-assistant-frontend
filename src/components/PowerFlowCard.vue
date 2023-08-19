@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg">
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-6">
     <v-card-text>
       <div class="relative mx-auto h-72 w-80">
         <svg class="h-full w-full" viewBox="0 0 200 180">
@@ -8,14 +8,10 @@
             stroke-width="1"
             stroke-dasharray="2,2"
             d="M 115 65 L 145 115"
-            class="stroke-yellow-500"
+            class="stroke-sun"
             marker-end="url(#SvgjsMarker1005)"
           />
-          <circle
-            v-if="isVisible(solar_to_home_power)"
-            r="2"
-            class="fill-yellow-500"
-          >
+          <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-sun">
             <animateMotion
               :dur="solar_to_home_speed"
               repeatCount="indefinite"
@@ -29,14 +25,10 @@
             stroke-width="1"
             stroke-dasharray="2,2"
             d="M 85 65 L 55 115"
-            class="stroke-purple-500"
+            class="stroke-sun"
             marker-end="url(#SvgjsMarker1006)"
           />
-          <circle
-            v-if="isVisible(solar_to_grid_power)"
-            r="2"
-            class="fill-purple-800"
-          >
+          <circle v-if="isVisible(solar_to_grid_power)" r="2" class="fill-sun">
             <animateMotion
               :dur="solar_to_grid_speed"
               repeatCount="indefinite"
@@ -50,14 +42,10 @@
             stroke-width="1"
             stroke-dasharray="2,2"
             d="M 70 140 L 130 140"
-            class="stroke-sky-500"
+            class="stroke-grid"
             marker-end="url(#SvgjsMarker1007)"
           />
-          <circle
-            v-if="isVisible(grid_to_home_power)"
-            r="2"
-            class="fill-sky-800"
-          >
+          <circle v-if="isVisible(grid_to_home_power)" r="2" class="fill-grid">
             <animateMotion
               :dur="grid_to_home_speed"
               repeatCount="indefinite"
@@ -79,7 +67,7 @@
             >
               <polygon
                 points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="fill-yellow-500"
+                class="fill-sun"
               ></polygon>
             </marker>
             <marker
@@ -93,7 +81,7 @@
             >
               <polygon
                 points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="stroke-purple-500"
+                class="fill-sun"
               ></polygon>
             </marker>
             <marker
@@ -107,7 +95,7 @@
             >
               <polygon
                 points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="stroke-sky-500"
+                class="fill-grid"
               ></polygon>
             </marker>
           </defs>
@@ -117,7 +105,7 @@
             class="absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full bg-surface text-center ring-2 ring-yellow-500"
           >
             <div>
-              <div class="mdi mdi-solar-power text-2xl text-yellow-500"></div>
+              <div class="mdi mdi-solar-power text-2xl text-sun"></div>
               <span class="text-xs">{{
                 formatNumberWithUnit(solarPower, unit)
               }}</span>
@@ -233,3 +221,21 @@ const grid_to_home_speed = computed(() => {
   return calculateSpeed(grid_to_home_power.value);
 });
 </script>
+
+<style scoped>
+.fill-sun {
+  fill: rgb(var(--v-theme-sun));
+}
+
+.fill-grid {
+  fill: rgb(var(--v-theme-grid));
+}
+
+.stroke-sun {
+  stroke: rgb(var(--v-theme-sun));
+}
+
+.stroke-grid {
+  stroke: rgb(var(--v-theme-grid));
+}
+</style>

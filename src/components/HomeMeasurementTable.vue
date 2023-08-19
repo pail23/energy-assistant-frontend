@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-lg">
+  <v-card class="rounded-lg elevation-6">
     <v-table class="m-4 border">
       <thead class="bg-primary">
         <tr>

@@ -1,7 +1,10 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg">
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-6">
     <v-card-text>
-      <Doughnut :data="data" :options="options" />
+      <Doughnut
+        :data="data"
+        :options="$vuetify.theme.current.dark ? optionsDark : optionsLight"
+      />
     </v-card-text>
   </v-card>
 </template>
@@ -42,7 +45,7 @@ const doughnutLabel = {
     // var fontSize = (height / 114).toFixed(2);
     // ctx.font = fontSize + 'em sans-serif';
     ctx.font = '1.2em sans-serif';
-    ctx.color = options.color;
+    ctx.fillStyle = options.color;
     const linespacing = 2;
 
     ctx.textBaseline = 'top';
@@ -87,17 +90,71 @@ const data = computed(() => {
   };
 });
 
-const options = computed(() => {
+const optionsLight = computed(() => {
   return {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
+      legend: {
+        display: true,
+        labels: {
+          color: 'black',
+        },
+      },
       tooltip: {
         callbacks: {
           label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
         },
       },
       doughnutlabel: {
+        color: 'black',
+        text: [
+          formatNumberWithUnit(props.power, 'W'),
+          props.selfSufficiency.toFixed(0) + '%',
+        ],
+      },
+      datalabels: {
+        backgroundColor: function (context) {
+          return context.dataset.backgroundColor;
+        },
+        borderColor: 'white',
+        borderRadius: 25,
+        borderWidth: 2,
+        color: 'white',
+        display: function (context) {
+          var dataset = context.dataset;
+          const sum = dataset.data.reduce((partialSum, a) => partialSum + a, 0);
+          var value = dataset.data[context.dataIndex];
+          return value > sum / 10;
+        },
+        font: {
+          weight: fontBold,
+        },
+        padding: 6,
+        formatter: Math.round,
+      },
+    },
+  };
+});
+
+const optionsDark = computed(() => {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          color: 'white',
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
+        },
+      },
+      doughnutlabel: {
+        color: 'white',
         text: [
           formatNumberWithUnit(props.power, 'W'),
           props.selfSufficiency.toFixed(0) + '%',

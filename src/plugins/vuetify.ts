@@ -14,7 +14,7 @@ import { md } from 'vuetify/iconsets/md';
 
 // Composables
 import { createVuetify } from 'vuetify';
-import { color } from 'chart.js/helpers';
+
 export default createVuetify(
   // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
   {

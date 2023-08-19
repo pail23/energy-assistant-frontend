@@ -2,7 +2,7 @@
   <div class="v-full flex min-h-screen justify-center p-4 bg-background">
     <div class="grid grid-cols-1">
       <div
-        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl bg-subgroup p-2"
+        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl p-2 elevation-6 bg-surface"
       >
         <div>
           <input
@@ -92,7 +92,8 @@
           <WeeklyStatisticsCard
             v-if="timeframe == 'week' && statistics != null"
             :data="statistics"
-          ></WeeklyStatisticsCard>
+          >
+          </WeeklyStatisticsCard>
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
               :measurement="device"
@@ -156,3 +157,9 @@ const isLoading = ref(false);
 
 //const { data, isLoading } = useQuery('home_measurements', () => getHomeMeasurementsByDateFn(from_date.value, new Date()));
 </script>
+
+<style scoped>
+input[type='radio']:checked + label {
+  background-color: rgb(var(--v-theme-primary));
+}
+</style>
