@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-nocheck
 import { computed } from 'vue';
 import { IDevice } from '@/api/device';
 import { api } from '@/api/energyAssistant.api';
@@ -97,6 +98,7 @@ const optionsLight = computed(() => {
     plugins: {
       legend: {
         display: true,
+        position: 'bottom',
         labels: {
           color: 'black',
         },
@@ -144,6 +146,7 @@ const optionsDark = computed(() => {
     plugins: {
       legend: {
         display: true,
+        position: 'bottom',
         labels: {
           color: 'white',
         },

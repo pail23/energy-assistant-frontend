@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="supportedPowerModes && supportedPowerModes.length > 1 && powerMode"
-    class="mt-2 w-full items-center rounded-md bg-subgroup p-2"
+    class="mt-2 w-full items-center rounded-md bg-subgroup px-2 pt-1"
   >
     <v-select
       v-model="powerModeModel"
