@@ -44,7 +44,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.16.1",
-    "postcss": "^8.4.26",
+    "postcss": "^8.4.28",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "sass": "^1.65.1",
