@@ -1,10 +1,7 @@
 <template>
   <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-6">
     <v-card-text>
-      <Doughnut
-        :data="data"
-        :options="$vuetify.theme.current.dark ? optionsDark : optionsLight"
-      />
+      <Doughnut :data="data" :options="options" />
     </v-card-text>
   </v-card>
 </template>
@@ -15,6 +12,7 @@ import { computed } from 'vue';
 import { IDevice } from '@/api/device';
 import { api } from '@/api/energyAssistant.api';
 import { formatNumberWithUnit } from '@/utils';
+import { useTheme } from 'vuetify';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -32,6 +30,8 @@ const fontBold:
   | 'bolder'
   | 'lighter'
   | 'undefined' = 'bold';
+
+const theme = useTheme();
 
 const doughnutLabel = {
   id: 'doughnutlabel',
@@ -91,7 +91,7 @@ const data = computed(() => {
   };
 });
 
-const optionsLight = computed(() => {
+const options = computed(() => {
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -100,7 +100,7 @@ const optionsLight = computed(() => {
         display: true,
         position: 'bottom',
         labels: {
-          color: 'black',
+          color: theme.current.value.colors['on-surface'],
         },
       },
       tooltip: {
@@ -109,55 +109,7 @@ const optionsLight = computed(() => {
         },
       },
       doughnutlabel: {
-        color: 'black',
-        text: [
-          formatNumberWithUnit(props.power, 'W'),
-          props.selfSufficiency.toFixed(0) + '%',
-        ],
-      },
-      datalabels: {
-        backgroundColor: function (context) {
-          return context.dataset.backgroundColor;
-        },
-        borderColor: 'white',
-        borderRadius: 25,
-        borderWidth: 2,
-        color: 'white',
-        display: function (context) {
-          var dataset = context.dataset;
-          const sum = dataset.data.reduce((partialSum, a) => partialSum + a, 0);
-          var value = dataset.data[context.dataIndex];
-          return value > sum / 10;
-        },
-        font: {
-          weight: fontBold,
-        },
-        padding: 6,
-        formatter: Math.round,
-      },
-    },
-  };
-});
-
-const optionsDark = computed(() => {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-        labels: {
-          color: 'white',
-        },
-      },
-      tooltip: {
-        callbacks: {
-          label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
-        },
-      },
-      doughnutlabel: {
-        color: 'white',
+        color: theme.current.value.colors['on-surface'],
         text: [
           formatNumberWithUnit(props.power, 'W'),
           props.selfSufficiency.toFixed(0) + '%',

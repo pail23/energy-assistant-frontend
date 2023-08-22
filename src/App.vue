@@ -2,7 +2,6 @@
   <router-view />
 </template>
 
-
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import { devicesAPI } from '@/api/devices.api';
@@ -12,17 +11,21 @@ import { store } from './plugins/store';
 
 const theme = useTheme();
 
-
 onMounted(async () => {
   // @ts-ignore
   store.isInStandaloneMode = window.navigator.standalone || false;
   // enable dark mode based on OS/browser config
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-    const newColorScheme = event.matches ? 'dark' : 'light';
-    theme.global.name.value = newColorScheme;
-  });
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', (event) => {
+      const newColorScheme = event.matches ? 'dark' : 'light';
+      theme.global.name.value = newColorScheme;
+    });
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
     // dark mode is enabled
     theme.global.name.value = 'dark';
   }
