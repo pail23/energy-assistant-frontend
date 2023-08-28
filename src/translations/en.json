@@ -25,7 +25,8 @@
   },
   "device_attribute": {
     "actual_temperature": "Temperature",
-    "state": "State"
+    "state": "State",
+    "pv_mode": "PV mode"
   },
   "sessionlog": {
     "end": "End",

@@ -79,13 +79,12 @@ const doughnutLabel = {
 };
 
 const data = computed(() => {
+  const devices = props.devices.filter((device) => device.power > 0);
   return {
-    labels: props.devices.map(
-      (device) => api.getDeviceInfo(device.device_id).name,
-    ),
+    labels: devices.map((device) => api.getDeviceInfo(device.device_id).name),
     datasets: [
       {
-        data: props.devices.map((device) => device.power),
+        data: devices.map((device) => device.power),
       },
     ],
   };
