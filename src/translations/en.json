@@ -34,11 +34,12 @@
     "text": "Text"
   },
   "power_mode": {
-    "device_controlled": "Device",
+    "device_controlled": "Device controlled",
     "pv": "PV",
     "off": "Off",
     "fast": "Fast",
-    "min_pv": "Min+PV"
+    "min_pv": "Min+PV",
+    "optimized": "Optimized"
   },
   "tooltip": {
     "show_menu": "Show\/hide menu"

@@ -34,11 +34,12 @@
     "text": "Text"
   },
   "power_mode": {
-    "device_controlled": "Gerät",
+    "device_controlled": "Vom Gerät gesteuert",
     "pv": "PV",
     "off": "Aus",
     "fast": "Schnell",
-    "min_pv": "Min+PV"
+    "min_pv": "Min+PV",
+    "optimized": "Optimiert"
   },
   "tooltip": {
     "show_menu": "Menü anzeigen\/verbergen"
