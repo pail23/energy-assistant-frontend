@@ -26,7 +26,8 @@
   "device_attribute": {
     "actual_temperature": "Temperature",
     "state": "State",
-    "pv_mode": "PV mode"
+    "pv_mode": "PV mode",
+    "vehicle_soc": "Vehicle SoC"
   },
   "sessionlog": {
     "end": "End",
