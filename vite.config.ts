@@ -18,14 +18,19 @@ export default defineConfig({
       styles: {
         configFile: 'src/styles/settings.scss',
       },
-    }),    
+    }),
     VitePWA({
-      includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+      includeAssets: [
+        'favicon.svg',
+        'favicon.ico',
+        'robots.txt',
+        'apple-touch-icon.png',
+      ],
       manifest: {
         name: 'Energy Assistant',
         short_name: 'Energy manager',
         description:
-          'Energy Assistant is a free, opensource Energymanager that visualize and control the energy consumption of your home.',
+          'Energy Assistant is a free, opensource Energy manager that visualize and control the energy consumption of your home.',
         theme_color: '#424242',
         icons: [
           {
@@ -46,7 +51,7 @@ export default defineConfig({
           },
         ],
       },
-    }),    
+    }),
     VueI18nPlugin({
       include: [path.resolve(__dirname, './src/translations/**')],
     }),

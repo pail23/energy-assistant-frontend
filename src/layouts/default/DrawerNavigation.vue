@@ -111,6 +111,11 @@ export const mainMenuItems: MenuItem[] = [
     path: '/history',
   },
   {
+    label: 'app.forecast',
+    icon: 'mdi-chart-bell-curve',
+    path: '/forecast',
+  },
+  {
     label: 'app.sessionlog',
     icon: 'mdi-format-list-numbered',
     path: '/sessionlog',

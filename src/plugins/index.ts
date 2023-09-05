@@ -17,5 +17,5 @@ export function registerPlugins(app: App) {
   app.use(vuetify);
   app.use(router);
   app.use(i18n);
-  app.use(breakpoint)
+  app.use(breakpoint);
 }

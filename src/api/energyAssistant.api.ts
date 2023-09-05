@@ -81,6 +81,11 @@ export interface ISessionLog {
   entries: ISessionLogEntry[];
 }
 
+export interface IForecast {
+  time: Date[];
+  series: { [name: string]: number[] };
+}
+
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
@@ -102,9 +107,10 @@ export class EnergyAssistantApi {
 
   public async getAllHomeMeasurements() {
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.get<IHomeMeasurementResponse>(
-      'homemeasurements',
-    );
+    const response =
+      await this.axiosInstance.get<IHomeMeasurementResponse>(
+        'homemeasurements',
+      );
     return response.data.home_measurements;
   }
 
@@ -180,6 +186,11 @@ export class EnergyAssistantApi {
     return await this.axiosInstance.get<IHomeMeasurementPeriod>(
       'history/difference?from_date=' + from_date + '&to_date=' + to_date,
     );
+  }
+
+  public async getForecast() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return (await this.axiosInstance.get<IForecast>('forecast')).data;
   }
 }
 

@@ -4,6 +4,7 @@
     "home": "Home",    
     "live": "Live",
     "statistics": "Statistics",
+    "forecast": "Forecast",    
     "rawdata": "Data",
     "sessionlog": "Session Log",
     "settings": "Settings"
@@ -33,6 +34,10 @@
     "end": "End",
     "start": "Start",
     "text": "Text"
+  },
+  "forecast":{
+    "pv": "PV",
+    "consumption": "Consumption"
   },
   "power_mode": {
     "device_controlled": "Device controlled",

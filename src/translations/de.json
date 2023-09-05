@@ -4,6 +4,7 @@
     "home": "Startseite",
     "live": "Live",
     "statistics": "Statistik",
+    "forecast": "Prognose",
     "rawdata": "Daten",
     "sessionlog": "Session Log",
     "settings": "Einstellungen"
@@ -33,6 +34,10 @@
     "start": "Start",
     "end": "Ende",
     "text": "Text"
+  },
+  "forecast":{
+    "pv": "PV",
+    "consumption": "Verbrauch"
   },
   "power_mode": {
     "device_controlled": "Vom Gerät gesteuert",
