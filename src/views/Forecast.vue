@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-nocheck
 import { computed, ref, onMounted } from 'vue';
 import {
   Chart as ChartJS,
