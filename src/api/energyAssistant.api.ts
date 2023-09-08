@@ -81,9 +81,14 @@ export interface ISessionLog {
   entries: ISessionLogEntry[];
 }
 
+export interface IForecastSerie {
+  name: string;
+  data: number[];
+}
+
 export interface IForecast {
   time: Date[];
-  series: { [name: string]: number[] };
+  series: IForecastSerie[];
 }
 
 export class EnergyAssistantApi {

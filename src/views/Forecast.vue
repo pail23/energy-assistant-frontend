@@ -17,15 +17,100 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'vue-chartjs';
+import { Line, Bar } from 'vue-chartjs';
 import { IForecast, api } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
+import { color } from 'chart.js/helpers';
+import { Result } from 'postcss';
 
 const { t } = useI18n();
 const theme = useTheme();
 
 const forecast = ref<IForecast>();
+
+const colors = [
+  'red',
+  'pink',
+  'purple',
+  'deep-purple',
+  'indigo',
+  'blue',
+  'light-blue',
+  'cyan',
+  'teal',
+  'green',
+  'light-green',
+  'lime',
+  'yellow',
+  'amber',
+  'organe',
+  'deep-orange',
+  'brown',
+  'blue-grey',
+];
+
+class ColorIterator {
+  private index = 0;
+  public getNextColor(): string {
+    const result = colors[this.index++];
+    if (this.index >= colors.length) {
+      this.index = 0;
+    }
+    return result;
+  }
+}
+
+function getDataSetColor(name: string) {
+  switch (name) {
+    case 'pv':
+      return theme.current.value.colors['sun'];
+    case 'consumption':
+      return theme.current.value.colors['grid'];
+    default:
+      return null;
+  }
+}
+
+function getDataSetLabel(name: string) {
+  switch (name) {
+    case 'pv':
+      return t('forecast.pv');
+    case 'consumption':
+      return t('forecast.consumption');
+    default:
+      return api.getDeviceInfo(name).name;
+  }
+}
+
+function getDataSets(forecast: IForecast) {
+  if (forecast && forecast.series) {
+    let colorIterator = new ColorIterator();
+    return forecast.series.map((serie) => {
+      if (serie.name == 'pv' || serie.name == 'consumption') {
+        let color = getDataSetColor(serie.name);
+        return {
+          label: getDataSetLabel(serie.name),
+          data: serie.data,
+          fill: false,
+          backgroundColor: color,
+          borderColor: color,
+        };
+      } else {
+        let color = colorIterator.getNextColor();
+        return {
+          label: getDataSetLabel(serie.name),
+          data: serie.data,
+          fill: false,
+          backgroundColor: color,
+          borderColor: color,
+        };
+      }
+    });
+  }
+
+  return [];
+}
 
 const data = computed(() => {
   return {
@@ -35,27 +120,14 @@ const data = computed(() => {
         minute: '2-digit',
       }),
     ),
-    datasets: [
-      {
-        label: t('forecast.pv'),
-        backgroundColor: theme.current.value.colors['sun'],
-        data: forecast.value?.series['pv'],
-      },
-      {
-        label: t('forecast.consumption'),
-        backgroundColor: theme.current.value.colors['grid'],
-        data: forecast.value?.series['load'],
-      },
-    ],
+    datasets: getDataSets(forecast.value),
   };
 });
 
-const options = computed(() => {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-});
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+};
 
 ChartJS.register(
   CategoryScale,
