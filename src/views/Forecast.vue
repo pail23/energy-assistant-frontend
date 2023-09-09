@@ -95,6 +95,7 @@ function getDataSets(forecast: IForecast) {
           fill: false,
           backgroundColor: color,
           borderColor: color,
+          pointStyle: false,
         };
       } else {
         let color = colorIterator.getNextColor();
@@ -104,6 +105,8 @@ function getDataSets(forecast: IForecast) {
           fill: false,
           backgroundColor: color,
           borderColor: color,
+          stepped: true,
+          pointStyle: false,
         };
       }
     });
