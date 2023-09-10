@@ -1,7 +1,7 @@
 <template>
   <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-6">
     <v-card-text>
-      <div class="relative mx-auto h-72 w-80">
+      <div class="relative mx-auto bg-red">
         <svg class="h-full w-full" viewBox="0 0 200 180">
           <path
             id="solar-to-home"

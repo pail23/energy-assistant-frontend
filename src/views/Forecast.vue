@@ -130,6 +130,11 @@ const data = computed(() => {
 const options = {
   responsive: true,
   maintainAspectRatio: false,
+  plugins: {
+    datalabels: {
+      display: false,
+    },
+  },
 };
 
 ChartJS.register(
