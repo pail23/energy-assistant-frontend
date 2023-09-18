@@ -4,13 +4,13 @@
       <v-table class="m-4 border rounded-lg">
         <thead class="bg-primary">
           <tr>
-            <th class="min-w-36 px-6 py-3">{{ t('sessionlog.start') }}</th>
-            <th class="min-w-36 px-6 py-3">{{ t('sessionlog.end') }}</th>
-            <th class="min-w-36 px-6 py-3">{{ t('sessionlog.text') }}</th>
+            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.start') }}</th>
+            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.end') }}</th>
+            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.text') }}</th>
             <th class="w-36 px-6 py-3">
-              {{ t('consumed_solar_energy') }}
+              {{ $t('consumed_solar_energy') }}
             </th>
-            <th class="w-36 px-6 py-3">{{ t('consumed_energy') }}</th>
+            <th class="w-36 px-6 py-3">{{ $t('consumed_energy') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -20,10 +20,10 @@
             class="border-b text-center odd:bg-surface even:bg-subgroup"
           >
             <td class="px-6 py-4">
-              {{ d(new Date(entry.start), longFormat) }}
+              {{ $d(new Date(entry.start), 'short') }}
             </td>
             <td class="px-6 py-4">
-              {{ d(new Date(entry.end), longFormat) }}
+              {{ $d(new Date(entry.end), 'short') }}
             </td>
             <td class="px-6 py-4">
               {{ entry.text }}
@@ -42,18 +42,7 @@
 </template>
 <script lang="ts" setup>
 import { ISessionLogEntry } from '@/api/energyAssistant.api';
-import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
-
-const { t, d } = useI18n();
-
-const longFormat = {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-};
 
 interface Props {
   sessionLog: ISessionLogEntry[];

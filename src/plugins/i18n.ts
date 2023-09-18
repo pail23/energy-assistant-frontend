@@ -18,8 +18,9 @@ const i18n = createI18n({
   messages,
 });
 
-
 // @ts-ignore
 const $t = i18n.global.t;
+const $d = i18n.global.d;
+const $n = i18n.global.n;
 
-export { i18n, $t };
+export { i18n, $t, $d, $n };
