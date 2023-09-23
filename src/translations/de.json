@@ -35,9 +35,10 @@
     "end": "Ende",
     "text": "Text"
   },
-  "forecast":{
+  "forecast": {
     "pv": "PV",
-    "consumption": "Verbrauch"
+    "consumption": "Verbrauch",
+    "pv_forecast": "PV Vorhersage"
   },
   "power_mode": {
     "device_controlled": "Vom Gerät gesteuert",
@@ -48,6 +49,6 @@
     "optimized": "Optimiert"
   },
   "tooltip": {
-    "show_menu": "Menü anzeigen\/verbergen"
+    "show_menu": "Menü anzeigen/verbergen"
   }
 }

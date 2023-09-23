@@ -16,6 +16,28 @@ const i18n = createI18n({
   fallbackWarn: false,
   silentTranslationWarn: true,
   messages,
+  datetimeFormats: {
+    en: {
+      long: {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      },
+    },
+    de: {
+      long: {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      },
+    },
+  },
 });
 
 // @ts-ignore

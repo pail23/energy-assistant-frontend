@@ -20,10 +20,10 @@
             class="border-b text-center odd:bg-surface even:bg-subgroup"
           >
             <td class="px-6 py-4">
-              {{ $d(new Date(entry.start), 'short') }}
+              {{ $d(new Date(entry.start + 'Z'), 'long') }}
             </td>
             <td class="px-6 py-4">
-              {{ $d(new Date(entry.end), 'short') }}
+              {{ $d(new Date(entry.end + 'Z'), 'long') }}
             </td>
             <td class="px-6 py-4">
               {{ entry.text }}

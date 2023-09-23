@@ -1,10 +1,10 @@
 {
   "app": {
     "energy_assistant": "Energy Assistant",
-    "home": "Home",    
+    "home": "Home",
     "live": "Live",
     "statistics": "Statistics",
-    "forecast": "Forecast",    
+    "forecast": "Forecast",
     "rawdata": "Data",
     "sessionlog": "Session Log",
     "settings": "Settings"
@@ -35,9 +35,10 @@
     "start": "Start",
     "text": "Text"
   },
-  "forecast":{
+  "forecast": {
     "pv": "PV",
-    "consumption": "Consumption"
+    "consumption": "Consumption",
+    "pv_forecast": "PV forecast"
   },
   "power_mode": {
     "device_controlled": "Device controlled",
@@ -48,6 +49,6 @@
     "optimized": "Optimized"
   },
   "tooltip": {
-    "show_menu": "Show\/hide menu"
+    "show_menu": "Show/hide menu"
   }
 }

@@ -42,7 +42,6 @@ const colors = [
   'green',
   'light-green',
   'lime',
-  'yellow',
   'amber',
   'organe',
   'deep-orange',
@@ -65,6 +64,8 @@ function getDataSetColor(name: string) {
   switch (name) {
     case 'pv':
       return theme.current.value.colors['sun'];
+    case 'pv_forecast':
+      return 'yellow';
     case 'consumption':
       return theme.current.value.colors['grid'];
     default:
@@ -76,6 +77,8 @@ function getDataSetLabel(name: string) {
   switch (name) {
     case 'pv':
       return t('forecast.pv');
+    case 'pv_forecast':
+      return t('forecast.pv_forecast');
     case 'consumption':
       return t('forecast.consumption');
     default:
@@ -87,7 +90,11 @@ function getDataSets(forecast: IForecast) {
   if (forecast && forecast.series) {
     let colorIterator = new ColorIterator();
     return forecast.series.map((serie) => {
-      if (serie.name == 'pv' || serie.name == 'consumption') {
+      if (
+        serie.name == 'pv' ||
+        serie.name == 'pv_forecast' ||
+        serie.name == 'consumption'
+      ) {
         let color = getDataSetColor(serie.name);
         return {
           label: getDataSetLabel(serie.name),
@@ -95,7 +102,7 @@ function getDataSets(forecast: IForecast) {
           fill: false,
           backgroundColor: color,
           borderColor: color,
-          pointStyle: false,
+          //pointStyle: false,
         };
       } else {
         let color = colorIterator.getNextColor();
