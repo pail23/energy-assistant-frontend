@@ -1,5 +1,5 @@
 <template>
-  <div class="v-full flex min-h-screen justify-center p-4 bg-background">
+  <div class="v-full h-96 w-full justify-center p-4 bg-background">
     <Line :data="data" :options="options" />
   </div>
 </template>
@@ -42,7 +42,6 @@ const colors = [
   'green',
   'light-green',
   'lime',
-  'amber',
   'organe',
   'deep-orange',
   'brown',
@@ -102,7 +101,8 @@ function getDataSets(forecast: IForecast) {
           fill: false,
           backgroundColor: color,
           borderColor: color,
-          //pointStyle: false,
+          borderWidth: 2,
+          pointStyle: false,
         };
       } else {
         let color = colorIterator.getNextColor();
@@ -113,6 +113,7 @@ function getDataSets(forecast: IForecast) {
           backgroundColor: color,
           borderColor: color,
           stepped: true,
+          borderWidth: 2,
           pointStyle: false,
         };
       }
