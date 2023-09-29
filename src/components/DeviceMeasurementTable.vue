@@ -20,11 +20,11 @@
             {{ d(new Date(measurement.measurement_date)) }}
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < deviceMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.solar_consumed_energy -
-                    deviceMeasurements[index - 1].solar_consumed_energy,
+                    deviceMeasurements[index + 1].solar_consumed_energy,
                   'kWh',
                 )
               }}
@@ -36,11 +36,11 @@
             </p>
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < deviceMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.consumed_energy -
-                    deviceMeasurements[index - 1].consumed_energy,
+                    deviceMeasurements[index + 1].consumed_energy,
                   'kWh',
                 )
               }}

@@ -25,11 +25,11 @@
             {{ d(new Date(measurement.measurement_date)) }}
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.solar_consumed_energy -
-                    homeMeasurements[index - 1].solar_consumed_energy,
+                    homeMeasurements[index + 1].solar_consumed_energy,
                   'kWh',
                 )
               }}
@@ -41,11 +41,11 @@
             </p>
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.consumed_energy -
-                    homeMeasurements[index - 1].consumed_energy,
+                    homeMeasurements[index + 1].consumed_energy,
                   'kWh',
                 )
               }}
@@ -55,11 +55,11 @@
             </p>
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.solar_produced_energy -
-                    homeMeasurements[index - 1].solar_produced_energy,
+                    homeMeasurements[index + 1].solar_produced_energy,
                   'kWh',
                 )
               }}
@@ -71,11 +71,11 @@
             </p>
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.grid_imported_energy -
-                    homeMeasurements[index - 1].grid_imported_energy,
+                    homeMeasurements[index + 1].grid_imported_energy,
                   'kWh',
                 )
               }}
@@ -87,11 +87,11 @@
             </p>
           </td>
           <td class="px-6 py-4">
-            <p v-if="index > 0">
+            <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
                   measurement.grid_exported_energy -
-                    homeMeasurements[index - 1].grid_exported_energy,
+                    homeMeasurements[index + 1].grid_exported_energy,
                   'kWh',
                 )
               }}
