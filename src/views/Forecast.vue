@@ -23,6 +23,7 @@ import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
 import { color } from 'chart.js/helpers';
 import { Result } from 'postcss';
+import { $t } from '@/plugins/i18n';
 
 const { t } = useI18n();
 const theme = useTheme();
@@ -34,7 +35,6 @@ const colors = [
   'pink',
   'purple',
   'deep-purple',
-  'indigo',
   'blue',
   'light-blue',
   'cyan',
@@ -67,6 +67,8 @@ function getDataSetColor(name: string) {
       return 'yellow';
     case 'consumption':
       return theme.current.value.colors['grid'];
+    case 'no_var_loads':
+      return 'indigo';
     default:
       return null;
   }
@@ -80,6 +82,8 @@ function getDataSetLabel(name: string) {
       return t('forecast.pv_forecast');
     case 'consumption':
       return t('forecast.consumption');
+    case 'no_var_loads':
+      return $t('forecast.no_var_loads');
     default:
       return api.getDeviceInfo(name).name;
   }
@@ -92,7 +96,8 @@ function getDataSets(forecast: IForecast) {
       if (
         serie.name == 'pv' ||
         serie.name == 'pv_forecast' ||
-        serie.name == 'consumption'
+        serie.name == 'consumption' ||
+        serie.name == 'no_var_loads'
       ) {
         let color = getDataSetColor(serie.name);
         return {

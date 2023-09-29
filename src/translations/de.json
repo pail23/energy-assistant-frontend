@@ -38,7 +38,8 @@
   "forecast": {
     "pv": "PV",
     "consumption": "Verbrauch",
-    "pv_forecast": "PV Vorhersage"
+    "pv_forecast": "PV Vorhersage",
+    "no_var_loads": "Basisverbrauch"
   },
   "power_mode": {
     "device_controlled": "Vom Gerät gesteuert",

@@ -38,7 +38,8 @@
   "forecast": {
     "pv": "PV",
     "consumption": "Consumption",
-    "pv_forecast": "PV forecast"
+    "pv_forecast": "PV forecast",
+    "no_var_loads": "Non variable loads"
   },
   "power_mode": {
     "device_controlled": "Device controlled",
