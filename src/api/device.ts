@@ -16,6 +16,7 @@ export interface IDevice {
   device_id: string;
   type: string;
   power: number;
+  available: boolean;
   today: IEnergy;
   attributes: Object;
 }

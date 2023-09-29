@@ -23,6 +23,7 @@
         <div v-for="(device, index) in home.devices" :key="index">
           <DeviceCard
             :device="api.getDeviceInfo(device.device_id)"
+            :available="device.available"
             :power="device.power"
             :today="device.today"
             :attributes="device.attributes"

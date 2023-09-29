@@ -50,5 +50,6 @@
   },
   "tooltip": {
     "show_menu": "Show/hide menu"
-  }
+  },
+  "unavailable": "unavailable"
 }

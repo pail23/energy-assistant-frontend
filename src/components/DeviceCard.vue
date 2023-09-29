@@ -7,7 +7,9 @@
     <v-card-text>
       <div class="grid w-full grid-cols-1">
         <div
-          v-if="attributes && Object.entries(attributes).length > 0"
+          v-if="
+            available && attributes && Object.entries(attributes).length > 0
+          "
           class="mt-2 items-center rounded-md bg-subgroup p-2"
         >
           <div
@@ -19,8 +21,11 @@
             <span class="float-right">{{ attribute[1] }}</span>
           </div>
         </div>
+        <div v-if="!available" class="mt-2 text-center rounded-md bg-error p-2">
+          {{ $t('unavailable') }}
+        </div>
         <div class="mt-2 items-center rounded-md bg-subgroup p-2">
-          <div class="text-left">
+          <div v-if="available" class="text-left">
             {{ t('consumption') }}
             <span class="float-right">{{
               formatNumberWithUnit(power, 'W')
@@ -54,6 +59,7 @@ const { t } = useI18n();
 
 interface Props {
   device: IDeviceInfo;
+  available: boolean;
   power: number;
   today: IEnergy;
   attributes?: object;
