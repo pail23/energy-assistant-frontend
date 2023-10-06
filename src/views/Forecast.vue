@@ -64,11 +64,11 @@ function getDataSetColor(name: string) {
     case 'pv':
       return theme.current.value.colors['sun'];
     case 'pv_forecast':
-      return 'yellow';
+      return theme.current.value.colors['sun'];
     case 'consumption':
       return theme.current.value.colors['grid'];
     case 'no_var_loads':
-      return 'indigo';
+      return theme.current.value.colors['grid'];
     default:
       return null;
   }
@@ -93,12 +93,7 @@ function getDataSets(forecast: IForecast) {
   if (forecast && forecast.series) {
     let colorIterator = new ColorIterator();
     return forecast.series.map((serie) => {
-      if (
-        serie.name == 'pv' ||
-        serie.name == 'pv_forecast' ||
-        serie.name == 'consumption' ||
-        serie.name == 'no_var_loads'
-      ) {
+      if (serie.name == 'pv' || serie.name == 'no_var_loads') {
         let color = getDataSetColor(serie.name);
         return {
           label: getDataSetLabel(serie.name),
@@ -106,21 +101,35 @@ function getDataSets(forecast: IForecast) {
           fill: false,
           backgroundColor: color,
           borderColor: color,
+          borderDash: [5, 5],
           borderWidth: 2,
           pointStyle: false,
         };
       } else {
-        let color = colorIterator.getNextColor();
-        return {
-          label: getDataSetLabel(serie.name),
-          data: serie.data,
-          fill: false,
-          backgroundColor: color,
-          borderColor: color,
-          stepped: true,
-          borderWidth: 2,
-          pointStyle: false,
-        };
+        if (serie.name == 'pv_forecast' || serie.name == 'consumption') {
+          let color = getDataSetColor(serie.name);
+          return {
+            label: getDataSetLabel(serie.name),
+            data: serie.data,
+            fill: false,
+            backgroundColor: color,
+            borderColor: color,
+            borderWidth: 2,
+            pointStyle: false,
+          };
+        } else {
+          let color = colorIterator.getNextColor();
+          return {
+            label: getDataSetLabel(serie.name),
+            data: serie.data,
+            fill: false,
+            backgroundColor: color,
+            borderColor: color,
+            stepped: true,
+            borderWidth: 2,
+            pointStyle: false,
+          };
+        }
       }
     });
   }

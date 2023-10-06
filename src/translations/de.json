@@ -37,7 +37,7 @@
   },
   "forecast": {
     "pv": "PV",
-    "consumption": "Verbrauch",
+    "consumption": "Basisverbrauch Vorhersage",
     "pv_forecast": "PV Vorhersage",
     "no_var_loads": "Basisverbrauch"
   },

@@ -37,7 +37,7 @@
   },
   "forecast": {
     "pv": "PV",
-    "consumption": "Consumption",
+    "consumption": "Non variable loads forecast",
     "pv_forecast": "PV forecast",
     "no_var_loads": "Non variable loads"
   },
