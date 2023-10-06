@@ -1,0 +1,56 @@
+{
+  "app": {
+    "energy_assistant": "Energy Assistant",
+    "home": "Thuis",
+    "live": "Live",
+    "statistics": "Statistiek",
+    "forecast": "Voorspelling",
+    "rawdata": "Data",
+    "sessionlog": "Sessie log",
+    "settings": "Instellingen"
+  },
+  "home_card": {
+    "solar_production": "Zonne-energieproductie"
+  },
+  "consumption": "Verbruik",
+  "temperature": "Temperatuur",
+  "state": "Status",
+  "consumed_solar_energy": "Verbruikte zonne-energie",
+  "consumed_energy": "Verbruikte energie",
+  "raw_data": {
+    "show_meter_values": "Toon meterstanden",
+    "date": "Datum",
+    "produced_solar_energy": "Opbrengst zonne-energie",
+    "imported_energy": "Geïmporteerde energie",
+    "exported_energy": "Geëxporteerde energie"
+  },
+  "device_attribute": {
+    "actual_temperature": "Temperatuur",
+    "state": "Status",
+    "pv_mode": "PV modus",
+    "vehicle_soc": "Laadniveau"
+  },
+  "sessionlog": {
+    "end": "Einde",
+    "start": "Start",
+    "text": "Text"
+  },
+  "forecast": {
+    "pv": "PV",
+    "consumption": "Verbruik",
+    "pv_forecast": "PV voorspelling",
+    "no_var_loads": "Basisverbruik"
+  },
+  "power_mode": {
+    "device_controlled": "Apparaat aangestuurd",
+    "pv": "PV",
+    "off": "Uit",
+    "fast": "Snel",
+    "min_pv": "Min+PV",
+    "optimized": "Geoptimaliseerd"
+  },
+  "tooltip": {
+    "show_menu": "Toon/verberg menu"
+  },
+  "unavailable": "Niet beschikbaar"
+}
