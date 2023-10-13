@@ -7,15 +7,17 @@
       <span class="loading loading-dots loading-lg py-2"></span>
     </div>
     <div v-else>
-      <select
-        v-model="selectedDevice"
-        class="select m-2 w-full max-w-xs bg-surface"
-        @change="onChangeDeviceSelection($event)"
-      >
-        <option v-for="device in devices" :key="device.id" :value="device.id">
-          {{ device.name }}
-        </option>
-      </select>
+      <div class="w-full space-x-2 rounded-lg m-4 p-4 elevation-6 bg-surface">
+        <select
+          v-model="selectedDevice"
+          class="select m-2 w-full max-w-xs bg-surface"
+          @change="onChangeDeviceSelection($event)"
+        >
+          <option v-for="device in devices" :key="device.id" :value="device.id">
+            {{ device.name }}
+          </option>
+        </select>
+      </div>
 
       <DeviceSessionLog
         v-if="device_sessionlog"
