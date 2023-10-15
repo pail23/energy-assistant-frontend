@@ -57,12 +57,14 @@ interface Props {
   sessionLog: ISessionLogEntry[];
 }
 
+function padWithLeadingZeros(num, totalLength) {
+  return String(num).padStart(totalLength, '0');
+}
+
 function formatTimeSpan(entry): string {
   const end = new Date(entry.end + 'Z').getTime();
   const start = new Date(entry.start + 'Z').getTime();
   let diff = end - start;
-  var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  diff -= days * (1000 * 60 * 60 * 24);
 
   var hours = Math.floor(diff / (1000 * 60 * 60));
   diff -= hours * (1000 * 60 * 60);
@@ -72,7 +74,13 @@ function formatTimeSpan(entry): string {
 
   var seconds = Math.floor(diff / 1000);
   diff -= seconds * 1000;
-  return hours + ':' + mins + ':' + seconds;
+  return (
+    padWithLeadingZeros(hours, 2) +
+    ':' +
+    padWithLeadingZeros(mins, 2) +
+    ':' +
+    padWithLeadingZeros(seconds, 2)
+  );
 }
 
 defineProps<Props>();
