@@ -49,7 +49,7 @@ const onChangeDeviceSelection = function (event) {
 };
 
 onMounted(async () => {
-  devices.value = await api.getAllDevices();
+  devices.value = await api.getAllDevices(true);
   if (devices.value.length > 0) {
     selectedDevice.value = devices.value[0].id;
     loadData(devices.value[0].id);

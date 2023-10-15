@@ -146,9 +146,13 @@ export class EnergyAssistantApi {
     return response.data.entries;
   }
 
-  public async getAllDevices(): Promise<IDeviceInfo[]> {
+  public async getAllDevices(
+    filterWithSessionLogEntries = false,
+  ): Promise<IDeviceInfo[]> {
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.get<IDeviceResponse>('devices');
+    const response = await this.axiosInstance.get<IDeviceResponse>(
+      'devices?filter_with_session_log_enties=' + filterWithSessionLogEntries,
+    );
     return response.data.devices;
   }
 
