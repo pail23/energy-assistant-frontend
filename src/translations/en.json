@@ -15,8 +15,8 @@
   "consumption": "Consumption",
   "temperature": "Temperature",
   "state": "State",
-  "consumed_solar_energy": "Consumed solar energy",
-  "consumed_energy": "Consumed energy",
+  "consumed_solar_energy": "Solar energy",
+  "consumed_energy": "Energy",
   "raw_data": {
     "show_meter_values": "Show meter values",
     "date": "Date",
@@ -33,7 +33,9 @@
   "sessionlog": {
     "end": "End",
     "start": "Start",
-    "text": "Text"
+    "text": "Text",
+    "time": "Time",
+    "duration": "Duration"
   },
   "forecast": {
     "pv": "PV",

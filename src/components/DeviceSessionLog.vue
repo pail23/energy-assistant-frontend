@@ -5,8 +5,8 @@
         <thead class="bg-primary">
           <tr>
             <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.start') }}</th>
-            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.end') }}</th>
-            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.text') }}</th>
+            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.duration') }}</th>
+            <!--    <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.text') }}</th>-->
             <th class="w-36 px-6 py-3">
               {{ $t('consumed_solar_energy') }}
             </th>
@@ -23,13 +23,26 @@
               {{ $d(new Date(entry.start + 'Z'), 'long') }}
             </td>
             <td class="px-6 py-4">
-              {{ $d(new Date(entry.end + 'Z'), 'long') }}
+              {{
+                formatTimeSpan(
+                  new Date(entry.end + 'Z') - new Date(entry.start + 'Z'),
+                )
+              }}
             </td>
+            <!--            
+
             <td class="px-6 py-4">
               {{ entry.text }}
-            </td>
+            </td> -->
             <td class="px-6 py-4">
-              {{ formatNumberWithUnit(entry.solar_consumed_energy, 'kWh') }}
+              <span v-if="entry.consumed_energy != 0">
+                {{
+                  (
+                    (entry.solar_consumed_energy / entry.consumed_energy) *
+                    100
+                  ).toFixed(0)
+                }}%
+              </span>
             </td>
             <td class="px-6 py-4">
               {{ formatNumberWithUnit(entry.consumed_energy, 'kWh') }}
@@ -46,6 +59,21 @@ import { formatNumberWithUnit } from '@/utils';
 
 interface Props {
   sessionLog: ISessionLogEntry[];
+}
+
+function formatTimeSpan(diff): string {
+  var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  diff -= days * (1000 * 60 * 60 * 24);
+
+  var hours = Math.floor(diff / (1000 * 60 * 60));
+  diff -= hours * (1000 * 60 * 60);
+
+  var mins = Math.floor(diff / (1000 * 60));
+  diff -= mins * (1000 * 60);
+
+  var seconds = Math.floor(diff / 1000);
+  diff -= seconds * 1000;
+  return hours + ':' + mins + ':' + seconds;
 }
 
 defineProps<Props>();
