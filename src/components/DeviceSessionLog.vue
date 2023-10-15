@@ -23,11 +23,7 @@
               {{ $d(new Date(entry.start + 'Z'), 'long') }}
             </td>
             <td class="px-6 py-4">
-              {{
-                formatTimeSpan(
-                  new Date(entry.end + 'Z') - new Date(entry.start + 'Z'),
-                )
-              }}
+              {{ formatTimeSpan(entry) }}
             </td>
             <!--            
 
@@ -61,7 +57,10 @@ interface Props {
   sessionLog: ISessionLogEntry[];
 }
 
-function formatTimeSpan(diff): string {
+function formatTimeSpan(entry): string {
+  const end = new Date(entry.end + 'Z').getTime();
+  const start = new Date(entry.start + 'Z').getTime();
+  let diff = end - start;
   var days = Math.floor(diff / (1000 * 60 * 60 * 24));
   diff -= days * (1000 * 60 * 60 * 24);
 
