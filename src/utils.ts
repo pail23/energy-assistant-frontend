@@ -14,3 +14,27 @@ export const formatNumberWithUnit = function (
     return value.toFixed(0) + ' ' + unit;
   }
 };
+
+function padWithLeadingZeros(num, totalLength) {
+  return String(num).padStart(totalLength, '0');
+}
+
+export const formatDuration = function (total_seconds: number): string {
+  let diff = total_seconds;
+
+  const hours = Math.floor(diff / 3600);
+  diff -= hours * 3600;
+
+  const mins = Math.floor(diff / 60);
+  diff -= mins * 60;
+
+  const seconds = Math.floor(diff);
+
+  return (
+    padWithLeadingZeros(hours, 2) +
+    ':' +
+    padWithLeadingZeros(mins, 2) +
+    ':' +
+    padWithLeadingZeros(seconds, 2)
+  );
+};

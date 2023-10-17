@@ -1,3 +1,4 @@
+import { $t } from '@/plugins/i18n';
 import { AxiosInstance } from 'axios';
 import axios from 'axios';
 
@@ -108,6 +109,12 @@ export class EnergyAssistantApi {
     this.axiosInstance.defaults.headers.common['Content-Type'] =
       'application/json';
     this.deviceInfos = await this.getAllDevices();
+    const otherDevice = this.getDeviceInfo(
+      '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7',
+    );
+    if (otherDevice != null) {
+      otherDevice.name = $t("otherDeviceName");
+    }
   }
 
   public async getAllHomeMeasurements() {

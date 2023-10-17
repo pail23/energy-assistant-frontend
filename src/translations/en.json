@@ -28,7 +28,10 @@
     "actual_temperature": "Temperature",
     "state": "State",
     "pv_mode": "PV mode",
-    "vehicle_soc": "Vehicle SoC"
+    "vehicle_soc": "Vehicle SoC",
+    "session_time": "Session duration",
+    "session_energy": "Session energy",
+    "session_solar_energy": "Session solar energy"
   },
   "sessionlog": {
     "end": "End",
@@ -54,5 +57,12 @@
   "tooltip": {
     "show_menu": "Show/hide menu"
   },
-  "unavailable": "unavailable"
+  "unavailable": "unavailable",
+  "statistics": {
+    "today": "Today",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year"
+  },
+  "otherDeviceName": "Other"
 }

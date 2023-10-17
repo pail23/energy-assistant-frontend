@@ -18,7 +18,9 @@
             class="text-left"
           >
             {{ t('device_attribute.' + attribute[0]) }}
-            <span class="float-right">{{ attribute[1] }}</span>
+            <span class="float-right">{{
+              getAttributeValue(attribute[0], attribute[1])
+            }}</span>
           </div>
         </div>
         <div v-if="!available" class="mt-2 text-center rounded-md bg-error p-2">
@@ -53,7 +55,7 @@ import PowerModeSelection from './PowerModeSelection.vue';
 import { IEnergy } from '@/api/device';
 import { IDeviceInfo } from '@/api/energyAssistant.api';
 import { useI18n } from 'vue-i18n';
-import { formatNumberWithUnit } from '@/utils';
+import { formatDuration, formatNumberWithUnit } from '@/utils';
 
 const { t } = useI18n();
 
@@ -66,4 +68,15 @@ interface Props {
 }
 
 defineProps<Props>();
+
+function getAttributeValue(name: string, value): string {
+  switch (name) {
+    case 'session_time':
+      return formatDuration(value);
+    case 'session_energy':
+    case 'session_solar_energy':
+      return formatNumberWithUnit(value, 'kWh');
+  }
+  return value;
+}
 </script>

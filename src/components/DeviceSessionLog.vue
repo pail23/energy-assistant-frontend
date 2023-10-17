@@ -51,36 +51,17 @@
 </template>
 <script lang="ts" setup>
 import { ISessionLogEntry } from '@/api/energyAssistant.api';
-import { formatNumberWithUnit } from '@/utils';
+import { formatNumberWithUnit, formatDuration } from '@/utils';
 
 interface Props {
   sessionLog: ISessionLogEntry[];
-}
-
-function padWithLeadingZeros(num, totalLength) {
-  return String(num).padStart(totalLength, '0');
 }
 
 function formatTimeSpan(entry): string {
   const end = new Date(entry.end + 'Z').getTime();
   const start = new Date(entry.start + 'Z').getTime();
   let diff = end - start;
-
-  var hours = Math.floor(diff / (1000 * 60 * 60));
-  diff -= hours * (1000 * 60 * 60);
-
-  var mins = Math.floor(diff / (1000 * 60));
-  diff -= mins * (1000 * 60);
-
-  var seconds = Math.floor(diff / 1000);
-  diff -= seconds * 1000;
-  return (
-    padWithLeadingZeros(hours, 2) +
-    ':' +
-    padWithLeadingZeros(mins, 2) +
-    ':' +
-    padWithLeadingZeros(seconds, 2)
-  );
+  return formatDuration(diff / 1000);
 }
 
 defineProps<Props>();
