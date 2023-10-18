@@ -28,12 +28,17 @@
     "actual_temperature": "Temperatuur",
     "state": "Status",
     "pv_mode": "PV modus",
-    "vehicle_soc": "Laadniveau"
+    "vehicle_soc": "Laadniveau",
+    "session_time": "Sessie duur",
+    "session_energy": "Sessie energie",
+    "session_solar_energy": "Sessie zonne-energie"
   },
   "sessionlog": {
     "end": "Einde",
     "start": "Start",
-    "text": "Text"
+    "text": "Text",
+    "time": "Tijd",
+    "duration": "Duur"
   },
   "forecast": {
     "pv": "PV",
@@ -52,5 +57,12 @@
   "tooltip": {
     "show_menu": "Toon/verberg menu"
   },
-  "unavailable": "Niet beschikbaar"
+  "unavailable": "Niet beschikbaar",
+  "statistics": {
+    "today": "Vandaag",
+    "week": "Week",
+    "month": "Maand",
+    "year": "Jaar"
+  },
+  "otherDeviceName": "Andere"
 }
