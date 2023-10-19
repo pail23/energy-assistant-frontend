@@ -2,6 +2,9 @@ export const formatNumberWithUnit = function (
   value: number,
   unit: string,
 ): string {
+  if (value == null) {
+    return '';
+  }
   if (value == 0.0) {
     return '0 ' + unit;
   }
