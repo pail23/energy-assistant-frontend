@@ -75,7 +75,7 @@ function getAttributeValue(name: string, value): string {
       return formatDuration(value);
     case 'session_energy':
     case 'session_solar_energy':
-      return formatNumberWithUnit(value, 'kWh');
+      return formatNumberWithUnit(parseFloat(value), 'kWh');
   }
   return value;
 }
