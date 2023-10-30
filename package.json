@@ -20,7 +20,7 @@
     "mobile-detect": "^1.4.5",
     "roboto-fontface": "*",
     "socket.io-client": "^4.7.2",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^2.0.0",
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.7",
     "vue-chartjs": "^5.2.0",
