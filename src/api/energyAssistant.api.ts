@@ -92,6 +92,14 @@ export interface IForecast {
   series: IForecastSerie[];
 }
 
+export interface ICreateForecastModel {
+  model: string;
+}
+
+export interface ITuneForecastModel {
+  model: string;
+}
+
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
@@ -113,7 +121,7 @@ export class EnergyAssistantApi {
       '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7',
     );
     if (otherDevice != null) {
-      otherDevice.name = $t("otherDeviceName");
+      otherDevice.name = $t('otherDeviceName');
     }
   }
 
@@ -207,6 +215,20 @@ export class EnergyAssistantApi {
   public async getForecast() {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IForecast>('forecast')).data;
+  }
+
+  public async createModel() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return await this.axiosInstance.post<ICreateForecastModel>(
+      'forecast/create_model',
+    );
+  }
+
+  public async tuneModel() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return await this.axiosInstance.post<ITuneForecastModel>(
+      'forecast/tune_model',
+    );
   }
 }
 

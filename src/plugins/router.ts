@@ -46,8 +46,39 @@ const routes = [
         path: '/settings',
         name: 'settings',
         component: () =>
-          import(/* webpackChunkName: "settings" */ '@/views/Settings.vue'),
+          import(
+            /* webpackChunkName: "settings" */ '@/views/settings/Settings.vue'
+          ),
         props: true,
+        children: [
+          {
+            path: 'devices',
+            name: 'devicessettings',
+            component: () =>
+              import(
+                /* webpackChunkName: "providersettings" */ '@/views/settings/Devices.vue'
+              ),
+            props: true,
+          },
+          {
+            path: 'forecast',
+            name: 'forecastsettings',
+            component: () =>
+              import(
+                /* webpackChunkName: "playersettings" */ '@/views/settings/Forecast.vue'
+              ),
+            props: true,
+          },
+          {
+            path: 'core',
+            name: 'coresettings',
+            component: () =>
+              import(
+                /* webpackChunkName: "coresettings" */ '@/views/settings/CoreConfigs.vue'
+              ),
+            props: true,
+          },
+        ],
       },
     ],
   },

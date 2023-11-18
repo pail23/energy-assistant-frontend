@@ -17,7 +17,7 @@
           <label
             for="1"
             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{$t("statistics.today")}}</label
+            >{{ $t('statistics.today') }}</label
           >
         </div>
 
@@ -33,7 +33,7 @@
           <label
             for="2"
             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{$t("statistics.week")}}</label
+            >{{ $t('statistics.week') }}</label
           >
         </div>
 
@@ -49,7 +49,7 @@
           <label
             for="3"
             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{$t("statistics.month")}}</label
+            >{{ $t('statistics.month') }}</label
           >
         </div>
 
@@ -65,7 +65,7 @@
           <label
             for="4"
             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{$t("statistics.year")}}</label
+            >{{ $t('statistics.year') }}</label
           >
         </div>
       </div>

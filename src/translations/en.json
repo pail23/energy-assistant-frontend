@@ -64,5 +64,11 @@
     "month": "Month",
     "year": "Year"
   },
-  "otherDeviceName": "Other"
+  "otherDeviceName": "Other",
+  "settings": {
+    "settings": "Settings",
+    "devices": "Devices",
+    "forecast": "Forecast",
+    "core": "Energy Assistant"
+  }
 }

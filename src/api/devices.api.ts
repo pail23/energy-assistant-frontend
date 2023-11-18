@@ -22,7 +22,7 @@ export default class DevicesAPIService {
       consumed_energy: 0.0,
       self_sufficiency: 0.0,
     } as IEnergy,
-    devices: [] as IDevice[]
+    devices: [] as IDevice[],
   });
   public state = reactive({
     connected: false,
