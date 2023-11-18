@@ -20,20 +20,20 @@
     "mobile-detect": "^1.4.5",
     "roboto-fontface": "*",
     "socket.io-client": "^4.7.2",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^2.0.0",
     "vite-plugin-vuetify": "^1.0.2",
-    "vue": "^3.2.47",
+    "vue": "^3.3.7",
     "vue-chartjs": "^5.2.0",
-    "vue-i18n": "^9.5.0",
+    "vue-i18n": "^9.6.5",
     "vue-query": "^1.26.0",
     "vue-router": "~4.2.5",
-    "vuetify": "^3.3.21"
+    "vuetify": "^3.3.23"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.6",
+    "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.8.9",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-vue": "^4.4.0",
@@ -43,15 +43,15 @@
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-vue": "^9.17.0",
+    "eslint-plugin-vue": "^9.18.1",
     "postcss": "^8.4.31",
-    "prettier": "^3.0.3",
+    "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "sass": "^1.69.4",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
-    "vite-plugin-pwa": "^0.16.5",
-    "vue-tsc": "^1.8.19"
+    "vite-plugin-pwa": "^0.16.7",
+    "vue-tsc": "^1.8.22"
   }
 }
