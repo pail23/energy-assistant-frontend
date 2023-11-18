@@ -42,6 +42,9 @@
 <script lang="ts" setup>
 import { api } from '@/api/energyAssistant.api';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const isCreating = ref(false);
 const isTuning = ref(false);
@@ -52,7 +55,7 @@ const CreateModel = async function () {
   const response = await api.createModel();
   isCreating.value = false;
   r2Label.value =
-    $t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
+    t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
 };
 
 const TuneModel = async function () {
