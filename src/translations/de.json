@@ -70,11 +70,12 @@
     "devices": "Geräte",
     "forecast": "Vorhersage",
     "core": "Energy Assistant",
-    "forecast_create_model": "Vorhersagemodel erzeugen",
-    "forecast_create_model_text": "Erzuege das Vorhersage Model für den Energieverbrauch basierend auf den historischen Daten aus Homeassistant.",
+    "forecast_create_model": "Vorhersagemodell erzeugen",
+    "forecast_create_model_text": "Erzuege das Vorhersagemodell für den Energieverbrauch basierend auf den historischen Daten aus Homeassistant.",
     "forecast_create": "Erzeugen",
-    "forecast_tune_model": "Vorhersagemodel optimieren",
-    "forecast_tune_model_text": "Optimiere das Vorhersagemodel. Dieser Vorgang kann einige Zeit dauern.",
-    "forecast_tune": "Optimieren"
+    "forecast_tune_model": "Vorhersagemodell optimieren",
+    "forecast_tune_model_text": "Optimiere das Vorhersagemodell. Dieser Vorgang kann einige Zeit dauern.",
+    "forecast_tune": "Optimieren",
+    "forecast_r2score": "Der R2 Wert des Modells ist"
   }
 }

@@ -93,7 +93,7 @@ export interface IForecast {
 }
 
 export interface ICreateForecastModel {
-  model: string;
+  r2: number;
 }
 
 export interface ITuneForecastModel {
