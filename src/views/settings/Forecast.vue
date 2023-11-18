@@ -46,13 +46,13 @@ const isTuning = ref(false);
 
 const CreateModel = async function () {
   isCreating.value = true;
-  let model = await api.createModel();
+  await api.createModel();
   isCreating.value = false;
 };
 
 const TuneModel = async function () {
   isTuning.value = true;
-  let model = await api.tuneModel();
+  await api.tuneModel();
   isTuning.value = false;
 };
 </script>
