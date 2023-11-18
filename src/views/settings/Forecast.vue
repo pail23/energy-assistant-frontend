@@ -1,8 +1,8 @@
 <template>
   <v-card class="m-4 max-w-sm elevation-6">
-    <v-card-title>Create forecast model</v-card-title>
+    <v-card-title>{{$t('settings.forecast_create_model')}}</v-card-title>
     <v-card-item>
-      Create the load forcast model based on historical data.
+      {{$t('settings.forecast_create_model_text') }}
       <v-progress-linear
         v-if="isCreating"
         indeterminate
@@ -12,16 +12,16 @@
 
     <v-card-actions>
       <v-btn class="m-2" @click="CreateModel">
-        Create load forecast model
+        {{$t('settings.forecast_create')}}
       </v-btn>
     </v-card-actions>
   </v-card>
 
   <v-card class="m-4 max-w-sm elevation-6">
-    <v-card-title>Tune forecast model</v-card-title>
+    <v-card-title>{{$t('settings.forecast_tune_model')}}</v-card-title>
     <v-card-item>
-      Tune the load forcast model in order to optimize the forecast quality.
-      This might take some time.
+      {{$t('settings.forecast_tune_model_text')}}
+
       <v-progress-linear
         v-if="isTuning"
         indeterminate
@@ -29,7 +29,9 @@
       ></v-progress-linear>
     </v-card-item>
     <v-card-actions>
-      <v-btn class="m-2" @click="TuneModel"> Tune load forecast model </v-btn>
+      <v-btn class="m-2" @click="TuneModel">
+       {{ $t('settings.forecast_tune')}}
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -37,6 +39,7 @@
 <script lang="ts" setup>
 import { api } from '@/api/energyAssistant.api';
 import { ref } from 'vue';
+
 
 const isCreating = ref(false);
 const isTuning = ref(false);

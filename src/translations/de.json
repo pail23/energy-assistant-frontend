@@ -69,6 +69,12 @@
     "settings": "Einstellungen",
     "devices": "Geräte",
     "forecast": "Vorhersage",
-    "core": "Energy Assistant"
+    "core": "Energy Assistant",
+    "forecast_create_model": "Vorhersagemodel erzeugen",
+    "forecast_create_model_text": "Erzuege das Vorhersage Model für den Energieverbrauch basierend auf den historischen Daten aus Homeassistant.",
+    "forecast_create": "Erzeugen",
+    "forecast_tune_model": "Vorhersagemodel optimieren",
+    "forecast_tune_model_text": "Optimiere das Vorhersagemodel. Dieser Vorgang kann einige Zeit dauern.",
+    "forecast_tune": "Optimieren"
   }
 }
