@@ -63,5 +63,4 @@ onMounted(async () => {
     loadData(devices.value[0].id);
   }
 });
-//console.log(data.home_measurements);
 </script>
