@@ -56,7 +56,7 @@ const routes = [
             name: 'devicessettings',
             component: () =>
               import(
-                /* webpackChunkName: "providersettings" */ '@/views/settings/Devices.vue'
+                /* webpackChunkName: "devicessettings" */ '@/views/settings/Devices.vue'
               ),
             props: true,
           },
@@ -65,7 +65,7 @@ const routes = [
             name: 'forecastsettings',
             component: () =>
               import(
-                /* webpackChunkName: "playersettings" */ '@/views/settings/Forecast.vue'
+                /* webpackChunkName: "forecastsettings" */ '@/views/settings/Forecast.vue'
               ),
             props: true,
           },
@@ -78,6 +78,11 @@ const routes = [
               ),
             props: true,
           },
+          {
+            path: '',
+            redirect: '/settings/devices', // default child path
+            name: 'settingsredirect',
+          },          
         ],
       },
     ],
