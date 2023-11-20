@@ -1,7 +1,7 @@
 <template>
-  <v-card class="m-4 w-full p-4 rounded-lg elevation-6">
+  <v-card class="md:m-4 w-full rounded-lg elevation-6">
     <v-card-text>
-      <v-table class="m-4 border rounded-lg">
+      <v-table class="sm:m-4 border">
         <thead class="bg-primary">
           <tr>
             <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.start') }}</th>

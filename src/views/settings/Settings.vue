@@ -2,7 +2,7 @@
   <div>
     <v-toolbar
       color="transparent"
-      :title="getBreakpointValue('bp4') ? $t('settings.settings') : ''"
+      :title="getBreakpointValue('bp4') ? $t('app.settings') : ''"
     >
       <template #append>
         <v-tabs :model-value="activeTab" align-tabs="end" height="100%">
@@ -23,10 +23,6 @@
     <div style="height: 15px"></div>
     <router-view v-slot="{ Component }">
       <component :is="Component" />
-      <!-- transition temporary disabled as it renders the view unusable somehow? -->
-      <!-- <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition> -->
     </router-view>
   </div>
 </template>

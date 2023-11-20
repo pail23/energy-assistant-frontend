@@ -66,7 +66,6 @@
   },
   "otherDeviceName": "Other",
   "settings": {
-    "settings": "Settings",
     "devices": "Devices",
     "forecast": "Forecast",
     "core": "Energy Assistant",
@@ -76,6 +75,7 @@
     "forecast_tune_model": "Tune forecast model",
     "forecast_tune_model_text": "      Tune the load forcast model in order to optimize the forecast quality.  This might take some time.",
     "forecast_tune": "Tune",
-    "forecast_r2score": "Model R2 score is"
+    "forecast_r2score": "Model R2 score is",
+    "delete_action": "Delete"
   }
 }

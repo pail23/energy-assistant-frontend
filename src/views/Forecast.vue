@@ -1,6 +1,10 @@
 <template>
-  <div class="v-full h-96 w-full justify-center p-4 bg-background">
-    <Line :data="data" :options="options" />
+  <div>
+    <v-toolbar color="transparent" :title="$t('app.forecast')" />
+    <v-divider />
+    <div class="v-full h-96 w-full justify-center p-4 bg-background">
+      <Line :data="data" :options="options" />
+    </div>
   </div>
 </template>
 

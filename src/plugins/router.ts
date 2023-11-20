@@ -82,7 +82,7 @@ const routes = [
             path: '',
             redirect: '/settings/devices', // default child path
             name: 'settingsredirect',
-          },          
+          },
         ],
       },
     ],

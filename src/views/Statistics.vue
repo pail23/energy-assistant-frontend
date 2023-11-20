@@ -1,106 +1,113 @@
 <template>
-  <div class="v-full flex min-h-screen justify-center p-4 bg-background">
-    <div class="grid grid-cols-1">
-      <div
-        class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl p-2 elevation-6 bg-surface"
-      >
-        <div>
-          <input
-            id="1"
-            v-model="timeframe"
-            type="radio"
-            name="option"
-            class="peer hidden"
-            value="today"
-            checked
-          />
-          <label
-            for="1"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{ $t('statistics.today') }}</label
-          >
-        </div>
-
-        <div>
-          <input
-            id="2"
-            v-model="timeframe"
-            type="radio"
-            name="option"
-            class="peer hidden"
-            value="week"
-          />
-          <label
-            for="2"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{ $t('statistics.week') }}</label
-          >
-        </div>
-
-        <div>
-          <input
-            id="3"
-            v-model="timeframe"
-            type="radio"
-            name="option"
-            class="peer hidden"
-            value="month"
-          />
-          <label
-            for="3"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{ $t('statistics.month') }}</label
-          >
-        </div>
-
-        <div>
-          <input
-            id="4"
-            v-model="timeframe"
-            type="radio"
-            name="option"
-            class="peer hidden"
-            value="year"
-          />
-          <label
-            for="4"
-            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-            >{{ $t('statistics.year') }}</label
-          >
-        </div>
-      </div>
-
-      <div
-        v-if="isLoading"
-        class="grid w-full grid-cols-1 justify-items-center"
-      >
-        <span class="loading loading-dots loading-lg py-2"></span>
-      </div>
-      <div v-else>
+  <div>
+    <v-toolbar color="transparent" :title="$t('app.statistics')" />
+    <v-divider />
+    <div class="v-full flex min-h-screen justify-center p-4 bg-background">
+      <div class="grid grid-cols-1">
         <div
-          v-if="data"
-          class="grid grid-cols-1 justify-items-center lg:grid-cols-2"
+          class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl p-2 elevation-6 bg-surface"
         >
-          <PowerFlowCard
-            :home-consumption-power="data.consumed_energy"
-            :solar-power="data.solar_produced_energy"
-            :grid-imported-energy="data.grid_imported_energy"
-            :grid-exported-energy="data.grid_exported_energy"
-            unit="kWh"
-          >
-          </PowerFlowCard>
-          <WeeklyStatisticsCard
-            v-if="timeframe == 'week' && statistics != null"
-            :data="statistics"
-          >
-          </WeeklyStatisticsCard>
-          <div v-for="(device, index) in data.device_measurements" :key="index">
-            <DeviceEnergyCard
-              :measurement="device"
-              :device="api.getDeviceInfo(device.device_id)"
-              :statistics="statistics"
-              :timeframe="timeframe"
+          <div>
+            <input
+              id="1"
+              v-model="timeframe"
+              type="radio"
+              name="option"
+              class="peer hidden"
+              value="today"
+              checked
             />
+            <label
+              for="1"
+              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
+              >{{ $t('statistics.today') }}</label
+            >
+          </div>
+
+          <div>
+            <input
+              id="2"
+              v-model="timeframe"
+              type="radio"
+              name="option"
+              class="peer hidden"
+              value="week"
+            />
+            <label
+              for="2"
+              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
+              >{{ $t('statistics.week') }}</label
+            >
+          </div>
+
+          <div>
+            <input
+              id="3"
+              v-model="timeframe"
+              type="radio"
+              name="option"
+              class="peer hidden"
+              value="month"
+            />
+            <label
+              for="3"
+              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
+              >{{ $t('statistics.month') }}</label
+            >
+          </div>
+
+          <div>
+            <input
+              id="4"
+              v-model="timeframe"
+              type="radio"
+              name="option"
+              class="peer hidden"
+              value="year"
+            />
+            <label
+              for="4"
+              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
+              >{{ $t('statistics.year') }}</label
+            >
+          </div>
+        </div>
+
+        <div
+          v-if="isLoading"
+          class="grid w-full grid-cols-1 justify-items-center"
+        >
+          <span class="loading loading-dots loading-lg py-2"></span>
+        </div>
+        <div v-else>
+          <div
+            v-if="data"
+            class="grid grid-cols-1 justify-items-center lg:grid-cols-2"
+          >
+            <PowerFlowCard
+              :home-consumption-power="data.consumed_energy"
+              :solar-power="data.solar_produced_energy"
+              :grid-imported-energy="data.grid_imported_energy"
+              :grid-exported-energy="data.grid_exported_energy"
+              unit="kWh"
+            >
+            </PowerFlowCard>
+            <WeeklyStatisticsCard
+              v-if="timeframe == 'week' && statistics != null"
+              :data="statistics"
+            >
+            </WeeklyStatisticsCard>
+            <div
+              v-for="(device, index) in data.device_measurements"
+              :key="index"
+            >
+              <DeviceEnergyCard
+                :measurement="device"
+                :device="api.getDeviceInfo(device.device_id)"
+                :statistics="statistics"
+                :timeframe="timeframe"
+              />
+            </div>
           </div>
         </div>
       </div>
