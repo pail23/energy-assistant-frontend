@@ -16,6 +16,16 @@
         </v-card-actions>
       </v-card>
     </div>
+    <v-dialog v-model="dialog" width="auto">
+      <v-card>
+        <v-card-text>
+          Please remove the device manually from the config file.
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" block @click="dialog = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -24,9 +34,13 @@ import { api, IDeviceInfo } from '@/api/energyAssistant.api';
 import { ref, onMounted } from 'vue';
 
 const devices = ref<IDeviceInfo[]>();
+const dialog = ref<boolean>(false);
 
 const DeleteDevice = async function (id: string) {
-  alert('Delete Device ' + id + ' is not yet implemented.');
+  await api.deleteDevice(id);
+  devices.value = await api.getAllDevices(false);
+  dialog.value = true;
+  //  alert('Please remove the device manually from the config file.');
 };
 
 onMounted(async () => {
