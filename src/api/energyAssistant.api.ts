@@ -189,7 +189,7 @@ export class EnergyAssistantApi {
 
   public async deleteDevice(id: string) {
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.delete('devices/' + id);
+    await this.axiosInstance.delete('devices/' + id);
   }
 
   public async setPowerMode(id: string, power_mode: string) {
