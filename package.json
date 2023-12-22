@@ -14,7 +14,7 @@
     "@mdi/font": "^7.3.67",
     "@mdi/js": "^7.3.67",
     "axios": "^1.6.2",
-    "chart.js": "^4.4.0",
+    "chart.js": "^4.4.1",
     "chartjs-plugin-datalabels": "^2.2.0",
     "material-design-icons-iconfont": "^6.7.0",
     "mobile-detect": "^1.4.5",
@@ -22,8 +22,8 @@
     "socket.io-client": "^4.7.2",
     "tailwind-merge": "^2.0.0",
     "vite-plugin-vuetify": "^1.0.2",
-    "vue": "^3.3.9",
-    "vue-chartjs": "^5.2.0",
+    "vue": "^3.3.12",
+    "vue-chartjs": "^5.3.0",
     "vue-i18n": "^9.7.0",
     "vue-query": "^1.26.0",
     "vue-router": "~4.2.5",
@@ -51,7 +51,7 @@
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
-    "vite-plugin-pwa": "^0.17.2",
+    "vite-plugin-pwa": "^0.17.4",
     "vue-tsc": "^1.8.22"
   }
 }
