@@ -1,0 +1,3 @@
+include README.md
+graft energy_assistant_frontend
+recursive-exclude * *.py[co]

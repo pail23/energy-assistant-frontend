@@ -9,8 +9,10 @@ lerna-debug.log*
 
 node_modules
 dist
+energy_assistant_frontend
 dist-ssr
 *.local
+*.egg-info
 
 # Editor directories and files
 .vscode/*
