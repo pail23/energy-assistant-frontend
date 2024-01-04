@@ -18,7 +18,7 @@
         </v-card-title>
         <v-card-text>
           <div class="h-96">
-            <Line :data="data" :options="options" />
+            <Line :data="data" :options="optionsEnergyChart" />
           </div>
         </v-card-text>
       </v-card>
@@ -28,11 +28,10 @@
         </v-card-title>
         <v-card-text>
           <div class="h-96">
-            <Line :data="costProfitData" :options="options" />
+            <Line :data="costProfitData" :options="optionsCostProfitChart" />
           </div>
         </v-card-text>
       </v-card>
-
     </div>
   </div>
 </template>
@@ -58,11 +57,13 @@ import { color } from 'chart.js/helpers';
 import { Result } from 'postcss';
 import { $t } from '@/plugins/i18n';
 import { servicesVersion } from 'typescript';
+import { config } from 'process';
 
-//const { t } = useI18n();
 const theme = useTheme();
 
 const forecast = ref<IForecast>();
+
+const currency = ref('');
 
 const colors = [
   'red',
@@ -181,7 +182,7 @@ function getCostProfitDataSets(forecast: IForecast) {
       .map((serie) => {
         const color = 'blue';
         return {
-          label: 'Cost / Profit',
+          label: $t('forecast.cost_profit'),
           data: serie.data,
           fill: false,
           backgroundColor: color,
@@ -232,16 +233,28 @@ const costTotalProfitLabel = computed(() => {
 
   if (totalCostProfit) {
     if (totalCostProfit < 0) {
-      return $t('forecast.total_cost') + ': ' + -totalCostProfit.toFixed(2);
+      return (
+        $t('forecast.total_cost') +
+        ': ' +
+        -totalCostProfit.toFixed(2) +
+        ' ' +
+        currency.value
+      );
     } else {
-      return $t('forecast.total_profit') + ': ' + totalCostProfit.toFixed(2);
+      return (
+        $t('forecast.total_profit') +
+        ': ' +
+        totalCostProfit.toFixed(2) +
+        ' ' +
+        currency.value
+      );
     }
   } else {
     return 'unknown';
   }
 });
 
-const options = {
+const optionsEnergyChart = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -249,7 +262,35 @@ const options = {
       display: false,
     },
   },
+  scales: {
+    y: {
+      title: {
+        display: true,
+        text: 'W',
+      },
+    },
+  },
 };
+
+const optionsCostProfitChart = computed(() => {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      datalabels: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: currency.value,
+        },
+      },
+    },
+  };
+});
 
 ChartJS.register(
   CategoryScale,
@@ -263,5 +304,8 @@ ChartJS.register(
 
 onMounted(async () => {
   forecast.value = await api.getForecast();
+  const config = await api.getConfig();
+  currency.value = config.home_assistant.currency;
+  console.log(config.home_assistant);
 });
 </script>

@@ -49,7 +49,7 @@
     "total_cost": "Total Kosten",
     "total_profit": "Total Profit",
     "energy": "Energie",
-    "cost_profit": "Kosten oder Profit"
+    "cost_profit": "Kosten / Profit"
   },
   "power_mode": {
     "device_controlled": "Vom Gerät gesteuert",

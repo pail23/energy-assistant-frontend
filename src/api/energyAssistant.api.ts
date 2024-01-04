@@ -100,6 +100,10 @@ export interface ITuneForecastModel {
   model: string;
 }
 
+export interface IConfig {
+  config: object;
+}
+
 export class EnergyAssistantApi {
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
@@ -234,6 +238,11 @@ export class EnergyAssistantApi {
     return await this.axiosInstance.post<ITuneForecastModel>(
       'forecast/tune_model',
     );
+  }
+
+  public async getConfig() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return (await this.axiosInstance.get<IConfig>('config')).data.config;
   }
 }
 

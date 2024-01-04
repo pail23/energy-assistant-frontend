@@ -49,7 +49,7 @@
     "total_cost": "Total cost",
     "total_profit": "Total profit",
     "energy": "Energy",
-    "cost_profit": "Cost or profit"
+    "cost_profit": "Cost / profit"
   },
   "power_mode": {
     "device_controlled": "Device controlled",
