@@ -44,7 +44,12 @@
     "pv": "PV",
     "consumption": "Basisverbrauch Vorhersage",
     "pv_forecast": "PV Vorhersage",
-    "no_var_loads": "Basisverbrauch"
+    "no_var_loads": "Basisverbrauch",
+    "summary": "Zusammenfassung",
+    "total_cost": "Total Kosten",
+    "total_profit": "Total Profit",
+    "energy": "Energie",
+    "cost_profit": "Kosten oder Profit"
   },
   "power_mode": {
     "device_controlled": "Vom Gerät gesteuert",

@@ -44,7 +44,12 @@
     "pv": "PV",
     "consumption": "Non variable loads forecast",
     "pv_forecast": "PV forecast",
-    "no_var_loads": "Non variable loads"
+    "no_var_loads": "Non variable loads",
+    "summary": "Summary",
+    "total_cost": "Total cost",
+    "total_profit": "Total profit",
+    "energy": "Energy",
+    "cost_profit": "Cost or profit"
   },
   "power_mode": {
     "device_controlled": "Device controlled",
