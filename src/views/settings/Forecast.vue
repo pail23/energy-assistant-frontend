@@ -2,7 +2,16 @@
   <v-card class="m-4 max-w-sm elevation-6">
     <v-card-title>{{ $t('settings.forecast_create_model') }}</v-card-title>
     <v-card-item>
-      {{ $t('settings.forecast_create_model_text') }}
+      <div class="my-2">
+        {{ $t('settings.forecast_create_model_text') }}
+      </div>
+      <v-text-field
+        v-model="numberOfDays"
+        label="Anzahl Tage"
+        single-line
+        type="number"
+        :rules="dayRules"
+      />
       <v-progress-linear
         v-if="isCreating"
         indeterminate
@@ -49,16 +58,27 @@ const { t } = useI18n();
 const isCreating = ref(false);
 const isTuning = ref(false);
 const r2Label = ref('');
+const numberOfDays = ref(10);
 
 const CreateModel = async function () {
   isCreating.value = true;
-  const response = await api.createModel();
-  isCreating.value = false;
-  r2Label.value =
-    t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
+  try {
+    const response = await api.createModel(numberOfDays.value);
+    r2Label.value =
+      t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
+  } catch (error) {
+    r2Label.value = t('settings.forecast_create_model_error');
+  } finally {
+    isCreating.value = false;
+  }
 };
 
-const TuneModel = async function () {
+const dayRules = [
+  (value) => !!value || t("settings.forecast_field_required"),
+  (value) => (!!value && value > 2) || t("settings.forecast_value_too_small"),
+];
+
+const TuneModel = async () => {
   isTuning.value = true;
   await api.tuneModel();
   isTuning.value = false;

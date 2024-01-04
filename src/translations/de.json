@@ -70,12 +70,15 @@
     "forecast": "Vorhersage",
     "core": "Energy Assistant",
     "forecast_create_model": "Vorhersagemodell erzeugen",
-    "forecast_create_model_text": "Erzuege das Vorhersagemodell für den Energieverbrauch basierend auf den historischen Daten aus Homeassistant.",
+    "forecast_create_model_text": "Erzeuge das Vorhersagemodell für den Energieverbrauch basierend auf den historischen Daten aus Homeassistant.",
     "forecast_create": "Erzeugen",
     "forecast_tune_model": "Vorhersagemodell optimieren",
     "forecast_tune_model_text": "Optimiere das Vorhersagemodell. Dieser Vorgang kann einige Zeit dauern.",
     "forecast_tune": "Optimieren",
     "forecast_r2score": "Der R2 Wert des Modells ist",
-    "delete_action": "Löschen"
+    "delete_action": "Löschen",
+    "forecast_create_model_error": "Das Model konnte nicht erstellt werden. Homeassistant hat wahrscheinlich nicht genügend Daten.",
+    "forecast_value_too_small": "Der Wert ist zu klein.",
+    "forecast_field_required": "Bitte einen Wert eingeben."
   }
 }

@@ -222,10 +222,10 @@ export class EnergyAssistantApi {
     return (await this.axiosInstance.get<IForecast>('forecast')).data;
   }
 
-  public async createModel() {
+  public async createModel(daysToRetreive: number) {
     if (!this.axiosInstance) throw 'not initialized';
     return await this.axiosInstance.post<ICreateForecastModel>(
-      'forecast/create_model',
+      'forecast/create_model?days_to_retrieve=' + daysToRetreive,
     );
   }
 

@@ -73,9 +73,12 @@
     "forecast_create_model_text": "Create the load forcast model based on historical data.",
     "forecast_create": "Create",
     "forecast_tune_model": "Tune forecast model",
-    "forecast_tune_model_text": "      Tune the load forcast model in order to optimize the forecast quality.  This might take some time.",
+    "forecast_tune_model_text": "Tune the load forcast model in order to optimize the forecast quality.  This might take some time.",
     "forecast_tune": "Tune",
     "forecast_r2score": "Model R2 score is",
-    "delete_action": "Delete"
+    "delete_action": "Delete",
+    "forecast_create_model_error": "Failed to create the model. Homeassistant might not have enough data.",
+    "forecast_value_too_small": "The value is too small.",
+    "forecast_field_required": "Field is required"
   }
 }
