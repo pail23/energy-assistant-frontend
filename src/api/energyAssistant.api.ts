@@ -88,6 +88,9 @@ export interface IForecastSerie {
 }
 
 export interface IForecast {
+  cost: number;
+  solar_energy: number;
+  consumed_energy: number;
   time: Date[];
   series: IForecastSerie[];
 }

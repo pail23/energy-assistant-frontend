@@ -9,6 +9,10 @@
         </v-card-title>
         <v-card-text>
           <div>{{ costTotalProfitLabel }}</div>
+          <div>
+            {{ $t('consumption') + ': '+ formatNumberWithUnit(forecast?.consumed_energy, 'kWh') }}
+          </div>
+          <div>{{ $t('home_card.solar_production') + ': '+ formatNumberWithUnit(forecast?.solar_energy, 'kWh') }}</div>
         </v-card-text>
       </v-card>
 
@@ -56,8 +60,7 @@ import { useTheme } from 'vuetify';
 import { color } from 'chart.js/helpers';
 import { Result } from 'postcss';
 import { $t } from '@/plugins/i18n';
-import { servicesVersion } from 'typescript';
-import { config } from 'process';
+import { formatNumberWithUnit } from '@/utils';
 
 const theme = useTheme();
 
@@ -222,14 +225,7 @@ const costProfitData = computed(() => {
 });
 
 const costTotalProfitLabel = computed(() => {
-  const profitSerie = forecast.value?.series.filter(
-    (serie) => serie.name == 'cost_profit',
-  )[0].data;
-
-  const totalCostProfit = profitSerie?.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0,
-  );
+  const totalCostProfit = forecast.value?.cost;
 
   if (totalCostProfit) {
     if (totalCostProfit < 0) {
