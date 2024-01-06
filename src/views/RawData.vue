@@ -23,7 +23,7 @@
 
         <v-select
           v-model="selectedDevice"
-          class="my-4 bg-surface rounded-lg"
+          class="my-4 bg-surface rounded-md"
           :items="devices ? devices : []"
           item-title="name"
           item-value="id"

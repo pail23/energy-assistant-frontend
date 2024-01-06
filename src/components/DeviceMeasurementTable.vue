@@ -1,6 +1,6 @@
 <template>
-  <v-card class="rounded-lg elevation-2">
-    <v-table class="m-4 rounded-lg border">
+  <v-card class="rounded-md elevation-2">
+    <v-table class="m-4 rounded-md border">
       <thead class="bg-primary">
         <tr>
           <th class="w-24 px-6 py-3">{{ t('raw_data.date') }}</th>

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-2">
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
     <v-card-text>
       <div class="relative mx-auto">
         <svg class="h-full w-full" viewBox="0 0 200 180">

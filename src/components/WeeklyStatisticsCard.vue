@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-2">
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
     <v-card-text class="h-100 w-auto">
       <WeeklyStatistics :data="data" />
     </v-card-text>
