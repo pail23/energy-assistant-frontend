@@ -3,7 +3,7 @@
     <v-toolbar color="transparent" :title="$t('app.forecast')" />
     <v-divider />
     <div class="v-full w-full justify-center p-4 bg-background">
-      <v-card class="mb-4 p-4 rounded-lg elevation-6">
+      <v-card class="mb-4 p-4 rounded-lg elevation-2">
         <v-card-title>
           {{ $t('forecast.summary') }}
         </v-card-title>
@@ -26,7 +26,7 @@
         </v-card-text>
       </v-card>
 
-      <v-card class="mb-4 p-4 rounded-lg elevation-6">
+      <v-card class="mb-4 p-4 rounded-lg elevation-2">
         <v-card-title>
           {{ $t('forecast.energy') }}
         </v-card-title>
@@ -36,7 +36,7 @@
           </div>
         </v-card-text>
       </v-card>
-      <v-card class="mb-4 p-4 rounded-lg elevation-6">
+      <v-card class="mb-4 p-4 rounded-lg elevation-2">
         <v-card-title>
           {{ $t('forecast.cost_profit') }}
         </v-card-title>

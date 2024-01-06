@@ -1,5 +1,5 @@
 <template>
-  <v-card class="md:m-4 w-full rounded-lg elevation-6">
+  <v-card class="md:m-4 w-full rounded-lg elevation-2">
     <v-card-text>
       <v-table class="sm:m-4 border">
         <thead class="bg-primary">

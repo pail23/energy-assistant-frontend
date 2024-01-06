@@ -3,7 +3,7 @@
     <div v-for="(device, index) in devices" :key="index">
       <v-card
         v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'"
-        class="m-4 max-w-sm elevation-6"
+        class="m-4 max-w-sm elevation-2"
       >
         <v-card-title>
           <span class="mdi pr-2" :class="device.icon"></span>

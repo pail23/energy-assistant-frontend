@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-6">
+  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-lg elevation-2">
     <v-card-title>
       <span class="mdi pr-2" :class="device.icon"></span>
       <span class="">{{ device.name }}</span>

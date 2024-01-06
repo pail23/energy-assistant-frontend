@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 max-w-sm elevation-6">
+  <v-card class="m-4 max-w-sm elevation-2">
     <v-card-title>{{ $t('settings.forecast_create_model') }}</v-card-title>
     <v-card-item>
       <div class="my-2">
@@ -29,7 +29,7 @@
     </v-card-actions>
   </v-card>
 
-  <v-card class="m-4 max-w-sm elevation-6">
+  <v-card class="m-4 max-w-sm elevation-2">
     <v-card-title>{{ $t('settings.forecast_tune_model') }}</v-card-title>
     <v-card-item>
       {{ $t('settings.forecast_tune_model_text') }}
