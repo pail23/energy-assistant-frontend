@@ -1,113 +1,57 @@
 <template>
   <div>
-    <v-toolbar color="transparent" :title="$t('app.statistics')" />
+    <v-toolbar
+      color="transparent"
+      :title="getBreakpointValue('bp4') ? $t('app.statistics') : ''"
+    >
+      <template #append>
+        <v-tabs v-model="activeTab" align-tabs="end" height="100%">
+          <v-tab value="today">
+            {{ $t('statistics.today') }}
+          </v-tab>
+          <v-tab value="week">
+            {{ $t('statistics.week') }}
+          </v-tab>
+          <v-tab value="month">
+            {{ $t('statistics.month') }}
+          </v-tab>
+          <v-tab value="year">
+            {{ $t('statistics.year') }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-toolbar>
+
     <v-divider />
-    <div class="v-full flex min-h-screen justify-center p-4 bg-background">
-      <div class="grid grid-cols-1">
-        <div
-          class="grid h-14 w-full grid-cols-4 space-x-2 rounded-xl p-2 elevation-6 bg-surface"
-        >
-          <div>
-            <input
-              id="1"
-              v-model="timeframe"
-              type="radio"
-              name="option"
-              class="peer hidden"
-              value="today"
-              checked
-            />
-            <label
-              for="1"
-              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-              >{{ $t('statistics.today') }}</label
-            >
-          </div>
-
-          <div>
-            <input
-              id="2"
-              v-model="timeframe"
-              type="radio"
-              name="option"
-              class="peer hidden"
-              value="week"
-            />
-            <label
-              for="2"
-              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-              >{{ $t('statistics.week') }}</label
-            >
-          </div>
-
-          <div>
-            <input
-              id="3"
-              v-model="timeframe"
-              type="radio"
-              name="option"
-              class="peer hidden"
-              value="month"
-            />
-            <label
-              for="3"
-              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-              >{{ $t('statistics.month') }}</label
-            >
-          </div>
-
-          <div>
-            <input
-              id="4"
-              v-model="timeframe"
-              type="radio"
-              name="option"
-              class="peer hidden"
-              value="year"
-            />
-            <label
-              for="4"
-              class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary peer-checked:font-bold peer-checked:text-primary"
-              >{{ $t('statistics.year') }}</label
-            >
-          </div>
-        </div>
-
-        <div
-          v-if="isLoading"
-          class="grid w-full grid-cols-1 justify-items-center"
-        >
-          <span class="loading loading-dots loading-lg py-2"></span>
-        </div>
-        <div v-else>
-          <div
-            v-if="data"
-            class="grid grid-cols-1 justify-items-center lg:grid-cols-2"
+    <div class="flex min-h-screen w-full justify-center">
+      <div
+        v-if="isLoading"
+        class="grid w-full grid-cols-1 justify-items-center"
+      >
+        <span class="loading loading-dots loading-lg py-2"></span>
+      </div>
+      <div v-else>
+        <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2 p-4">
+          <PowerFlowCard
+            :home-consumption-power="data.consumed_energy"
+            :solar-power="data.solar_produced_energy"
+            :grid-imported-energy="data.grid_imported_energy"
+            :grid-exported-energy="data.grid_exported_energy"
+            unit="kWh"
           >
-            <PowerFlowCard
-              :home-consumption-power="data.consumed_energy"
-              :solar-power="data.solar_produced_energy"
-              :grid-imported-energy="data.grid_imported_energy"
-              :grid-exported-energy="data.grid_exported_energy"
-              unit="kWh"
-            >
-            </PowerFlowCard>
-            <WeeklyStatisticsCard
-              v-if="timeframe == 'week' && statistics != null"
-              :data="statistics"
-            >
-            </WeeklyStatisticsCard>
-            <div
-              v-for="(device, index) in data.device_measurements"
-              :key="index"
-            >
-              <DeviceEnergyCard
-                :measurement="device"
-                :device="api.getDeviceInfo(device.device_id)"
-                :statistics="statistics"
-                :timeframe="timeframe"
-              />
-            </div>
+          </PowerFlowCard>
+          <WeeklyStatisticsCard
+            v-if="activeTab == 'week' && statistics != null"
+            :data="statistics"
+          >
+          </WeeklyStatisticsCard>
+          <div v-for="(device, index) in data.device_measurements" :key="index">
+            <DeviceEnergyCard
+              :measurement="device"
+              :device="api.getDeviceInfo(device.device_id)"
+              :statistics="statistics"
+              :timeframe="activeTab"
+            />
           </div>
         </div>
       </div>
@@ -116,24 +60,42 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import {
   api,
   IHomeMeasurementPeriod,
   IHomeMeasurementDate,
 } from '@/api/energyAssistant.api';
+import { getBreakpointValue } from '@/plugins/breakpoint';
+import { useRouter } from 'vue-router';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
 
-const timeframe = ref('today');
+// global refs
+const router = useRouter();
 const data = ref<IHomeMeasurementPeriod>();
 const statistics = ref<IHomeMeasurementDate[]>();
+const isLoading = ref(false);
 
-watch(timeframe, () => {
+// computed properties
+const activeTab = ref('today'); /* computed(() => {
+  if (router.currentRoute.value.name?.toString().includes('today')) {
+    return 'today';
+  }
+  if (router.currentRoute.value.name?.toString().includes('week')) {
+    return 'week';
+  }
+  if (router.currentRoute.value.name?.toString().includes('month')) {
+    return 'month';
+  }
+  return 'year';
+});
+*/
+watch(activeTab, () => {
   const from_date = new Date();
 
-  switch (timeframe.value) {
+  switch (activeTab.value) {
     case 'week':
       from_date.setDate(from_date.getDate() - 7);
       break;
@@ -144,7 +106,12 @@ watch(timeframe, () => {
       from_date.setFullYear(from_date.getFullYear() - 1);
       break;
   }
+  console.log('Load ' + from_date.toString());
   loadData(from_date);
+});
+
+onMounted(() => {
+  loadData(new Date());
 });
 
 const loadData = async function (from_date: Date) {
@@ -155,18 +122,4 @@ const loadData = async function (from_date: Date) {
   statistics.value = await api.getDailyMeasurements(from_date, new Date());
   isLoading.value = false;
 };
-
-onMounted(() => {
-  loadData(new Date());
-});
-
-const isLoading = ref(false);
-
-//const { data, isLoading } = useQuery('home_measurements', () => getHomeMeasurementsByDateFn(from_date.value, new Date()));
 </script>
-
-<style scoped>
-input[type='radio']:checked + label {
-  background-color: rgb(var(--v-theme-primary));
-}
-</style>
