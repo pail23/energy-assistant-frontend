@@ -60,38 +60,25 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch, ref, onMounted } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import {
   api,
   IHomeMeasurementPeriod,
   IHomeMeasurementDate,
 } from '@/api/energyAssistant.api';
 import { getBreakpointValue } from '@/plugins/breakpoint';
-import { useRouter } from 'vue-router';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
 
 // global refs
-const router = useRouter();
 const data = ref<IHomeMeasurementPeriod>();
 const statistics = ref<IHomeMeasurementDate[]>();
 const isLoading = ref(false);
 
 // computed properties
-const activeTab = ref('today'); /* computed(() => {
-  if (router.currentRoute.value.name?.toString().includes('today')) {
-    return 'today';
-  }
-  if (router.currentRoute.value.name?.toString().includes('week')) {
-    return 'week';
-  }
-  if (router.currentRoute.value.name?.toString().includes('month')) {
-    return 'month';
-  }
-  return 'year';
-});
-*/
+const activeTab = ref('today');
+
 watch(activeTab, () => {
   const from_date = new Date();
 

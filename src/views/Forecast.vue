@@ -10,9 +10,19 @@
         <v-card-text>
           <div>{{ costTotalProfitLabel }}</div>
           <div>
-            {{ $t('consumption') + ': '+ formatNumberWithUnit(forecast?.consumed_energy, 'kWh') }}
+            {{
+              $t('consumption') +
+              ': ' +
+              formatNumberWithUnit(forecast?.consumed_energy, 'kWh')
+            }}
           </div>
-          <div>{{ $t('home_card.solar_production') + ': '+ formatNumberWithUnit(forecast?.solar_energy, 'kWh') }}</div>
+          <div>
+            {{
+              $t('home_card.solar_production') +
+              ': ' +
+              formatNumberWithUnit(forecast?.solar_energy, 'kWh')
+            }}
+          </div>
         </v-card-text>
       </v-card>
 
