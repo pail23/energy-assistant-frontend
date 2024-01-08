@@ -24,7 +24,7 @@
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.12",
     "vue-chartjs": "^5.3.0",
-    "vue-i18n": "^9.7.0",
+    "vue-i18n": "^9.9.0",
     "vue-query": "^1.26.0",
     "vue-router": "~4.2.5",
     "vuetify": "^3.4.6"
