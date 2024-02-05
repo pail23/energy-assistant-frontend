@@ -14,10 +14,10 @@ jobs:
           node-version: 16.x
 
       - name: Run install
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: install # will run `yarn install` command
       - name: Build production bundle
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: run build # will run `yarn run build` command
