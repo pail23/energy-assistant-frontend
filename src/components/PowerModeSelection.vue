@@ -44,8 +44,6 @@ interface Props {
 const props = defineProps<Props>();
 
 watch(powerModeModel, () => {
-  console.log('powerModeModel selection: ' + powerModeModel.value);
-  console.log('watch on change power mode: ' + powerModeModel.value);
   if (powerModeModel.value != '') {
     api.setPowerMode(props.deviceId, powerModeModel.value);
   }
@@ -61,6 +59,5 @@ watch(
 
 onMounted(() => {
   powerModeModel.value = props.powerMode;
-  console.log('onMounted power mode: ' + powerModeModel.value);
 });
 </script>
