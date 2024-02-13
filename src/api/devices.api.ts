@@ -40,7 +40,6 @@ export default class DevicesAPIService {
     console.log(`Connecting to Energy Assistant WS API path ${ws_url}`);
 
     this.socket = new WebSocket(ws_url);
-    this.state.connected = true;
 
     this.socket.onopen = () => {
       this.state.connected = true;
