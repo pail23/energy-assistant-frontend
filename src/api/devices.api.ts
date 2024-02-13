@@ -1,11 +1,10 @@
 //import axios, { AxiosInstance} from "axios"
 import { IDevice, IEnergy, IHomePower } from './device';
-import { io, Socket } from 'socket.io-client';
 import { reactive } from 'vue';
 
 export default class DevicesAPIService {
   // private axiosInstance: AxiosInstance;
-  private socket?: Socket;
+  private socket?: WebSocket;
   public baseUrl?: string;
   public home = reactive({
     name: '',
@@ -29,53 +28,33 @@ export default class DevicesAPIService {
   });
 
   public initialize(baseUrl: string) {
-    if (this.socket) throw 'already initialized';
     if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
     this.baseUrl = baseUrl;
     let pathname = new URL(baseUrl).pathname;
     if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
-    const sio_path = pathname + '/ws/socket.io/';
+    // const sio_path = pathname + '/ws';
     // const wsUrl = baseUrl.replace("http", "ws");
-    console.log(`Connecting to Energy Assistant WS API path ${sio_path}`);
 
     const devMode = process.env.NODE_ENV === 'development';
-    const sio_url = devMode ? 'ws://localhost:5000' : '';
+    const ws_url = devMode ? 'ws://localhost:5000/ws' : '';
+    console.log(`Connecting to Energy Assistant WS API path ${ws_url}`);
 
-    //console.log("window.location: " + window.location.href);
-    //console.log("Window parent location: " + window.parent.location);
-    //console.log("sio path: " + sio_path);
+    this.socket = new WebSocket(ws_url);
+    this.state.connected = true;
 
-    //const sio_path = "/ws/socket.io/"
-    this.socket = io(sio_url, {
-      path: sio_path,
-      transports: ['websocket', 'polling'],
-    });
-
-    this.socket.on('connect', () => {
-      console.log('WS connected...');
+    this.socket.onopen = () => {
       this.state.connected = true;
-    });
-
-    this.socket.on('disconnect', () => {
-      console.log('WS diconnected...');
+    };
+    this.socket.onclose = () => {
       this.state.connected = false;
-    });
+      setInterval(() => {
+        this.initialize(baseUrl);
+      }, 10000);
+    };
 
-    this.socket.on('connection', (msg, cb) => {
-      console.log('Received connection home: ' + msg.data);
-      if (cb) cb();
-      this.update_home(msg.data);
-    });
-
-    // Event handler for server sent data.
-    // The callback function is invoked whenever the server emits data
-    // to the client. The data is then displayed in the "Received"
-    // section of the page.
-    this.socket.on('refresh', (msg, cb) => {
-      // console.log('Received refresh home: ' + msg.data);
-      if (cb) cb();
-      this.update_home(msg.data);
-    });
+    this.socket.onmessage = (event) => {
+      this.update_home(event.data);
+    };
   }
 
   update_home(data: string) {
