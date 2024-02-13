@@ -35,10 +35,10 @@ export default class DevicesAPIService {
     let pathname = new URL(baseUrl).pathname;
     if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
     // const sio_path = pathname + '/ws';
-    // const wsUrl = baseUrl.replace("http", "ws");
+    const wsUrl = baseUrl.replace('http', 'ws') + '/ws';
 
-    const devMode = process.env.NODE_ENV === 'development';
-    const wsUrl = devMode ? 'ws://localhost:5000/ws' : '';
+    //const devMode = process.env.NODE_ENV === 'development';
+    //const wsUrl = devMode ? 'ws://localhost:5000/ws' : '';
     console.log(`Connecting to Energy Assistant WS API path ${wsUrl}`);
 
     this.socket = new WebsocketBuilder(wsUrl)
