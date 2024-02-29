@@ -2,6 +2,7 @@ export interface IEnergy {
   consumed_solar_energy: number;
   consumed_energy: number;
   self_sufficiency: number;
+  self_consumption: number;
 }
 
 export interface IHomePower {
@@ -10,6 +11,7 @@ export interface IHomePower {
   solar_self_consumption: number;
   home_consumption: number;
   self_sufficiency: number;
+  self_consumption: number;
 }
 
 export interface IDevice {
@@ -18,6 +20,5 @@ export interface IDevice {
   power: number;
   available: boolean;
   today: IEnergy;
-  attributes: Object;
+  attributes: object;
 }
-

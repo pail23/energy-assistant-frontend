@@ -22,7 +22,12 @@
             :power="home.power.home_consumption"
             :self-sufficiency="home.power.self_sufficiency"
           ></DevicePowerDistributionCard>
-
+          <ConsumptionCard
+            :self-sufficiency="home.power.self_sufficiency"
+            :self-consumption="home.power.self_consumption"
+            :self-sufficiency-today="home.today.self_sufficiency"
+            :self-consumption-today="home.today.self_consumption"
+          ></ConsumptionCard>
           <div v-for="(device, index) in home.devices" :key="index">
             <DeviceCard
               :device="api.getDeviceInfo(device.device_id)"
@@ -46,6 +51,7 @@ import { api } from '@/api/energyAssistant.api';
 import DeviceCard from '@/components/DeviceCard.vue';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DevicePowerDistributionCard from '@/components/DevicePowerDistributionCard.vue';
+import ConsumptionCard from '@/components/ConsumptionCard.vue';
 
 const home = computed(() => {
   return devicesAPI.home;

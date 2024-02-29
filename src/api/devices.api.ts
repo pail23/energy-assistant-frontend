@@ -32,8 +32,8 @@ export default class DevicesAPIService {
     if (this.socket) throw new Error('already initialized');
     if (baseUrl.endsWith('/')) baseUrl = baseUrl.slice(0, -1);
     this.baseUrl = baseUrl;
-    let pathname = new URL(baseUrl).pathname;
-    if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
+    //let pathname = new URL(baseUrl).pathname;
+    //if (pathname.endsWith('/')) pathname = pathname.slice(0, -1);
     // const sio_path = pathname + '/ws';
     const wsUrl = baseUrl.replace('http', 'ws') + '/ws';
 
