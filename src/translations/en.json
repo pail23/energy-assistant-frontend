@@ -13,6 +13,9 @@
     "solar_production": "solar production"
   },
   "consumption": "Consumption",
+  "self_sufficiency": "Self sufficiency",
+  "self_consumption": "Self consumed solar energy",
+
   "temperature": "Temperature",
   "state": "State",
   "consumed_solar_energy": "Solar energy",
