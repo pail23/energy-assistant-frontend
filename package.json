@@ -23,7 +23,7 @@
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.4.19",
     "vue-chartjs": "^5.3.0",
-    "vue-i18n": "^9.9.0",
+    "vue-i18n": "^9.10.1",
     "vue-query": "^1.26.0",
     "vue-router": "~4.3.0",
     "vuetify": "^3.5.7",
