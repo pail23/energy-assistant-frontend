@@ -7,7 +7,7 @@ on:
 
 env:
   PYTHON_VERSION: '3.11'
-  NODE_VERSION: "18.x"
+  NODE_VERSION: "20.x"
   NODE_OPTIONS: --max_old_space_size=6144
 
 permissions: {}
