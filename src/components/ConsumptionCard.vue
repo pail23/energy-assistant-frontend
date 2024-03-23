@@ -33,7 +33,7 @@
         >
         </v-progress-linear>
       </div>
-      <div>Today:</div>
+      <div>{{$t('period.today')}}:</div>
       <div class="mt-2 items-center rounded-md bg-subgroup p-2">
         <div class="text-left">
           {{ $t('self_sufficiency') }}

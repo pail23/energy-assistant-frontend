@@ -7,16 +7,16 @@
       <template #append>
         <v-tabs v-model="activeTab" align-tabs="end" height="100%">
           <v-tab value="today">
-            {{ $t('statistics.today') }}
+            {{ $t('period.today') }}
           </v-tab>
           <v-tab value="week">
-            {{ $t('statistics.week') }}
+            {{ $t('period.week') }}
           </v-tab>
           <v-tab value="month">
-            {{ $t('statistics.month') }}
+            {{ $t('period.month') }}
           </v-tab>
           <v-tab value="year">
-            {{ $t('statistics.year') }}
+            {{ $t('period.year') }}
           </v-tab>
         </v-tabs>
       </template>
