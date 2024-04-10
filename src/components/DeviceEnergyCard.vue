@@ -1,16 +1,14 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
+  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-title>
       <span class="mdi pr-2" :class="device.icon"></span>
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <div class="mt-2 items-center rounded-md bg-subgroup p-2">
+      <div class="bg-subgroup mt-2 items-center rounded-md p-2">
         <div class="text-left">
           {{ t('consumption') }}
-          <span class="float-right">{{
-            formatNumberWithUnit(measurement.consumed_energy, 'kWh')
-          }}</span>
+          <span class="float-right">{{ formatNumberWithUnit(measurement.consumed_energy, 'kWh') }}</span>
         </div>
         <SelfSufficiencyBar
           :self-sufficiency="selfSufficiency"
@@ -18,10 +16,7 @@
           :consumed-solar-energy="measurement.solar_consumed_energy"
         ></SelfSufficiencyBar>
       </div>
-      <div
-        v-if="timeframe == 'week' || timeframe == 'month'"
-        class="mt-2 items-center rounded-md bg-subgroup p-2"
-      >
+      <div v-if="timeframe == 'week' || timeframe == 'month'" class="bg-subgroup mt-2 items-center rounded-md p-2">
         <Bar :data="chartData" :options="options" />
       </div>
     </v-card-text>
@@ -30,23 +25,11 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from 'chart.js';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import { Bar } from 'vue-chartjs';
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
 
-import {
-  IDeviceInfo,
-  IDeviceMeasurementPeriod,
-  IHomeMeasurementDate,
-} from '@/api/energyAssistant.api';
+import { IDeviceInfo, IDeviceMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
 import { formatNumberWithUnit } from '@/utils';
 import { useI18n } from 'vue-i18n';
 
@@ -63,8 +46,7 @@ const props = defineProps<Props>();
 
 const selfSufficiency = computed(() => {
   return props.measurement.consumed_energy != 0
-    ? (100 * props.measurement.solar_consumed_energy) /
-        props.measurement.consumed_energy
+    ? (100 * props.measurement.solar_consumed_energy) / props.measurement.consumed_energy
     : 0.0;
 });
 
@@ -85,9 +67,7 @@ const chartData = computed(() => {
             const device_measurement = measurement.device_measurements.find(
               (device) => device.device_id == props.device.id,
             );
-            return device_measurement
-              ? device_measurement.consumed_energy
-              : 0.0;
+            return device_measurement ? device_measurement.consumed_energy : 0.0;
           }),
         },
       ],
@@ -109,12 +89,5 @@ const options = {
     },
   },
 };
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 </script>

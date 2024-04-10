@@ -1,10 +1,7 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 p-4 bg-background">
+  <div class="bg-background grid grid-cols-1 p-4 md:grid-cols-2 xl:grid-cols-4">
     <div v-for="(device, index) in devices" :key="index">
-      <v-card
-        v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'"
-        class="m-4 max-w-sm elevation-2"
-      >
+      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="elevation-2 m-4 max-w-sm">
         <v-card-title>
           <span class="mdi pr-2" :class="device.icon"></span>
           <span class="">{{ device.name }}</span>
@@ -18,9 +15,7 @@
     </div>
     <v-dialog v-model="dialog" width="auto">
       <v-card>
-        <v-card-text>
-          Please remove the device manually from the config file.
-        </v-card-text>
+        <v-card-text> Please remove the device manually from the config file. </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="dialog = false">Close</v-btn>
         </v-card-actions>

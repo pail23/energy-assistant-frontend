@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-md elevation-2">
+  <v-card class="elevation-2 rounded-md">
     <v-table class="m-4 rounded-md border">
       <thead class="bg-primary">
         <tr>
@@ -11,11 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(measurement, index) in deviceMeasurements"
-          :key="measurement.id"
-          class="border-b text-center"
-        >
+        <tr v-for="(measurement, index) in deviceMeasurements" :key="measurement.id" class="border-b text-center">
           <td class="px-6 py-4">
             {{ d(new Date(measurement.measurement_date)) }}
           </td>
@@ -23,26 +19,19 @@
             <p v-if="index < deviceMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
-                  measurement.solar_consumed_energy -
-                    deviceMeasurements[index + 1].solar_consumed_energy,
+                  measurement.solar_consumed_energy - deviceMeasurements[index + 1].solar_consumed_energy,
                   'kWh',
                 )
               }}
             </p>
             <p v-if="showMeterValues">
-              {{
-                formatNumberWithUnit(measurement.solar_consumed_energy, 'kWh')
-              }}
+              {{ formatNumberWithUnit(measurement.solar_consumed_energy, 'kWh') }}
             </p>
           </td>
           <td class="px-6 py-4">
             <p v-if="index < deviceMeasurements.length - 1">
               {{
-                formatNumberWithUnit(
-                  measurement.consumed_energy -
-                    deviceMeasurements[index + 1].consumed_energy,
-                  'kWh',
-                )
+                formatNumberWithUnit(measurement.consumed_energy - deviceMeasurements[index + 1].consumed_energy, 'kWh')
               }}
             </p>
             <p v-if="showMeterValues">

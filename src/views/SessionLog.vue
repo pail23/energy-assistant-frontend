@@ -1,13 +1,10 @@
 <template>
   <div>
-    <v-toolbar
-      color="transparent"
-      :title="getBreakpointValue('bp2') ? $t('app.sessionlog') : ''"
-    >
+    <v-toolbar color="transparent" :title="getBreakpointValue('bp2') ? $t('app.sessionlog') : ''">
       <template #append>
         <select
           v-model="selectedDevice"
-          class="select m-2 w-full max-w-xs bg-surface"
+          class="select bg-surface m-2 w-full max-w-xs"
           @change="onChangeDeviceSelection($event)"
         >
           <option v-for="device in devices" :key="device.id" :value="device.id">
@@ -17,18 +14,12 @@
       </template>
     </v-toolbar>
     <v-divider />
-    <div class="v-full flex min-h-screen justify-center p-4 bg-background">
+    <div class="v-full bg-background flex min-h-screen justify-center p-4">
       <div v-if="isLoading" class="flex h-full w-full justify-items-center">
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        ></v-progress-circular>
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
       <div v-else>
-        <DeviceSessionLog
-          v-if="device_sessionlog"
-          :session-log="device_sessionlog"
-        />
+        <DeviceSessionLog v-if="device_sessionlog" :session-log="device_sessionlog" />
       </div>
     </div>
   </div>

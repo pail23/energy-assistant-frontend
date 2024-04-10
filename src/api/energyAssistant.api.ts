@@ -121,12 +121,9 @@ export class EnergyAssistantApi {
     this.axiosInstance = axios.create({
       baseURL: this.baseUrl,
     });
-    this.axiosInstance.defaults.headers.common['Content-Type'] =
-      'application/json';
+    this.axiosInstance.defaults.headers.common['Content-Type'] = 'application/json';
     this.deviceInfos = await this.getAllDevices();
-    const otherDevice = this.getDeviceInfo(
-      '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7',
-    );
+    const otherDevice = this.getDeviceInfo('9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7');
     if (otherDevice != null) {
       otherDevice.name = $t('otherDeviceName');
     }
@@ -134,18 +131,13 @@ export class EnergyAssistantApi {
 
   public async getAllHomeMeasurements() {
     if (!this.axiosInstance) throw 'not initialized';
-    const response =
-      await this.axiosInstance.get<IHomeMeasurementResponse>(
-        'homemeasurements',
-      );
+    const response = await this.axiosInstance.get<IHomeMeasurementResponse>('homemeasurements');
     return response.data.home_measurements;
   }
 
   public async getDeviceMeasurements(id: string) {
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.get<IDeviceMeasurementResponse>(
-      'devices/' + id + '/measurements',
-    );
+    const response = await this.axiosInstance.get<IDeviceMeasurementResponse>('devices/' + id + '/measurements');
     return response.data.device_measurements;
   }
 
@@ -162,15 +154,11 @@ export class EnergyAssistantApi {
 
   public async getDeviceSessionLog(id: string) {
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.get<ISessionLog>(
-      'sessionlog?device_id=' + id,
-    );
+    const response = await this.axiosInstance.get<ISessionLog>('sessionlog?device_id=' + id);
     return response.data.entries;
   }
 
-  public async getAllDevices(
-    filterWithSessionLogEntries = false,
-  ): Promise<IDeviceInfo[]> {
+  public async getAllDevices(filterWithSessionLogEntries = false): Promise<IDeviceInfo[]> {
     if (!this.axiosInstance) throw 'not initialized';
     const response = await this.axiosInstance.get<IDeviceResponse>(
       'devices?filter_with_session_log_enties=' + filterWithSessionLogEntries,
@@ -205,17 +193,13 @@ export class EnergyAssistantApi {
       deviceInfo.power_mode = power_mode;
     }
     if (!this.axiosInstance) throw 'not initialized';
-    const response = await this.axiosInstance.put<IDeviceInfo>(
-      'devices/' + id + '/power_mode',
-      { power_mode: power_mode },
-    );
+    const response = await this.axiosInstance.put<IDeviceInfo>('devices/' + id + '/power_mode', {
+      power_mode: power_mode,
+    });
     return response;
   }
 
-  public async getHomeMeasurementDifference(
-    from_measurement_date: Date,
-    to_measurement_date: Date,
-  ) {
+  public async getHomeMeasurementDifference(from_measurement_date: Date, to_measurement_date: Date) {
     if (!this.axiosInstance) throw 'not initialized';
     const from_date = from_measurement_date.toISOString().split('T')[0];
     const to_date = to_measurement_date.toISOString().split('T')[0];
@@ -238,9 +222,7 @@ export class EnergyAssistantApi {
 
   public async tuneModel() {
     if (!this.axiosInstance) throw 'not initialized';
-    return await this.axiosInstance.post<ITuneForecastModel>(
-      'forecast/tune_model',
-    );
+    return await this.axiosInstance.post<ITuneForecastModel>('forecast/tune_model');
   }
 
   public async getConfig() {
@@ -255,12 +237,6 @@ export const getAllHomeMeasurementsFn = async () => {
   return await api.getAllHomeMeasurements();
 };
 
-export const getHomeMeasurementsByDateFn = async (
-  from_measurement_date: Date,
-  to_measurement_date: Date,
-) => {
-  return await api.getHomeMeasurementDifference(
-    from_measurement_date,
-    to_measurement_date,
-  );
+export const getHomeMeasurementsByDateFn = async (from_measurement_date: Date, to_measurement_date: Date) => {
+  return await api.getHomeMeasurementDifference(from_measurement_date, to_measurement_date);
 };

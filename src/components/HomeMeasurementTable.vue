@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-md elevation-2">
+  <v-card class="elevation-2 rounded-md">
     <v-table class="m-4 border">
       <thead class="bg-primary">
         <tr>
@@ -16,11 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(measurement, index) in homeMeasurements"
-          :key="measurement.id"
-          class="border-b text-center"
-        >
+        <tr v-for="(measurement, index) in homeMeasurements" :key="measurement.id" class="border-b text-center">
           <td class="px-6 py-4">
             {{ d(new Date(measurement.measurement_date)) }}
           </td>
@@ -28,26 +24,19 @@
             <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
-                  measurement.solar_consumed_energy -
-                    homeMeasurements[index + 1].solar_consumed_energy,
+                  measurement.solar_consumed_energy - homeMeasurements[index + 1].solar_consumed_energy,
                   'kWh',
                 )
               }}
             </p>
             <p v-if="showMeterValues">
-              {{
-                formatNumberWithUnit(measurement.solar_consumed_energy, 'kWh')
-              }}
+              {{ formatNumberWithUnit(measurement.solar_consumed_energy, 'kWh') }}
             </p>
           </td>
           <td class="px-6 py-4">
             <p v-if="index < homeMeasurements.length - 1">
               {{
-                formatNumberWithUnit(
-                  measurement.consumed_energy -
-                    homeMeasurements[index + 1].consumed_energy,
-                  'kWh',
-                )
+                formatNumberWithUnit(measurement.consumed_energy - homeMeasurements[index + 1].consumed_energy, 'kWh')
               }}
             </p>
             <p v-if="showMeterValues">
@@ -58,48 +47,39 @@
             <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
-                  measurement.solar_produced_energy -
-                    homeMeasurements[index + 1].solar_produced_energy,
+                  measurement.solar_produced_energy - homeMeasurements[index + 1].solar_produced_energy,
                   'kWh',
                 )
               }}
             </p>
             <p v-if="showMeterValues">
-              {{
-                formatNumberWithUnit(measurement.solar_produced_energy, 'kWh')
-              }}
+              {{ formatNumberWithUnit(measurement.solar_produced_energy, 'kWh') }}
             </p>
           </td>
           <td class="px-6 py-4">
             <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
-                  measurement.grid_imported_energy -
-                    homeMeasurements[index + 1].grid_imported_energy,
+                  measurement.grid_imported_energy - homeMeasurements[index + 1].grid_imported_energy,
                   'kWh',
                 )
               }}
             </p>
             <p v-if="showMeterValues">
-              {{
-                formatNumberWithUnit(measurement.grid_imported_energy, 'kWh')
-              }}
+              {{ formatNumberWithUnit(measurement.grid_imported_energy, 'kWh') }}
             </p>
           </td>
           <td class="px-6 py-4">
             <p v-if="index < homeMeasurements.length - 1">
               {{
                 formatNumberWithUnit(
-                  measurement.grid_exported_energy -
-                    homeMeasurements[index + 1].grid_exported_energy,
+                  measurement.grid_exported_energy - homeMeasurements[index + 1].grid_exported_energy,
                   'kWh',
                 )
               }}
             </p>
             <p v-if="showMeterValues">
-              {{
-                formatNumberWithUnit(measurement.grid_exported_energy, 'kWh')
-              }}
+              {{ formatNumberWithUnit(measurement.grid_exported_energy, 'kWh') }}
             </p>
           </td>
         </tr>

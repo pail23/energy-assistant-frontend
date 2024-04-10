@@ -2,31 +2,23 @@
   <div>
     <v-toolbar color="transparent" :title="$t('app.forecast')" />
     <v-divider />
-    <div class="v-full w-full justify-center p-4 bg-background">
-      <v-card class="mb-4 p-4 rounded-md elevation-2">
+    <div class="v-full bg-background w-full justify-center p-4">
+      <v-card class="elevation-2 mb-4 rounded-md p-4">
         <v-card-title>
           {{ $t('forecast.summary') }}
         </v-card-title>
         <v-card-text>
           <div>{{ costTotalProfitLabel }}</div>
           <div>
-            {{
-              $t('consumption') +
-              ': ' +
-              formatNumberWithUnit(forecast?.consumed_energy, 'kWh')
-            }}
+            {{ $t('consumption') + ': ' + formatNumberWithUnit(forecast?.consumed_energy, 'kWh') }}
           </div>
           <div>
-            {{
-              $t('home_card.solar_production') +
-              ': ' +
-              formatNumberWithUnit(forecast?.solar_energy, 'kWh')
-            }}
+            {{ $t('home_card.solar_production') + ': ' + formatNumberWithUnit(forecast?.solar_energy, 'kWh') }}
           </div>
         </v-card-text>
       </v-card>
 
-      <v-card class="mb-4 p-4 rounded-md elevation-2">
+      <v-card class="elevation-2 mb-4 rounded-md p-4">
         <v-card-title>
           {{ $t('forecast.energy') }}
         </v-card-title>
@@ -36,7 +28,7 @@
           </div>
         </v-card-text>
       </v-card>
-      <v-card class="mb-4 p-4 rounded-md elevation-2">
+      <v-card class="elevation-2 mb-4 rounded-md p-4">
         <v-card-title>
           {{ $t('forecast.cost_profit') }}
         </v-card-title>
@@ -239,21 +231,9 @@ const costTotalProfitLabel = computed(() => {
 
   if (totalCostProfit) {
     if (totalCostProfit < 0) {
-      return (
-        $t('forecast.total_cost') +
-        ': ' +
-        -totalCostProfit.toFixed(2) +
-        ' ' +
-        currency.value
-      );
+      return $t('forecast.total_cost') + ': ' + -totalCostProfit.toFixed(2) + ' ' + currency.value;
     } else {
-      return (
-        $t('forecast.total_profit') +
-        ': ' +
-        totalCostProfit.toFixed(2) +
-        ' ' +
-        currency.value
-      );
+      return $t('forecast.total_profit') + ': ' + totalCostProfit.toFixed(2) + ' ' + currency.value;
     }
   } else {
     return 'unknown';
@@ -298,15 +278,7 @@ const optionsCostProfitChart = computed(() => {
   };
 });
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 onMounted(async () => {
   forecast.value = await api.getForecast();

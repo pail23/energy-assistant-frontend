@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
+  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-text>
       <Doughnut :data="data" :options="options" />
     </v-card-text>
@@ -13,23 +13,11 @@ import { IDevice } from '@/api/device';
 import { api } from '@/api/energyAssistant.api';
 import { formatNumberWithUnit } from '@/utils';
 import { useTheme } from 'vuetify';
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  Colors,
-} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-const fontBold:
-  | 'number'
-  | 'bold'
-  | 'normal'
-  | 'bolder'
-  | 'lighter'
-  | 'undefined' = 'bold';
+const fontBold: 'number' | 'bold' | 'normal' | 'bolder' | 'lighter' | 'undefined' = 'bold';
 
 const theme = useTheme();
 
@@ -54,20 +42,15 @@ const doughnutLabel = {
     for (let i = 0; i < options.text.length; i++) {
       const text = options.text[i];
       const metrics: TextMetrics = ctx.measureText(text);
-      textHeight +=
-        (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) *
-        linespacing;
+      textHeight += (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * linespacing;
     }
     let currentY = chart.chartArea.top + (height - textHeight) / 2;
     for (let i = 0; i < options.text.length; i++) {
       const text = options.text[i];
       const metrics: TextMetrics = ctx.measureText(text);
-      const textX =
-        chart.chartArea.left + Math.round((width - metrics.width) / 2);
+      const textX = chart.chartArea.left + Math.round((width - metrics.width) / 2);
       ctx.fillText(text, textX, currentY);
-      currentY +=
-        (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) *
-        linespacing;
+      currentY += (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * linespacing;
     }
 
     ctx.restore();
@@ -109,10 +92,7 @@ const options = computed(() => {
       },
       doughnutlabel: {
         color: theme.current.value.colors['on-surface'],
-        text: [
-          formatNumberWithUnit(props.power, 'W'),
-          props.selfSufficiency.toFixed(0) + '%',
-        ],
+        text: [formatNumberWithUnit(props.power, 'W'), props.selfSufficiency.toFixed(0) + '%'],
       },
       datalabels: {
         backgroundColor: function (context) {
@@ -138,14 +118,7 @@ const options = computed(() => {
   };
 });
 
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  Colors,
-  doughnutLabel,
-  ChartDataLabels,
-);
+ChartJS.register(ArcElement, Tooltip, Legend, Colors, doughnutLabel, ChartDataLabels);
 
 interface Props {
   devices: IDevice[];

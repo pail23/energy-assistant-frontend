@@ -4,13 +4,10 @@
     <v-divider />
     <div class="flex min-h-screen w-full justify-center">
       <div v-if="!connected" class="flex w-full justify-items-center p-4">
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        ></v-progress-circular>
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
       <div v-else>
-        <div class="grid grid-cols-1 lg:grid-cols-2 p-4 bg-background">
+        <div class="bg-background grid grid-cols-1 p-4 lg:grid-cols-2">
           <PowerFlowCard
             :home-consumption-power="home.power.home_consumption"
             :solar-power="home.power.solar_production"

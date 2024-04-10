@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
+  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-text>
       <div class="relative mx-auto">
         <svg class="h-full w-full" viewBox="0 0 200 180">
@@ -12,11 +12,7 @@
             marker-end="url(#SvgjsMarker1005)"
           />
           <circle v-if="isVisible(solar_to_home_power)" r="2" class="fill-sun">
-            <animateMotion
-              :dur="solar_to_home_speed"
-              repeatCount="indefinite"
-              calcMode="linear"
-            >
+            <animateMotion :dur="solar_to_home_speed" repeatCount="indefinite" calcMode="linear">
               <mpath xlink:href="#solar-to-home" />
             </animateMotion>
           </circle>
@@ -29,11 +25,7 @@
             marker-end="url(#SvgjsMarker1006)"
           />
           <circle v-if="isVisible(solar_to_grid_power)" r="2" class="fill-sun">
-            <animateMotion
-              :dur="solar_to_grid_speed"
-              repeatCount="indefinite"
-              calcMode="linear"
-            >
+            <animateMotion :dur="solar_to_grid_speed" repeatCount="indefinite" calcMode="linear">
               <mpath xlink:href="#solar-to-grid" />
             </animateMotion>
           </circle>
@@ -46,11 +38,7 @@
             marker-end="url(#SvgjsMarker1007)"
           />
           <circle v-if="isVisible(grid_to_home_power)" r="2" class="fill-grid">
-            <animateMotion
-              :dur="grid_to_home_speed"
-              repeatCount="indefinite"
-              calcMode="linear"
-            >
+            <animateMotion :dur="grid_to_home_speed" repeatCount="indefinite" calcMode="linear">
               <mpath xlink:href="#grid-to-home" />
             </animateMotion>
           </circle>
@@ -65,10 +53,7 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon
-                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="fill-sun"
-              ></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun"></polygon>
             </marker>
             <marker
               id="SvgjsMarker1006"
@@ -79,10 +64,7 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon
-                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="fill-sun"
-              ></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun"></polygon>
             </marker>
             <marker
               id="SvgjsMarker1007"
@@ -93,26 +75,21 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon
-                points="0,5 1.6666666666666667,2.5 0,0 5,2.5"
-                class="fill-grid"
-              ></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-grid"></polygon>
             </marker>
           </defs>
         </svg>
         <div class="absolute bottom-0 left-0 right-0 top-0">
           <div
-            class="absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full bg-surface text-center ring-2 ring-yellow-500"
+            class="bg-surface absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
           >
             <div>
-              <div class="mdi mdi-solar-power text-2xl text-sun"></div>
-              <span class="text-xs">{{
-                formatNumberWithUnit(solarPower, unit)
-              }}</span>
+              <div class="mdi mdi-solar-power text-sun text-2xl"></div>
+              <span class="text-xs">{{ formatNumberWithUnit(solarPower, unit) }}</span>
             </div>
           </div>
           <div
-            class="absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full bg-surface text-center ring-2 ring-sky-800"
+            class="bg-surface absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-sky-800"
           >
             <div>
               <div class="mdi mdi-transmission-tower text-2xl"></div>
@@ -134,21 +111,17 @@
                 >
                 <span v-else
                   ><span class="mdi mdi-arrow-left"></span>
-                  {{
-                    formatNumberWithUnit(-grid_consumption_power, unit)
-                  }}</span
+                  {{ formatNumberWithUnit(-grid_consumption_power, unit) }}</span
                 >
               </div>
             </div>
           </div>
           <div
-            class="absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full bg-surface text-center ring-2 ring-blue-800"
+            class="bg-surface absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
           >
             <div>
               <div class="mdi mdi-home text-2xl"></div>
-              <span class="text-xs">{{
-                formatNumberWithUnit(homeConsumptionPower, unit)
-              }}</span>
+              <span class="text-xs">{{ formatNumberWithUnit(homeConsumptionPower, unit) }}</span>
             </div>
           </div>
         </div>
@@ -178,9 +151,7 @@ const grid_consumption_power = computed(() => {
 });
 
 const solar_to_home_power = computed(() => {
-  return props.solarPower > props.homeConsumptionPower
-    ? props.homeConsumptionPower
-    : props.solarPower;
+  return props.solarPower > props.homeConsumptionPower ? props.homeConsumptionPower : props.solarPower;
 });
 
 function calculateSpeed(value: number): string {

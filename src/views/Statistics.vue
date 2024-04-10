@@ -1,9 +1,6 @@
 <template>
   <div>
-    <v-toolbar
-      color="transparent"
-      :title="getBreakpointValue('bp4') ? $t('app.statistics') : ''"
-    >
+    <v-toolbar color="transparent" :title="getBreakpointValue('bp4') ? $t('app.statistics') : ''">
       <template #append>
         <v-tabs v-model="activeTab" align-tabs="end" height="100%">
           <v-tab value="today">
@@ -24,14 +21,11 @@
 
     <v-divider />
     <div class="flex min-h-screen w-full justify-center">
-      <div
-        v-if="isLoading"
-        class="grid w-full grid-cols-1 justify-items-center"
-      >
+      <div v-if="isLoading" class="grid w-full grid-cols-1 justify-items-center">
         <span class="loading loading-dots loading-lg py-2"></span>
       </div>
       <div v-else>
-        <div v-if="data" class="grid grid-cols-1 lg:grid-cols-2 p-4">
+        <div v-if="data" class="grid grid-cols-1 p-4 lg:grid-cols-2">
           <PowerFlowCard
             :home-consumption-power="data.consumed_energy"
             :solar-power="data.solar_produced_energy"
@@ -40,10 +34,7 @@
             unit="kWh"
           >
           </PowerFlowCard>
-          <WeeklyStatisticsCard
-            v-if="activeTab == 'week' && statistics != null"
-            :data="statistics"
-          >
+          <WeeklyStatisticsCard v-if="activeTab == 'week' && statistics != null" :data="statistics">
           </WeeklyStatisticsCard>
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
@@ -61,11 +52,7 @@
 
 <script lang="ts" setup>
 import { watch, ref, onMounted } from 'vue';
-import {
-  api,
-  IHomeMeasurementPeriod,
-  IHomeMeasurementDate,
-} from '@/api/energyAssistant.api';
+import { api, IHomeMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
 import { getBreakpointValue } from '@/plugins/breakpoint';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
@@ -103,9 +90,7 @@ onMounted(() => {
 
 const loadData = async function (from_date: Date) {
   isLoading.value = true;
-  data.value = (
-    await api.getHomeMeasurementDifference(from_date, new Date())
-  ).data;
+  data.value = (await api.getHomeMeasurementDifference(from_date, new Date())).data;
   statistics.value = await api.getDailyMeasurements(from_date, new Date());
   isLoading.value = false;
 };

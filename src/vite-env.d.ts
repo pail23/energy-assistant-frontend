@@ -2,11 +2,11 @@
 /// <reference types="vite-plugin-pwa/client" />
 
 declare module '*.vue' {
-    import type { DefineComponent } from 'vue';
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    const component: DefineComponent<{}, {}, unknown>;
-    export default component;
-  }
-  
-  declare module 'vuetify/lib/util/colors';
-  declare module 'v3-infinite-loading';
+  import type { DefineComponent } from 'vue';
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const component: DefineComponent<{}, {}, unknown>;
+  export default component;
+}
+
+declare module 'vuetify/lib/util/colors';
+declare module 'v3-infinite-loading';

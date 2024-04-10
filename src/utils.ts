@@ -1,7 +1,4 @@
-export const formatNumberWithUnit = function (
-  value: number,
-  unit: string,
-): string {
+export const formatNumberWithUnit = function (value: number, unit: string): string {
   if (value == null) {
     return '';
   }
@@ -33,11 +30,5 @@ export const formatDuration = function (total_seconds: number): string {
 
   const seconds = Math.floor(diff);
 
-  return (
-    padWithLeadingZeros(hours, 2) +
-    ':' +
-    padWithLeadingZeros(mins, 2) +
-    ':' +
-    padWithLeadingZeros(seconds, 2)
-  );
+  return padWithLeadingZeros(hours, 2) + ':' + padWithLeadingZeros(mins, 2) + ':' + padWithLeadingZeros(seconds, 2);
 };

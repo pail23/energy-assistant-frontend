@@ -1,5 +1,5 @@
 <template>
-  <v-card class="m-4 w-80 sm:w-96 p-4 rounded-md elevation-2">
+  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-title>
       <span class="mdi pr-2" :class="device.icon"></span>
       <span class="">{{ device.name }}</span>
@@ -7,31 +7,21 @@
     <v-card-text>
       <div class="grid w-full grid-cols-1">
         <div
-          v-if="
-            available && attributes && Object.entries(attributes).length > 0
-          "
-          class="mt-2 items-center rounded-md bg-subgroup p-2"
+          v-if="available && attributes && Object.entries(attributes).length > 0"
+          class="bg-subgroup mt-2 items-center rounded-md p-2"
         >
-          <div
-            v-for="(attribute, index) in Object.entries(attributes)"
-            :key="index"
-            class="text-left"
-          >
+          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
             {{ t('device_attribute.' + attribute[0]) }}
-            <span class="float-right">{{
-              getAttributeValue(attribute[0], attribute[1])
-            }}</span>
+            <span class="float-right">{{ getAttributeValue(attribute[0], attribute[1]) }}</span>
           </div>
         </div>
-        <div v-if="!available" class="mt-2 text-center rounded-md bg-error p-2">
+        <div v-if="!available" class="bg-error mt-2 rounded-md p-2 text-center">
           {{ $t('unavailable') }}
         </div>
-        <div class="mt-2 items-center rounded-md bg-subgroup p-2">
+        <div class="bg-subgroup mt-2 items-center rounded-md p-2">
           <div v-if="available" class="text-left">
             {{ t('consumption') }}
-            <span class="float-right">{{
-              formatNumberWithUnit(power, 'W')
-            }}</span>
+            <span class="float-right">{{ formatNumberWithUnit(power, 'W') }}</span>
           </div>
           <SelfSufficiencyBar
             :self-sufficiency="today.self_sufficiency"

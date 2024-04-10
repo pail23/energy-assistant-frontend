@@ -1,7 +1,7 @@
 <template>
-  <v-card class="md:m-4 w-full rounded-md elevation-2">
+  <v-card class="elevation-2 w-full rounded-md md:m-4">
     <v-card-text>
-      <v-table class="sm:m-4 border">
+      <v-table class="border sm:m-4">
         <thead class="bg-primary">
           <tr>
             <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.start') }}</th>
@@ -17,7 +17,7 @@
           <tr
             v-for="(entry, index) in sessionLog"
             :key="index"
-            class="border-b text-center odd:bg-surface even:bg-subgroup"
+            class="odd:bg-surface even:bg-subgroup border-b text-center"
           >
             <td class="px-6 py-4">
               {{ $d(new Date(entry.start + 'Z'), 'long') }}
@@ -32,12 +32,7 @@
             </td> -->
             <td class="px-6 py-4">
               <span v-if="entry.consumed_energy != 0">
-                {{
-                  (
-                    (entry.solar_consumed_energy / entry.consumed_energy) *
-                    100
-                  ).toFixed(0)
-                }}%
+                {{ ((entry.solar_consumed_energy / entry.consumed_energy) * 100).toFixed(0) }}%
               </span>
             </td>
             <td class="px-6 py-4">
