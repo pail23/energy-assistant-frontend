@@ -40,7 +40,7 @@ const i18n = createI18n({
   },
 });
 
-// @ts-ignore
+
 const $t = i18n.global.t;
 const $d = i18n.global.d;
 const $n = i18n.global.n;

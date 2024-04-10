@@ -1,3 +1,5 @@
 node_modules
 build/
 dist/
+energy_assistant_frontend/
+energy_assistant_frontend.egg-info/

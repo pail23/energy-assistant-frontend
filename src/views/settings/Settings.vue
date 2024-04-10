@@ -1,15 +1,31 @@
 <template>
   <div>
-    <v-toolbar color="transparent" :title="getBreakpointValue('bp4') ? $t('app.settings') : ''">
+    <v-toolbar
+      color="transparent"
+      :title="getBreakpointValue('bp4') ? $t('app.settings') : ''"
+    >
       <template #append>
-        <v-tabs :model-value="activeTab" align-tabs="end" height="100%">
-          <v-tab value="devices" :to="{ name: 'devicessettings' }">
+        <v-tabs
+          :model-value="activeTab"
+          align-tabs="end"
+          height="100%"
+        >
+          <v-tab
+            value="devices"
+            :to="{ name: 'devicessettings' }"
+          >
             {{ $t('settings.devices') }}
           </v-tab>
-          <v-tab value="forecast" :to="{ name: 'forecastsettings' }">
+          <v-tab
+            value="forecast"
+            :to="{ name: 'forecastsettings' }"
+          >
             {{ $t('settings.forecast') }}
           </v-tab>
-          <v-tab value="core" :to="{ name: 'coresettings' }">
+          <v-tab
+            value="core"
+            :to="{ name: 'coresettings' }"
+          >
             {{ $t('settings.core') }}
           </v-tab>
         </v-tabs>
@@ -17,7 +33,7 @@
     </v-toolbar>
     <v-divider />
     <!-- some spacing -->
-    <div style="height: 15px"></div>
+    <div style="height: 15px" />
     <router-view v-slot="{ Component }">
       <component :is="Component" />
     </router-view>
