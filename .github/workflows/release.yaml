@@ -1,30 +1,30 @@
-name: "Release"
+name: 'Release'
 
 on:
   release:
     types:
-      - "published"
+      - 'published'
 
 env:
   PYTHON_VERSION: '3.11'
-  NODE_VERSION: "20.x"
+  NODE_VERSION: '20.x'
   NODE_OPTIONS: --max_old_space_size=6144
 
 permissions: {}
 
 jobs:
   release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
+    name: 'Release'
+    runs-on: 'ubuntu-latest'
     permissions:
       contents: write
     steps:
-      - name: "Checkout the repository"
-        uses: "actions/checkout@v4"
+      - name: 'Checkout the repository'
+        uses: 'actions/checkout@v4'
 
       - name: Get tag
         id: vars
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT        
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
       - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -54,7 +54,7 @@ jobs:
           pyproject["project"]["version"] = "${{ steps.vars.outputs.tag }}"
 
           with open("pyproject.toml", "wb") as f:
-            tomli_w.dump(pyproject, f)          
+            tomli_w.dump(pyproject, f)
 
       - name: Build and release package
         run: |
@@ -66,18 +66,18 @@ jobs:
         uses: pypa/gh-action-pypi-publish@v1.8.14
         with:
           user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}          
+          password: ${{ secrets.PYPI_TOKEN }}
 
-      - name: "ZIP the integration directory"
-        shell: "bash"
+      - name: 'ZIP the integration directory'
+        shell: 'bash'
         run: |
           cd "${{ github.workspace }}/energy_assistant_frontend"
           zip energy-assistant-frontend.zip -r ./
 
-      - name: "Upload the ZIP file to the release"
+      - name: 'Upload the ZIP file to the release'
         uses: softprops/action-gh-release@v2.0.4
         with:
           files: |
             ${{ github.workspace }}/energy_assistant_frontend/energy-assistant-frontend.zip
             dist/*.whl
-            dist/*.tar.gz           
+            dist/*.tar.gz

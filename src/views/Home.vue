@@ -1,19 +1,10 @@
 <template>
   <div>
-    <v-toolbar
-      color="transparent"
-      :title="home.name"
-    />
+    <v-toolbar color="transparent" :title="home.name" />
     <v-divider />
     <div class="flex min-h-screen w-full justify-center">
-      <div
-        v-if="!connected"
-        class="flex w-full justify-items-center p-4"
-      >
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        />
+      <div v-if="!connected" class="flex w-full justify-items-center p-4">
+        <v-progress-circular indeterminate color="primary" />
       </div>
       <div v-else>
         <div class="bg-background grid grid-cols-1 p-4 lg:grid-cols-2">
@@ -33,10 +24,7 @@
             :self-sufficiency-today="home.today.self_sufficiency"
             :self-consumption-today="home.today.self_consumption"
           />
-          <div
-            v-for="(device, index) in home.devices"
-            :key="index"
-          >
+          <div v-for="(device, index) in home.devices" :key="index">
             <DeviceCard
               :device="api.getDeviceInfo(device.device_id)"
               :available="device.available"

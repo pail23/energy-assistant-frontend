@@ -1,12 +1,6 @@
 <template>
   <div class="w-full">
-    <v-progress-linear
-      color="sun"
-      bg-color="grid"
-      height="15"
-      rounded
-      :model-value="selfSufficiency"
-    />
+    <v-progress-linear color="sun" bg-color="grid" height="15" rounded :model-value="selfSufficiency" />
     <div class="grid w-full grid-cols-3 text-sm">
       <div class="text-sun">
         <span class="mdi mdi-solar-power" />
@@ -16,7 +10,9 @@
         <span>{{ selfSufficiency.toFixed(0) }}%</span>
       </div>
       <div>
-        <span class="text-grid float-right">{{ formatNumberWithUnit(consumed_grid_energy, unit) }}<span class="mdi mdi-transmission-tower" /></span>
+        <span class="text-grid float-right"
+          >{{ formatNumberWithUnit(consumed_grid_energy, unit) }}<span class="mdi mdi-transmission-tower"
+        /></span>
       </div>
     </div>
   </div>

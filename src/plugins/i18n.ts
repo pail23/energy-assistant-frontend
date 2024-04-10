@@ -40,7 +40,6 @@ const i18n = createI18n({
   },
 });
 
-
 const $t = i18n.global.t;
 const $d = i18n.global.d;
 const $n = i18n.global.n;

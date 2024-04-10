@@ -3,21 +3,20 @@ import tseslint from 'typescript-eslint';
 //import pluginVue from 'eslint-plugin-vue'
 
 export default tseslint.config(
-
   js.configs.recommended,
   ...tseslint.configs.recommended,
   //...pluginVue.configs['flat/recommended'],
   {
-    ignores: ["energy_assistant_frontend/**/*", "energy_assistant_frontend.egg-info/*"],
+    ignores: ['energy_assistant_frontend/**/*', 'energy_assistant_frontend.egg-info/*'],
   },
   {
     rules: {
-      "no-unused-vars": "warn",
-      "no-undef": "warn"
+      'no-unused-vars': 'warn',
+      'no-undef': 'warn',
     },
-  }
+  },
 );
-    /*
+/*
         extends: [
           'eslint:recommended',
           'plugin:@typescript-eslint/recommended',
@@ -48,4 +47,3 @@ export default tseslint.config(
           '@typescript-eslint/ban-ts-comment': 'off',
         },
         */
-

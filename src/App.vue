@@ -12,7 +12,6 @@ import { store } from './plugins/store';
 const theme = useTheme();
 
 onMounted(async () => {
-
   store.isInStandaloneMode = window.navigator.standalone || false;
   // enable dark mode based on OS/browser config
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
