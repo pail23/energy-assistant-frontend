@@ -21,7 +21,7 @@
   // "remoteUser": "root"
   "customizations": {
     "vscode": {
-      "extensions": ["vue.volar", "Lokalise.i18n-ally", "heybourn.headwind"]
+      "extensions": ["vue.volar", "Lokalise.i18n-ally", "heybourn.headwind", "esbenp.prettier-vscode"]
     }
   }
 }
