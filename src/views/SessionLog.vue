@@ -16,7 +16,7 @@
     <v-divider />
     <div class="v-full bg-background flex min-h-screen justify-center p-4">
       <div v-if="isLoading" class="flex h-full w-full justify-items-center">
-        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        <v-progress-circular indeterminate color="primary" />
       </div>
       <div v-else>
         <DeviceSessionLog v-if="device_sessionlog" :session-log="device_sessionlog" />

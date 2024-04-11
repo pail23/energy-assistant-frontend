@@ -3,7 +3,7 @@
     <div v-for="(device, index) in devices" :key="index">
       <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="elevation-2 m-4 max-w-sm">
         <v-card-title>
-          <span class="mdi pr-2" :class="device.icon"></span>
+          <span class="mdi pr-2" :class="device.icon" />
           <span class="">{{ device.name }}</span>
         </v-card-title>
         <v-card-actions>
@@ -17,7 +17,7 @@
       <v-card>
         <v-card-text> Please remove the device manually from the config file. </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" block @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" block @click="dialog = false"> Close </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

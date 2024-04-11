@@ -53,7 +53,7 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun"></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun" />
             </marker>
             <marker
               id="SvgjsMarker1006"
@@ -64,7 +64,7 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun"></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-sun" />
             </marker>
             <marker
               id="SvgjsMarker1007"
@@ -75,7 +75,7 @@
               viewBox="0 0 5 5"
               orient="auto"
             >
-              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-grid"></polygon>
+              <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5" class="fill-grid" />
             </marker>
           </defs>
         </svg>
@@ -84,7 +84,7 @@
             class="bg-surface absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
           >
             <div>
-              <div class="mdi mdi-solar-power text-sun text-2xl"></div>
+              <div class="mdi mdi-solar-power text-sun text-2xl" />
               <span class="text-xs">{{ formatNumberWithUnit(solarPower, unit) }}</span>
             </div>
           </div>
@@ -92,26 +92,24 @@
             class="bg-surface absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-sky-800"
           >
             <div>
-              <div class="mdi mdi-transmission-tower text-2xl"></div>
+              <div class="mdi mdi-transmission-tower text-2xl" />
 
               <div v-if="gridImportedEnergy" class="text-xs">
                 <div>
-                  <span class="mdi mdi-arrow-right"></span>
+                  <span class="mdi mdi-arrow-right" />
                   {{ formatNumberWithUnit(gridImportedEnergy, unit) }}
                 </div>
                 <div v-if="gridExportedEnergy">
-                  <span class="mdi mdi-arrow-left"></span>
+                  <span class="mdi mdi-arrow-left" />
                   {{ formatNumberWithUnit(gridExportedEnergy, unit) }}
                 </div>
               </div>
               <div v-else class="text-xs">
                 <span v-if="grid_consumption_power > 0"
-                  ><span class="mdi mdi-arrow-right"></span>
-                  {{ formatNumberWithUnit(grid_consumption_power, unit) }}</span
+                  ><span class="mdi mdi-arrow-right" /> {{ formatNumberWithUnit(grid_consumption_power, unit) }}</span
                 >
                 <span v-else
-                  ><span class="mdi mdi-arrow-left"></span>
-                  {{ formatNumberWithUnit(-grid_consumption_power, unit) }}</span
+                  ><span class="mdi mdi-arrow-left" /> {{ formatNumberWithUnit(-grid_consumption_power, unit) }}</span
                 >
               </div>
             </div>
@@ -120,7 +118,7 @@
             class="bg-surface absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
           >
             <div>
-              <div class="mdi mdi-home text-2xl"></div>
+              <div class="mdi mdi-home text-2xl" />
               <span class="text-xs">{{ formatNumberWithUnit(homeConsumptionPower, unit) }}</span>
             </div>
           </div>

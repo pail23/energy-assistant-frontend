@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-title>
-      <span class="mdi pr-2" :class="device.icon"></span>
+      <span class="mdi pr-2" :class="device.icon" />
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
@@ -27,14 +27,14 @@
             :self-sufficiency="today.self_sufficiency"
             :consumed-energy="today.consumed_energy"
             :consumed-solar-energy="today.consumed_solar_energy"
-          ></SelfSufficiencyBar>
+          />
         </div>
       </div>
       <PowerModeSelection
         :device-id="device.id"
         :supported-power-modes="device.supported_power_modes"
         :power-mode="device.power_mode"
-      ></PowerModeSelection>
+      />
     </v-card-text>
   </v-card>
 </template>

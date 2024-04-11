@@ -4,7 +4,7 @@
     <v-divider />
     <div class="v-full bg-background flex min-h-screen justify-center p-4">
       <div v-if="isLoading" class="grid h-full w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2"></span>
+        <span class="loading loading-dots loading-lg py-2" />
       </div>
       <div v-else>
         <HomeMeasurementTable v-if="data" :home-measurements="data" :show-meter-values="show_meter_values" />
@@ -29,7 +29,7 @@
           :show-meter-values="show_meter_values"
         />
         <div class="my-4 flex">
-          <v-checkbox v-model="show_meter_values" :label="t('raw_data.show_meter_values')"></v-checkbox>
+          <v-checkbox v-model="show_meter_values" :label="t('raw_data.show_meter_values')" />
         </div>
       </div>
     </div>

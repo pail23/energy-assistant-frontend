@@ -1,12 +1,14 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
-//import pluginVue from 'eslint-plugin-vue'
+import pluginVue from 'eslint-plugin-vue';
+import tsParser from '@typescript-eslint/parser';
+import vueParser from 'vue-eslint-parser';
 
 export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  //...pluginVue.configs['flat/recommended'],
+  ...pluginVue.configs['flat/recommended'],
   {
     ignores: ['energy_assistant_frontend/**/*', 'energy_assistant_frontend.egg-info/*'],
   },
@@ -19,10 +21,20 @@ export default tseslint.config(
         ...globals.browser,
         ...globals.node,
       },
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        extraFileExtensions: '.vue',
+        ecmaVersion: 'latest',
+      },
     },
     rules: {
       'no-unused-vars': 'warn',
       'no-undef': 'warn',
+      //TODO: Remove the following lines
+      'vue/multi-word-component-names': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
 );

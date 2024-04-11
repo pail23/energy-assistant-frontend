@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
     <v-card-title>
-      <span class="mdi pr-2" :class="device.icon"></span>
+      <span class="mdi pr-2" :class="device.icon" />
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
@@ -14,7 +14,7 @@
           :self-sufficiency="selfSufficiency"
           :consumed-energy="measurement.consumed_energy"
           :consumed-solar-energy="measurement.solar_consumed_energy"
-        ></SelfSufficiencyBar>
+        />
       </div>
       <div v-if="timeframe == 'week' || timeframe == 'month'" class="bg-subgroup mt-2 items-center rounded-md p-2">
         <Bar :data="chartData" :options="options" />

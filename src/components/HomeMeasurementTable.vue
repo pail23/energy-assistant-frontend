@@ -3,16 +3,24 @@
     <v-table class="m-4 border">
       <thead class="bg-primary">
         <tr>
-          <th class="w-24 px-6 py-3">{{ t('raw_data.date') }}</th>
+          <th class="w-24 px-6 py-3">
+            {{ t('raw_data.date') }}
+          </th>
           <th class="w-36 px-6 py-3">
             {{ t('consumed_solar_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">{{ t('consumed_energy') }}</th>
+          <th class="w-36 px-6 py-3">
+            {{ t('consumed_energy') }}
+          </th>
           <th class="w-36 px-6 py-3">
             {{ t('raw_data.produced_solar_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">{{ t('raw_data.imported_energy') }}</th>
-          <th class="w-36 px-6 py-3">{{ t('raw_data.exported_energy') }}</th>
+          <th class="w-36 px-6 py-3">
+            {{ t('raw_data.imported_energy') }}
+          </th>
+          <th class="w-36 px-6 py-3">
+            {{ t('raw_data.exported_energy') }}
+          </th>
         </tr>
       </thead>
       <tbody>

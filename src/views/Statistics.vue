@@ -22,7 +22,7 @@
     <v-divider />
     <div class="flex min-h-screen w-full justify-center">
       <div v-if="isLoading" class="grid w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2"></span>
+        <span class="loading loading-dots loading-lg py-2" />
       </div>
       <div v-else>
         <div v-if="data" class="grid grid-cols-1 p-4 lg:grid-cols-2">
@@ -32,10 +32,8 @@
             :grid-imported-energy="data.grid_imported_energy"
             :grid-exported-energy="data.grid_exported_energy"
             unit="kWh"
-          >
-          </PowerFlowCard>
-          <WeeklyStatisticsCard v-if="activeTab == 'week' && statistics != null" :data="statistics">
-          </WeeklyStatisticsCard>
+          />
+          <WeeklyStatisticsCard v-if="activeTab == 'week' && statistics != null" :data="statistics" />
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
               :measurement="device"

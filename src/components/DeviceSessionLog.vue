@@ -4,13 +4,19 @@
       <v-table class="border sm:m-4">
         <thead class="bg-primary">
           <tr>
-            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.start') }}</th>
-            <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.duration') }}</th>
+            <th class="min-w-36 px-6 py-3">
+              {{ $t('sessionlog.start') }}
+            </th>
+            <th class="min-w-36 px-6 py-3">
+              {{ $t('sessionlog.duration') }}
+            </th>
             <!--    <th class="min-w-36 px-6 py-3">{{ $t('sessionlog.text') }}</th>-->
             <th class="w-36 px-6 py-3">
               {{ $t('consumed_solar_energy') }}
             </th>
-            <th class="w-36 px-6 py-3">{{ $t('consumed_energy') }}</th>
+            <th class="w-36 px-6 py-3">
+              {{ $t('consumed_energy') }}
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -2,7 +2,7 @@
   <v-btn v-bind="btnProps" variant="plain">
     <!-- Dynamically inherit slots from parent -->
     <template v-for="(_value, name) in $slots as unknown" #[name]>
-      <slot :name="name"></slot>
+      <slot :name="name" />
     </template>
   </v-btn>
 </template>
@@ -40,7 +40,7 @@ export default {
       },
     },
   },
-  setup(props, _ctx) {
+  setup(props) {
     const btnDefault = {};
 
     const btnResponsive = computed(() => ({

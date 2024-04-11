@@ -55,12 +55,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line, Bar } from 'vue-chartjs';
+import { Line } from 'vue-chartjs';
 import { IForecast, api } from '@/api/energyAssistant.api';
-import { useI18n } from 'vue-i18n';
 import { useTheme } from 'vuetify';
-import { color } from 'chart.js/helpers';
-import { Result } from 'postcss';
 import { $t } from '@/plugins/i18n';
 import { formatNumberWithUnit } from '@/utils';
 
@@ -181,7 +178,7 @@ function getDataSets(forecast: IForecast) {
 
 function getCostProfitDataSets(forecast: IForecast) {
   if (forecast && forecast.series) {
-    let colorIterator = new ColorIterator();
+    //let colorIterator = new ColorIterator();
     return forecast.series
       .filter((serie) => serie.name == 'cost_profit')
       .map((serie) => {
