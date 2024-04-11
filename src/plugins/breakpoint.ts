@@ -7,7 +7,7 @@ const md = new MobileDetect(window.navigator.userAgent);
 type Breakpoints = 'bp0' | 'bp1' | 'bp2' | 'bp3' | 'bp4' | 'bp5' | 'bp6' | 'bp7' | 'bp8' | 'bp9' | 'bp10' | 'bp11';
 
 //TODO sorting
-const breakpoints: { [key in Breakpoints]: number } = {
+const breakpoints = {
   bp0: 375,
   bp1: 500,
   bp2: 540,

@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import globals from 'globals';
 //import pluginVue from 'eslint-plugin-vue'
 
 export default tseslint.config(
@@ -9,7 +10,16 @@ export default tseslint.config(
   {
     ignores: ['energy_assistant_frontend/**/*', 'energy_assistant_frontend.egg-info/*'],
   },
+
   {
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
     rules: {
       'no-unused-vars': 'warn',
       'no-undef': 'warn',
