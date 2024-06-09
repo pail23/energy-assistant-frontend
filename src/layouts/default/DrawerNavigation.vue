@@ -75,17 +75,6 @@ watch(
 </script>
 
 <script lang="ts">
-export const backButtonAllowedRouteNames = [
-  'track',
-  'artist',
-  'album',
-  'playlist',
-  'radio',
-  'addprovider',
-  'editprovider',
-  'editplayer',
-  'editcore',
-];
 
 export interface MenuItem {
   label: string;

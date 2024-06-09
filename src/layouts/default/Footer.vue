@@ -1,5 +1,5 @@
 <template>
-  <BottomNavigation v-if="getBreakpointValue({ breakpoint: 'bp3', condition: 'lt' })" :height="bottomNavHeight" />
+  <BottomNavigation :height="bottomNavHeight" />
 </template>
 
 <script setup lang="ts">
