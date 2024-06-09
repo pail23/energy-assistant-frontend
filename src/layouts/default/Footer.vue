@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { getBreakpointValue } from '@/plugins/breakpoint';
 import BottomNavigation from './BottomNavigation.vue';
 import { store } from '@/plugins/store';
 import { computed } from 'vue';

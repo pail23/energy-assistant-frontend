@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, onMounted, computed } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import { api, IHomeMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
 import { getBreakpointValue } from '@/plugins/breakpoint';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';

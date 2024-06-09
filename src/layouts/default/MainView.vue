@@ -9,5 +9,4 @@
 </template>
 
 <script lang="ts" setup>
-import DrawerNavigation from './DrawerNavigation.vue';
 </script>
