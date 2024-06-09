@@ -20,9 +20,9 @@
     </v-toolbar>
 
     <v-divider />
-    <div class="flex min-h-screen w-full justify-center">
+    <div class="flex justify-center w-full min-h-screen">
       <div v-if="isLoading" class="grid w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2" />
+        <span class="py-2 loading loading-dots loading-lg" />
       </div>
       <div v-else>
         <div v-if="data" class="grid grid-cols-1 p-4 lg:grid-cols-2">
@@ -33,6 +33,10 @@
             :grid-exported-energy="data.grid_exported_energy"
             unit="kWh"
           />
+          <EnergyConsumptionCard
+            :self-sufficiency="selfSufficiency"
+            :self-consumption="selfConsumption"
+          />          
           <WeeklyStatisticsCard v-if="activeTab == 'week' && statistics != null" :data="statistics" />
           <div v-for="(device, index) in data.device_measurements" :key="index">
             <DeviceEnergyCard
@@ -49,17 +53,20 @@
 </template>
 
 <script lang="ts" setup>
-import { watch, ref, onMounted } from 'vue';
+import { watch, ref, onMounted, computed } from 'vue';
 import { api, IHomeMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
 import { getBreakpointValue } from '@/plugins/breakpoint';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
+import EnergyConsumptionCard from '@/components/EnergyConsumptionCard.vue';
 
 // global refs
 const data = ref<IHomeMeasurementPeriod>();
 const statistics = ref<IHomeMeasurementDate[]>();
 const isLoading = ref(false);
+const selfSufficiency = ref(0);
+const selfConsumption = ref(0);
 
 // computed properties
 const activeTab = ref('today');
@@ -88,7 +95,10 @@ onMounted(() => {
 
 const loadData = async function (from_date: Date) {
   isLoading.value = true;
-  data.value = (await api.getHomeMeasurementDifference(from_date, new Date())).data;
+  const value = (await api.getHomeMeasurementDifference(from_date, new Date())).data;
+  data.value = value
+  selfSufficiency.value = (1 - value.grid_imported_energy / value.consumed_energy) * 100
+  selfConsumption.value = (value.consumed_energy - value.grid_imported_energy) / value.solar_produced_energy * 100
   statistics.value = await api.getDailyMeasurements(from_date, new Date());
   isLoading.value = false;
 };
