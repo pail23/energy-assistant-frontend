@@ -29,6 +29,9 @@
   "device_attribute": {
     "actual_temperature": "Temperatur",
     "state": "Status",
+    "heatpump_state": "Heizungsstatus",
+    "heating_actual_temperature": "Temperatur Heizung",
+    "water_heating_actual_temperature": "Temperatur Boiler",
     "pv_mode": "PV Modus",
     "vehicle_soc": "Ladestand",
     "session_time": "Session Dauer",

@@ -30,6 +30,9 @@
   "device_attribute": {
     "actual_temperature": "Temperature",
     "state": "State",
+    "heatpump_state": "Heatpump state",
+    "heating_actual_temperature": "Heating temperature",
+    "water_heating_actual_temperature": "Water temperature",    
     "pv_mode": "PV mode",
     "vehicle_soc": "Vehicle SoC",
     "session_time": "Session duration",
