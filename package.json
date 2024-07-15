@@ -54,6 +54,6 @@
     "typescript-eslint": "^7.13.1",
     "vite": "^4.4.11",
     "vite-plugin-pwa": "^0.20.0",
-    "vue-tsc": "^2.0.21"
+    "vue-tsc": "^2.0.26"
   }
 }
