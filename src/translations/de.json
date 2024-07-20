@@ -91,7 +91,10 @@
     "forecast_value_too_small": "Der Wert ist zu klein.",
     "forecast_field_required": "Bitte einen Wert eingeben.",
     "edit_action": "Bearbeiten",
-    "save": "Speichern"
+    "save": "Speichern",
+    "name": "Name",
+    "nominal_power": "Verbrauch",
+    "switch_on_delay": "Einschaltverzögerung"
   },
   "close": "Schliessen"
 }

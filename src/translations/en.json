@@ -91,7 +91,10 @@
     "forecast_value_too_small": "The value is too small.",
     "forecast_field_required": "Field is required",
     "edit_action": "Edit",
-    "save": "Save"
+    "save": "Save",
+    "name": "Name",
+    "nominal_power": "Consumption",
+    "switch_on_delay": "Switch on delay"
   },
   "close": "Close"
 }
