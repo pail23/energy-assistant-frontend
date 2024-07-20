@@ -89,6 +89,9 @@
     "delete_action": "Löschen",
     "forecast_create_model_error": "Das Model konnte nicht erstellt werden. Homeassistant hat wahrscheinlich nicht genügend Daten.",
     "forecast_value_too_small": "Der Wert ist zu klein.",
-    "forecast_field_required": "Bitte einen Wert eingeben."
-  }
+    "forecast_field_required": "Bitte einen Wert eingeben.",
+    "edit_action": "Bearbeiten",
+    "save": "Speichern"
+  },
+  "close": "Schliessen"
 }

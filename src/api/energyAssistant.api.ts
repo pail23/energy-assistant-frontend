@@ -107,7 +107,16 @@ export interface IConfig {
   config: object;
 }
 
+export type ConfigValueType =
+  | string
+  | number
+  | boolean
+  | string[]
+  | number[]
+  | null;
+
 export class EnergyAssistantApi {
+
   private axiosInstance?: AxiosInstance;
   public baseUrl?: string;
   public deviceInfos?: IDeviceInfo[];
@@ -229,6 +238,14 @@ export class EnergyAssistantApi {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IConfig>('config')).data.config;
   }
+  public async getDeviceConfig(deviceId:string) {
+    if (!this.axiosInstance) throw 'not initialized';
+    return (await this.axiosInstance.get<IConfig>('config/device/'+deviceId)).data.config;
+  }  
+  public async saveDeviceConfig(deviceId: string, values) {
+    if (!this.axiosInstance) throw 'not initialized';
+    return await this.axiosInstance.put<IConfig>('config/device/'+deviceId, values);
+}  
 }
 
 export const api = new EnergyAssistantApi();

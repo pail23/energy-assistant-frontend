@@ -15,7 +15,6 @@
   "consumption": "Consumption",
   "self_sufficiency": "Self sufficiency",
   "self_consumption": "Self consumed solar energy",
-
   "temperature": "Temperature",
   "state": "State",
   "consumed_solar_energy": "Solar energy",
@@ -32,7 +31,7 @@
     "state": "State",
     "heatpump_state": "Heatpump state",
     "heating_actual_temperature": "Heating temperature",
-    "water_heating_actual_temperature": "Water temperature",    
+    "water_heating_actual_temperature": "Water temperature",
     "pv_mode": "PV mode",
     "vehicle_soc": "Vehicle SoC",
     "session_time": "Session duration",
@@ -90,6 +89,9 @@
     "delete_action": "Delete",
     "forecast_create_model_error": "Failed to create the model. Homeassistant might not have enough data.",
     "forecast_value_too_small": "The value is too small.",
-    "forecast_field_required": "Field is required"
-  }
+    "forecast_field_required": "Field is required",
+    "edit_action": "Edit",
+    "save": "Save"
+  },
+  "close": "Close"
 }
