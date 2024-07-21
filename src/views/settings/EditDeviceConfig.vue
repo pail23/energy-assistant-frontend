@@ -9,27 +9,27 @@
         />
         <v-text-field
           v-model="nominal_power"
-          :label="$t('settings.nominal_power')"
+          :label="$t('settings.nominal_power') + ' [W]'"
           type="number"
         />
         <v-text-field
           v-model="switch_on_delay"
-          :label="$t('settings.switch_on_delay')"
+          :label="$t('settings.switch_on_delay') + ' [min]'"
           type="number"
         />
         <v-text-field
           v-model="switch_off_delay"
-          :label="$t('settings.switch_off_delay')"
+          :label="$t('settings.switch_off_delay')+ ' [min]'"
           type="number"
         />  
         <v-text-field
           v-model="min_on_duration"
-          :label="$t('settings.min_on_duration')"
+          :label="$t('settings.min_on_duration')+ ' [min]'"
           type="number"
         />    
         <v-text-field
           v-model="max_on_per_day"
-          :label="$t('settings.max_on_per_day')"
+          :label="$t('settings.max_on_per_day')+ ' [min]'"
           type="number"
         />                     
         <v-btn
@@ -103,13 +103,13 @@ watch(
             const data = await api.getDeviceConfig(val);
             config.value = data
             name.value = data["name"];
-            nominal_power.value = data["nominal_power"];
-            switch_on_delay.value = data["switch_on_delay"]
-            switch_off_delay.value = data["switch_off_delay"]
-            min_on_duration.value = data["min_on_duration"]
-            max_on_per_day.value = data["max_on_per_day"]      
+            nominal_power.value = parseFloat(data["nominal_power"]);
+            switch_on_delay.value = parseFloat(data["switch_on_delay"]) / 60
+            switch_off_delay.value = parseFloat(data["switch_off_delay"]) / 60
+            min_on_duration.value = parseFloat(data["min_on_duration"]) / 60
+            max_on_per_day.value = parseFloat(data["max_on_per_day"]) / 60     
 
-            const configurableKeys = new Set<string>(['id', 'name', 'type', 'nominal_power']);
+            const configurableKeys = new Set<string>(['id', 'name', 'type', 'nominal_power', 'switch_on_delay', 'switch_off_delay', 'min_on_duration', 'max_on_per_day' ]);
             const readOnlyKeys = Object.keys(data).filter((k) => !configurableKeys.has(k));
             const readOnlyValues = {};
             readOnlyKeys.forEach(key => { readOnlyValues[key] = data[key] });
@@ -125,10 +125,10 @@ const submit = async function () {
     const values = {
         "name": name.value,
         "nominal_power": nominal_power.value,
-        "switch_on_delay": switch_on_delay.value,
-        "switch_off_delay": switch_off_delay.value,
-        "min_on_duration": min_on_duration.value,
-        "max_on_per_day": max_on_per_day.value
+        "switch_on_delay": switch_on_delay.value * 60,
+        "switch_off_delay": switch_off_delay.value * 60,
+        "min_on_duration": min_on_duration.value * 60,
+        "max_on_per_day": max_on_per_day.value * 60
 
     }
     await api.saveDeviceConfig(props.deviceId!, values);
