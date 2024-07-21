@@ -94,7 +94,10 @@
     "save": "Speichern",
     "name": "Name",
     "nominal_power": "Verbrauch",
-    "switch_on_delay": "Einschaltverzögerung"
+    "switch_on_delay": "Einschaltverzögerung",
+    "switch_off_delay": "Ausschaltverzögerung",
+    "min_on_duration": "Minimale Einschaltzeit",
+    "max_on_per_day": "Maximale Einschaltzeit pro Tag"
   },
   "close": "Schliessen"
 }

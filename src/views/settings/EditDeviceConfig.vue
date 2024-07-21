@@ -17,6 +17,21 @@
           :label="$t('settings.switch_on_delay')"
           type="number"
         />
+        <v-text-field
+          v-model="switch_off_delay"
+          :label="$t('settings.switch_off_delay')"
+          type="number"
+        />  
+        <v-text-field
+          v-model="min_on_duration"
+          :label="$t('settings.min_on_duration')"
+          type="number"
+        />    
+        <v-text-field
+          v-model="max_on_per_day"
+          :label="$t('settings.max_on_per_day')"
+          type="number"
+        />                     
         <v-btn
           block
           color="primary"
@@ -70,7 +85,9 @@ const readOnlyConfig = ref({})
 const name = ref<string>("")
 const nominal_power = ref<number>(0)
 const switch_on_delay = ref<number>(0)
-
+const switch_off_delay = ref<number>(0)
+const min_on_duration = ref<number>(0)
+const max_on_per_day = ref<number>(0)
 // props
 const props = defineProps<{
     deviceId?: string;
@@ -87,6 +104,11 @@ watch(
             config.value = data
             name.value = data["name"];
             nominal_power.value = data["nominal_power"];
+            switch_on_delay.value = data["switch_on_delay"]
+            switch_off_delay.value = data["switch_off_delay"]
+            min_on_duration.value = data["min_on_duration"]
+            max_on_per_day.value = data["max_on_per_day"]      
+
             const configurableKeys = new Set<string>(['id', 'name', 'type', 'nominal_power']);
             const readOnlyKeys = Object.keys(data).filter((k) => !configurableKeys.has(k));
             const readOnlyValues = {};
@@ -102,7 +124,12 @@ watch(
 const submit = async function () {
     const values = {
         "name": name.value,
-        "nominal_power": nominal_power.value
+        "nominal_power": nominal_power.value,
+        "switch_on_delay": switch_on_delay.value,
+        "switch_off_delay": switch_off_delay.value,
+        "min_on_duration": min_on_duration.value,
+        "max_on_per_day": max_on_per_day.value
+
     }
     await api.saveDeviceConfig(props.deviceId!, values);
 
