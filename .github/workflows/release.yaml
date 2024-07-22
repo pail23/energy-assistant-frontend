@@ -75,7 +75,7 @@ jobs:
           zip energy-assistant-frontend.zip -r ./
 
       - name: 'Upload the ZIP file to the release'
-        uses: softprops/action-gh-release@v2.0.6
+        uses: softprops/action-gh-release@v2.0.8
         with:
           files: |
             ${{ github.workspace }}/energy_assistant_frontend/energy-assistant-frontend.zip
