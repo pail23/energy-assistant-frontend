@@ -8,7 +8,7 @@
 import '@mdi/font/css/materialdesignicons.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import 'vuetify/styles';
-import colors from 'vuetify/lib/util/colors';
+import colors from 'vuetify/util/colors';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
 import { md } from 'vuetify/iconsets/md';
 
