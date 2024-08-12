@@ -70,7 +70,7 @@ const routes = [
             name: 'editdevice',
             component: () => import(/* webpackChunkName: "devicessettings" */ '@/views/settings/EditDeviceConfig.vue'),
             props: true,
-          },          
+          },
           {
             path: '',
             redirect: '/settings/devices', // default child path

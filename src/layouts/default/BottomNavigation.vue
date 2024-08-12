@@ -13,11 +13,50 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { mainMenuItems } from './DrawerNavigation.vue';
 import router from '@/plugins/router';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
+
+interface MenuItem {
+  label: string;
+  icon: string;
+  path: string;
+}
+
+const mainMenuItems: MenuItem[] = [
+  // disable Home until we have something useful to fill that screen
+  {
+    label: 'app.home',
+    icon: 'mdi-home-outline',
+    path: '/home',
+  },
+  {
+    label: 'app.statistics',
+    icon: 'mdi-chart-line',
+    path: '/history',
+  },
+  {
+    label: 'app.forecast',
+    icon: 'mdi-chart-bell-curve',
+    path: '/forecast',
+  },
+  {
+    label: 'app.sessionlog',
+    icon: 'mdi-format-list-numbered',
+    path: '/sessionlog',
+  },
+  {
+    label: 'app.rawdata',
+    icon: 'mdi-database',
+    path: '/rawdata',
+  },
+  {
+    label: 'app.settings',
+    icon: 'mdi-cog-outline',
+    path: '/settings',
+  },
+];
 
 export interface Props {
   height: number;

@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-1 p-4 bg-background md:grid-cols-2 xl:grid-cols-4">
+  <div class="bg-background grid grid-cols-1 p-4 md:grid-cols-2 xl:grid-cols-4">
     <div v-for="(device, index) in devices" :key="index">
-      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="max-w-sm m-4 elevation-2">
+      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="elevation-2 m-4 max-w-sm">
         <v-card-title>
-          <span class="pr-2 mdi" :class="device.icon" />
+          <span class="mdi pr-2" :class="device.icon" />
           <span class="">{{ device.name }}</span>
         </v-card-title>
         <v-card-actions>
@@ -13,7 +13,6 @@
           <v-btn class="m-2" @click="deleteDevice(device.id)">
             {{ $t('settings.delete_action') }}
           </v-btn>
-
         </v-card-actions>
       </v-card>
     </div>
@@ -47,8 +46,8 @@ const deleteDevice = async function (deviceId: string) {
 
 const editDevice = function (deviceId: string) {
   //if (deviceId in api.devices) {
-    // only allow edit if device is alive/available
-    router.push(`/settings/editdevice/${deviceId}`);
+  // only allow edit if device is alive/available
+  router.push(`/settings/editdevice/${deviceId}`);
   //}
 };
 

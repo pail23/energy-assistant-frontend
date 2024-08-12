@@ -3,7 +3,7 @@
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue';
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line
   const component: DefineComponent<{}, {}, unknown>;
   export default component;
 }
