@@ -21,7 +21,7 @@
     "roboto-fontface": "*",
     "tailwind-merge": "^2.5.1",
     "vite-plugin-vuetify": "^1.0.2",
-    "vue": "^3.4.34",
+    "vue": "^3.4.38",
     "vue-chartjs": "^5.3.1",
     "vue-i18n": "^9.13.1",
     "vue-query": "^1.26.0",
