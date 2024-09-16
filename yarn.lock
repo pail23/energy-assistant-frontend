@@ -4135,10 +4135,10 @@ tailwind-merge@^2.5.1:
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.1.tgz#55fe73fca04a0f2baae32bc9ff6f317616fa8ba3"
   integrity sha512-1zKDdExKvNltulO+J0x/Rqv40xQn78FHsEQVn3rxt8e4HdebRIT6o6zGeLYlGuxd3Efue9Y69qsp8vKwEhuEeg==
 
-tailwindcss@^3.4.9:
-  version "3.4.9"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.9.tgz#9e04cddce1924d530df62af37d3520f0e2a9d85e"
-  integrity sha512-1SEOvRr6sSdV5IDf9iC+NU4dhwdqzF4zKKq3sAbasUWHEM6lsMhX+eNN5gkPx1BvLFEnZQEUFbXnGj8Qlp83Pg==
+tailwindcss@^3.4.11:
+  version "3.4.11"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.11.tgz#4d6df41acc05a1d0291b1319490db8df375ab709"
+  integrity sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==
   dependencies:
     "@alloc/quick-lru" "^5.2.0"
     arg "^5.0.2"
