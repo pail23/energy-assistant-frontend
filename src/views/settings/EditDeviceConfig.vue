@@ -42,6 +42,7 @@
 import { api } from '@/api/energyAssistant.api';
 import { watch, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import {$t} from '@/plugins/i18n';
 
 // global refs
 const router = useRouter();

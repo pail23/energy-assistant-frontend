@@ -31,6 +31,7 @@
 import { api, IDeviceInfo } from '@/api/energyAssistant.api';
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import {$t} from '@/plugins/i18n';
 
 const router = useRouter();
 

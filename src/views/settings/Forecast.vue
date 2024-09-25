@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2 m-4 max-w-sm">
+  <v-card class="max-w-sm m-4 elevation-2">
     <v-card-title>{{ $t('settings.forecast_create_model') }}</v-card-title>
     <v-card-item>
       <div class="my-2">
@@ -19,7 +19,7 @@
     </v-card-actions>
   </v-card>
 
-  <v-card class="elevation-2 m-4 max-w-sm">
+  <v-card class="max-w-sm m-4 elevation-2">
     <v-card-title>{{ $t('settings.forecast_tune_model') }}</v-card-title>
     <v-card-item>
       {{ $t('settings.forecast_tune_model_text') }}
@@ -37,9 +37,8 @@
 <script lang="ts" setup>
 import { api } from '@/api/energyAssistant.api';
 import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
+import {$t} from '@/plugins/i18n';
 
-const { t } = useI18n();
 
 const isCreating = ref(false);
 const isTuning = ref(false);
@@ -50,17 +49,17 @@ const CreateModel = async function () {
   isCreating.value = true;
   try {
     const response = await api.createModel(numberOfDays.value);
-    r2Label.value = t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
+    r2Label.value = $t('settings.forecast_r2score') + ' ' + response.data.r2.toFixed(2);
   } catch (error) {
-    r2Label.value = t('settings.forecast_create_model_error');
+    r2Label.value = $t('settings.forecast_create_model_error');
   } finally {
     isCreating.value = false;
   }
 };
 
 const dayRules = [
-  (value) => !!value || t('settings.forecast_field_required'),
-  (value) => (!!value && value > 2) || t('settings.forecast_value_too_small'),
+  (value) => !!value || $t('settings.forecast_field_required'),
+  (value) => (!!value && value > 2) || $t('settings.forecast_value_too_small'),
 ];
 
 const TuneModel = async () => {
