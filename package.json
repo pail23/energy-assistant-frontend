@@ -51,7 +51,7 @@
     "sass": "^1.79.4",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.4.0",
+    "typescript-eslint": "^8.8.1",
     "unplugin": "^1.14.1",
     "vite": "^4.4.11",
     "vite-plugin-pwa": "^0.20.1",
