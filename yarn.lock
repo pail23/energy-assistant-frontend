@@ -4523,10 +4523,10 @@ unload@2.2.0:
     "@babel/runtime" "^7.6.2"
     detect-node "^2.0.4"
 
-unplugin@^1.1.0, unplugin@^1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.15.0.tgz#cd1e92e537ab14a03354d6f83f29d536fac2e5a9"
-  integrity sha512-jTPIs63W+DUEDW207ztbaoO7cQ4p5aVaB823LSlxpsFEU3Mykwxf3ZGC/wzxFJeZlASZYgVrWeo7LgOrqJZ8RA==
+unplugin@^1.1.0, unplugin@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.16.0.tgz#ca0f248bf8798cd752dd02e5b381223b737cef72"
+  integrity sha512-5liCNPuJW8dqh3+DM6uNM2EI3MLLpCKp/KY+9pB5M2S2SR2qvvDHhKgBOaTWEbZTAws3CXfB0rKTIolWKL05VQ==
   dependencies:
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
