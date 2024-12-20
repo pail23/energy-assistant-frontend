@@ -5,5 +5,5 @@ export default {
     extend: {},
   },
   // eslint-disable-next-line
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
+  plugins: [] // [require('@tailwindcss/typography'), require('@tailwindcss/forms'), require('@tailwindcss/aspect-ratio')],
 };
