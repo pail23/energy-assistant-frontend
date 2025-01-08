@@ -52,6 +52,6 @@
     "unplugin": "^2.1.2",
     "vite": "^4.4.11",
     "vite-plugin-pwa": "^0.21.0",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.2.0"
   }
 }
