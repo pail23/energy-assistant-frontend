@@ -30,7 +30,7 @@
     "websocket-ts": "^2.1.5"
   },
   "devDependencies": {
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.10.7",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-vue": "^5.2.0",
