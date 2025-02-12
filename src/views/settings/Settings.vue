@@ -28,7 +28,7 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { getBreakpointValue } from '@/plugins/breakpoint';
-import {$t} from '@/plugins/i18n';
+import { $t } from '@/plugins/i18n';
 
 // global refs
 const router = useRouter();

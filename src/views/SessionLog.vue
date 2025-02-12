@@ -30,7 +30,7 @@ import { api, ISessionLogEntry, IDeviceInfo } from '@/api/energyAssistant.api';
 import DeviceSessionLog from '@/components/DeviceSessionLog.vue';
 import { ref, onMounted } from 'vue';
 import { getBreakpointValue } from '@/plugins/breakpoint';
-import {$t} from '@/plugins/i18n';
+import { $t } from '@/plugins/i18n';
 
 const device_sessionlog = ref<ISessionLogEntry[]>();
 const devices = ref<IDeviceInfo[]>();

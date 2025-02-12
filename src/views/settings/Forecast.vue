@@ -1,5 +1,5 @@
 <template>
-  <v-card class="max-w-sm m-4 elevation-2">
+  <v-card class="elevation-2 m-4 max-w-sm">
     <v-card-title>{{ $t('settings.forecast_create_model') }}</v-card-title>
     <v-card-item>
       <div class="my-2">
@@ -19,7 +19,7 @@
     </v-card-actions>
   </v-card>
 
-  <v-card class="max-w-sm m-4 elevation-2">
+  <v-card class="elevation-2 m-4 max-w-sm">
     <v-card-title>{{ $t('settings.forecast_tune_model') }}</v-card-title>
     <v-card-item>
       {{ $t('settings.forecast_tune_model_text') }}
@@ -37,8 +37,7 @@
 <script lang="ts" setup>
 import { api } from '@/api/energyAssistant.api';
 import { ref } from 'vue';
-import {$t} from '@/plugins/i18n';
-
+import { $t } from '@/plugins/i18n';
 
 const isCreating = ref(false);
 const isTuning = ref(false);

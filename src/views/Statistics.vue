@@ -20,9 +20,9 @@
     </v-toolbar>
 
     <v-divider />
-    <div class="flex justify-center w-full min-h-screen">
+    <div class="flex min-h-screen w-full justify-center">
       <div v-if="isLoading" class="grid w-full grid-cols-1 justify-items-center">
-        <span class="py-2 loading loading-dots loading-lg" />
+        <span class="loading loading-dots loading-lg py-2" />
       </div>
       <div v-else>
         <div v-if="data" class="grid grid-cols-1 p-4 lg:grid-cols-2">
@@ -57,7 +57,7 @@ import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';
 import WeeklyStatisticsCard from '@/components/WeeklyStatisticsCard.vue';
 import EnergyConsumptionCard from '@/components/EnergyConsumptionCard.vue';
-import {$t} from '@/plugins/i18n';
+import { $t } from '@/plugins/i18n';
 
 // global refs
 const data = ref<IHomeMeasurementPeriod>();

@@ -2,9 +2,9 @@
   <div>
     <v-toolbar color="transparent" :title="$t('app.rawdata')" />
     <v-divider />
-    <div class="flex justify-center min-h-screen p-4 v-full bg-background">
-      <div v-if="isLoading" class="grid w-full h-full grid-cols-1 justify-items-center">
-        <span class="py-2 loading loading-dots loading-lg" />
+    <div class="v-full bg-background flex min-h-screen justify-center p-4">
+      <div v-if="isLoading" class="grid h-full w-full grid-cols-1 justify-items-center">
+        <span class="loading loading-dots loading-lg py-2" />
       </div>
       <div v-else>
         <HomeMeasurementTable v-if="data" :home-measurements="data" :show-meter-values="show_meter_values" />
@@ -16,7 +16,7 @@
 
         <v-select
           v-model="selectedDevice"
-          class="my-4 rounded-md bg-surface"
+          class="bg-surface my-4 rounded-md"
           :items="devices ? devices : []"
           item-title="name"
           item-value="id"
@@ -28,7 +28,7 @@
           :device-measurements="device_measurements"
           :show-meter-values="show_meter_values"
         />
-        <div class="flex my-4">
+        <div class="my-4 flex">
           <v-checkbox v-model="show_meter_values" :label="$t('raw_data.show_meter_values')" />
         </div>
       </div>
@@ -41,8 +41,7 @@ import { api, IDeviceMeasurement, IDeviceInfo, IHomeMeasurement } from '@/api/en
 import HomeMeasurementTable from '@/components/HomeMeasurementTable.vue';
 import DeviceMeasurementTable from '@/components/DeviceMeasurementTable.vue';
 import { ref, onMounted, watch } from 'vue';
-import {$t} from '@/plugins/i18n';
-
+import { $t } from '@/plugins/i18n';
 
 const device_measurements = ref<IDeviceMeasurement[]>();
 const data = ref<IHomeMeasurement[]>();

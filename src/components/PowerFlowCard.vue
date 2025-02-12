@@ -79,9 +79,9 @@
             </marker>
           </defs>
         </svg>
-        <div class="absolute bottom-0 left-0 right-0 top-0">
+        <div class="absolute top-0 right-0 bottom-0 left-0">
           <div
-            class="bg-surface absolute left-1/2 top-5 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
+            class="bg-surface absolute top-5 left-1/2 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
           >
             <div>
               <div class="mdi mdi-solar-power text-sun text-2xl" />
@@ -115,7 +115,7 @@
             </div>
           </div>
           <div
-            class="bg-surface absolute bottom-5 right-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
+            class="bg-surface absolute right-5 bottom-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
           >
             <div>
               <div class="mdi mdi-home text-2xl" />

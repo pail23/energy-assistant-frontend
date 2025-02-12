@@ -1,5 +1,9 @@
 @import url('@mdi/font/css/materialdesignicons.css');
 
+@import 'tailwindcss';
+
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
