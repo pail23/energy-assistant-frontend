@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools~=62.3", "wheel~=0.37.1"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name         = "energy-assistant-frontend"
@@ -15,10 +15,16 @@ requires-python = ">=3.11.0"
 [project.urls]
 "Homepage" = "https://github.com/music-assistant/frontend"
 
-[tool.setuptools]
-platforms = ["any"]
-zip-safe  = false
-include-package-data = true
-
-[tool.setuptools.packages.find]
+[tool.hatch.build.targets.sdist]
 include = ["energy_assistant_frontend"]
+ignore-vcs = true
+
+[tool.hatch.build.targets.wheel]
+include = ["energy_assistant_frontend"]
+ignore-vcs = true
+
+[dependency-groups]
+dev = [
+    "tomli>=2.2.1",
+    "tomli-w>=1.2.0",
+]

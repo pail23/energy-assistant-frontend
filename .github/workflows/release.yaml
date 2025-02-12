@@ -26,10 +26,11 @@ jobs:
         id: vars
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@4db96194c378173c656ce18a155ffc14a9fc4355 # v5
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
 
       - name: Set Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
@@ -40,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install
-          python3 -m pip install build tomli tomli-w
+          uv sync
 
       - name: Set Python project version from tag
         shell: python
@@ -60,7 +61,7 @@ jobs:
         run: |
           yarn build
           rm -rf dist music_assistant_frontend.egg-info
-          python3 -m build
+          uv build
 
       - name: Publish release to PyPI
         uses: pypa/gh-action-pypi-publish@v1.12.4
