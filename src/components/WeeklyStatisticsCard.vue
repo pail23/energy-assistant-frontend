@@ -1,6 +1,6 @@
 <template>
-  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
-    <v-card-text class="h-100 w-auto">
+  <v-card class="rounded-md elevation-2 ma-4 w-80 pa-4 sm:w-96">
+    <v-card-text class="w-auto h-100">
       <WeeklyStatistics :data="data" />
     </v-card-text>
   </v-card>

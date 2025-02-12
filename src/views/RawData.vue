@@ -2,13 +2,13 @@
   <div>
     <v-toolbar color="transparent" :title="$t('app.rawdata')" />
     <v-divider />
-    <div class="v-full bg-background flex min-h-screen justify-center p-4">
-      <div v-if="isLoading" class="grid h-full w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2" />
+    <div class="flex justify-center min-h-screen v-full bg-background pa-4">
+      <div v-if="isLoading" class="grid w-full h-full grid-cols-1 justify-items-center">
+        <span class="py-2 loading loading-dots loading-lg" />
       </div>
       <div v-else>
         <HomeMeasurementTable v-if="data" :home-measurements="data" :show-meter-values="show_meter_values" />
-        <!--<select v-model="selectedDevice" class="w-full max-w-xs m-2 select" @change="onChangeDeviceSelection($event)">
+        <!--<select v-model="selectedDevice" class="w-full max-w-xs ma-2 select" @change="onChangeDeviceSelection($event)">
         <option v-for="device in devices" :key="device.id" :value="device.id">
           {{ device.name }}
         </option>
@@ -16,7 +16,7 @@
 
         <v-select
           v-model="selectedDevice"
-          class="bg-surface my-4 rounded-md"
+          class="my-4 rounded-md bg-surface"
           :items="devices ? devices : []"
           item-title="name"
           item-value="id"
@@ -28,7 +28,7 @@
           :device-measurements="device_measurements"
           :show-meter-values="show_meter_values"
         />
-        <div class="my-4 flex">
+        <div class="flex my-4">
           <v-checkbox v-model="show_meter_values" :label="$t('raw_data.show_meter_values')" />
         </div>
       </div>

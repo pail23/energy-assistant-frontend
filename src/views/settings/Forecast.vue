@@ -1,33 +1,33 @@
 <template>
-  <v-card class="elevation-2 m-4 max-w-sm">
+  <v-card class="max-w-sm elevation-2 ma-4">
     <v-card-title>{{ $t('settings.forecast_create_model') }}</v-card-title>
     <v-card-item>
       <div class="my-2">
         {{ $t('settings.forecast_create_model_text') }}
       </div>
       <v-text-field v-model="numberOfDays" label="Anzahl Tage" single-line type="number" :rules="dayRules" />
-      <v-progress-linear v-if="isCreating" indeterminate class="m-2" />
+      <v-progress-linear v-if="isCreating" indeterminate class="ma-2" />
     </v-card-item>
     <v-card-item v-if="r2Label != ''">
       {{ r2Label }}
     </v-card-item>
 
     <v-card-actions>
-      <v-btn class="m-2" @click="CreateModel">
+      <v-btn class="ma-2" @click="CreateModel">
         {{ $t('settings.forecast_create') }}
       </v-btn>
     </v-card-actions>
   </v-card>
 
-  <v-card class="elevation-2 m-4 max-w-sm">
+  <v-card class="max-w-sm elevation-2 ma-4">
     <v-card-title>{{ $t('settings.forecast_tune_model') }}</v-card-title>
     <v-card-item>
       {{ $t('settings.forecast_tune_model_text') }}
 
-      <v-progress-linear v-if="isTuning" indeterminate class="m-2" />
+      <v-progress-linear v-if="isTuning" indeterminate class="ma-2" />
     </v-card-item>
     <v-card-actions>
-      <v-btn class="m-2" @click="TuneModel">
+      <v-btn class="ma-2" @click="TuneModel">
         {{ $t('settings.forecast_tune') }}
       </v-btn>
     </v-card-actions>

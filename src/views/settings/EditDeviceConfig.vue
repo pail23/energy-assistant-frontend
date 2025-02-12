@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2 m-4 rounded-md p-4">
+  <v-card class="rounded-md elevation-2 ma-4 pa-4">
     <v-card-text>
       <v-form>
         <v-text-field v-model="name" :label="$t('settings.name')" type="input" />
@@ -19,16 +19,16 @@
     </v-card-text>
   </v-card>
   <br />
-  <v-card class="elevation-2 m-4 rounded-md p-4">
+  <v-card class="rounded-md pa-4 ma-4 elevation-2">
     <v-card-title>Values which can only be edit in the energy_assistant.yaml file</v-card-title>
     <v-card-text>
-      <v-table class="m-4 rounded-md border">
+      <v-table class="border rounded-md ma-4">
         <tbody>
-          <tr v-for="(value, key) in readOnlyConfig" :key="key" class="border text-left">
-            <td class="border px-6 py-4">
+          <tr v-for="(value, key) in readOnlyConfig" :key="key" class="text-left border">
+            <td class="px-6 py-4 border">
               {{ key }}
             </td>
-            <td class="border px-6 py-4">
+            <td class="px-6 py-4 border">
               {{ value }}
             </td>
           </tr>

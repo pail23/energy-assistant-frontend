@@ -1,11 +1,11 @@
 <template>
-  <v-card class="elevation-2 m-4 w-80 rounded-md p-4 sm:w-96">
+  <v-card class="rounded-md elevation-2 ma-4 w-80 pa-4 sm:w-96">
     <v-card-title>
-      <span class="mdi pr-2" :class="device.icon" />
+      <span class="pr-2 mdi" :class="device.icon" />
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <div class="bg-subgroup mt-2 items-center rounded-md p-2">
+      <div class="items-center mt-2 rounded-md bg-subgroup pa-2">
         <div class="text-left">
           {{ t('consumption') }}
           <span class="float-right">{{ formatNumberWithUnit(measurement.consumed_energy, 'kWh') }}</span>
@@ -16,7 +16,7 @@
           :consumed-solar-energy="measurement.solar_consumed_energy"
         />
       </div>
-      <div v-if="timeframe == 'week' || timeframe == 'month'" class="bg-subgroup mt-2 items-center rounded-md p-2">
+      <div v-if="timeframe == 'week' || timeframe == 'month'" class="items-center mt-2 rounded-md bg-subgroup pa-2">
         <Bar :data="chartData" :options="options" />
       </div>
     </v-card-text>

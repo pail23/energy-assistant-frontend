@@ -8,17 +8,17 @@
       <div class="grid w-full grid-cols-1">
         <div
           v-if="available && attributes && Object.entries(attributes).length > 0"
-          class="items-center pa-2 mt-2 rounded-md bg-subgroup"
+          class="items-center mt-2 rounded-md pa-2 bg-subgroup"
         >
           <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
             {{ $t('device_attribute.' + attribute[0]) }}
             <span class="float-right">{{ getAttributeValue(attribute[0], attribute[1]) }}</span>
           </div>
         </div>
-        <div v-if="!available" class="p-2 mt-2 text-center rounded-md bg-error">
+        <div v-if="!available" class="mt-2 text-center rounded-md pa-2 bg-error">
           {{ $t('unavailable') }}
         </div>
-        <div class="items-center p-2 mt-2 rounded-md bg-subgroup">
+        <div class="items-center mt-2 rounded-md pa-2 bg-subgroup">
           <div v-if="available" class="text-left">
             {{ $t('consumption') }}
             <span class="float-right">{{ formatNumberWithUnit(power, 'W') }}</span>

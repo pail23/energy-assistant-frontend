@@ -1,6 +1,6 @@
 <template>
   <v-card class="elevation-2 rounded-md">
-    <v-table class="m-4 border">
+    <v-table class="ma-4 border">
       <thead class="bg-primary">
         <tr>
           <th class="w-24 px-6 py-3">

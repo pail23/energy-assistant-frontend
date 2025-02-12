@@ -1,16 +1,16 @@
 <template>
-  <div class="bg-background grid grid-cols-1 p-4 md:grid-cols-2 xl:grid-cols-4">
+  <div class="grid grid-cols-1 bg-background pa-4 md:grid-cols-2 xl:grid-cols-4">
     <div v-for="(device, index) in devices" :key="index">
-      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="elevation-2 m-4 max-w-sm">
+      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="max-w-sm ma-4 elevation-2">
         <v-card-title>
-          <span class="mdi pr-2" :class="device.icon" />
+          <span class="pr-2 mdi" :class="device.icon" />
           <span class="">{{ device.name }}</span>
         </v-card-title>
         <v-card-actions>
-          <v-btn class="m-2" @click="editDevice(device.id)">
+          <v-btn class="ma-2" @click="editDevice(device.id)">
             {{ $t('settings.edit_action') }}
           </v-btn>
-          <v-btn class="m-2" @click="deleteDevice(device.id)">
+          <v-btn class="ma-2" @click="deleteDevice(device.id)">
             {{ $t('settings.delete_action') }}
           </v-btn>
         </v-card-actions>

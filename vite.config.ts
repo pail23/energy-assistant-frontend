@@ -11,6 +11,7 @@ import path from 'path';
 export default defineConfig({
   base: './',
   plugins: [
+    tailwindcss(),
     vue({
       template: { transformAssetUrls },
     }),
@@ -51,7 +52,6 @@ export default defineConfig({
     VueI18nPlugin({
       include: [path.resolve(__dirname, './src/translations/**')],
     }),
-    tailwindcss(),
   ],
   define: { 'process.env': {} },
   resolve: {
