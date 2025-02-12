@@ -27,6 +27,4 @@ path = "public/__init__.py"
 
 [dependency-groups]
 dev = [
-    "tomli>=2.2.1",
-    "tomli-w>=1.2.0",
 ]
