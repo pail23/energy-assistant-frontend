@@ -4,8 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name         = "energy-assistant-frontend"
-# The version is set by GH action on release
-version = "0.0.0"
+dynamic = ["version"]
 license      = {text = "Apache-2.0"}
 description  = "The Energy Assistant frontend"
 readme       = "README.md"
@@ -22,6 +21,9 @@ ignore-vcs = true
 [tool.hatch.build.targets.wheel]
 include = ["energy_assistant_frontend"]
 ignore-vcs = true
+
+[tool.hatch.version]
+path = "energy_assistant_frontend/__init__.py"
 
 [dependency-groups]
 dev = [
