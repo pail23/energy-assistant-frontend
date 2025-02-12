@@ -23,7 +23,7 @@ include = ["energy_assistant_frontend"]
 ignore-vcs = true
 
 [tool.hatch.version]
-path = "energy_assistant_frontend/__init__.py"
+path = "public/__init__.py"
 
 [dependency-groups]
 dev = [
