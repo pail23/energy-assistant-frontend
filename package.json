@@ -28,7 +28,7 @@
     "vue-query": "^1.26.0",
     "vue-router": "~4.5.0",
     "vuetify": "^3.7.10",
-    "websocket-ts": "^2.1.5"
+    "websocket-ts": "^2.2.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.6",
