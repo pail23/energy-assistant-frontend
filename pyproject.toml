@@ -9,7 +9,7 @@ license      = {text = "Apache-2.0"}
 description  = "The Energy Assistant frontend"
 readme       = "README.md"
 authors = [{ name = "The Energy Assistant Creators", email = "pail23@users.noreply.github.com" }]
-requires-python = ">=3.11.0"
+requires-python = ">=3.12.0"
 
 [project.urls]
 "Homepage" = "https://github.com/music-assistant/frontend"

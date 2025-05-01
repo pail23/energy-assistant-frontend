@@ -107,6 +107,11 @@ export interface IConfig {
   config: object;
 }
 
+export interface IVersion {
+  version: string;
+  ui_version: string;
+}
+
 export type ConfigValueType = string | number | boolean | string[] | number[] | null;
 
 export class EnergyAssistantApi {
@@ -231,6 +236,10 @@ export class EnergyAssistantApi {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IConfig>('config')).data.config;
   }
+  public async getVersion() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return (await this.axiosInstance.get<IVersion>('config/version')).data.version;
+  }  
   public async getDeviceConfig(deviceId: string) {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IConfig>('config/device/' + deviceId)).data.config;
