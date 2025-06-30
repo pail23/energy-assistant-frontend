@@ -31,7 +31,7 @@
     "websocket-ts": "^2.2.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/node": "^22.14.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
