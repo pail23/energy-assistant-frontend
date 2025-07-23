@@ -109,7 +109,7 @@ watch(
 const submit = async function () {
   const values: IDeviceConfigParams = {
     name: name.value,
-    nominal_power: +nominal_power.value,
+    nominal_power: +nominal_power.value, // the + operator converts the value to a number
     switch_on_delay: switch_on_delay.value * 60,
     switch_off_delay: switch_off_delay.value * 60,
     min_on_duration: min_on_duration.value * 60,
