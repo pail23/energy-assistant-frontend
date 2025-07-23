@@ -4,6 +4,7 @@
       <v-form>
         <v-text-field v-model="name" :label="$t('settings.name')" type="input" />
         <v-text-field v-model="nominal_power" :label="$t('settings.nominal_power') + ' [W]'" type="number" />
+        <v-text-field v-model="nominal_duration" :label="$t('settings.nominal_duration') + ' [min]'" type="number" />
         <v-text-field v-model="switch_on_delay" :label="$t('settings.switch_on_delay') + ' [min]'" type="number" />
         <v-text-field v-model="switch_off_delay" :label="$t('settings.switch_off_delay') + ' [min]'" type="number" />
         <v-text-field v-model="min_on_duration" :label="$t('settings.min_on_duration') + ' [min]'" type="number" />
@@ -47,6 +48,7 @@ import { $t } from '@/plugins/i18n';
 interface IDeviceConfigParams {
     name: string;
     nominal_power: number; // in Watts
+    nominal_duration: number; // in seconds
     switch_on_delay: number; // in seconds
     switch_off_delay: number; // in seconds
     min_on_duration: number; // in seconds
@@ -59,6 +61,7 @@ const config = ref({});
 const readOnlyConfig = ref({});
 const name = ref<string>('');
 const nominal_power = ref<number>(0);
+const nominal_duration = ref<number>(0);
 const switch_on_delay = ref<number>(0);
 const switch_off_delay = ref<number>(0);
 const min_on_duration = ref<number>(0);
@@ -79,6 +82,7 @@ watch(
       config.value = data;
       name.value = data['name'];
       nominal_power.value = parseFloat(data['nominal_power']) * 1.0;
+      nominal_duration.value = parseFloat(data['nominal_duration']) / 60; // convert seconds to minutes
       switch_on_delay.value = parseFloat(data['switch_on_delay']) / 60;
       switch_off_delay.value = parseFloat(data['switch_off_delay']) / 60;
       min_on_duration.value = parseFloat(data['min_on_duration']) / 60;
@@ -89,6 +93,7 @@ watch(
         'name',
         'type',
         'nominal_power',
+        'nominal_duration',
         'switch_on_delay',
         'switch_off_delay',
         'min_on_duration',
@@ -110,6 +115,7 @@ const submit = async function () {
   const values: IDeviceConfigParams = {
     name: name.value,
     nominal_power: +nominal_power.value, // the + operator converts the value to a number
+    nominal_duration: nominal_duration.value * 60, // convert minutes to seconds
     switch_on_delay: switch_on_delay.value * 60,
     switch_off_delay: switch_off_delay.value * 60,
     min_on_duration: min_on_duration.value * 60,

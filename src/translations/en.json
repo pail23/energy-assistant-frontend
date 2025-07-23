@@ -98,7 +98,8 @@
     "switch_off_delay": "Switch off delay",
     "min_on_duration": "Minimal on duration",
     "max_on_per_day": "Maximal on per day",
-    "version": "Version"
+    "version": "Version",
+    "nominal_duration": "nominal runtime"
   },
   "close": "Close"
 }

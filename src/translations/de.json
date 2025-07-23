@@ -99,7 +99,8 @@
     "min_on_duration": "Minimale Einschaltzeit",
     "max_on_per_day": "Maximale Einschaltzeit pro Tag",
     "version": "Version",
-    "about": "Über Energy Assistant"
+    "about": "Über Energy Assistant",
+    "nominal_duration": "Einschlatzeit"
   },
   "close": "Schliessen"
 }
