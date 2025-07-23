@@ -44,6 +44,15 @@ import { watch, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';
 
+interface IDeviceConfigParams {
+    name: string;
+    nominal_power: number; // in Watts
+    switch_on_delay: number; // in seconds
+    switch_off_delay: number; // in seconds
+    min_on_duration: number; // in seconds
+    max_on_per_day: number; // in seconds
+  }
+
 // global refs
 const router = useRouter();
 const config = ref({});
@@ -69,7 +78,7 @@ watch(
       const data = await api.getDeviceConfig(val);
       config.value = data;
       name.value = data['name'];
-      nominal_power.value = parseFloat(data['nominal_power']);
+      nominal_power.value = parseFloat(data['nominal_power']) * 1.0;
       switch_on_delay.value = parseFloat(data['switch_on_delay']) / 60;
       switch_off_delay.value = parseFloat(data['switch_off_delay']) / 60;
       min_on_duration.value = parseFloat(data['min_on_duration']) / 60;
@@ -98,14 +107,15 @@ watch(
 
 // methods
 const submit = async function () {
-  const values = {
+  const values: IDeviceConfigParams = {
     name: name.value,
-    nominal_power: nominal_power.value,
+    nominal_power: +nominal_power.value,
     switch_on_delay: switch_on_delay.value * 60,
     switch_off_delay: switch_off_delay.value * 60,
     min_on_duration: min_on_duration.value * 60,
     max_on_per_day: max_on_per_day.value * 60,
   };
+  console.log('Saving device config: ', values);
   await api.saveDeviceConfig(props.deviceId!, values);
 
   router.push({ name: 'devicessettings' });
