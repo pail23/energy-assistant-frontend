@@ -3,12 +3,46 @@
     <v-card-text>
       <v-form>
         <v-text-field v-model="name" :label="$t('settings.name')" type="input" />
-        <v-text-field v-model="nominal_power" :label="$t('settings.nominal_power') + ' [W]'" type="number" />
-        <v-text-field v-model="nominal_duration" :label="$t('settings.nominal_duration') + ' [min]'" type="number" />
-        <v-text-field v-model="switch_on_delay" :label="$t('settings.switch_on_delay') + ' [min]'" type="number" />
-        <v-text-field v-model="switch_off_delay" :label="$t('settings.switch_off_delay') + ' [min]'" type="number" />
-        <v-text-field v-model="min_on_duration" :label="$t('settings.min_on_duration') + ' [min]'" type="number" />
-        <v-text-field v-model="max_on_per_day" :label="$t('settings.max_on_per_day') + ' [min]'" type="number" />
+        <v-text-field v-if="'power' in config" v-model="power" :label="$t('settings.power')" type="text" />
+        <v-text-field v-if="'energy' in config" v-model="energy" :label="$t('settings.energy')" type="text" />
+        <v-text-field v-if="'output' in config" v-model="output" :label="$t('settings.output')" type="text" />
+
+        <v-text-field
+          v-if="'nominal_power' in config"
+          v-model="nominal_power"
+          :label="$t('settings.nominal_power') + ' [W]'"
+          type="number"
+        />
+        <v-text-field
+          v-if="'nominal_duration' in config"
+          v-model="nominal_duration"
+          :label="$t('settings.nominal_duration') + ' [min]'"
+          type="number"
+        />
+        <v-text-field
+          v-if="'switch_on_delay' in config"
+          v-model="switch_on_delay"
+          :label="$t('settings.switch_on_delay') + ' [min]'"
+          type="number"
+        />
+        <v-text-field
+          v-if="'switch_off_delay' in config"
+          v-model="switch_off_delay"
+          :label="$t('settings.switch_off_delay') + ' [min]'"
+          type="number"
+        />
+        <v-text-field
+          v-if="'min_on_duration' in config"
+          v-model="min_on_duration"
+          :label="$t('settings.min_on_duration') + ' [min]'"
+          type="number"
+        />
+        <v-text-field
+          v-if="'max_on_per_day' in config"
+          v-model="max_on_per_day"
+          :label="$t('settings.max_on_per_day') + ' [min]'"
+          type="number"
+        />
         <v-btn block color="primary" @click="submit">
           {{ $t('settings.save') }}
         </v-btn>
@@ -47,6 +81,9 @@ import { $t } from '@/plugins/i18n';
 
 interface IDeviceConfigParams {
   name: string;
+  power: string;
+  energy: string;
+  output: string;
   nominal_power: number; // in Watts
   nominal_duration: number; // in seconds
   switch_on_delay: number; // in seconds
@@ -60,6 +97,10 @@ const router = useRouter();
 const config = ref({});
 const readOnlyConfig = ref({});
 const name = ref<string>('');
+const power = ref<string>('');
+const energy = ref<string>('');
+const output = ref<string>('');
+
 const nominal_power = ref<number>(0);
 const nominal_duration = ref<number>(0);
 const switch_on_delay = ref<number>(0);
@@ -81,6 +122,9 @@ watch(
       const data = await api.getDeviceConfig(val);
       config.value = data;
       name.value = data['name'];
+      power.value = data['power'];
+      energy.value = data['energy'];
+      output.value = data['output'];
       nominal_power.value = parseFloat(data['nominal_power']) * 1.0;
       nominal_duration.value = parseFloat(data['nominal_duration']) / 60; // convert seconds to minutes
       switch_on_delay.value = parseFloat(data['switch_on_delay']) / 60;
@@ -89,9 +133,10 @@ watch(
       max_on_per_day.value = parseFloat(data['max_on_per_day']) / 60;
 
       const configurableKeys = new Set<string>([
-        'id',
         'name',
-        'type',
+        'power',
+        'energy',
+        'output',
         'nominal_power',
         'nominal_duration',
         'switch_on_delay',
@@ -114,6 +159,9 @@ watch(
 const submit = async function () {
   const values: IDeviceConfigParams = {
     name: name.value,
+    // energy: energy.value,
+    power: power.value,
+    output: output.value,
     nominal_power: +nominal_power.value, // the + operator converts the value to a number
     nominal_duration: nominal_duration.value * 60, // convert minutes to seconds
     switch_on_delay: switch_on_delay.value * 60,

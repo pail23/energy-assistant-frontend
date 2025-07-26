@@ -102,7 +102,10 @@
     "about": "Über Energy Assistant",
     "nominal_duration": "Einschlatzeit",
     "disableDeviceControl": "Gerätesteuerung deaktivieren",
-    "device_control": "Gerätesteuerung"
+    "device_control": "Gerätesteuerung",
+    "power": "Leistung",
+    "energy": "Energie",
+    "output": "Ausgang"
   },
   "close": "Schliessen"
 }

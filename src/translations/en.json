@@ -101,7 +101,10 @@
     "version": "Version",
     "nominal_duration": "nominal runtime",
     "disableDeviceControl": "Disable device control",
-    "device_control": "Device control"
+    "device_control": "Device control",
+    "power": "Power",
+    "energy": "Energy",
+    "output": "Output"
   },
   "close": "Close"
 }
