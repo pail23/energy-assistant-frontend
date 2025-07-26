@@ -100,7 +100,9 @@
     "max_on_per_day": "Maximale Einschaltzeit pro Tag",
     "version": "Version",
     "about": "Über Energy Assistant",
-    "nominal_duration": "Einschlatzeit"
+    "nominal_duration": "Einschlatzeit",
+    "disableDeviceControl": "Gerätesteuerung deaktivieren",
+    "device_control": "Gerätesteuerung"
   },
   "close": "Schliessen"
 }

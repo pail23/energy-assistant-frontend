@@ -4,7 +4,7 @@
       <template #append>
         <select
           v-model="selectedDevice"
-          class="w-full max-w-xs select bg-surface ma-2"
+          class="select bg-surface ma-2 w-full max-w-xs"
           @change="onChangeDeviceSelection($event)"
         >
           <option v-for="device in devices" :key="device.id" :value="device.id">
@@ -14,8 +14,8 @@
       </template>
     </v-toolbar>
     <v-divider />
-    <div class="flex justify-center min-h-screen pa-4 v-full bg-background">
-      <div v-if="isLoading" class="flex w-full h-full justify-items-center">
+    <div class="pa-4 v-full bg-background flex min-h-screen justify-center">
+      <div v-if="isLoading" class="flex h-full w-full justify-items-center">
         <v-progress-circular indeterminate color="primary" />
       </div>
       <div v-else>

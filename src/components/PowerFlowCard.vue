@@ -1,8 +1,8 @@
 <template>
-  <v-card class="rounded-md elevation-2 ma-4 w-80 pa-4 sm:w-96">
+  <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
     <v-card-text>
       <div class="relative mx-auto">
-        <svg class="w-full h-full" viewBox="0 0 200 180">
+        <svg class="h-full w-full" viewBox="0 0 200 180">
           <path
             id="solar-to-home"
             stroke-width="1"
@@ -79,20 +79,20 @@
             </marker>
           </defs>
         </svg>
-        <div class="absolute top-0 bottom-0 left-0 right-0">
+        <div class="absolute top-0 right-0 bottom-0 left-0">
           <div
-            class="absolute grid w-20 h-20 text-center transform -translate-x-1/2 rounded-full bg-surface top-5 left-1/2 place-items-center ring-2 ring-yellow-500"
+            class="bg-surface absolute top-5 left-1/2 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
           >
             <div>
-              <div class="text-2xl mdi mdi-solar-power text-sun" />
+              <div class="mdi mdi-solar-power text-sun text-2xl" />
               <span class="text-xs">{{ formatNumberWithUnit(solarPower, unit) }}</span>
             </div>
           </div>
           <div
-            class="absolute grid w-20 h-20 text-center rounded-full bg-surface bottom-5 left-5 place-items-center ring-2 ring-sky-800"
+            class="bg-surface absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-sky-800"
           >
             <div>
-              <div class="text-2xl mdi mdi-transmission-tower" />
+              <div class="mdi mdi-transmission-tower text-2xl" />
 
               <div v-if="gridImportedEnergy" class="text-xs">
                 <div>
@@ -115,10 +115,10 @@
             </div>
           </div>
           <div
-            class="absolute grid w-20 h-20 text-center rounded-full bg-surface right-5 bottom-5 place-items-center ring-2 ring-blue-800"
+            class="bg-surface absolute right-5 bottom-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
           >
             <div>
-              <div class="text-2xl mdi mdi-home" />
+              <div class="mdi mdi-home text-2xl" />
               <span class="text-xs">{{ formatNumberWithUnit(homeConsumptionPower, unit) }}</span>
             </div>
           </div>

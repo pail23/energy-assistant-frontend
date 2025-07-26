@@ -1,9 +1,9 @@
 <template>
-  <div class="grid grid-cols-1 bg-background pa-4 md:grid-cols-2 xl:grid-cols-4">
+  <div class="bg-background pa-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
     <div v-for="(device, index) in devices" :key="index">
-      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="max-w-sm ma-4 elevation-2">
+      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="ma-4 elevation-2 max-w-sm">
         <v-card-title>
-          <span class="pr-2 mdi" :class="device.icon" />
+          <span class="mdi pr-2" :class="device.icon" />
           <span class="">{{ device.name }}</span>
         </v-card-title>
         <v-card-actions>

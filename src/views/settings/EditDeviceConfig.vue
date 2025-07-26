@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-md elevation-2 ma-4 pa-4">
+  <v-card class="elevation-2 ma-4 pa-4 rounded-md">
     <v-card-text>
       <v-form>
         <v-text-field v-model="name" :label="$t('settings.name')" type="input" />
@@ -20,16 +20,16 @@
     </v-card-text>
   </v-card>
   <br />
-  <v-card class="rounded-md pa-4 ma-4 elevation-2">
+  <v-card class="pa-4 ma-4 elevation-2 rounded-md">
     <v-card-title>Values which can only be edit in the energy_assistant.yaml file</v-card-title>
     <v-card-text>
-      <v-table class="border rounded-md ma-4">
+      <v-table class="ma-4 rounded-md border">
         <tbody>
-          <tr v-for="(value, key) in readOnlyConfig" :key="key" class="text-left border">
-            <td class="px-6 py-4 border">
+          <tr v-for="(value, key) in readOnlyConfig" :key="key" class="border text-left">
+            <td class="border px-6 py-4">
               {{ key }}
             </td>
-            <td class="px-6 py-4 border">
+            <td class="border px-6 py-4">
               {{ value }}
             </td>
           </tr>
@@ -46,14 +46,14 @@ import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';
 
 interface IDeviceConfigParams {
-    name: string;
-    nominal_power: number; // in Watts
-    nominal_duration: number; // in seconds
-    switch_on_delay: number; // in seconds
-    switch_off_delay: number; // in seconds
-    min_on_duration: number; // in seconds
-    max_on_per_day: number; // in seconds
-  }
+  name: string;
+  nominal_power: number; // in Watts
+  nominal_duration: number; // in seconds
+  switch_on_delay: number; // in seconds
+  switch_off_delay: number; // in seconds
+  min_on_duration: number; // in seconds
+  max_on_per_day: number; // in seconds
+}
 
 // global refs
 const router = useRouter();

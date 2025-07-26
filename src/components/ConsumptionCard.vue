@@ -1,8 +1,8 @@
 <template>
-  <v-card class="rounded-md elevation-2 ma-4 w-80 pa-4 sm:w-96">
+  <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
     <v-card-title> {{ $t('consumption') }} </v-card-title>
     <v-card-text>
-      <div class="items-center mt-2 rounded-md bg-subgroup pa-2">
+      <div class="bg-subgroup pa-2 mt-2 items-center rounded-md">
         <div class="text-left">
           {{ $t('self_sufficiency') }}
           <span class="float-right">{{ formatNumberWithUnit(selfSufficiency, '%') }}</span>
@@ -10,7 +10,7 @@
         <v-progress-linear color="sun" height="15" rounded :model-value="selfSufficiency" />
       </div>
 
-      <div class="items-center mt-2 rounded-md pa-2 bg-subgroup">
+      <div class="pa-2 bg-subgroup mt-2 items-center rounded-md">
         <div class="text-left">
           {{ $t('self_consumption') }}
           <span class="float-right">{{ formatNumberWithUnit(selfConsumption, '%') }}</span>
@@ -18,7 +18,7 @@
         <v-progress-linear color="grid" height="15" rounded :model-value="selfConsumption" />
       </div>
       <div>{{ $t('period.today') }}:</div>
-      <div class="items-center mt-2 rounded-md pa-2 bg-subgroup">
+      <div class="pa-2 bg-subgroup mt-2 items-center rounded-md">
         <div class="text-left">
           {{ $t('self_sufficiency') }}
           <span class="float-right">{{ formatNumberWithUnit(selfSufficiencyToday, '%') }}</span>
@@ -26,7 +26,7 @@
         <v-progress-linear color="sun" height="15" rounded :model-value="selfSufficiencyToday" />
       </div>
 
-      <div class="items-center mt-2 rounded-md pa-2 bg-subgroup">
+      <div class="pa-2 bg-subgroup mt-2 items-center rounded-md">
         <div class="text-left">
           {{ $t('self_consumption') }}
           <span class="float-right">{{ formatNumberWithUnit(selfConsumptionToday, '%') }}</span>

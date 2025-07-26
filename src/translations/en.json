@@ -99,7 +99,9 @@
     "min_on_duration": "Minimal on duration",
     "max_on_per_day": "Maximal on per day",
     "version": "Version",
-    "nominal_duration": "nominal runtime"
+    "nominal_duration": "nominal runtime",
+    "disableDeviceControl": "Disable device control",
+    "device_control": "Device control"
   },
   "close": "Close"
 }

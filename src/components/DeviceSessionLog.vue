@@ -1,7 +1,7 @@
 <template>
-  <v-card class="elevation-2 w-full rounded-md md:ma-4">
+  <v-card class="elevation-2 md:ma-4 w-full rounded-md">
     <v-card-text>
-      <v-table class="border sm:ma-4">
+      <v-table class="sm:ma-4 border">
         <thead class="bg-primary">
           <tr>
             <th class="min-w-36 px-6 py-3">

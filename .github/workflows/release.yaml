@@ -44,7 +44,7 @@ jobs:
           uv sync --dev
 
       - name: Set Python project version from tag
-        run:  uvx hatch version "${{ steps.vars.outputs.tag }}"
+        run: uvx hatch version "${{ steps.vars.outputs.tag }}"
 
       - name: Build and release package
         run: |

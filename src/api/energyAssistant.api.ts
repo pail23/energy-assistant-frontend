@@ -112,6 +112,10 @@ export interface IVersion {
   ui_version: string;
 }
 
+export interface IDeviceControlDisabled {
+  disable_device_control: boolean;
+}
+
 export type ConfigValueType = string | number | boolean | string[] | number[] | null;
 
 export class EnergyAssistantApi {
@@ -239,7 +243,7 @@ export class EnergyAssistantApi {
   public async getVersion() {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IVersion>('config/version')).data.version;
-  }  
+  }
   public async getDeviceConfig(deviceId: string) {
     if (!this.axiosInstance) throw 'not initialized';
     return (await this.axiosInstance.get<IConfig>('config/device/' + deviceId)).data.config;
@@ -247,6 +251,16 @@ export class EnergyAssistantApi {
   public async saveDeviceConfig(deviceId: string, values) {
     if (!this.axiosInstance) throw 'not initialized';
     return await this.axiosInstance.put<IConfig>('config/device/' + deviceId, values);
+  }
+  public async getDeviceControlDisabled() {
+    if (!this.axiosInstance) throw 'not initialized';
+    return (await this.axiosInstance.get<IDeviceControlDisabled>('config/device_control')).data;
+  }
+  public async setDeviceControlDisabled(disable_device_control: boolean) {
+    if (!this.axiosInstance) throw 'not initialized';
+    return await this.axiosInstance.put<IDeviceControlDisabled>(
+      'config/device_control?disable_device_control=' + disable_device_control,
+    );
   }
 }
 

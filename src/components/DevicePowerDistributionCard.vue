@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-md elevation-2 ma-4 w-80 pa-4 sm:w-96">
+  <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
     <v-card-text>
       <Doughnut :data="data" :options="options" />
     </v-card-text>
