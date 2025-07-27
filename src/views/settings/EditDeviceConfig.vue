@@ -3,46 +3,67 @@
     <v-card-text>
       <v-form>
         <v-text-field v-model="name" :label="$t('settings.name')" type="input" />
-        <v-text-field v-if="'power' in config" v-model="power" :label="$t('settings.power')" type="text" />
-        <v-text-field v-if="'energy' in config" v-model="energy" :label="$t('settings.energy')" type="text" />
-        <v-text-field v-if="'output' in config" v-model="output" :label="$t('settings.output')" type="text" />
+        <div v-if="'power' in config || 'energy' in config || 'output' in config">
+          <v-divider />
+          <p class="config-subtitle">
+            {{ $t('settings.home_assistant_entity_ids') }}
+          </p>
+          <v-text-field v-if="'power' in config" v-model="power" :label="$t('settings.power')" type="text" />
+          <v-text-field v-if="'energy' in config" v-model="energy" :label="$t('settings.energy')" type="text" />
+          <v-text-field v-if="'output' in config" v-model="output" :label="$t('settings.output')" type="text" />
+        </div>
+        <div
+          v-if="
+            'nominal_power' in config ||
+            'nominal_duration' in config ||
+            'switch_on_delay' in config ||
+            'switch_off_delay' in config ||
+            'min_on_duration' in config ||
+            'max_on_per_day' in config
+          "
+        >
+          <v-divider />
+          <p class="config-subtitle">
+            {{ $t('settings.configuration') }}
+          </p>
 
-        <v-text-field
-          v-if="'nominal_power' in config"
-          v-model="nominal_power"
-          :label="$t('settings.nominal_power') + ' [W]'"
-          type="number"
-        />
-        <v-text-field
-          v-if="'nominal_duration' in config"
-          v-model="nominal_duration"
-          :label="$t('settings.nominal_duration') + ' [min]'"
-          type="number"
-        />
-        <v-text-field
-          v-if="'switch_on_delay' in config"
-          v-model="switch_on_delay"
-          :label="$t('settings.switch_on_delay') + ' [min]'"
-          type="number"
-        />
-        <v-text-field
-          v-if="'switch_off_delay' in config"
-          v-model="switch_off_delay"
-          :label="$t('settings.switch_off_delay') + ' [min]'"
-          type="number"
-        />
-        <v-text-field
-          v-if="'min_on_duration' in config"
-          v-model="min_on_duration"
-          :label="$t('settings.min_on_duration') + ' [min]'"
-          type="number"
-        />
-        <v-text-field
-          v-if="'max_on_per_day' in config"
-          v-model="max_on_per_day"
-          :label="$t('settings.max_on_per_day') + ' [min]'"
-          type="number"
-        />
+          <v-text-field
+            v-if="'nominal_power' in config"
+            v-model="nominal_power"
+            :label="$t('settings.nominal_power') + ' [W]'"
+            type="number"
+          />
+          <v-text-field
+            v-if="'nominal_duration' in config"
+            v-model="nominal_duration"
+            :label="$t('settings.nominal_duration') + ' [min]'"
+            type="number"
+          />
+          <v-text-field
+            v-if="'switch_on_delay' in config"
+            v-model="switch_on_delay"
+            :label="$t('settings.switch_on_delay') + ' [min]'"
+            type="number"
+          />
+          <v-text-field
+            v-if="'switch_off_delay' in config"
+            v-model="switch_off_delay"
+            :label="$t('settings.switch_off_delay') + ' [min]'"
+            type="number"
+          />
+          <v-text-field
+            v-if="'min_on_duration' in config"
+            v-model="min_on_duration"
+            :label="$t('settings.min_on_duration') + ' [min]'"
+            type="number"
+          />
+          <v-text-field
+            v-if="'max_on_per_day' in config"
+            v-model="max_on_per_day"
+            :label="$t('settings.max_on_per_day') + ' [min]'"
+            type="number"
+          />
+        </div>
         <v-btn block color="primary" @click="submit">
           {{ $t('settings.save') }}
         </v-btn>
@@ -159,7 +180,7 @@ watch(
 const submit = async function () {
   const values: IDeviceConfigParams = {
     name: name.value,
-    // energy: energy.value,
+    energy: energy.value,
     power: power.value,
     output: output.value,
     nominal_power: +nominal_power.value, // the + operator converts the value to a number
@@ -175,3 +196,11 @@ const submit = async function () {
   router.push({ name: 'devicessettings' });
 };
 </script>
+<style scoped>
+.config-subtitle {
+  font-family: 'JetBrains Mono Medium';
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+</style>

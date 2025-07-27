@@ -105,7 +105,9 @@
     "device_control": "Gerätesteuerung",
     "power": "Leistung",
     "energy": "Energie",
-    "output": "Ausgang"
+    "output": "Ausgang",
+    "home_assistant_entity_ids": "Home Assistant Entity IDs",
+    "configuration": "Konfiguration"
   },
   "close": "Schliessen"
 }

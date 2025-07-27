@@ -104,7 +104,9 @@
     "device_control": "Device control",
     "power": "Power",
     "energy": "Energy",
-    "output": "Output"
+    "output": "Output",
+    "home_assistant_entity_ids": "Home Assistant Entity IDs",
+    "configuration": "Configuration"
   },
   "close": "Close"
 }
