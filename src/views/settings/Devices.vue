@@ -174,7 +174,7 @@
       size="large"
       color="primary"
       location="bottom end"
-      :style="{ position: 'fixed', bottom: '100px', right: '20px', zIndex: 1000 }"
+      class="fab-fixed"
       @click="openAddDeviceDialog"
     />
   </div>
@@ -329,3 +329,12 @@ onMounted(async () => {
   devices.value = await api.getAllDevices(false);
 });
 </script>
+
+<style scoped>
+.fab-fixed {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 1000;
+}
+</style>

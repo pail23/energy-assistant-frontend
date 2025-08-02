@@ -39,10 +39,15 @@ export interface IDeviceInfo {
   power_mode: string;
 }
 
+export interface IDeviceConfig {
+  // Define the expected properties for device config here
+  [key: string]: ConfigValueType;
+}
+
 export interface ICreateDeviceData {
   device_type: string;
   name: string;
-  config: object;
+  config: IDeviceConfig;
 }
 export interface ICreateDeviceResponse {
   device_id: string;
@@ -216,6 +221,7 @@ export class EnergyAssistantApi {
     });
     return response.data.device_id;
   }
+
 
   public async setPowerMode(id: string, power_mode: string) {
     const deviceInfo = this.getDeviceInfo(id);
