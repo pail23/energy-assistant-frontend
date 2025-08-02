@@ -39,6 +39,15 @@ export interface IDeviceInfo {
   power_mode: string;
 }
 
+export interface ICreateDeviceData {
+  device_type: string;
+  name: string;
+  config: object;
+}
+export interface ICreateDeviceResponse {
+  device_id: string;
+}
+
 export interface IDeviceResponse {
   devices: IDeviceInfo[];
 }
@@ -196,6 +205,16 @@ export class EnergyAssistantApi {
   public async deleteDevice(id: string) {
     if (!this.axiosInstance) throw 'not initialized';
     await this.axiosInstance.delete('devices/' + id);
+  }
+
+  public async addDevice(device_type: string, name: string, config: object) {
+    if (!this.axiosInstance) throw 'not initialized';
+    const response = await this.axiosInstance.post<ICreateDeviceResponse>('devices', {
+      device_type: device_type,
+      device_name: name,
+      config: config,
+    });
+    return response.data.device_id;
   }
 
   public async setPowerMode(id: string, power_mode: string) {
