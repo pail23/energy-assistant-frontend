@@ -106,7 +106,21 @@
     "energy": "Energy",
     "output": "Output",
     "home_assistant_entity_ids": "Home Assistant Entity IDs",
-    "configuration": "Configuration"
+    "evcc_configuration": "EVCC Configuration",
+    "load_point_name": "Load Point Name",
+    "configuration": "Configuration",
+    "add_device": "Add Device",
+    "add_new_device": "Add New Device",
+    "device_type": "Device Type",
+    "device_name": "Device Name",
+    "device_icon": "Device Icon",
+    "device_type_home_assistant": "Home Assistant",
+    "device_type_home_assistant_readonly": "Home Assistant (read only)",
+    "device_type_evcc": "evcc",
+    "device_type_sg_ready_heat_pump": "SG Ready Heat Pump",
+    "add_device_dialog_title": "Add New Device",
+    "add_device_success": "Device added successfully! The new device has been created and is now available in your device list.",
+    "add_device_instruction": "Select the device type and enter a name for your new device."
   },
   "close": "Close"
 }
