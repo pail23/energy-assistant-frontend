@@ -222,7 +222,6 @@ export class EnergyAssistantApi {
     return response.data.device_id;
   }
 
-
   public async setPowerMode(id: string, power_mode: string) {
     const deviceInfo = this.getDeviceInfo(id);
     if (deviceInfo != null) {
