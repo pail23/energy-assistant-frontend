@@ -1,31 +1,16 @@
 <template>
   <div class="bg-background pa-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-    <div
-      v-for="(device, index) in devices"
-      :key="index"
-    >
-      <v-card
-        v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'"
-        class="ma-4 elevation-2 max-w-sm"
-      >
+    <div v-for="(device, index) in devices" :key="index">
+      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="ma-4 elevation-2 max-w-sm">
         <v-card-title>
-          <span
-            class="mdi pr-2"
-            :class="device.icon"
-          />
+          <span class="mdi pr-2" :class="device.icon" />
           <span class="">{{ device.name }}</span>
         </v-card-title>
         <v-card-actions>
-          <v-btn
-            class="ma-2"
-            @click="editDevice(device.id)"
-          >
+          <v-btn class="ma-2" @click="editDevice(device.id)">
             {{ $t('settings.edit_action') }}
           </v-btn>
-          <v-btn
-            class="ma-2"
-            @click="deleteDevice(device.id)"
-          >
+          <v-btn class="ma-2" @click="deleteDevice(device.id)">
             {{ $t('settings.delete_action') }}
           </v-btn>
         </v-card-actions>
@@ -33,29 +18,17 @@
     </div>
 
     <!-- Delete Device Dialog -->
-    <v-dialog
-      v-model="dialog"
-      width="auto"
-    >
+    <v-dialog v-model="dialog" width="auto">
       <v-card>
         <v-card-text> Please remove the device manually from the config file. </v-card-text>
         <v-card-actions>
-          <v-btn
-            color="primary"
-            block
-            @click="dialog = false"
-          >
-            Close
-          </v-btn>
+          <v-btn color="primary" block @click="dialog = false"> Close </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
     <!-- Add Device Dialog -->
-    <v-dialog
-      v-model="addDeviceDialog"
-      max-width="500px"
-    >
+    <v-dialog v-model="addDeviceDialog" max-width="500px">
       <v-card>
         <v-card-title>
           {{ $t('settings.add_device_dialog_title') }}
@@ -64,10 +37,7 @@
           <p class="mb-4">
             {{ $t('settings.add_device_instruction') }}
           </p>
-          <v-form
-            ref="addDeviceForm"
-            v-model="formValid"
-          >
+          <v-form ref="addDeviceForm" v-model="formValid">
             <v-select
               v-model="selectedDeviceType"
               :items="deviceTypes"
@@ -150,6 +120,97 @@
                 persistent-hint
               />
             </div>
+
+            <!-- Additional configuration fields for SG Ready Heat Pump devices -->
+            <div v-if="showHeatPumpFields">
+              <v-divider class="my-4" />
+              <p class="text-subtitle-2 mb-2">
+                {{ $t('settings.heat_pump_configuration') }}
+              </p>
+
+              <!-- Heating Section -->
+              <p class="text-subtitle-2 mt-4 mb-2">
+                {{ $t('settings.heating') }}
+              </p>
+              <v-text-field
+                v-model="configHeatingState"
+                :label="$t('settings.state')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.heating_state"
+                hint="Entity ID for heating state"
+                persistent-hint
+                class="mb-2"
+              />
+              <v-text-field
+                v-model="configHeatingEnergy"
+                :label="$t('settings.energy')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.heating_energy"
+                hint="Entity ID for heating energy"
+                persistent-hint
+                class="mb-2"
+              />
+              <v-text-field
+                v-model="configHeatingTemperature"
+                :label="$t('settings.temperature')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.heating_temperature"
+                hint="Entity ID for heating temperature"
+                persistent-hint
+                class="mb-2"
+              />
+
+              <!-- Water Section -->
+              <p class="text-subtitle-2 mt-4 mb-2">
+                {{ $t('settings.water') }}
+              </p>
+              <v-text-field
+                v-model="configWaterState"
+                :label="$t('settings.state')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.water_state"
+                hint="Entity ID for water heating state"
+                persistent-hint
+                class="mb-2"
+              />
+              <v-text-field
+                v-model="configWaterEnergy"
+                :label="$t('settings.energy')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.water_energy"
+                hint="Entity ID for water heating energy"
+                persistent-hint
+                class="mb-2"
+              />
+              <v-text-field
+                v-model="configWaterTemperature"
+                :label="$t('settings.temperature')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="sensor.water_temperature"
+                hint="Entity ID for water temperature"
+                persistent-hint
+              />
+
+              <!-- Output Section -->
+              <p class="text-subtitle-2 mt-4 mb-2">
+                {{ $t('settings.output') }}
+              </p>
+              <v-text-field
+                v-model="configHeatPumpOutput"
+                :label="$t('settings.output')"
+                required
+                :rules="[(v) => !!v || $t('settings.forecast_field_required')]"
+                placeholder="switch.heat_pump_control"
+                hint="Entity ID for heat pump control"
+                persistent-hint
+              />
+            </div>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -157,11 +218,7 @@
           <v-btn @click="addDeviceDialog = false">
             {{ $t('close') }}
           </v-btn>
-          <v-btn
-            color="primary"
-            :disabled="!formValid"
-            @click="addDevice"
-          >
+          <v-btn color="primary" :disabled="!formValid" @click="addDevice">
             {{ $t('settings.add_device') }}
           </v-btn>
         </v-card-actions>
@@ -204,6 +261,15 @@ const configEnergy = ref<string>('');
 const configOutput = ref<string>('');
 const configLoadPointName = ref<string>('');
 
+// SG Ready Heat Pump configuration fields
+const configHeatingState = ref<string>('');
+const configHeatingEnergy = ref<string>('');
+const configHeatingTemperature = ref<string>('');
+const configWaterState = ref<string>('');
+const configWaterEnergy = ref<string>('');
+const configWaterTemperature = ref<string>('');
+const configHeatPumpOutput = ref<string>('');
+
 // Computed property to determine which additional fields to show
 const showConfigFields = computed(() => {
   return selectedDeviceType.value === 'homeassistant' || selectedDeviceType.value === 'readonly-homeassistant';
@@ -215,6 +281,10 @@ const showOutputField = computed(() => {
 
 const showEvccFields = computed(() => {
   return selectedDeviceType.value === 'evcc';
+});
+
+const showHeatPumpFields = computed(() => {
+  return selectedDeviceType.value === 'sg-ready-heat-pump';
 });
 
 // Device type options
@@ -260,6 +330,13 @@ const openAddDeviceDialog = function () {
   configEnergy.value = '';
   configOutput.value = '';
   configLoadPointName.value = '';
+  configHeatingState.value = '';
+  configHeatingEnergy.value = '';
+  configHeatingTemperature.value = '';
+  configWaterState.value = '';
+  configWaterEnergy.value = '';
+  configWaterTemperature.value = '';
+  configHeatPumpOutput.value = '';
   formValid.value = false;
   addDeviceDialog.value = true;
 };
@@ -283,9 +360,24 @@ const addDevice = async function () {
       }
     }
 
+    // Check additional field validation for SG Ready Heat Pump devices
+    if (showHeatPumpFields.value) {
+      if (
+        !configHeatingState.value ||
+        !configHeatingEnergy.value ||
+        !configHeatingTemperature.value ||
+        !configWaterState.value ||
+        !configWaterEnergy.value ||
+        !configWaterTemperature.value ||
+        !configHeatPumpOutput.value
+      ) {
+        return; // Form validation should prevent this
+      }
+    }
+
     try {
       // Build config object
-      const config: { [key: string]: string } = {
+      const config: { [key: string]: string | object } = {
         icon: newDeviceIcon.value,
       };
 
@@ -302,6 +394,21 @@ const addDevice = async function () {
       // Add EVCC specific fields if applicable
       if (showEvccFields.value) {
         config.load_point_name = configLoadPointName.value;
+      }
+
+      // Add SG Ready Heat Pump specific fields if applicable
+      if (showHeatPumpFields.value) {
+        config.heating = {
+          state: configHeatingState.value,
+          energy: configHeatingEnergy.value,
+          temperature: configHeatingTemperature.value,
+        };
+        config.water = {
+          state: configWaterState.value,
+          energy: configWaterEnergy.value,
+          temperature: configWaterTemperature.value,
+        };
+        config.output = configHeatPumpOutput.value;
       }
 
       // Call the API to add the device
