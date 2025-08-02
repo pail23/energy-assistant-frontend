@@ -11,43 +11,32 @@
           hint="e.g., mdi-home, mdi-car, mdi-heat-pump"
           persistent-hint
         />
-        <div
-          v-if="
-            type === 'homeassistant' ||
-            type === 'readonly-homeassistant' ||
-            type === 'homeassistant' ||
-            type === 'readonly-homeassistant' ||
-            type === 'homeassistant' ||
-            type === 'sg-ready-heat-pump' ||
-            'heating' in config ||
-            'water' in config
-          "
-        >
+        <div v-if="showEntityIdsSection">
           <v-divider />
           <p class="config-subtitle">
             {{ $t('settings.home_assistant_entity_ids') }}
           </p>
           <v-text-field
-            v-if="type === 'homeassistant' || type === 'readonly-homeassistant'"
+            v-if="isHomeAssistantDevice"
             v-model="power"
             :label="$t('settings.power')"
             type="text"
           />
           <v-text-field
-            v-if="type === 'homeassistant' || type === 'readonly-homeassistant'"
+            v-if="isHomeAssistantDevice"
             v-model="energy"
             :label="$t('settings.energy')"
             type="text"
           />
           <v-text-field
-            v-if="type === 'homeassistant' || type === 'sg-ready-heat-pump'"
+            v-if="isHomeAssistantDevice || isHeatPumpDevice"
             v-model="output"
             :label="$t('settings.output')"
             type="text"
           />
 
           <!-- SG Ready Heat Pump specific fields -->
-          <div v-if="type === 'sg-ready-heat-pump'">
+          <div v-if="isHeatPumpDevice">
             <!-- Heating Section -->
             <p class="text-subtitle-2 mt-4 mb-2">
               {{ $t('settings.heating') }}
@@ -114,7 +103,7 @@
         </div>
 
         <!-- EVCC specific fields -->
-        <div v-if="type === 'evcc'">
+        <div v-if="isEvccDevice">
           <v-divider />
           <p class="config-subtitle">
             {{ $t('settings.evcc_configuration') }}
@@ -129,17 +118,7 @@
           />
         </div>
 
-        <div
-          v-if="
-            'nominal_power' in config ||
-            'nominal_duration' in config ||
-            'switch_on_delay' in config ||
-            'switch_off_delay' in config ||
-            'min_on_duration' in config ||
-            'max_on_per_day' in config ||
-            'store_sessions' in config
-          "
-        >
+        <div v-if="showConfigSection">
           <v-divider />
           <p class="config-subtitle">
             {{ $t('settings.configuration') }}
@@ -198,7 +177,7 @@
     </v-card-text>
   </v-card>
   <br />
-  <v-card v-if="Object.keys(readOnlyConfig).length > 0" class="pa-4 ma-4 elevation-2 rounded-md">
+  <v-card v-if="hasReadOnlyConfig" class="pa-4 ma-4 elevation-2 rounded-md">
     <v-card-title>Values which can only be edit in the energy_assistant.yaml file</v-card-title>
     <v-card-text>
       <v-table class="ma-4 rounded-md border">
@@ -219,9 +198,37 @@
 
 <script lang="ts" setup>
 import { api } from '@/api/energyAssistant.api';
-import { watch, ref } from 'vue';
+import { watch, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';
+
+interface IDeviceConfigData {
+  [key: string]: unknown;
+  name?: string;
+  icon?: string;
+  type?: string;
+  power?: string;
+  energy?: string;
+  output?: string;
+  load_point_name?: string;
+  heating?: {
+    state?: string;
+    energy?: string;
+    temperature?: string;
+  };
+  water?: {
+    state?: string;
+    energy?: string;
+    temperature?: string;
+  };
+  nominal_power?: number | string;
+  nominal_duration?: number | string;
+  switch_on_delay?: number | string;
+  switch_off_delay?: number | string;
+  min_on_duration?: number | string;
+  max_on_per_day?: number | string;
+  store_sessions?: boolean | string;
+}
 
 interface IDeviceConfigParams {
   name: string;
@@ -279,10 +286,107 @@ const switch_off_delay = ref<number>(0);
 const min_on_duration = ref<number>(0);
 const max_on_per_day = ref<number>(0);
 const store_sessions = ref<boolean>(false);
+
 // props
 const props = defineProps<{
   deviceId?: string;
 }>();
+
+// computed properties
+const isHomeAssistantDevice = computed(() => 
+  type.value === 'homeassistant' || type.value === 'readonly-homeassistant'
+);
+
+const isHeatPumpDevice = computed(() => 
+  type.value === 'sg-ready-heat-pump'
+);
+
+const isEvccDevice = computed(() => 
+  type.value === 'evcc'
+);
+
+const showEntityIdsSection = computed(() => 
+  isHomeAssistantDevice.value || 
+  isHeatPumpDevice.value || 
+  'heating' in config.value || 
+  'water' in config.value
+);
+
+const showConfigSection = computed(() => 
+  'nominal_power' in config.value ||
+  'nominal_duration' in config.value ||
+  'switch_on_delay' in config.value ||
+  'switch_off_delay' in config.value ||
+  'min_on_duration' in config.value ||
+  'max_on_per_day' in config.value ||
+  'store_sessions' in config.value
+);
+
+const hasReadOnlyConfig = computed(() => 
+  Object.keys(readOnlyConfig.value).length > 0
+);
+
+// helper functions
+const loadDeviceData = (data: IDeviceConfigData) => {
+  name.value = data['name'] || '';
+  icon.value = data['icon'] || '';
+  type.value = data['type'] || '';
+  power.value = data['power'] || '';
+  energy.value = data['energy'] || '';
+  output.value = data['output'] || '';
+
+  // Load EVCC specific field
+  loadPointName.value = data['load_point_name'] || '';
+
+  // Load heat pump specific entity IDs if they exist
+  if (data['heating']) {
+    heatingState.value = data['heating']['state'] || '';
+    heatingEnergy.value = data['heating']['energy'] || '';
+    heatingTemperature.value = data['heating']['temperature'] || '';
+  }
+  if (data['water']) {
+    waterState.value = data['water']['state'] || '';
+    waterEnergy.value = data['water']['energy'] || '';
+    waterTemperature.value = data['water']['temperature'] || '';
+  }
+  
+  nominal_power.value = parseFloat(data['nominal_power']?.toString() || '0') * 1.0;
+  nominal_duration.value = parseFloat(data['nominal_duration']?.toString() || '0') / 60; // convert seconds to minutes
+  switch_on_delay.value = parseFloat(data['switch_on_delay']?.toString() || '0') / 60;
+  switch_off_delay.value = parseFloat(data['switch_off_delay']?.toString() || '0') / 60;
+  min_on_duration.value = parseFloat(data['min_on_duration']?.toString() || '0') / 60;
+  max_on_per_day.value = parseFloat(data['max_on_per_day']?.toString() || '0') / 60;
+  store_sessions.value = data['store_sessions'] === true || data['store_sessions'] === 'true';
+};
+
+const setupReadOnlyConfig = (data: IDeviceConfigData) => {
+  const configurableKeys = new Set<string>([
+    'id',
+    'name',
+    'icon',
+    'type',
+    'power',
+    'energy',
+    'output',
+    'load_point_name',
+    'heating',
+    'water',
+    'nominal_power',
+    'nominal_duration',
+    'switch_on_delay',
+    'switch_off_delay',
+    'min_on_duration',
+    'max_on_per_day',
+    'store_sessions',
+  ]);
+  
+  const readOnlyKeys = Object.keys(data).filter((k) => !configurableKeys.has(k));
+  const readOnlyValues = {};
+  readOnlyKeys.forEach((key) => {
+    readOnlyValues[key] = data[key];
+  });
+  readOnlyConfig.value = readOnlyValues;
+};
 
 // watchers
 
@@ -291,62 +395,10 @@ watch(
   async (val) => {
     if (val) {
       console.log('Edit Device: ' + val);
-      const data = await api.getDeviceConfig(val);
+      const data = await api.getDeviceConfig(val) as IDeviceConfigData;
       config.value = data;
-      name.value = data['name'];
-      icon.value = data['icon'] || '';
-      type.value = data['type'];
-      power.value = data['power'];
-      energy.value = data['energy'];
-      output.value = data['output'];
-
-      // Load EVCC specific field
-      loadPointName.value = data['load_point_name'] || '';
-
-      // Load heat pump specific entity IDs if they exist
-      if (data['heating']) {
-        heatingState.value = data['heating']['state'] || '';
-        heatingEnergy.value = data['heating']['energy'] || '';
-        heatingTemperature.value = data['heating']['temperature'] || '';
-      }
-      if (data['water']) {
-        waterState.value = data['water']['state'] || '';
-        waterEnergy.value = data['water']['energy'] || '';
-        waterTemperature.value = data['water']['temperature'] || '';
-      }
-      nominal_power.value = parseFloat(data['nominal_power']) * 1.0;
-      nominal_duration.value = parseFloat(data['nominal_duration']) / 60; // convert seconds to minutes
-      switch_on_delay.value = parseFloat(data['switch_on_delay']) / 60;
-      switch_off_delay.value = parseFloat(data['switch_off_delay']) / 60;
-      min_on_duration.value = parseFloat(data['min_on_duration']) / 60;
-      max_on_per_day.value = parseFloat(data['max_on_per_day']) / 60;
-      store_sessions.value = data['store_sessions'] === true || data['store_sessions'] === 'true';
-
-      const configurableKeys = new Set<string>([
-        'id',
-        'name',
-        'icon',
-        'type',
-        'power',
-        'energy',
-        'output',
-        'load_point_name',
-        'heating',
-        'water',
-        'nominal_power',
-        'nominal_duration',
-        'switch_on_delay',
-        'switch_off_delay',
-        'min_on_duration',
-        'max_on_per_day',
-        'store_sessions',
-      ]);
-      const readOnlyKeys = Object.keys(data).filter((k) => !configurableKeys.has(k));
-      const readOnlyValues = {};
-      readOnlyKeys.forEach((key) => {
-        readOnlyValues[key] = data[key];
-      });
-      readOnlyConfig.value = readOnlyValues;
+      loadDeviceData(data);
+      setupReadOnlyConfig(data);
     }
   },
   { immediate: true },
@@ -358,10 +410,10 @@ const submit = async function () {
     name: name.value,
     icon: icon.value,
     type: type.value,
-    energy: type.value === 'homeassistant' || type.value === 'readonly-homeassistant' ? energy.value : '',
-    power: type.value === 'homeassistant' || type.value === 'readonly-homeassistant' ? power.value : '',
-    output: type.value === 'homeassistant' || type.value === 'sg-ready-heat-pump' ? output.value : '',
-    load_point_name: type.value === 'evcc' ? loadPointName.value : undefined,
+    energy: isHomeAssistantDevice.value ? energy.value : '',
+    power: isHomeAssistantDevice.value ? power.value : '',
+    output: isHomeAssistantDevice.value || isHeatPumpDevice.value ? output.value : '',
+    load_point_name: isEvccDevice.value ? loadPointName.value : undefined,
     nominal_power: +nominal_power.value, // the + operator converts the value to a number
     nominal_duration: nominal_duration.value * 60, // convert minutes to seconds
     switch_on_delay: switch_on_delay.value * 60,
@@ -372,7 +424,7 @@ const submit = async function () {
   };
 
   // Add heat pump specific nested objects if device type is sg-ready-heat-pump
-  if (type.value === 'sg-ready-heat-pump') {
+  if (isHeatPumpDevice.value) {
     values.heating = {
       state: heatingState.value,
       energy: heatingEnergy.value,
