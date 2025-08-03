@@ -118,6 +118,8 @@
           />
         </div>
 
+
+
         <div v-if="showConfigSection">
           <v-divider />
           <p class="config-subtitle">
@@ -166,6 +168,25 @@
             :label="$t('settings.store_sessions')"
           />
         </div>
+        <!-- Readonly Home Assistant YAML Configuration -->
+        <div v-if="isReadOnlyHomeAssistantDevice">
+          <div class="mb-4">
+            <label class="v-label text-subtitle-1 mb-2">{{ $t('settings.yaml_config_label') }}</label>
+            <textarea
+              v-model="yamlConfig"
+              placeholder="# Additional YAML configuration
+# Example:
+# manufacturer: v-zug
+# model: Adora TS WP"
+              class="v-textarea"
+              rows="6"
+              style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; resize: vertical;"
+            ></textarea>
+            <div class="text-caption text-medium-emphasis mt-1">
+              Enter additional YAML configuration for this device
+            </div>
+          </div>    
+        </div>        
         <v-btn block color="primary" @click="submit">
           {{ $t('settings.save') }}
         </v-btn>
@@ -178,7 +199,7 @@
   </v-card>
   <br />
   <v-card v-if="hasReadOnlyConfig" class="pa-4 ma-4 elevation-2 rounded-md">
-    <v-card-title>Values which can only be edit in the energy_assistant.yaml file</v-card-title>
+    <v-card-title>Values which can not be edited in the UI</v-card-title>
     <v-card-text>
       <v-table class="ma-4 rounded-md border">
         <tbody>
@@ -201,6 +222,7 @@ import { api } from '@/api/energyAssistant.api';
 import { watch, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';
+import * as yaml from 'js-yaml';
 
 interface IDeviceConfigData {
   [key: string]: unknown;
@@ -271,6 +293,9 @@ const output = ref<string>('');
 // EVCC specific fields
 const loadPointName = ref<string>('');
 
+// Readonly Home Assistant YAML config
+const yamlConfig = ref<string>('');
+
 // SG Ready Heat Pump entity IDs
 const heatingState = ref<string>('');
 const heatingEnergy = ref<string>('');
@@ -303,6 +328,10 @@ const isHeatPumpDevice = computed(() =>
 
 const isEvccDevice = computed(() => 
   type.value === 'evcc'
+);
+
+const isReadOnlyHomeAssistantDevice = computed(() => 
+  type.value === 'readonly-homeassistant'
 );
 
 const showEntityIdsSection = computed(() => 
@@ -386,6 +415,18 @@ const setupReadOnlyConfig = (data: IDeviceConfigData) => {
     readOnlyValues[key] = data[key];
   });
   readOnlyConfig.value = readOnlyValues;
+
+  // Populate YAML editor for readonly-homeassistant devices
+  if (type.value === 'readonly-homeassistant' && Object.keys(readOnlyValues).length > 0) {
+    try {
+      yamlConfig.value = yaml.dump(readOnlyValues, { indent: 2 });
+    } catch (error) {
+      console.warn('Failed to convert readonly config to YAML:', error);
+      yamlConfig.value = '# Failed to load existing configuration\n';
+    }
+  } else {
+    yamlConfig.value = '';
+  }
 };
 
 // watchers
@@ -436,6 +477,20 @@ const submit = async function () {
       temperature: waterTemperature.value,
     };
   }
+
+  // Merge YAML configuration for readonly-homeassistant devices
+  if (isReadOnlyHomeAssistantDevice.value && yamlConfig.value.trim()) {
+    try {
+      const yamlData = yaml.load(yamlConfig.value) as Record<string, unknown>;
+      if (yamlData && typeof yamlData === 'object') {
+        Object.assign(values, yamlData);
+      }
+    } catch (error) {
+      console.error('Failed to parse YAML configuration:', error);
+      // You might want to show an error message to the user here
+    }
+  }
+
   console.log('Saving device config: ', values);
   await api.saveDeviceConfig(props.deviceId!, values);
 
