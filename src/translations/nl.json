@@ -104,6 +104,8 @@
     "state": "Status",
     "temperature": "Temperatuur",
     "load_point_name": "Laadpunt Naam",
+    "yaml_configuration": "YAML Configuratie",
+    "yaml_config_label": "Aanvullende Configuratie",
     "configuration": "Configuratie",
     "add_device": "Apparaat toevoegen",
     "add_new_device": "Nieuw apparaat toevoegen",

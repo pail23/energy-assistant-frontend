@@ -114,6 +114,8 @@
     "state": "State",
     "temperature": "Temperature",
     "load_point_name": "Load Point Name",
+    "yaml_configuration": "YAML Configuration",
+    "yaml_config_label": "Additional Configuration",
     "configuration": "Configuration",
     "add_device": "Add Device",
     "add_new_device": "Add New Device",
