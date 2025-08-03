@@ -16,18 +16,8 @@
           <p class="config-subtitle">
             {{ $t('settings.home_assistant_entity_ids') }}
           </p>
-          <v-text-field
-            v-if="isHomeAssistantDevice"
-            v-model="power"
-            :label="$t('settings.power')"
-            type="text"
-          />
-          <v-text-field
-            v-if="isHomeAssistantDevice"
-            v-model="energy"
-            :label="$t('settings.energy')"
-            type="text"
-          />
+          <v-text-field v-if="isHomeAssistantDevice" v-model="power" :label="$t('settings.power')" type="text" />
+          <v-text-field v-if="isHomeAssistantDevice" v-model="energy" :label="$t('settings.energy')" type="text" />
           <v-text-field
             v-if="isHomeAssistantDevice || isHeatPumpDevice"
             v-model="output"
@@ -118,8 +108,6 @@
           />
         </div>
 
-
-
         <div v-if="showConfigSection">
           <v-divider />
           <p class="config-subtitle">
@@ -180,13 +168,20 @@
 # model: Adora TS WP"
               class="v-textarea"
               rows="6"
-              style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-family: monospace; resize: vertical;"
-            ></textarea>
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-family: monospace;
+                resize: vertical;
+              "
+            />
             <div class="text-caption text-medium-emphasis mt-1">
               Enter additional YAML configuration for this device
             </div>
-          </div>    
-        </div>        
+          </div>
+        </div>
         <v-btn block color="primary" @click="submit">
           {{ $t('settings.save') }}
         </v-btn>
@@ -215,6 +210,9 @@
       </v-table>
     </v-card-text>
   </v-card>
+  <div v-if="yamlParseError" style="color: red; margin-bottom: 1em">
+    {{ yamlParseError }}
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -295,6 +293,7 @@ const loadPointName = ref<string>('');
 
 // Readonly Home Assistant YAML config
 const yamlConfig = ref<string>('');
+const yamlParseError = ref('');
 
 // SG Ready Heat Pump entity IDs
 const heatingState = ref<string>('');
@@ -318,42 +317,30 @@ const props = defineProps<{
 }>();
 
 // computed properties
-const isHomeAssistantDevice = computed(() => 
-  type.value === 'homeassistant' || type.value === 'readonly-homeassistant'
+const isHomeAssistantDevice = computed(() => type.value === 'homeassistant' || type.value === 'readonly-homeassistant');
+
+const isHeatPumpDevice = computed(() => type.value === 'sg-ready-heat-pump');
+
+const isEvccDevice = computed(() => type.value === 'evcc');
+
+const isReadOnlyHomeAssistantDevice = computed(() => type.value === 'readonly-homeassistant');
+
+const showEntityIdsSection = computed(
+  () => isHomeAssistantDevice.value || isHeatPumpDevice.value || 'heating' in config.value || 'water' in config.value,
 );
 
-const isHeatPumpDevice = computed(() => 
-  type.value === 'sg-ready-heat-pump'
+const showConfigSection = computed(
+  () =>
+    'nominal_power' in config.value ||
+    'nominal_duration' in config.value ||
+    'switch_on_delay' in config.value ||
+    'switch_off_delay' in config.value ||
+    'min_on_duration' in config.value ||
+    'max_on_per_day' in config.value ||
+    'store_sessions' in config.value,
 );
 
-const isEvccDevice = computed(() => 
-  type.value === 'evcc'
-);
-
-const isReadOnlyHomeAssistantDevice = computed(() => 
-  type.value === 'readonly-homeassistant'
-);
-
-const showEntityIdsSection = computed(() => 
-  isHomeAssistantDevice.value || 
-  isHeatPumpDevice.value || 
-  'heating' in config.value || 
-  'water' in config.value
-);
-
-const showConfigSection = computed(() => 
-  'nominal_power' in config.value ||
-  'nominal_duration' in config.value ||
-  'switch_on_delay' in config.value ||
-  'switch_off_delay' in config.value ||
-  'min_on_duration' in config.value ||
-  'max_on_per_day' in config.value ||
-  'store_sessions' in config.value
-);
-
-const hasReadOnlyConfig = computed(() => 
-  Object.keys(readOnlyConfig.value).length > 0
-);
+const hasReadOnlyConfig = computed(() => Object.keys(readOnlyConfig.value).length > 0);
 
 // helper functions
 const loadDeviceData = (data: IDeviceConfigData) => {
@@ -378,7 +365,7 @@ const loadDeviceData = (data: IDeviceConfigData) => {
     waterEnergy.value = data['water']['energy'] || '';
     waterTemperature.value = data['water']['temperature'] || '';
   }
-  
+
   nominal_power.value = parseFloat(data['nominal_power']?.toString() || '0') * 1.0;
   nominal_duration.value = parseFloat(data['nominal_duration']?.toString() || '0') / 60; // convert seconds to minutes
   switch_on_delay.value = parseFloat(data['switch_on_delay']?.toString() || '0') / 60;
@@ -408,7 +395,7 @@ const setupReadOnlyConfig = (data: IDeviceConfigData) => {
     'max_on_per_day',
     'store_sessions',
   ]);
-  
+
   const readOnlyKeys = Object.keys(data).filter((k) => !configurableKeys.has(k));
   const readOnlyValues = {};
   readOnlyKeys.forEach((key) => {
@@ -436,7 +423,7 @@ watch(
   async (val) => {
     if (val) {
       console.log('Edit Device: ' + val);
-      const data = await api.getDeviceConfig(val) as IDeviceConfigData;
+      const data = (await api.getDeviceConfig(val)) as IDeviceConfigData;
       config.value = data;
       loadDeviceData(data);
       setupReadOnlyConfig(data);
@@ -484,11 +471,16 @@ const submit = async function () {
       const yamlData = yaml.load(yamlConfig.value) as Record<string, unknown>;
       if (yamlData && typeof yamlData === 'object') {
         Object.assign(values, yamlData);
+        yamlParseError.value = ''; // Clear any previous error
       }
     } catch (error) {
       console.error('Failed to parse YAML configuration:', error);
       // You might want to show an error message to the user here
+      yamlParseError.value = 'YAML configuration is invalid. Please check your syntax.';
     }
+  } else {
+    yamlConfig.value = '';
+    yamlParseError.value = '';
   }
 
   console.log('Saving device config: ', values);
