@@ -24,21 +24,10 @@ src/api/
 │   ├── config.ts         # Configuration
 │   ├── forecast.ts       # Forecasting
 │   └── realtime.ts       # WebSocket/real-time data
-├── index.ts              # Main entry point
-├── energyAssistant.api.ts # Legacy file (still works)
-├── devices.api.ts        # Legacy file (still works)
-└── device.ts            # Legacy file (still works)
+└── index.ts              # Main entry point
 ```
 
 ## Usage
-
-### Backward Compatible (Legacy)
-
-```typescript
-// Old imports still work
-import { api, IDeviceInfo } from '@/api/energyAssistant.api';
-import { devicesAPI } from '@/api/devices.api';
-```
 
 ### New Organized Approach
 
@@ -52,9 +41,6 @@ await api.devices.getAllDevices();
 await api.measurements.getAllHomeMeasurements();
 await api.forecast.getForecast();
 await api.config.getConfig();
-
-// Legacy methods still available directly on api
-await api.getAllDevices(); // same as api.devices.getAllDevices()
 ```
 
 #### Option 2: Import specific services
@@ -92,8 +78,7 @@ console.log(devicesAPI.state.connected);
 2. **Type Safety**: Centralized type definitions prevent duplication
 3. **Separation of Concerns**: Each service handles a specific domain
 4. **Maintainability**: Easier to find and modify specific functionality
-5. **Backward Compatibility**: Existing code continues to work unchanged
-6. **Extensibility**: Easy to add new services or modify existing ones
+5. **Extensibility**: Easy to add new services or modify existing ones
 
 ## Domain Services
 
@@ -129,18 +114,10 @@ console.log(devicesAPI.state.connected);
 
 ## Migration Guide
 
-### For New Code
+### API Usage
 
 Use the new organized imports:
 
 ```typescript
 import { api, type IDeviceInfo } from '@/api';
-```
-
-### For Existing Code
-
-No changes needed - all existing imports continue to work:
-
-```typescript
-import { api, IDeviceInfo } from '@/api/energyAssistant.api';
 ```
