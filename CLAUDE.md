@@ -1,8 +1,8 @@
 # Bash commands
 
-- yarn build: Build the project
-- yarn lint: Run the typechecker
-- yarn dev --host: Run the dev server
+- npm run build: Build the project
+- npm run lint: Run the typechecker
+- npm run dev --host: Run the dev server
 
 # Code style
 
