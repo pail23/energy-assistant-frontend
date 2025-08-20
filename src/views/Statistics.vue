@@ -51,7 +51,8 @@
 
 <script lang="ts" setup>
 import { watch, ref, onMounted } from 'vue';
-import { api, IHomeMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { IHomeMeasurementPeriod, IHomeMeasurementDate } from '@/api/types';
 import { getBreakpointValue } from '@/plugins/breakpoint';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DeviceEnergyCard from '@/components/DeviceEnergyCard.vue';

@@ -4,8 +4,7 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import { devicesAPI } from '@/api/devices.api';
-import { api } from '@/api/energyAssistant.api';
+import { api, devicesAPI } from '@/api';
 import { useTheme } from 'vuetify';
 import { store } from './plugins/store';
 

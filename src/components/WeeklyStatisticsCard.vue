@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { IHomeMeasurementDate } from '@/api/energyAssistant.api';
+import type { IHomeMeasurementDate } from '@/api/types';
 import WeeklyStatistics from './WeeklyStatistics.vue';
 
 interface Props {

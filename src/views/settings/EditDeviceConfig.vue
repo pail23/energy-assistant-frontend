@@ -216,7 +216,8 @@
 </template>
 
 <script lang="ts" setup>
-import { api } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { ConfigValueType } from '@/api/types';
 import { watch, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';
@@ -251,6 +252,7 @@ interface IDeviceConfigData {
 }
 
 interface IDeviceConfigParams {
+  [key: string]: ConfigValueType | undefined | { [key: string]: string };
   name: string;
   icon: string;
   type: string;
@@ -484,7 +486,7 @@ const submit = async function () {
   }
 
   console.log('Saving device config: ', values);
-  await api.saveDeviceConfig(props.deviceId!, values);
+  await api.saveDeviceConfig(props.deviceId!, values as Record<string, ConfigValueType>);
 
   router.push({ name: 'devicessettings' });
 };

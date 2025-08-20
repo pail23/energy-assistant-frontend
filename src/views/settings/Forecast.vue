@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { api } from '@/api/energyAssistant.api';
+import { api } from '@/api';
 import { ref } from 'vue';
 import { $t } from '@/plugins/i18n';
 

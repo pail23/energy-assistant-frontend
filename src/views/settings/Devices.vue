@@ -238,7 +238,8 @@
 </template>
 
 <script lang="ts" setup>
-import { api, IDeviceInfo } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { IDeviceInfo } from '@/api/types';
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { $t } from '@/plugins/i18n';

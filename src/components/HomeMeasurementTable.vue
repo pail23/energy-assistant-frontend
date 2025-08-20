@@ -96,7 +96,7 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import { IHomeMeasurement } from '@/api/energyAssistant.api';
+import type { IHomeMeasurement } from '@/api/types';
 import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
 
