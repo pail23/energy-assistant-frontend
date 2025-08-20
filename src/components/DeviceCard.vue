@@ -42,8 +42,7 @@
 <script lang="ts" setup>
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
 import PowerModeSelection from './PowerModeSelection.vue';
-import { IEnergy } from '@/api/device';
-import { IDeviceInfo } from '@/api/energyAssistant.api';
+import type { IEnergy, IDeviceInfo } from '@/api/types';
 import { formatDuration, formatNumberWithUnit } from '@/utils';
 import { $t } from '@/plugins/i18n';
 

@@ -6,7 +6,7 @@
 import { computed } from 'vue';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import { Bar } from 'vue-chartjs';
-import { IHomeMeasurementDate } from '@/api/energyAssistant.api';
+import type { IHomeMeasurementDate } from '@/api/types';
 import { useI18n } from 'vue-i18n';
 
 const { d } = useI18n();

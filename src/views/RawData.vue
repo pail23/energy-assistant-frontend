@@ -37,7 +37,8 @@
 </template>
 
 <script lang="ts" setup>
-import { api, IDeviceMeasurement, IDeviceInfo, IHomeMeasurement } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { IDeviceMeasurement, IDeviceInfo, IHomeMeasurement } from '@/api/types';
 import HomeMeasurementTable from '@/components/HomeMeasurementTable.vue';
 import DeviceMeasurementTable from '@/components/DeviceMeasurementTable.vue';
 import { ref, onMounted, watch } from 'vue';

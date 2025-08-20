@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, watch } from 'vue';
-import { api } from '@/api/energyAssistant.api';
+import { api } from '@/api';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();

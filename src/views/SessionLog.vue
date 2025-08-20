@@ -26,7 +26,8 @@
 </template>
 
 <script lang="ts" setup>
-import { api, ISessionLogEntry, IDeviceInfo } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { ISessionLogEntry, IDeviceInfo } from '@/api/types';
 import DeviceSessionLog from '@/components/DeviceSessionLog.vue';
 import { ref, onMounted } from 'vue';
 import { getBreakpointValue } from '@/plugins/breakpoint';

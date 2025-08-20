@@ -41,8 +41,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { devicesAPI } from '@/api/devices.api';
-import { api } from '@/api/energyAssistant.api';
+import { api, devicesAPI } from '@/api';
 import DeviceCard from '@/components/DeviceCard.vue';
 import PowerFlowCard from '@/components/PowerFlowCard.vue';
 import DevicePowerDistributionCard from '@/components/DevicePowerDistributionCard.vue';

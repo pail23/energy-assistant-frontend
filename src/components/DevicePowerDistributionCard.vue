@@ -9,8 +9,8 @@
 <script lang="ts" setup>
 // @ts-nocheck
 import { computed } from 'vue';
-import { IDevice } from '@/api/device';
-import { api } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { IDevice } from '@/api/types';
 import { formatNumberWithUnit } from '@/utils';
 import { useTheme } from 'vuetify';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';

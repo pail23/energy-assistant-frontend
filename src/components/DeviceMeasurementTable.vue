@@ -48,7 +48,7 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import { IDeviceMeasurement } from '@/api/energyAssistant.api';
+import type { IDeviceMeasurement } from '@/api/types';
 import { useI18n } from 'vue-i18n';
 import { formatNumberWithUnit } from '@/utils';
 

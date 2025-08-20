@@ -29,7 +29,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 import { Bar } from 'vue-chartjs';
 import SelfSufficiencyBar from './SelfSufficiencyBar.vue';
 
-import { IDeviceInfo, IDeviceMeasurementPeriod, IHomeMeasurementDate } from '@/api/energyAssistant.api';
+import type { IDeviceInfo, IDeviceMeasurementPeriod, IHomeMeasurementDate } from '@/api/types';
 import { formatNumberWithUnit } from '@/utils';
 import { useI18n } from 'vue-i18n';
 

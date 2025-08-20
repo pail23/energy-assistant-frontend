@@ -51,7 +51,7 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import { ISessionLogEntry } from '@/api/energyAssistant.api';
+import type { ISessionLogEntry } from '@/api/types';
 import { formatNumberWithUnit, formatDuration } from '@/utils';
 import { $t, $d } from '@/plugins/i18n';
 

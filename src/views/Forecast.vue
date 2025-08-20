@@ -56,7 +56,8 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'vue-chartjs';
-import { IForecast, api } from '@/api/energyAssistant.api';
+import { api } from '@/api';
+import type { IForecast } from '@/api/types';
 import { useTheme } from 'vuetify';
 import { $t } from '@/plugins/i18n';
 import { formatNumberWithUnit } from '@/utils';
