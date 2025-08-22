@@ -5,21 +5,21 @@
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <div class="grid w-full grid-cols-1">
+      <div class="w-100">
         <div
           v-if="available && attributes && Object.entries(attributes).length > 0"
-          class="pa-2 bg-subgroup mt-2 items-center rounded-md"
+          class="pa-2 bg-subgroup mt-2 d-flex align-center"
         >
-          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
+          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left w-100">
             {{ $t('device_attribute.' + attribute[0]) }}
             <span class="float-right">{{ getAttributeValue(attribute[0], attribute[1]) }}</span>
           </div>
         </div>
-        <div v-if="!available" class="pa-2 bg-error mt-2 rounded-md text-center">
+        <div v-if="!available" class="pa-2 bg-error mt-2 text-center">
           {{ $t('unavailable') }}
         </div>
-        <div class="pa-2 bg-subgroup mt-2 items-center rounded-md">
-          <div v-if="available" class="text-left">
+        <div class="pa-2 bg-subgroup mt-2 d-flex align-center">
+          <div v-if="available" class="text-left w-100">
             {{ $t('consumption') }}
             <span class="float-right">{{ formatNumberWithUnit(power, 'W') }}</span>
           </div>

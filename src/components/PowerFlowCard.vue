@@ -2,7 +2,7 @@
   <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
     <v-card-text>
       <div class="relative mx-auto">
-        <svg class="h-full w-full" viewBox="0 0 200 180">
+        <svg class="h-100 w-100" viewBox="0 0 200 180">
           <path
             id="solar-to-home"
             stroke-width="1"

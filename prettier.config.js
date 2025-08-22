@@ -8,7 +8,6 @@ const config = {
   semi: true,
   trailingComma: 'all',
   arrowParens: 'always',
-  plugins: ['prettier-plugin-tailwindcss'],
 };
 
 export default config;
