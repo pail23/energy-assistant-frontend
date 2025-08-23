@@ -1,21 +1,23 @@
 <template>
-  <div class="bg-background pa-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-    <div v-for="(device, index) in devices" :key="index">
-      <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="ma-4 elevation-2 max-w-sm">
-        <v-card-title>
-          <span class="mdi pr-2" :class="device.icon" />
-          <span class="">{{ device.name }}</span>
-        </v-card-title>
-        <v-card-actions>
-          <v-btn class="ma-2" @click="editDevice(device.id)">
-            {{ $t('settings.edit_action') }}
-          </v-btn>
-          <v-btn class="ma-2" @click="deleteDevice(device.id)">
-            {{ $t('settings.delete_action') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
+  <v-container class="bg-background pa-4">
+    <v-row>
+      <v-col v-for="(device, index) in devices" :key="index" cols="12" md="6" xl="3">
+        <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="ma-4 elevation-2">
+          <v-card-title>
+            <span class="mdi pr-2" :class="device.icon" />
+            <span class="">{{ device.name }}</span>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn class="ma-2" @click="editDevice(device.id)">
+              {{ $t('settings.edit_action') }}
+            </v-btn>
+            <v-btn class="ma-2" @click="deleteDevice(device.id)">
+              {{ $t('settings.delete_action') }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <!-- Delete Device Dialog -->
     <v-dialog v-model="dialog" width="auto">
@@ -234,7 +236,7 @@
       class="fab-fixed"
       @click="openAddDeviceDialog"
     />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>

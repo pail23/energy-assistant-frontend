@@ -23,7 +23,7 @@
           {{ $t('forecast.energy') }}
         </v-card-title>
         <v-card-text>
-          <div class="h-96">
+          <div style="height: 384px">
             <Line :data="data" :options="optionsEnergyChart" />
           </div>
         </v-card-text>
@@ -33,7 +33,7 @@
           {{ $t('forecast.cost_profit') }}
         </v-card-title>
         <v-card-text>
-          <div class="h-96">
+          <div style="height: 384px">
             <Line :data="costProfitData" :options="optionsCostProfitChart" />
           </div>
         </v-card-text>

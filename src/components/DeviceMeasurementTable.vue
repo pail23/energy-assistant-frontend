@@ -3,13 +3,13 @@
     <v-table class="ma-4 rounded-md border">
       <thead class="bg-primary">
         <tr>
-          <th class="w-24 px-6 py-3">
+          <th class="col-date pa-6 py-3">
             {{ t('raw_data.date') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('consumed_solar_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('consumed_energy') }}
           </th>
         </tr>

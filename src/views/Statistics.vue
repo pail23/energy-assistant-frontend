@@ -20,29 +20,37 @@
     </v-toolbar>
 
     <v-divider />
-    <div class="flex min-h-screen w-full justify-center">
-      <div v-if="isLoading" class="grid w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2" />
+    <div class="d-flex min-height-screen w-100 justify-center">
+      <div v-if="isLoading" class="d-flex w-100 flex-column align-center">
+        <v-progress-circular indeterminate color="primary" class="py-2" />
       </div>
       <div v-else>
-        <div v-if="data" class="grid grid-cols-1 p-4 lg:grid-cols-2">
-          <PowerFlowCard
-            :home-consumption-power="data.consumed_energy"
-            :solar-power="data.solar_produced_energy"
-            :grid-imported-energy="data.grid_imported_energy"
-            :grid-exported-energy="data.grid_exported_energy"
-            unit="kWh"
-          />
-          <EnergyConsumptionCard :self-sufficiency="selfSufficiency" :self-consumption="selfConsumption" />
-          <WeeklyStatisticsCard v-if="activeTab == 'week' && statistics != null" :data="statistics" />
-          <div v-for="(device, index) in data.device_measurements" :key="index">
-            <DeviceEnergyCard
-              :measurement="device"
-              :device="api.getDeviceInfo(device.device_id)"
-              :statistics="statistics"
-              :timeframe="activeTab"
-            />
-          </div>
+        <div v-if="data" class="pa-4">
+          <v-row>
+            <v-col cols="12" lg="6">
+              <PowerFlowCard
+                :home-consumption-power="data.consumed_energy"
+                :solar-power="data.solar_produced_energy"
+                :grid-imported-energy="data.grid_imported_energy"
+                :grid-exported-energy="data.grid_exported_energy"
+                unit="kWh"
+              />
+            </v-col>
+            <v-col cols="12" lg="6">
+              <EnergyConsumptionCard :self-sufficiency="selfSufficiency" :self-consumption="selfConsumption" />
+            </v-col>
+            <v-col v-if="activeTab == 'week' && statistics != null" cols="12" lg="6">
+              <WeeklyStatisticsCard :data="statistics" />
+            </v-col>
+            <v-col v-for="(device, index) in data.device_measurements" :key="index" cols="12" lg="6">
+              <DeviceEnergyCard
+                :measurement="device"
+                :device="api.getDeviceInfo(device.device_id)"
+                :statistics="statistics"
+                :timeframe="activeTab"
+              />
+            </v-col>
+          </v-row>
         </div>
       </div>
     </div>

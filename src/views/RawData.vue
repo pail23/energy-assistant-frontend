@@ -2,9 +2,9 @@
   <div>
     <v-toolbar color="transparent" :title="$t('app.rawdata')" />
     <v-divider />
-    <div class="v-full bg-background pa-4 flex min-h-screen justify-center">
-      <div v-if="isLoading" class="grid h-full w-full grid-cols-1 justify-items-center">
-        <span class="loading loading-dots loading-lg py-2" />
+    <div class="v-full bg-background pa-4 d-flex min-height-screen justify-center">
+      <div v-if="isLoading" class="d-flex h-100 w-100 flex-column align-center">
+        <v-progress-circular indeterminate color="primary" class="py-2" />
       </div>
       <div v-else>
         <HomeMeasurementTable v-if="data" :home-measurements="data" :show-meter-values="show_meter_values" />
@@ -16,7 +16,7 @@
 
         <v-select
           v-model="selectedDevice"
-          class="bg-surface my-4 rounded-md"
+          class="bg-surface my-4"
           :items="devices ? devices : []"
           item-title="name"
           item-value="id"
@@ -28,7 +28,7 @@
           :device-measurements="device_measurements"
           :show-meter-values="show_meter_values"
         />
-        <div class="my-4 flex">
+        <div class="my-4 d-flex">
           <v-checkbox v-model="show_meter_values" :label="$t('raw_data.show_meter_values')" />
         </div>
       </div>

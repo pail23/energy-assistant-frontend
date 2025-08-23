@@ -2,38 +2,32 @@
   <div>
     <v-toolbar color="transparent" :title="home.name" />
     <v-divider />
-    <div class="flex min-h-screen w-full justify-center">
-      <div v-if="!connected" class="flex w-full justify-items-center p-4">
+    <div class="d-flex min-height-screen w-100 justify-center">
+      <div v-if="!connected" class="d-flex w-100 justify-center pa-4">
         <v-progress-circular indeterminate color="primary" />
       </div>
       <div v-else>
-        <div class="bg-background grid grid-cols-1 p-4 lg:grid-cols-2">
-          <PowerFlowCard
-            :home-consumption-power="home.power.home_consumption"
-            :solar-power="home.power.solar_production"
-            unit="W"
-          />
-          <DevicePowerDistributionCard
-            :devices="home.devices"
-            :power="home.power.home_consumption"
-            :self-sufficiency="home.power.self_sufficiency"
-          />
-          <ConsumptionCard
-            :self-sufficiency="home.power.self_sufficiency"
-            :self-consumption="home.power.self_consumption"
-            :self-sufficiency-today="home.today.self_sufficiency"
-            :self-consumption-today="home.today.self_consumption"
-          />
-          <div v-for="(device, index) in home.devices" :key="index">
-            <DeviceCard
-              :device="api.getDeviceInfo(device.device_id)"
-              :available="device.available"
-              :power="device.power"
-              :today="device.today"
-              :attributes="device.attributes"
-            />
-          </div>
-        </div>
+        <v-container class="bg-background pa-4">
+          <v-row>
+            <v-col cols="12" lg="6" class="d-flex justify-center align-center">
+              <PowerFlowCard :home-consumption-power="home.power.home_consumption"
+                :solar-power="home.power.solar_production" unit="W" />
+            </v-col>
+            <v-col cols="12" lg="6" class="d-flex justify-center align-center">
+              <DevicePowerDistributionCard :devices="home.devices" :power="home.power.home_consumption"
+                :self-sufficiency="home.power.self_sufficiency" />
+            </v-col>
+            <v-col cols="12" lg="6" class="d-flex justify-center align-center">
+              <ConsumptionCard :self-sufficiency="home.power.self_sufficiency"
+                :self-consumption="home.power.self_consumption" :self-sufficiency-today="home.today.self_sufficiency"
+                :self-consumption-today="home.today.self_consumption" />
+            </v-col>
+            <v-col v-for="(device, index) in home.devices" :key="index" cols="12" lg="6" class="d-flex justify-center align-center">
+              <DeviceCard :device="api.getDeviceInfo(device.device_id)" :available="device.available"
+                :power="device.power" :today="device.today" :attributes="device.attributes" />
+            </v-col>
+          </v-row>
+        </v-container>
       </div>
     </div>
   </div>

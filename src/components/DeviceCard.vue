@@ -1,35 +1,41 @@
 <template>
-  <v-card class="pa-4 elevation-2 ma-4 w-80 rounded-md sm:w-96">
+  <v-card class="pa-4 elevation-2 ma-4 card-fixed-width">
     <v-card-title>
       <span class="mdi pr-2" :class="device.icon" />
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <div class="grid w-full grid-cols-1">
-        <div
-          v-if="available && attributes && Object.entries(attributes).length > 0"
-          class="pa-2 bg-subgroup mt-2 items-center rounded-md"
-        >
-          <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left">
-            {{ $t('device_attribute.' + attribute[0]) }}
-            <span class="float-right">{{ getAttributeValue(attribute[0], attribute[1]) }}</span>
-          </div>
-        </div>
-        <div v-if="!available" class="pa-2 bg-error mt-2 rounded-md text-center">
-          {{ $t('unavailable') }}
-        </div>
-        <div class="pa-2 bg-subgroup mt-2 items-center rounded-md">
-          <div v-if="available" class="text-left">
+      <v-container class="pa-0">
+        <v-row no-gutters>
+          <v-col
+            v-if="available && attributes && Object.entries(attributes).length > 0"
+            class="bg-subgroup pa-2 mb-2"
+          >
+            <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left w-100">
+              {{ $t('device_attribute.' + attribute[0]) }}
+              <span class="float-right">{{ getAttributeValue(attribute[0], attribute[1]) }}</span>
+            </div>
+          </v-col>
+          <v-col v-if="!available" class="pa-2 bg-error text-center">
+            {{ $t('unavailable') }}
+          </v-col>
+        </v-row>
+        <v-row v-if="available" class="text-left bg-subgroup" no-gutters>
+          <v-col class="pa-2">
             {{ $t('consumption') }}
             <span class="float-right">{{ formatNumberWithUnit(power, 'W') }}</span>
-          </div>
-          <SelfSufficiencyBar
-            :self-sufficiency="today.self_sufficiency"
-            :consumed-energy="today.consumed_energy"
-            :consumed-solar-energy="today.consumed_solar_energy"
-          />
-        </div>
-      </div>
+          </v-col>
+        </v-row>
+        <v-row class="bg-subgroup" no-gutters>
+          <v-col class="pa-2">
+            <SelfSufficiencyBar
+              :self-sufficiency="today.self_sufficiency"
+              :consumed-energy="today.consumed_energy"
+              :consumed-solar-energy="today.consumed_solar_energy"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
       <PowerModeSelection
         :device-id="device.id"
         :supported-power-modes="device.supported_power_modes"

@@ -2,20 +2,19 @@
   <div>
     <v-toolbar color="transparent" :title="getBreakpointValue('bp2') ? $t('app.sessionlog') : ''">
       <template #append>
-        <select
+        <v-select
           v-model="selectedDevice"
-          class="select bg-surface ma-2 w-full max-w-xs"
-          @change="onChangeDeviceSelection($event)"
-        >
-          <option v-for="device in devices" :key="device.id" :value="device.id">
-            {{ device.name }}
-          </option>
-        </select>
+          class="bg-surface ma-2"
+          :items="devices ? devices : []"
+          item-title="name"
+          item-value="id"
+          @update:model-value="onChangeDeviceSelection"
+        />
       </template>
     </v-toolbar>
     <v-divider />
-    <div class="pa-4 v-full bg-background flex min-h-screen justify-center">
-      <div v-if="isLoading" class="flex h-full w-full justify-items-center">
+    <div class="pa-4 v-full bg-background d-flex min-height-screen justify-center">
+      <div v-if="isLoading" class="d-flex h-100 w-100 justify-center">
         <v-progress-circular indeterminate color="primary" />
       </div>
       <div v-else>
@@ -44,9 +43,9 @@ const loadData = async function (id: string) {
   isLoading.value = false;
 };
 
-const onChangeDeviceSelection = function (event) {
-  console.log(event.target.value);
-  loadData(event.target.value);
+const onChangeDeviceSelection = function (deviceId: string) {
+  console.log(deviceId);
+  loadData(deviceId);
 };
 
 onMounted(async () => {
