@@ -12,7 +12,7 @@
   "forwardPorts": [5173],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync && npm install --global yarn",
+  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && uv sync",
 
   // Configure tool-specific properties.
   // "customizations": {},
@@ -21,7 +21,7 @@
   // "remoteUser": "root"
   "customizations": {
     "vscode": {
-      "extensions": ["vue.volar", "Lokalise.i18n-ally", "heybourn.headwind", "esbenp.prettier-vscode"]
+      "extensions": ["vue.volar", "Lokalise.i18n-ally", "esbenp.prettier-vscode", "github.vscode-pull-request-github"]
     }
   }
 }
