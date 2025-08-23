@@ -29,6 +29,7 @@ export interface IDevice {
 
 export interface IDeviceInfo {
   id: string;
+  type: string;
   name: string;
   icon: string;
   supported_power_modes: string[];

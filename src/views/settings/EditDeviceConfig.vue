@@ -11,13 +11,13 @@
           hint="e.g., mdi-home, mdi-car, mdi-heat-pump"
           persistent-hint
         />
-        <div v-if="showEntityIdsSection">
+        <div v-if="isHomeAssistantDevice || isReadOnlyHomeAssistantDevice || isHeatPumpDevice">
           <v-divider />
           <p class="config-subtitle">
             {{ $t('settings.home_assistant_entity_ids') }}
           </p>
-          <v-text-field v-if="isHomeAssistantDevice" v-model="power" :label="$t('settings.power')" type="text" />
-          <v-text-field v-if="isHomeAssistantDevice" v-model="energy" :label="$t('settings.energy')" type="text" />
+          <v-text-field v-if="isHomeAssistantDevice || isReadOnlyHomeAssistantDevice" v-model="power" :label="$t('settings.power')" type="text" />
+          <v-text-field v-if="isHomeAssistantDevice || isReadOnlyHomeAssistantDevice" v-model="energy" :label="$t('settings.energy')" type="text" />
           <v-text-field
             v-if="isHomeAssistantDevice || isHeatPumpDevice"
             v-model="output"
@@ -108,7 +108,7 @@
           />
         </div>
 
-        <div v-if="showConfigSection">
+        <div v-if="isHomeAssistantDevice || isReadOnlyHomeAssistantDevice || isHeatPumpDevice">
           <v-divider />
           <p class="config-subtitle">
             {{ $t('settings.configuration') }}
@@ -319,7 +319,7 @@ const props = defineProps<{
 }>();
 
 // computed properties
-const isHomeAssistantDevice = computed(() => type.value === 'homeassistant' || type.value === 'readonly-homeassistant');
+const isHomeAssistantDevice = computed(() => type.value === 'homeassistant' );
 
 const isHeatPumpDevice = computed(() => type.value === 'sg-ready-heat-pump');
 
@@ -327,20 +327,6 @@ const isEvccDevice = computed(() => type.value === 'evcc');
 
 const isReadOnlyHomeAssistantDevice = computed(() => type.value === 'readonly-homeassistant');
 
-const showEntityIdsSection = computed(
-  () => isHomeAssistantDevice.value || isHeatPumpDevice.value || 'heating' in config.value || 'water' in config.value,
-);
-
-const showConfigSection = computed(
-  () =>
-    'nominal_power' in config.value ||
-    'nominal_duration' in config.value ||
-    'switch_on_delay' in config.value ||
-    'switch_off_delay' in config.value ||
-    'min_on_duration' in config.value ||
-    'max_on_per_day' in config.value ||
-    'store_sessions' in config.value,
-);
 
 const hasReadOnlyConfig = computed(() => Object.keys(readOnlyConfig.value).length > 0);
 

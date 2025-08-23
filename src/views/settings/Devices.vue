@@ -7,6 +7,9 @@
             <span class="mdi pr-2" :class="device.icon" />
             <span class="">{{ device.name }}</span>
           </v-card-title>
+          <v-card-text>
+            {{ getDeviceTypeLabel(device.type) }}
+          </v-card-text>
           <v-card-actions>
             <v-btn class="ma-2" @click="editDevice(device.id)">
               {{ $t('settings.edit_action') }}
@@ -309,6 +312,11 @@ const deviceTypes = ref([
     value: 'sg-ready-heat-pump',
   },
 ]);
+
+const getDeviceTypeLabel = function(deviceType:string): string{
+  const result = deviceTypes.value.filter(item => item.value==deviceType);
+  return result.length > 0 ? result[0].text : "unknown"
+}
 
 const deleteDevice = async function (deviceId: string) {
   await api.deleteDevice(deviceId);
