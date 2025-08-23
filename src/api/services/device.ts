@@ -44,6 +44,7 @@ export class DeviceApiService extends BaseApiService {
     }
     return {
       id: '',
+      type: '',
       name: '',
       icon: '',
       supported_power_modes: [],
