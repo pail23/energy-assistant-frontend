@@ -91,15 +91,3 @@ const options = {
 };
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 </script>
-
-<style scoped>
-.card-fixed-width {
-  width: 320px;
-}
-
-@media (min-width: 600px) {
-  .card-fixed-width {
-    width: 384px;
-  }
-}
-</style>

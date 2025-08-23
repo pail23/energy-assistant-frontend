@@ -114,12 +114,4 @@ defineProps<Props>();
 tbody tr:nth-of-type(even) {
   background-color: rgba(0, 0, 0, 0.3);
 }
-
-.col-date {
-  width: 6rem; /* w-24 equivalent */
-}
-
-.col-energy {
-  width: 9rem; /* w-36 equivalent */
-}
 </style>

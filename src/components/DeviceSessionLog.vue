@@ -4,17 +4,17 @@
       <v-table class="sm:ma-4 border">
         <thead class="bg-primary">
           <tr>
-            <th class="col-energy pa-6 py-3">
+            <th class="col-energy-min pa-6 py-3">
               {{ $t('sessionlog.start') }}
             </th>
-            <th class="col-energy pa-6 py-3">
+            <th class="col-energy-min pa-6 py-3">
               {{ $t('sessionlog.duration') }}
             </th>
             <!--    <th class="px-6 py-3 col-energy">{{ $t('sessionlog.text') }}</th>-->
-            <th class="col-energy pa-6 py-3">
+            <th class="col-energy-min pa-6 py-3">
               {{ $t('consumed_solar_energy') }}
             </th>
-            <th class="col-energy pa-6 py-3">
+            <th class="col-energy-min pa-6 py-3">
               {{ $t('consumed_energy') }}
             </th>
           </tr>
@@ -72,9 +72,5 @@ defineProps<Props>();
 <style scoped>
 tbody tr:nth-of-type(even) {
   background-color: rgba(0, 0, 0, 0.3);
-}
-
-.col-energy {
-  min-width: 9rem; /* min-w-36 and w-36 equivalent */
 }
 </style>
