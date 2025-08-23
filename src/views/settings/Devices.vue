@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background pa-4">
+  <v-container class="bg-background pa-4">
     <v-row>
       <v-col v-for="(device, index) in devices" :key="index" cols="12" md="6" xl="3">
         <v-card v-if="device.id != '9c0e0865-f3b0-488f-8d3f-b3b0cdda5de7'" class="ma-4 elevation-2">
@@ -236,7 +236,7 @@
       class="fab-fixed"
       @click="openAddDeviceDialog"
     />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
