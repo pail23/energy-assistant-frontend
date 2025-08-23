@@ -3,22 +3,22 @@
     <v-table class="ma-4 border">
       <thead class="bg-primary">
         <tr>
-          <th class="w-24 px-6 py-3">
+          <th class="col-date pa-6 py-3">
             {{ t('raw_data.date') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('consumed_solar_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('consumed_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('raw_data.produced_solar_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('raw_data.imported_energy') }}
           </th>
-          <th class="w-36 px-6 py-3">
+          <th class="col-energy pa-6 py-3">
             {{ t('raw_data.exported_energy') }}
           </th>
         </tr>
@@ -113,5 +113,13 @@ defineProps<Props>();
 <style scoped>
 tbody tr:nth-of-type(even) {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.col-date {
+  width: 6rem; /* w-24 equivalent */
+}
+
+.col-energy {
+  width: 9rem; /* w-36 equivalent */
 }
 </style>

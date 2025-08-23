@@ -1,7 +1,7 @@
 <template>
-  <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
+  <v-card class="elevation-2 ma-4 pa-4 card-fixed-width">
     <v-card-text>
-      <div class="relative mx-auto">
+      <div class="power-flow-container">
         <svg class="h-100 w-100" viewBox="0 0 200 180">
           <path
             id="solar-to-home"
@@ -79,22 +79,18 @@
             </marker>
           </defs>
         </svg>
-        <div class="absolute top-0 right-0 bottom-0 left-0">
-          <div
-            class="bg-surface absolute top-5 left-1/2 grid h-20 w-20 -translate-x-1/2 transform place-items-center rounded-full text-center ring-2 ring-yellow-500"
-          >
+        <div class="power-flow-overlay">
+          <div class="solar-element">
             <div>
-              <div class="mdi mdi-solar-power text-sun text-2xl" />
-              <span class="text-xs">{{ formatNumberWithUnit(solarPower, unit) }}</span>
+              <div class="mdi mdi-solar-power text-sun text-h6" />
+              <span class="text-caption">{{ formatNumberWithUnit(solarPower, unit) }}</span>
             </div>
           </div>
-          <div
-            class="bg-surface absolute bottom-5 left-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-sky-800"
-          >
+          <div class="grid-element">
             <div>
-              <div class="mdi mdi-transmission-tower text-2xl" />
+              <div class="mdi mdi-transmission-tower text-h6" />
 
-              <div v-if="gridImportedEnergy" class="text-xs">
+              <div v-if="gridImportedEnergy" class="text-caption">
                 <div>
                   <span class="mdi mdi-arrow-right" />
                   {{ formatNumberWithUnit(gridImportedEnergy, unit) }}
@@ -104,7 +100,7 @@
                   {{ formatNumberWithUnit(gridExportedEnergy, unit) }}
                 </div>
               </div>
-              <div v-else class="text-xs">
+              <div v-else class="text-caption">
                 <span v-if="grid_consumption_power > 0"
                   ><span class="mdi mdi-arrow-right" /> {{ formatNumberWithUnit(grid_consumption_power, unit) }}</span
                 >
@@ -114,12 +110,10 @@
               </div>
             </div>
           </div>
-          <div
-            class="bg-surface absolute right-5 bottom-5 grid h-20 w-20 place-items-center rounded-full text-center ring-2 ring-blue-800"
-          >
+          <div class="home-element">
             <div>
-              <div class="mdi mdi-home text-2xl" />
-              <span class="text-xs">{{ formatNumberWithUnit(homeConsumptionPower, unit) }}</span>
+              <div class="mdi mdi-home text-h6" />
+              <span class="text-caption">{{ formatNumberWithUnit(homeConsumptionPower, unit) }}</span>
             </div>
           </div>
         </div>
@@ -206,5 +200,71 @@ const grid_to_home_speed = computed(() => {
 
 .stroke-grid {
   stroke: rgb(var(--v-theme-grid));
+}
+
+.card-fixed-width {
+  width: 320px;
+}
+
+@media (min-width: 600px) {
+  .card-fixed-width {
+    width: 384px;
+  }
+}
+
+.power-flow-container {
+  position: relative;
+  margin: 0 auto;
+}
+
+.power-flow-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.solar-element {
+  position: absolute;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  height: 5rem;
+  width: 5rem;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid rgb(234, 179, 8);
+  background-color: rgb(var(--v-theme-surface));
+}
+
+.grid-element {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  display: grid;
+  height: 5rem;
+  width: 5rem;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid rgb(7, 89, 133);
+  background-color: rgb(var(--v-theme-surface));
+}
+
+.home-element {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: grid;
+  height: 5rem;
+  width: 5rem;
+  place-items: center;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid rgb(30, 64, 175);
+  background-color: rgb(var(--v-theme-surface));
 }
 </style>

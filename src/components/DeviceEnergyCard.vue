@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2 ma-4 pa-4 w-80 rounded-md sm:w-96">
+  <v-card class="elevation-2 ma-4 pa-4 card-fixed-width">
     <v-card-title>
       <span class="mdi pr-2" :class="device.icon" />
       <span class="">{{ device.name }}</span>
@@ -91,3 +91,15 @@ const options = {
 };
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 </script>
+
+<style scoped>
+.card-fixed-width {
+  width: 320px;
+}
+
+@media (min-width: 600px) {
+  .card-fixed-width {
+    width: 384px;
+  }
+}
+</style>
