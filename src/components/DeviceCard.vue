@@ -5,11 +5,11 @@
       <span class="">{{ device.name }}</span>
     </v-card-title>
     <v-card-text>
-      <v-container>
+      <v-container class="pa-0">
         <v-row no-gutters>
           <v-col
             v-if="available && attributes && Object.entries(attributes).length > 0"
-            class="bg-subgroup pa-2"
+            class="bg-subgroup pa-2 mb-2"
           >
             <div v-for="(attribute, index) in Object.entries(attributes)" :key="index" class="text-left w-100">
               {{ $t('device_attribute.' + attribute[0]) }}
@@ -20,7 +20,7 @@
             {{ $t('unavailable') }}
           </v-col>
         </v-row>
-        <v-row v-if="available" class="text-left bg-subgroup mt-2" no-gutters>
+        <v-row v-if="available" class="text-left bg-subgroup" no-gutters>
           <v-col class="pa-2">
             {{ $t('consumption') }}
             <span class="float-right">{{ formatNumberWithUnit(power, 'W') }}</span>
