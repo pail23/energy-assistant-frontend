@@ -36,7 +36,8 @@
     "vehicle_soc": "Vehicle SoC",
     "session_time": "Session duration",
     "session_energy": "Session energy",
-    "session_solar_energy": "Session solar energy"
+    "session_solar_energy": "Session solar energy",
+    "switched_on_time_since_midnight": "Switched on today"
   },
   "sessionlog": {
     "end": "End",

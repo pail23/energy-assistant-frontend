@@ -36,7 +36,8 @@
     "vehicle_soc": "Ladestand",
     "session_time": "Session Dauer",
     "session_energy": "Session Energie",
-    "session_solar_energy": "Session Solarenergie"
+    "session_solar_energy": "Session Solarenergie",
+    "switched_on_time_since_midnight": "Heute eingeschaltet"
   },
   "sessionlog": {
     "start": "Start",
