@@ -50,6 +50,6 @@
     "unplugin": "^2.3.5",
     "vite": "^6.3.4",
     "vite-plugin-pwa": "^1.0.0",
-    "vue-tsc": "^3.0.5"
+    "vue-tsc": "^3.0.7"
   }
 }
