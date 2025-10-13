@@ -23,7 +23,7 @@
     "mobile-detect": "^1.4.5",
     "roboto-fontface": "*",
     "vite-plugin-vuetify": "^2.1.2",
-    "vue": "^3.5.12",
+    "vue": "^3.5.22",
     "vue-chartjs": "^5.3.2",
     "vue-i18n": "^11.1.11",
     "vue-query": "^1.26.0",
