@@ -16,50 +16,13 @@ import { useTheme } from 'vuetify';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Colors } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
 
 const fontBold: 'number' | 'bold' | 'normal' | 'bolder' | 'lighter' | 'undefined' = 'bold';
 
 const theme = useTheme();
 
-const doughnutLabel = {
-  id: 'doughnutlabel',
-  beforeDraw: (chart, _args, options) => {
-    const { ctx } = chart;
-    ctx.save();
-    ctx.globalCompositeOperation = 'destination-over';
-
-    var width = chart.chartArea.width;
-    var height = chart.chartArea.height;
-
-    // var fontSize = (height / 114).toFixed(2);
-    // ctx.font = fontSize + 'em sans-serif';
-    ctx.font = '1.2em sans-serif';
-    ctx.fillStyle = options.color;
-    const linespacing = 2;
-
-    ctx.textBaseline = 'top';
-    let textHeight = 0;
-    for (let i = 0; i < options.text.length; i++) {
-      const text = options.text[i];
-      const metrics: TextMetrics = ctx.measureText(text);
-      textHeight += (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * linespacing;
-    }
-    let currentY = chart.chartArea.top + (height - textHeight) / 2;
-    for (let i = 0; i < options.text.length; i++) {
-      const text = options.text[i];
-      const metrics: TextMetrics = ctx.measureText(text);
-      const textX = chart.chartArea.left + Math.round((width - metrics.width) / 2);
-      ctx.fillText(text, textX, currentY);
-      currentY += (metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent) * linespacing;
-    }
-
-    ctx.restore();
-  },
-  defaults: {
-    text: [],
-    color: 'black',
-  },
-};
 
 const data = computed(() => {
   const devices = props.devices.filter((device) => device.power > 0);
@@ -90,10 +53,18 @@ const options = computed(() => {
           label: (item) => `${formatNumberWithUnit(item.parsed, 'W')}`,
         },
       },
-      doughnutlabel: {
-        color: theme.current.value.colors['on-surface'],
-        text: [formatNumberWithUnit(props.power, 'W'), props.selfSufficiency.toFixed(0) + '%'],
+      annotation: {
+        annotations: {
+          dLabel: {
+            type: 'doughnutLabel',
+            content: ({ chart }) => 
+            [formatNumberWithUnit(props.power, 'W'), props.selfSufficiency.toFixed(0) + '%'],
+            font: [{ size: 30 }, { size: 20 }],
+            color: ['black', 'black']
+          }
+        }
       },
+
       datalabels: {
         backgroundColor: function (context) {
           return context.dataset.backgroundColor;
@@ -118,7 +89,7 @@ const options = computed(() => {
   };
 });
 
-ChartJS.register(ArcElement, Tooltip, Legend, Colors, doughnutLabel, ChartDataLabels);
+ChartJS.register(ArcElement, Tooltip, Legend, Colors, annotationPlugin, ChartDataLabels);
 
 interface Props {
   devices: IDevice[];
